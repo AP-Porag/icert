@@ -1,7 +1,6 @@
 body{
     overflow-x: hidden;
 }
-
 .ic-font-size-12 {
     font-size: 12px !important;
 }
@@ -557,3 +556,17 @@ ul li {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+/*ICert Theme start*/
+.btn-primary-theme{
+    background: #282e7a;
+}
+
+.bg-primary-theme{
+    background: #282e7a;
+}
+
+.account-pages .logo-admin{
+    border-bottom: 2px solid #282e7a;
+}
+/*ICert Theme end*/

@@ -3,7 +3,9 @@
 @section('content')
     <div class="account-pages">
         <!-- Begin page -->
-        <div class="accountbg" style="background: url('admin/images/bg.jpg');background-size: cover;background-position: center;"></div>
+        <div class="accountbg" style="background: url('admin/images/bg.png');background-size: cover;background-position: center;">
+            <div class="overlay_container"></div>
+        </div>
 
         <div class="wrapper-page account-page-full">
 
@@ -15,7 +17,7 @@
                         <div class="card-box shadow-none p-4">
                             <div class="p-2">
                                 <div class="text-center mt-4">
-                                    <a href="index.html"><img src="admin/images/logo-sm.png" height="22" alt="logo"></a>
+                                    <img src="admin/images/logo-sm.png" height="100" alt="logo">
                                 </div>
 
                                 <h4 class="font-size-18 mt-5 text-center">Welcome Back !</h4>
@@ -63,8 +65,13 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="offset-6 col-sm-6 text-end">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
+                                        <div class="col-sm-6">
+                                            <div class="form-check text-end">
+                                                <a href="{{route('password.request')}}"><i class="mdi mdi-lock"></i> Forgot Password</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 text-end mt-5">
+                                            <button class="btn btn-primary w-md waves-effect waves-light btn-primary-theme" type="submit">Log In</button>
                                         </div>
                                     </div>
 
@@ -78,7 +85,7 @@
 
                                 <div class="mt-5 pt-4 text-center">
 {{--                                    <p>Don't have an account ? <a href="pages-register-2.html" class="fw-medium text-primary"> Signup now </a> </p>--}}
-{{--                                    <p>© <script>document.write(new Date().getFullYear())</script> Veltrix. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>--}}
+                                    <p>Copyright <span class="text-warning">©</span> <span class="text-info"><script>document.write(new Date().getFullYear())</script></span> ICert Certification Services</p>
                                 </div>
 
                             </div>
@@ -91,3 +98,13 @@
         </div>
     </div>
 @endsection
+@push('style')
+    <style>
+        .overlay_container{
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            opacity: 0.6;
+        }
+    </style>
+@endpush
