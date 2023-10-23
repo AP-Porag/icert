@@ -21,8 +21,8 @@ jobs:
 #        run: php -r "file_exists('.env') || copy('.env.staging', '.env');"
         run: php -r "copy('.env.staging', '.env');"
 
-#      - name: Fresh Database Seeding
-#        run: php artisan migrate:fresh --seed
+      - name: Fresh Database Seeding
+        run: php artisan migrate:fresh --seed
 
       - name: Config Clearing
         run: php artisan config:clear
