@@ -11,12 +11,12 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        @if(!request()->is('/') && !request()->is('login') && !route('password.request') && !route('password.reset'))
+        @if(!request()->is('/') && !request()->is('login') && !request()->routeIs('password.request') && !request()->routeIs('password.reset'))
             @include('layouts.partials._header')
         @endif
 
         <!-- ========== Left Sidebar Start ========== -->
-        @if(!request()->is('/') && !request()->is('login') && !route('password.request') && !route('password.reset'))
+        @if(!request()->is('/') && !request()->is('login') && !request()->routeIs('password.request') && !request()->routeIs('password.reset'))
             @include('layouts.partials.sidebars._sidebar-'.auth()->user()->user_type)
         @endif
         <!-- Left Sidebar End -->
@@ -26,11 +26,11 @@
         <!-- ============================================================== -->
         <div class="main-content">
 
-            <div class="{{request()->is('login') || route('password.request') || route('password.reset') ? '':'page-content'}}">
+            <div class="{{request()->is('login') || request()->routeIs('password.request') || request()->routeIs('password.reset') ? '':'page-content'}}">
                 <div class="container-fluid">
 
                     <!-- start page title -->
-                    @if(!request()->is('/') && !request()->is('login') && !route('password.request') && !route('password.reset'))
+                    @if(!request()->is('/') && !request()->is('login') && !request()->routeIs('password.request') && !request()->routeIs('password.reset'))
                         @include('layouts.partials._breadcrumb')
                     @endif
                     <!-- end page title -->
@@ -43,7 +43,7 @@
             </div>
             <!-- End Page-content -->
 
-            @if(!request()->is('/') && !request()->is('login') && !route('password.request') && !route('password.reset'))
+            @if(!request()->is('/') && !request()->is('login') && !request()->routeIs('password.request') && !request()->routeIs('password.reset'))
                 @include('layouts.partials._footer')
             @endif
 
