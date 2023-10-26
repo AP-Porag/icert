@@ -19,7 +19,7 @@
 
                         <div class="card-body p-4">
                             <div class="p-3">
-                                <form method="POST" action="#">
+                                <form method="POST" action="{{ route('login') }}">
 
                                     @csrf
                                     <div class="mb-3">

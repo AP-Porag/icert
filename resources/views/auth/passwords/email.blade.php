@@ -24,7 +24,7 @@
                                 </div>
 
 
-                                <form class=" mt-4" action="#">
+                                <form class=" mt-4" action="{{ route('password.email') }}">
 
                                     <div class="mb-3">
                                         <label class="form-label" for="useremail">Email</label>

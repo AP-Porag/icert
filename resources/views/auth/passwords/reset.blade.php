@@ -17,7 +17,7 @@
 
                         <div class="card-body p-4">
                             <div class="p-3">
-                                <form class=" mt-4" action="#">
+                                <form class=" mt-4" action="{{ route('password.update') }}">
 
                                     <div class="mb-3">
                                         <label class="form-label" for="useremail">Email</label>
