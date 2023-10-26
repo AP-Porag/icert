@@ -27,8 +27,9 @@
                                 <form class=" mt-4" method="POST" action="{{ route('password.email') }}">
                                     @csrf
                                     <div class="mb-3">
-                                        <label class="form-label" for="useremail">Email</label>
-                                        <input type="email" class="form-control" id="useremail" placeholder="Enter email">
+                                        <label class="form-label" for="email">Email</label>
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+{{--                                        <input type="email" class="form-control" id="useremail" placeholder="Enter email">--}}
                                     </div>
 
                                     <div class="row  mb-0">
