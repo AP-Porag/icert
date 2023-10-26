@@ -24,8 +24,8 @@
                                 </div>
 
 
-                                <form class=" mt-4" action="{{ route('password.email') }}">
-
+                                <form class=" mt-4" method="POST" action="{{ route('password.email') }}">
+                                    @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="useremail">Email</label>
                                         <input type="email" class="form-control" id="useremail" placeholder="Enter email">
