@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        set_page_meta('Dashboard');
         return view('admin.dashboard.index');
     }
 }
