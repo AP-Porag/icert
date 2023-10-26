@@ -24,8 +24,8 @@ jobs:
 #      - name: Fresh Database Seeding
 #        run: php artisan migrate:fresh --seed
 
-      - name: Create storage symlink file
-        run: php artisan storage:link
+#      - name: Create storage symlink file
+#        run: php artisan storage:link
 
       - name: Config Clearing
         run: php artisan config:clear
