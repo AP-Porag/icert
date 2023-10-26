@@ -20,18 +20,32 @@
                                 <form class=" mt-4" method="POST" action="{{ route('password.update') }}">
                                     @csrf
                                     <div class="mb-3">
-                                        <label class="form-label" for="useremail">Email</label>
-                                        <input type="email" class="form-control" id="useremail" placeholder="Enter email">
+                                        <label class="form-label" for="email">Email</label>
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+{{--                                        <input type="email" class="form-control" id="useremail" placeholder="Enter email">--}}
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label" for="userpassword">New Password</label>
-                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                        <label class="form-label" for="password">New Password</label>
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+{{--                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">--}}
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label" for="userpassword">Confirm Password</label>
-                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                                        <label class="form-label" for="password-confirm">Confirm Password</label>
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                        {{--                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">--}}
                                     </div>
 
                                     <div class="mb-3 row">
