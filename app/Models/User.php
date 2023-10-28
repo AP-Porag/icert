@@ -15,9 +15,8 @@ class User extends Authenticatable
 
     public const FILE_STORE_PATH = 'users_avatar';
     public const USER_TYPE_ADMIN    = 'admin';
-    public const USER_TYPE_MANAGER    = 'manager';
-    public const USER_TYPE_HR    = 'hr';
-    public const USER_TYPE_EMPLOYEE    = 'employee';
+    public const USER_TYPE_ICERT    = 'icert';
+    public const USER_TYPE_KSA    = 'ksa';
 
     protected $appends = ['full_name', 'avatar_url'];
 
@@ -30,6 +29,7 @@ class User extends Authenticatable
         'first_name',
         'middle_name',
         'last_name',
+        'username',
         'email',
         'phone',
         'date_of_hire',

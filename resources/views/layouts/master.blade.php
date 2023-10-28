@@ -17,7 +17,8 @@
 
         <!-- ========== Left Sidebar Start ========== -->
         @if(!request()->is('/') && !request()->is('login') && !request()->routeIs('password.request') && !request()->routeIs('password.reset'))
-            @include('layouts.partials.sidebars._sidebar-'.auth()->user()->user_type)
+{{--            @include('layouts.partials.sidebars._sidebar-'.auth()->user()->user_type)--}}
+            @include('layouts.partials.sidebars._sidebar-admin')
         @endif
         <!-- Left Sidebar End -->
 

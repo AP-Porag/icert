@@ -28,17 +28,18 @@ class UserProfileController extends Controller
             [
                 'first_name'    => 'required|string|max:50',
                 'middle_name'   => 'nullable|string|max:50',
-                'last_name'     => 'required|string|max:50',
-                'phone'         => 'required|string|max:16',
+                'username'   => 'nullable',
+                'last_name'     => 'nullable|string|max:50',
+                'phone'         => 'nullable|string|max:16',
                 'email'         => "required|email|unique:users,email,$id",
-                'date_of_hire' => 'required',
+                'date_of_hire' => 'nullable',
             ],
             [
                 'first_name.required'    => 'First Name is Required!',
-                'last_name.required'     => 'Last Name is Required!',
-                'phone.required'         => 'Phone Number is Required!',
+//                'last_name.required'     => 'Last Name is Required!',
+//                'phone.required'         => 'Phone Number is Required!',
                 'email.required'         => 'Email is Required!',
-                'date_of_hire.required' => 'Date of hire is Required!',
+//                'date_of_hire.required' => 'Date of hire is Required!',
             ]
         );
 
@@ -91,7 +92,7 @@ class UserProfileController extends Controller
         $request->validate([
             'current_password'     => ['required', new MatchOldPassword],
             'new_password'         => [
-                'required', 'string', 'confirmed', Password::min(8)
+                'required','max:18', 'string', 'confirmed', Password::min(8)
                     ->mixedCase()
                     ->letters()
                     ->numbers()

@@ -8,26 +8,39 @@
                     <h4 class="card-title mb-3">Update Profile</h4>
 
                     <div class="row">
-                        <div class="col-md-4">
-                            <form id="adminAvatarUpdateForm" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="avatar-upload">
-                                    <div class="avatar-edit">
-                                        <input type='file' name="avatar" id="adminImageUpload" accept=".png, .jpg, .jpeg" />
-                                        <label for="adminImageUpload"></label>
-                                    </div>
-                                    <div class="avatar-preview">
-                                        <div id="imagePreview" style="background-image: url('{{ $user->avatar_url }}');">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+{{--                        <div class="col-md-4">--}}
+{{--                            <form id="adminAvatarUpdateForm" method="POST" enctype="multipart/form-data">--}}
+{{--                                @csrf--}}
+{{--                                <div class="avatar-upload">--}}
+{{--                                    <div class="avatar-edit">--}}
+{{--                                        <input type='file' name="avatar" id="adminImageUpload" accept=".png, .jpg, .jpeg" />--}}
+{{--                                        <label for="adminImageUpload"></label>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="avatar-preview">--}}
+{{--                                        <div id="imagePreview" style="background-image: url('{{ $user->avatar_url }}');">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
 
                         <div class="col-md-6">
                             <form action="{{ route('admin.profile.update', $user->id) }}" method="POST" id="form">
                                 @csrf
                                 @method('PUT')
+
+                                <div class="form-group mb-2">
+                                    <label for="username">
+                                        User Name (First and last name)
+                                    </label>
+                                    <input type="text" id="username" name="username" class="form-control"
+                                           autocomplete="off" value="{{ $user->username }}"
+                                           placeholder="Enter your username" required>
+                                    @error('username')
+                                    <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group mb-2">
                                     <label for="first_name">
                                         First Name <span class="text-danger">*</span>
@@ -40,73 +53,73 @@
                                     @enderror
                                 </div>
 
-                                <div class="form-group mb-2">
-                                    <label for="middle_name">
-                                        Middle Name <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" id="middle_name" name="middle_name" class="form-control"
-                                           autocomplete="off" value="{{ $user->middle_name }}"
-                                           placeholder="Enter your middle name">
-                                    @error('email')
-                                    <p class="middle_name">{{ $message }}</p>
-                                    @enderror
-                                </div>
+{{--                                <div class="form-group mb-2">--}}
+{{--                                    <label for="middle_name">--}}
+{{--                                        Middle Name <span class="text-danger">*</span>--}}
+{{--                                    </label>--}}
+{{--                                    <input type="text" id="middle_name" name="middle_name" class="form-control"--}}
+{{--                                           autocomplete="off" value="{{ $user->middle_name }}"--}}
+{{--                                           placeholder="Enter your middle name">--}}
+{{--                                    @error('email')--}}
+{{--                                    <p class="middle_name">{{ $message }}</p>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
 
-                                <div class="form-group mb-2">
-                                    <label for="last_name">
-                                        Last Name <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" id="last_name" name="last_name" class="form-control"
-                                           autocomplete="off" value="{{ $user->last_name }}" placeholder="Enter your last name"
-                                           required>
-                                    @error('last_name')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+{{--                                <div class="form-group mb-2">--}}
+{{--                                    <label for="last_name">--}}
+{{--                                        Last Name <span class="text-danger">*</span>--}}
+{{--                                    </label>--}}
+{{--                                    <input type="text" id="last_name" name="last_name" class="form-control"--}}
+{{--                                           autocomplete="off" value="{{ $user->last_name }}" placeholder="Enter your last name"--}}
+{{--                                           required>--}}
+{{--                                    @error('last_name')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
 
-                                <div class="form-group mb-2">
-                                    <label for="department">
-                                        Department
-                                    </label>
-                                    <input type="text" id="department" name="department" class="form-control"
-                                           autocomplete="off" value="{{ $user->department }}" placeholder="Enter your department"
-                                           >
-                                    @error('department')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+{{--                                <div class="form-group mb-2">--}}
+{{--                                    <label for="department">--}}
+{{--                                        Department--}}
+{{--                                    </label>--}}
+{{--                                    <input type="text" id="department" name="department" class="form-control"--}}
+{{--                                           autocomplete="off" value="{{ $user->department }}" placeholder="Enter your department"--}}
+{{--                                           >--}}
+{{--                                    @error('department')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
 
-                                <div class="form-group mb-2">
-                                    <label for="department">
-                                        Title
-                                    </label>
-                                    <input type="text" id="title" name="title" class="form-control"
-                                           autocomplete="off" value="{{ $user->title }}" placeholder="Enter your title"
-                                    >
-                                    @error('title')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+{{--                                <div class="form-group mb-2">--}}
+{{--                                    <label for="department">--}}
+{{--                                        Title--}}
+{{--                                    </label>--}}
+{{--                                    <input type="text" id="title" name="title" class="form-control"--}}
+{{--                                           autocomplete="off" value="{{ $user->title }}" placeholder="Enter your title"--}}
+{{--                                    >--}}
+{{--                                    @error('title')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
 
-                                <div class="mb-2">
-                                    <label class="form-label">Date of Hire <span class="error">*</span></label>
-                                    <input type="date" name="date_of_hire" class="form-control" required=""
-                                           placeholder="Enter date of birth" value="{{ $user->date_of_hire }}">
-                                    @error('date_of_hire')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+{{--                                <div class="mb-2">--}}
+{{--                                    <label class="form-label">Date of Hire <span class="error">*</span></label>--}}
+{{--                                    <input type="date" name="date_of_hire" class="form-control" required=""--}}
+{{--                                           placeholder="Enter date of birth" value="{{ $user->date_of_hire }}">--}}
+{{--                                    @error('date_of_hire')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
 
-                                <div class="form-group mb-2">
-                                    <label for="phone">
-                                        Phone Number <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" autocomplete="off"
-                                           value="{{ $user->phone }}" required>
-                                    @error('phone')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
+{{--                                <div class="form-group mb-2">--}}
+{{--                                    <label for="phone">--}}
+{{--                                        Phone Number <span class="text-danger">*</span>--}}
+{{--                                    </label>--}}
+{{--                                    <input type="tel" class="form-control" id="phone" name="phone" autocomplete="off"--}}
+{{--                                           value="{{ $user->phone }}" required>--}}
+{{--                                    @error('phone')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
 
                                 <div class="mb-2">
                                     <label class="form-label">Email <span class="error">*</span></label>

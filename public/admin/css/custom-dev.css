@@ -569,4 +569,19 @@ ul li {
 .account-pages .logo-admin{
     border-bottom: 2px solid #282e7a;
 }
+
+.custom_menu_icon{
+    max-height: 20px;
+    margin-right: 7px;
+}
+
+#sidebar-menu ul li a {
+    color: #282e7a !important;
+}
+#sidebar-menu ul li a:hover {
+    color: #f15823 !important;
+}
+#sidebar-menu ul li a:active {
+    color: #f15823 !important;
+}
 /*ICert Theme end*/
