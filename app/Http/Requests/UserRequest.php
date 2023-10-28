@@ -25,15 +25,16 @@ class UserRequest extends FormRequest
     {
         $rules =  [
             'first_name' => ['required'],
-            'last_name'  => ['required'],
+            'last_name'  => ['nullable'],
             'email'      => ['required', 'string', Rule::unique('users')->ignore($this->user)],
-            'phone'      => ['required'],
-            'date_of_hire' => ['required'],
-            'status'     => ['required'],
+            'phone'      => ['nullable'],
+            'date_of_hire' => ['nullable'],
+            'status'     => ['nullable'],
             'user_type'  => ['required'],
-            'department' => ['required_if:user_type,employee'],
+            'department' => ['nullable'],
+//            'department' => ['required_if:user_type,employee'],
             'password'   => [
-                'required', 'string', 'confirmed', Password::min(8)
+                'required', 'string','max:18', 'confirmed', Password::min(8)
                     ->mixedCase()
                     ->letters()
                     ->numbers()
@@ -44,7 +45,7 @@ class UserRequest extends FormRequest
 
         if ($this->user) {
             $rules['password'] =  [
-                'nullable', 'string', 'confirmed', Password::min(8)
+                'nullable', 'string','max:18', 'confirmed', Password::min(8)
                     ->mixedCase()
                     ->letters()
                     ->numbers()

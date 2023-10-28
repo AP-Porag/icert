@@ -5,6 +5,7 @@ namespace App\DataTables;
 use App\Models\User;
 use App\Utils\GlobalConstant;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -48,7 +49,7 @@ class UserDataTable extends DataTable
             })->editColumn('user_type',function ($item){
                 return '<span class="text-capitalize">' . $item->user_type. '</span>';
             })->filterColumn('first_name', function ($query, $keyword) {
-                $sql = "CONCAT(users.first_name,'-',users.last_name)  like ?";
+                $sql = "CONCAT(users.first_name,'-',users.username)  like ?";
                 $query->whereRaw($sql, ["%{$keyword}%"]);
             })
             ->rawColumns(['action', 'avatar', 'status','user_type'])
@@ -61,7 +62,16 @@ class UserDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery()->orderBy('id', 'DESC')->select('users.*');
+
+        if (Auth::user()->user_type == User::USER_TYPE_ICERT){
+            return $model->newQuery()->where('user_type',User::USER_TYPE_ICERT)->orderBy('id', 'DESC')->select('users.*');
+        }elseif (Auth::user()->user_type == User::USER_TYPE_KSA){
+            return $model->newQuery()->where('user_type',User::USER_TYPE_KSA)->orderBy('id', 'DESC')->select('users.*');
+        }else{
+            return $model->newQuery()->orderBy('id', 'DESC')->select('users.*');
+        }
+
+
     }
 
     /**
@@ -99,8 +109,8 @@ class UserDataTable extends DataTable
             Column::make('avatar', 'avatar')->title('Avatar'),
             Column::make('first_name', 'first_name')->title('Name'),
             Column::make('email', 'email')->title('Email'),
-            Column::make('phone', 'phone')->title('Phone'),
-            Column::make('user_type', 'user_type')->title('User Type'),
+            Column::make('username', 'username')->title('Username'),
+            Column::make('user_type', 'user_type')->title('User From'),
             Column::make('status', 'status')->title('Status'),
         ];
     }

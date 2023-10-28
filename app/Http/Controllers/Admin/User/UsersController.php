@@ -21,7 +21,7 @@ class UsersController extends Controller
 
     public function index(UserDataTable $dataTable)
     {
-        set_page_meta('Admins');
+        set_page_meta('Users');
         return $dataTable->render('admin.users.index');
     }
 
@@ -33,8 +33,9 @@ class UsersController extends Controller
 
     public function store(UserRequest $request)
     {
-        $data = $request->validated();
+
         try {
+            $data = $request->validated();
             $this->userService->storeOrUpdate($data, null);
             record_created_flash();
         } catch (\Exception $e) {

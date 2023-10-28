@@ -86,7 +86,7 @@
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">User Type <span class="error">*</span></label>
                                     <input type="text" name="user_type" class="form-control" placeholder="User Type"
-                                           value="{{\App\Models\User::USER_TYPE_ICERT}}" disabled>
+                                           value="{{\App\Models\User::USER_TYPE_ICERT}}" readonly>
                                     @error('user_type')
                                     <p class="error">{{ $message }}</p>
                                     @enderror
@@ -97,7 +97,7 @@
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">User Type <span class="error">*</span></label>
                                     <input type="text" name="user_type" class="form-control" placeholder="User Type"
-                                           value="{{\App\Models\User::USER_TYPE_KSA}}" disabled>
+                                           value="{{\App\Models\User::USER_TYPE_KSA}}" readonly>
                                     @error('user_type')
                                     <p class="error">{{ $message }}</p>
                                     @enderror

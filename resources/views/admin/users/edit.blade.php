@@ -22,10 +22,10 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label class="form-label">Last Name <span class="error">*</span></label>
-                                <input type="text" name="last_name" class="form-control" required="" placeholder="Last Name"
-                                       value="{{ $user->last_name }}">
-                                @error('last_name')
+                                <label class="form-label">User Name (First and last name)</label>
+                                <input type="text" name="username" class="form-control" placeholder="User Name"
+                                       value="{{ $user->username }}">
+                                @error('username')
                                 <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -39,57 +39,80 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Phone <span class="error">*</span></label>
-                                <input type="tel" name="phone" class="form-control" required="" placeholder="Phone"
-                                       value="{{ $user->phone }}">
-                                @error('phone')
-                                <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
+{{--                            <div class="mb-3 col-md-6">--}}
+{{--                                <label class="form-label">Phone <span class="error">*</span></label>--}}
+{{--                                <input type="tel" name="phone" class="form-control" required="" placeholder="Phone"--}}
+{{--                                       value="{{ $user->phone }}">--}}
+{{--                                @error('phone')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
 
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Date of hire <span class="error">*</span></label>
-                                <input type="date" name="date_of_hire" class="form-control" required="" placeholder="Date of hire"
-                                       value="{{ $user->date_of_hire }}">
-                                @error('date_of_hire')
-                                <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
+{{--                            <div class="mb-3 col-md-6">--}}
+{{--                                <label class="form-label">Date of hire <span class="error">*</span></label>--}}
+{{--                                <input type="date" name="date_of_hire" class="form-control" required="" placeholder="Date of hire"--}}
+{{--                                       value="{{ $user->date_of_hire }}">--}}
+{{--                                @error('date_of_hire')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
 
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Title </label>
-                                <input type="text" name="title" class="form-control" placeholder="Title"
-                                       value="{{ $user->title }}">
-                                @error('title')
-                                <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
+{{--                            <div class="mb-3 col-md-6">--}}
+{{--                                <label class="form-label">Title </label>--}}
+{{--                                <input type="text" name="title" class="form-control" placeholder="Title"--}}
+{{--                                       value="{{ $user->title }}">--}}
+{{--                                @error('title')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
 
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">User Type <span class="error">*</span></label>
-                                <select class="form-control text-capitalize" name="user_type" id="user_type">
-                                    <option class="text-capitalize" @if($user->user_type == \App\Models\User::USER_TYPE_ADMIN) selected @endif value="{{\App\Models\User::USER_TYPE_ADMIN}}">{{\App\Models\User::USER_TYPE_ADMIN}}</option>
-                                    <option class="text-capitalize" @if($user->user_type == \App\Models\User::USER_TYPE_MANAGER) selected @endif value="{{\App\Models\User::USER_TYPE_MANAGER}}">{{\App\Models\User::USER_TYPE_MANAGER}}</option>
-                                    <option class="text-capitalize" @if($user->user_type == \App\Models\User::USER_TYPE_HR) selected @endif value="{{\App\Models\User::USER_TYPE_HR}}">{{\App\Models\User::USER_TYPE_HR}}</option>
-                                    <option class="text-capitalize" @if($user->user_type == \App\Models\User::USER_TYPE_EMPLOYEE) selected @endif value="{{\App\Models\User::USER_TYPE_EMPLOYEE}}">{{\App\Models\User::USER_TYPE_EMPLOYEE}}</option>
-                                </select>
-                                @error('user_type')
-                                <p class="error">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            @if(auth()->user()->user_type == \App\Models\User::USER_TYPE_ADMIN)
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">User Type <span class="error">*</span></label>
+                                    <select class="form-control text-capitalize" name="user_type" id="user_type">
+                                        <option class="text-capitalize" @if($user->user_type == \App\Models\User::USER_TYPE_ADMIN) selected @endif value="{{\App\Models\User::USER_TYPE_ADMIN}}">{{\App\Models\User::USER_TYPE_ADMIN}}</option>
+                                        <option class="text-capitalize" @if($user->user_type == \App\Models\User::USER_TYPE_ICERT) selected @endif value="{{\App\Models\User::USER_TYPE_ICERT}}">{{\App\Models\User::USER_TYPE_ICERT}}</option>
+                                        <option class="text-capitalize" @if($user->user_type == \App\Models\User::USER_TYPE_KSA) selected @endif value="{{\App\Models\User::USER_TYPE_KSA}}">{{\App\Models\User::USER_TYPE_KSA}}</option>
+                                    </select>
+                                    @error('user_type')
+                                    <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            @endif
 
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Department @if($errors->has('department')) <span class="error">*</span> @endif</label>
-                                <input type="text" name="department" class="form-control" placeholder="Department"
-                                       value="{{ $user->department }}">
-                                @error('department')
-                                <p class="error">{{ $message }}</p>
-                                @enderror
-                                <span id="StrengthDisp" class="input_bellow_text text-warning">
-                                Must fill this if user type is employee.
-                            </span>
-                            </div>
+                            @if(auth()->user()->user_type == \App\Models\User::USER_TYPE_ICERT)
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">User Type <span class="error">*</span></label>
+                                    <input type="text" name="user_type" class="form-control" placeholder="User Type"
+                                           value="{{$user->user_type}}" readonly>
+                                    @error('user_type')
+                                    <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            @endif
+
+                            @if(auth()->user()->user_type == \App\Models\User::USER_TYPE_KSA)
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">User Type <span class="error">*</span></label>
+                                    <input type="text" name="user_type" class="form-control" placeholder="User Type"
+                                           value="{{$user->user_type}}" readonly>
+                                    @error('user_type')
+                                    <p class="error">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            @endif
+
+{{--                            <div class="mb-3 col-md-6">--}}
+{{--                                <label class="form-label">Department @if($errors->has('department')) <span class="error">*</span> @endif</label>--}}
+{{--                                <input type="text" name="department" class="form-control" placeholder="Department"--}}
+{{--                                       value="{{ $user->department }}">--}}
+{{--                                @error('department')--}}
+{{--                                <p class="error">{{ $message }}</p>--}}
+{{--                                @enderror--}}
+{{--                                <span id="StrengthDisp" class="input_bellow_text text-warning">--}}
+{{--                                Must fill this if user type is employee.--}}
+{{--                            </span>--}}
+{{--                            </div>--}}
 
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Password <span class="error">*</span></label>
@@ -98,10 +121,10 @@
                                 @error('password')
                                 <p class="error">{{ $message }}</p>
                                 @enderror
-                                <span id="StrengthDisp" class="input_bellow_text">
-                            Should contains Letters(uppercase & lowercase), Number and Special
-                            Characters.
-                        </span>
+{{--                                <span id="StrengthDisp" class="input_bellow_text">--}}
+{{--                            Should contains Letters(uppercase & lowercase), Number and Special--}}
+{{--                            Characters.--}}
+{{--                        </span>--}}
                             </div>
 
                             <div class="mb-3 col-md-6">

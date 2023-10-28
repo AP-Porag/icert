@@ -576,12 +576,20 @@ ul li {
 }
 
 #sidebar-menu ul li a {
-    color: #282e7a !important;
+    color: #1f3864 !important;
 }
 #sidebar-menu ul li a:hover {
     color: #f15823 !important;
 }
 #sidebar-menu ul li a:active {
+    color: #f15823 !important;
+}
+
+#sidebar-menu .mm-active > a span {
+    color: #f15823 !important;
+}
+
+.mm-active .active i{
     color: #f15823 !important;
 }
 /*ICert Theme end*/
