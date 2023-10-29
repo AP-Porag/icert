@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -36,6 +37,12 @@ class UsersController extends Controller
 
         try {
             $data = $request->validated();
+            if (Auth::user()->user_type != User::USER_TYPE_ADMIN){
+                $data['user_type'] = Auth::user()->user_type;
+            }else{
+                $user_type = $data['user_type'];
+                $data['user_type'] = $user_type;
+            }
             $this->userService->storeOrUpdate($data, null);
             record_created_flash();
         } catch (\Exception $e) {

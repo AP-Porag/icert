@@ -82,27 +82,27 @@
                                 </div>
                             @endif
 
-                            @if(auth()->user()->user_type == \App\Models\User::USER_TYPE_ICERT)
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">User Type <span class="error">*</span></label>
-                                    <input type="text" name="user_type" class="form-control" placeholder="User Type"
-                                           value="{{\App\Models\User::USER_TYPE_ICERT}}" readonly>
-                                    @error('user_type')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            @endif
+{{--                            @if(auth()->user()->user_type == \App\Models\User::USER_TYPE_ICERT)--}}
+{{--                                <div class="mb-3 col-md-6">--}}
+{{--                                    <label class="form-label">User Type <span class="error">*</span></label>--}}
+{{--                                    <input type="text" name="user_type" class="form-control" placeholder="User Type"--}}
+{{--                                           value="{{\App\Models\User::USER_TYPE_ICERT}}" readonly>--}}
+{{--                                    @error('user_type')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
 
-                            @if(auth()->user()->user_type == \App\Models\User::USER_TYPE_KSA)
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">User Type <span class="error">*</span></label>
-                                    <input type="text" name="user_type" class="form-control" placeholder="User Type"
-                                           value="{{\App\Models\User::USER_TYPE_KSA}}" readonly>
-                                    @error('user_type')
-                                    <p class="error">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            @endif
+{{--                            @if(auth()->user()->user_type == \App\Models\User::USER_TYPE_KSA)--}}
+{{--                                <div class="mb-3 col-md-6">--}}
+{{--                                    <label class="form-label">User Type <span class="error">*</span></label>--}}
+{{--                                    <input type="text" name="user_type" class="form-control" placeholder="User Type"--}}
+{{--                                           value="{{\App\Models\User::USER_TYPE_KSA}}" readonly>--}}
+{{--                                    @error('user_type')--}}
+{{--                                    <p class="error">{{ $message }}</p>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            @endif--}}
 
 {{--                            <div class="mb-3 col-md-6">--}}
 {{--                                <label class="form-label">Department @if($errors->has('department')) <span class="error">*</span> @endif</label>--}}

@@ -26,11 +26,12 @@ class UserRequest extends FormRequest
         $rules =  [
             'first_name' => ['required'],
             'last_name'  => ['nullable'],
+            'username'  => ['nullable'],
             'email'      => ['required', 'string', Rule::unique('users')->ignore($this->user)],
             'phone'      => ['nullable'],
             'date_of_hire' => ['nullable'],
             'status'     => ['nullable'],
-            'user_type'  => ['required'],
+            'user_type'  => ['nullable'],
             'department' => ['nullable'],
 //            'department' => ['required_if:user_type,employee'],
             'password'   => [

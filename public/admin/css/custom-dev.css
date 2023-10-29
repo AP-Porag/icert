@@ -571,12 +571,16 @@ ul li {
 }
 
 .custom_menu_icon{
-    max-height: 20px;
+    max-height: 17px;
     margin-right: 7px;
 }
 
 #sidebar-menu ul li a {
-    color: #1f3864 !important;
+    color: #3476ae !important;
+}
+
+#sidebar-menu ul li a i{
+    color: #3476ae !important;
 }
 #sidebar-menu ul li a:hover {
     color: #f15823 !important;

@@ -122,7 +122,7 @@
 {{--                                </div>--}}
 
                                 <div class="mb-2">
-                                    <label class="form-label">Email <span class="error">*</span></label>
+                                    <label for="email">Email <span class="error">*</span></label>
                                     <input type="email" name="email" class="form-control" required="" placeholder="Email"
                                            value="{{ $user->email }}">
                                     @error('email')
@@ -167,7 +167,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-3">Update Password</h4>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <form action="{{ route('admin.update.password') }}" method="POST" id="form2">
                                 @csrf
 
