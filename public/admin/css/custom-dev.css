@@ -596,4 +596,13 @@ ul li {
 .mm-active .active i{
     color: #f15823 !important;
 }
+
+.navbar-brand-box{
+    text-align: left;
+    padding-left: 17px;
+    padding-bottom: 0px;
+}
+#sidebar-menu{
+    padding-top: 0px;
+}
 /*ICert Theme end*/

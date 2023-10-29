@@ -98,8 +98,8 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#" class="waves-effect">
+                <li class="{{ request()->is('admin/about*') ? 'mm-active' : '' }}">
+                    <a href="{{route('admin.about.index')}}" class="waves-effect {{ request()->is('admin/about*') ? 'mm-active' : '' }}">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/about.png')}}" alt=""><span> About </span>
                     </a>
                 </li>

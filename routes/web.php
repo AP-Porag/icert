@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\About\AboutController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\User\UsersController;
 use App\Http\Controllers\HomeController;
@@ -42,6 +43,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::post('/avatar/update', [UserProfileController::class, 'avatarUpdate'])->name('avatar.update');
     Route::put('/profile/update/{id}', [UserProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('/pass/update/', [UserProfileController::class, 'updatePassword'])->name('update.password');
+
+    //about
+    Route::resource('about', AboutController::class);
 
 });
 

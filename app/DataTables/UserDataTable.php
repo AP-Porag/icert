@@ -39,20 +39,28 @@ class UserDataTable extends DataTable
                 ' . $buttons . '
                 </div>
                 </div>';
-            })->editColumn('avatar', function ($item) {
-                return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
-            })->editColumn('first_name', function ($item) {
+            })
+//            ->editColumn('avatar', function ($item) {
+//                return '<img class="ic-img-32" src="' . $item->avatar_url . '" alt="' . $item->last_name . '" />';
+//            })
+            ->editColumn('first_name', function ($item) {
                 return $item->full_name;
             })->editColumn('status',function ($item){
                 $badge = $item->status == GlobalConstant::STATUS_ACTIVE ? "bg-success" : "bg-danger";
                 return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
-            })->editColumn('user_type',function ($item){
-                return '<span class="text-capitalize">' . $item->user_type. '</span>';
-            })->filterColumn('first_name', function ($query, $keyword) {
+            })
+//            ->editColumn('user_type',function ($item){
+//                return '<span class="text-capitalize">' . $item->user_type. '</span>';
+//            })
+            ->filterColumn('first_name', function ($query, $keyword) {
                 $sql = "CONCAT(users.first_name,'-',users.username)  like ?";
                 $query->whereRaw($sql, ["%{$keyword}%"]);
             })
-            ->rawColumns(['action', 'avatar', 'status','user_type'])
+            ->rawColumns(['action',
+//                'avatar',
+                'status',
+//                'user_type'
+            ])
             ->setRowId('id');
 
     }
@@ -106,11 +114,11 @@ class UserDataTable extends DataTable
 
         return [
 //            Column::computed('DT_RowIndex', 'SL#'),
-            Column::make('avatar', 'avatar')->title('Avatar'),
+//            Column::make('avatar', 'avatar')->title('Avatar'),
+            Column::make('username', 'username')->title('Username'),
             Column::make('first_name', 'first_name')->title('Name'),
             Column::make('email', 'email')->title('Email'),
-            Column::make('username', 'username')->title('Username'),
-            Column::make('user_type', 'user_type')->title('User From'),
+//            Column::make('user_type', 'user_type')->title('User From'),
             Column::make('status', 'status')->title('Status'),
         ];
     }
