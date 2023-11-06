@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\About\AboutController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
+use App\Http\Controllers\Admin\ThirdParty\ThirdPartyDropOffController;
 use App\Http\Controllers\Admin\User\UsersController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
@@ -46,6 +47,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     //about
     Route::resource('about', AboutController::class);
+
+    //third party drop off
+    Route::resource('third-party-drop-off', ThirdPartyDropOffController::class);
 
 });
 

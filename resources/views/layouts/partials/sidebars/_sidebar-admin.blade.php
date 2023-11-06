@@ -38,11 +38,49 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="#" class="waves-effect">
-                        <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/information_updates.png')}}" alt=""><span> Information Updates </span>
+                <li
+                    class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                    <a href="javascript: void(0);"
+                       class="has-arrow waves-effect {{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                        <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/information_updates.png')}}" alt="">
+                        <span>Information Updates</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li class="{{ request()->is('admin/third-party-drop-off*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.third-party-drop-off.index') }}"
+                               class="{{ request()->routeIs('admin.third-party-drop-off.index') ? 'active' : '' }}">
+                                Third Party Drop Offs
+                            </a>
+                        </li>
+
+                        <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                            <a href="#"
+                               class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                                Third Party Authenticators
+                            </a>
+                        </li>
+
+                        <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                            <a href="#"
+                               class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                                Promo Codes
+                            </a>
+                        </li>
+
+                        <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
+                            <a href="#"
+                               class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                                Special Promo Codes
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
+{{--                <li>--}}
+{{--                    <a href="#" class="waves-effect">--}}
+{{--                        <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/information_updates.png')}}" alt=""><span> Information Updates </span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
                 <li>
                     <a href="#" class="waves-effect">
