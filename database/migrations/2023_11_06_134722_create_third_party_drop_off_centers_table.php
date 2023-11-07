@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('third_party_drop_off_centers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email');
+            $table->string('contact_name');
             $table->softDeletes();
             $table->timestamps();
         });

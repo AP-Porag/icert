@@ -61,7 +61,7 @@ class ThirdPartyDropOffDataTable extends DataTable
 //                $query->whereRaw($sql, ["%{$keyword}%"]);
 //            })
             ->rawColumns([
-//                'action',
+                'action',
 //                'avatar',
 //                'status',
 //                'user_type'
@@ -115,7 +115,8 @@ class ThirdPartyDropOffDataTable extends DataTable
             Column::make('name', 'name')->title('Name')->searchable(true),
 //            Column::make('username', 'username')->title('Username'),
 //            Column::make('first_name', 'first_name')->title('Name'),
-//            Column::make('email', 'email')->title('Email'),
+            Column::make('email', 'email')->title('Email'),
+            Column::make('contact_name', 'contact_name')->title('Contact Name'),
 //            Column::make('user_type', 'user_type')->title('User From'),
 //            Column::make('status', 'status')->title('Status'),
         ];
