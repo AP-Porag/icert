@@ -6,12 +6,14 @@ import Select2 from "v-select2-component";
 import VueSweetalert2 from "vue-sweetalert2";
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 
 
 // Vue.use(Vuelidate);
 Vue.component("Select2", Select2);
 Vue.use(VueSweetalert2);
 Vue.use(VueFormWizard)
+
 
 Vue.component("example-component", () =>
     import("./components/ExampleComponent.vue")
