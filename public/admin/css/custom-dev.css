@@ -607,11 +607,11 @@ ul li {
 }
 /*ICert Theme end*/
 .vue-form-wizard .wizard-title {
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .vue-form-wizard .category {
     margin-bottom: 30px !important;
     margin-top: 10px !important;
-    text-transform: uppercase !important;
+    text-transform: capitalize !important;
 }

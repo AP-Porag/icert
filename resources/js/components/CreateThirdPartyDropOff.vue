@@ -182,7 +182,6 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-uppercase">
                                                 Address Line two
-                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 autofocus
@@ -203,16 +202,10 @@
                                                 Country
                                                 <span class="error">*</span>
                                             </label>
-                                            <input
-                                                autofocus
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="country"/>
-                                            <!--                                v-model.trim="v$.form_data.name.$model"-->
-                                            <!--                            />-->
-                                            <!--                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">-->
-                                            <!--                                Zip code is required-->
-                                            <!--                            </div>-->
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(country,index) in countries" :key="country.id">{{country.name}}</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -222,16 +215,10 @@
                                                 Province/State
                                                 <span class="error">*</span>
                                             </label>
-                                            <input
-                                                autofocus
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="province"/>
-                                            <!--                                v-model.trim="v$.form_data.name.$model"-->
-                                            <!--                            />-->
-                                            <!--                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">-->
-                                            <!--                                Zip code is required-->
-                                            <!--                            </div>-->
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(province,index) in provinces" :key="province.id">{{province.name}}</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -272,25 +259,6 @@
                                             <!--                            </div>-->
                                         </div>
                                     </div>
-
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Telephone#-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="telephone"/>-->
-<!--                                            &lt;!&ndash;                                v-model.trim="v$.form_data.name.$model"&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                            />&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                Zip code is required&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                    </div>-->
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-uppercase">
@@ -301,6 +269,7 @@
                                                 id="phoneNumber1"
                                                 v-model="form_data.name"
                                                 default-country-code="CA"
+                                                :only-countries="countries_phone"
                                             />
                                         </div>
                                     </div>
@@ -464,7 +433,6 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-uppercase">
                                                 Address Line two
-                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 autofocus
@@ -554,25 +522,6 @@
                                             <!--                            </div>-->
                                         </div>
                                     </div>
-
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Telephone#-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="telephone"/>-->
-<!--                                            &lt;!&ndash;                                v-model.trim="v$.form_data.name.$model"&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                            />&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                                Zip code is required&ndash;&gt;-->
-<!--                                            &lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                    </div>-->
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-uppercase">
@@ -583,6 +532,7 @@
                                                 id="phoneNumber1"
                                                 v-model="form_data.name"
                                                 default-country-code="CA"
+                                                :only-countries="countries_phone"
                                             />
                                         </div>
                                     </div>
@@ -682,71 +632,380 @@ export default {
             step_count:4,
             completed_step_count:'',
             form_wizard_subtitle:'Start here',
+            countries:[
+                {
+                    "id": 1,
+                    "name": "Canada"
+                },
+                {
+                    "id": 2,
+                    "name": "United States"
+                },
+                {
+                    "id": 3,
+                    "name": "Australia"
+                },
+                {
+                    "id": 4,
+                    "name": "New Zealand"
+                },
+                {
+                    "id": 5,
+                    "name": "United Kingdom"
+                }
+            ],
+            countries_phone:['CA','US','AU','NZ','GB'],
+            provinces:[
+                {
+                    "id": 1,
+                    "name": "AB"
+                },
+                {
+                    "id": 2,
+                    "name": "BC"
+                },
+                {
+                    "id": 3,
+                    "name": "MB"
+                },
+                {
+                    "id": 4,
+                    "name": "NB"
+                },
+                {
+                    "id": 5,
+                    "name": "NL"
+                },
+                {
+                    "id": 6,
+                    "name": "NS"
+                },
+                {
+                    "id": 7,
+                    "name": "NT"
+                },
+                {
+                    "id": 8,
+                    "name": "NU"
+                },
+                {
+                    "id": 9,
+                    "name": "ON"
+                },
+                {
+                    "id": 10,
+                    "name": "PE"
+                },
+                {
+                    "id": 11,
+                    "name": "QC"
+                },
+                {
+                    "id": 12,
+                    "name": "SK"
+                },
+                {
+                    "id": 13,
+                    "name": "YT"
+                },
+                {
+                    "id": 14,
+                    "name": "AK"
+                },
+                {
+                    "id": 15,
+                    "name": "AL"
+                },
+                {
+                    "id": 16,
+                    "name": "AR"
+                },
+                {
+                    "id": 17,
+                    "name": "AZ"
+                },
+                {
+                    "id": 18,
+                    "name": "CA"
+                },
+                {
+                    "id": 19,
+                    "name": "CO"
+                },
+                {
+                    "id": 20,
+                    "name": "CT"
+                },
+                {
+                    "id": 21,
+                    "name": "DC"
+                },
+                {
+                    "id": 22,
+                    "name": "DE"
+                },
+                {
+                    "id": 23,
+                    "name": "FL"
+                },
+                {
+                    "id": 24,
+                    "name": "GA"
+                },
+                {
+                    "id": 25,
+                    "name": "HI"
+                },
+                {
+                    "id": 26,
+                    "name": "IA"
+                },
+                {
+                    "id": 27,
+                    "name": "ID"
+                },
+                {
+                    "id": 28,
+                    "name": "IL"
+                },
+                {
+                    "id": 29,
+                    "name": "IN"
+                },
+                {
+                    "id": 30,
+                    "name": "KS"
+                },
+                {
+                    "id": 31,
+                    "name": "KY"
+                },
+                {
+                    "id": 32,
+                    "name": "LA"
+                },
+                {
+                    "id": 33,
+                    "name": "MA"
+                },
+                {
+                    "id": 34,
+                    "name": "MD"
+                },
+                {
+                    "id": 35,
+                    "name": "ME"
+                },
+                {
+                    "id": 36,
+                    "name": "MI"
+                },
+                {
+                    "id": 37,
+                    "name": "MN"
+                },
+                {
+                    "id": 38,
+                    "name": "MO"
+                },
+                {
+                    "id": 39,
+                    "name": "MS"
+                },
+                {
+                    "id": 40,
+                    "name": "MT"
+                },
+                {
+                    "id": 41,
+                    "name": "NC"
+                },
+                {
+                    "id": 42,
+                    "name": "ND"
+                },
+                {
+                    "id": 43,
+                    "name": "NE"
+                },
+                {
+                    "id": 44,
+                    "name": "NH"
+                },
+                {
+                    "id": 45,
+                    "name": "NJ"
+                },
+                {
+                    "id": 46,
+                    "name": "NM"
+                },
+                {
+                    "id": 47,
+                    "name": "NV"
+                },
+                {
+                    "id": 48,
+                    "name": "NY"
+                },
+                {
+                    "id": 49,
+                    "name": "OH"
+                },
+                {
+                    "id": 50,
+                    "name": "OK"
+                },
+                {
+                    "id": 51,
+                    "name": "OR"
+                },
+                {
+                    "id": 52,
+                    "name": "PA"
+                },
+                {
+                    "id": 53,
+                    "name": "RI"
+                },
+                {
+                    "id": 54,
+                    "name": "SC"
+                },
+                {
+                    "id": 55,
+                    "name": "SD"
+                },
+                {
+                    "id": 56,
+                    "name": "TN"
+                },
+                {
+                    "id": 57,
+                    "name": "TX"
+                },
+                {
+                    "id": 58,
+                    "name": "UT"
+                },
+                {
+                    "id": 59,
+                    "name": "VA"
+                },
+                {
+                    "id": 60,
+                    "name": "VT"
+                },
+                {
+                    "id": 61,
+                    "name": "WA"
+                },
+                {
+                    "id": 62,
+                    "name": "WI"
+                },
+                {
+                    "id": 63,
+                    "name": "WV"
+                },
+                {
+                    "id": 64,
+                    "name": "WY"
+                },
+                {
+                    "id": 65,
+                    "name": "ACT"
+                },
+                {
+                    "id": 66,
+                    "name": "NSW"
+                },
+                {
+                    "id": 67,
+                    "name": "NT"
+                },
+                {
+                    "id": 68,
+                    "name": "SA"
+                },
+                {
+                    "id": 69,
+                    "name": "TAS"
+                },
+                {
+                    "id": 70,
+                    "name": "VIC"
+                },
+                {
+                    "id": 71,
+                    "name": "WA"
+                }
+            ],
             products:[
                 {
-                    id:1,
-                    name:'check'
+                    "id": 1,
+                    "name": "Check"
                 },
                 {
-                    id:2,
-                    name:'Index Card'
+                    "id": 2,
+                    "name": "Display Box"
                 },
                 {
-                    id:3,
-                    name:'Display Card'
+                    "id": 3,
+                    "name": "First Day Cover"
                 },
                 {
-                    id:4,
-                    name:'Pack'
+                    "id": 4,
+                    "name": "Food"
                 },
                 {
-                    id:5,
-                    name:'Back Pack'
+                    "id": 5,
+                    "name": "Index Card"
                 },
                 {
-                    id:6,
-                    name:'Wax Box'
+                    "id": 6,
+                    "name": "Pack"
                 },
                 {
-                    id:7,
-                    name:'Reholder'
+                    "id": 7,
+                    "name": "Pass"
                 },
                 {
-                    id:8,
-                    name:'First Day cover'
+                    "id": 8,
+                    "name": "Photo"
                 },
                 {
-                    id:9,
-                    name:'Pass'
+                    "id": 9,
+                    "name": "Postcard"
                 },
                 {
-                    id:10,
-                    name:'Set'
+                    "id": 10,
+                    "name": "Rack Pack"
                 },
                 {
-                    id:11,
-                    name:'Wrapper'
+                    "id": 11,
+                    "name": "Set"
                 },
                 {
-                    id:12,
-                    name:'Crossover'
+                    "id": 12,
+                    "name": "Ticket"
                 },
                 {
-                    id:13,
-                    name:'Food'
+                    "id": 13,
+                    "name": "Wax Box"
                 },
                 {
-                    id:14,
-                    name:'Photo'
+                    "id": 14,
+                    "name": "Wrapper"
                 },
                 {
-                    id:15,
-                    name:'Ticket'
+                    "id": 15,
+                    "name": "Reholder"
                 },
                 {
-                    id:16,
-                    name:'Post Card'
-                },
+                    "id": 16,
+                    "name": "Crossover"
+                }
             ],
             form_data:{
                 name: '',
