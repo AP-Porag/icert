@@ -317,7 +317,26 @@ __webpack_require__.r(__webpack_exports__);
       form_data: {
         name: '',
         email: '',
-        contact_name: ''
+        contact_name: '',
+        billing_address_line_one: '',
+        billing_address_line_two: '',
+        billing_country: '',
+        billing_province: '',
+        billing_city: '',
+        billing_postal: '',
+        billing_phone: '',
+        same_as_billing: false,
+        shipping_name: '',
+        shipping_company_name: '',
+        shipping_address_line_one: '',
+        shipping_address_line_two: '',
+        shipping_country: '',
+        shipping_province: '',
+        shipping_city: '',
+        shipping_postal: '',
+        shipping_phone: '',
+        status: '',
+        products: []
       }
     };
   },
@@ -370,6 +389,11 @@ __webpack_require__.r(__webpack_exports__);
       this.completed_step_count = 4;
       this.form_wizard_subtitle = 'Almost Done';
       return true;
+    },
+    tabChanged: function tabChanged(oldIndex, newIndex) {
+      console.log('tab change called');
+      console.log(oldIndex);
+      console.log(newIndex);
     }
   },
   validations: {
@@ -381,8 +405,56 @@ __webpack_require__.r(__webpack_exports__);
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       email: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required,
-        email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_address_line_one: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      // billing_address_line_two:{},
+      billing_country: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_province: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_city: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_postal: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_phone: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      // same_as_billing:{},
+      // shipping_name:{},
+      shipping_company_name: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      shipping_address_line_one: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      // shipping_address_line_two:{},
+      shipping_country: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      shipping_province: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      shipping_city: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      shipping_postal: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      shipping_phone: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      status: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      products: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       }
     }
   }
@@ -414,7 +486,8 @@ var render = function render() {
       "finish-button-text": "Save"
     },
     on: {
-      "on-complete": _vm.submit
+      "on-complete": _vm.submit,
+      "on-change": _vm.tabChanged
     }
   }, [_c("tab-content", {
     attrs: {
@@ -550,565 +623,6 @@ var render = function render() {
     staticClass: "error"
   }, [_vm._v("\n                                                Give A valid email\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
-      title: "Billing Address",
-      icon: "ti-infinite",
-      "before-change": _vm.checkSecondStep
-    }
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Drop Off Center\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.name.$model,
-      expression: "v$.form_data.name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "customer name",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Contact Name\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      placeholder: "contact name",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.contact_name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Email Address\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.email.$model,
-      expression: "v$.form_data.email.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "email",
-      placeholder: "email",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.email.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.email, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-6"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Address Line one\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "address line one"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Address Line two\n                                            ")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "address line two"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-7"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Country\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
-    staticClass: "form-select",
-    attrs: {
-      "aria-label": "Default select example"
-    }
-  }, [_c("option", {
-    attrs: {
-      selected: "",
-      disabled: ""
-    }
-  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.countries, function (country, index) {
-    return _c("option", {
-      key: country.id
-    }, [_vm._v(_vm._s(country.name))]);
-  })], 2)])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-5"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Province/State\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
-    staticClass: "form-select",
-    attrs: {
-      "aria-label": "Default select example"
-    }
-  }, [_c("option", {
-    attrs: {
-      selected: "",
-      disabled: ""
-    }
-  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.provinces, function (province, index) {
-    return _c("option", {
-      key: province.id
-    }, [_vm._v(_vm._s(province.name))]);
-  })], 2)])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                City\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "city"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                postal/Zip code\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "postal/zip code"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Telephone#\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
-    attrs: {
-      id: "phoneNumber1",
-      "default-country-code": "CA",
-      "only-countries": _vm.countries_phone
-    },
-    model: {
-      value: _vm.form_data.name,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
-      },
-      expression: "form_data.name"
-    }
-  })], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
-    attrs: {
-      title: "Shipping Address",
-      icon: "ti-map-alt",
-      "before-change": _vm.checkThirdStep
-    }
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Drop Off Center\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.name.$model,
-      expression: "v$.form_data.name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "customer name",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Contact Name\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      placeholder: "contact name",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.contact_name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Email Address\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.email.$model,
-      expression: "v$.form_data.email.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "email",
-      placeholder: "email",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.email.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.email, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "mb-3 d-flex justify-content-start"
-  }, [_c("label", {
-    staticClass: "form-label text-uppercase",
-    staticStyle: {
-      "margin-top": "6px",
-      "margin-right": "15px"
-    }
-  }, [_vm._v("\n                                                Same as billing address\n                                            ")]), _vm._v(" "), _c("input", {
-    staticClass: "form-check",
-    attrs: {
-      autofocus: "",
-      type: "checkbox",
-      placeholder: "same as billing address"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Name (if different)\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "name"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Company name\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "company name"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Address Line one\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "address line one"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Address Line two\n                                            ")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "address line two"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-7"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Country\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "country"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-5"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Province/State\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "province"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                City\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "city"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                postal/Zip code\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "postal/zip code"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-uppercase"
-  }, [_vm._v("\n                                                Telephone#\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
-    attrs: {
-      id: "phoneNumber1",
-      "default-country-code": "CA",
-      "only-countries": _vm.countries_phone
-    },
-    model: {
-      value: _vm.form_data.name,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
-      },
-      expression: "form_data.name"
-    }
-  })], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
-    attrs: {
       title: "Products",
       icon: "ti-dropbox"
     }
@@ -1140,12 +654,29 @@ var render = function render() {
       "for": "inlineRadio1"
     }
   }, [_vm._v("Active")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.status.$model,
+      expression: "v$.form_data.status.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-check-input",
     attrs: {
       type: "radio",
       name: "inlineRadioOptions",
       id: "inlineRadio1",
       value: "option1"
+    },
+    domProps: {
+      checked: _vm._q(_vm.v$.form_data.status.$model, "option1")
+    },
+    on: {
+      change: function change($event) {
+        return _vm.$set(_vm.v$.form_data.status, "$model", "option1");
+      }
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
@@ -1155,12 +686,29 @@ var render = function render() {
       "for": "inlineRadio2"
     }
   }, [_vm._v("Suspend")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.status.$model,
+      expression: "v$.form_data.status.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-check-input",
     attrs: {
       type: "radio",
       name: "inlineRadioOptions",
       id: "inlineRadio2",
       value: "option2"
+    },
+    domProps: {
+      checked: _vm._q(_vm.v$.form_data.status.$model, "option2")
+    },
+    on: {
+      change: function change($event) {
+        return _vm.$set(_vm.v$.form_data.status, "$model", "option2");
+      }
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
@@ -1170,14 +718,33 @@ var render = function render() {
       "for": "inlineRadio3"
     }
   }, [_vm._v("Delete")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.status.$model,
+      expression: "v$.form_data.status.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-check-input",
     attrs: {
       type: "radio",
       name: "inlineRadioOptions",
       id: "inlineRadio3",
       value: "option3"
+    },
+    domProps: {
+      checked: _vm._q(_vm.v$.form_data.status.$model, "option3")
+    },
+    on: {
+      change: function change($event) {
+        return _vm.$set(_vm.v$.form_data.status, "$model", "option3");
+      }
     }
-  })])])])])])])])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _vm.v$.form_data.status.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Status is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -1187,7 +754,7 @@ var render = function render() {
     staticClass: "font-size-18 mb-3"
   }, [_vm._v("Check only the product offering at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, _vm._l(_vm.products, function (product, index) {
+  }, [_vm._l(_vm.products, function (product, index) {
     return _c("div", {
       key: product.id,
       staticClass: "col-md-3"
@@ -1200,13 +767,45 @@ var render = function render() {
         "margin-right": "15px"
       }
     }, [_vm._v("\n                                                " + _vm._s(product.name) + "\n                                            ")]), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model.trim",
+        value: _vm.v$.form_data.products.$model,
+        expression: "v$.form_data.products.$model",
+        modifiers: {
+          trim: true
+        }
+      }],
       staticClass: "form-check",
       attrs: {
         autofocus: "",
         type: "checkbox"
+      },
+      domProps: {
+        checked: Array.isArray(_vm.v$.form_data.products.$model) ? _vm._i(_vm.v$.form_data.products.$model, null) > -1 : _vm.v$.form_data.products.$model
+      },
+      on: {
+        change: function change($event) {
+          var $$a = _vm.v$.form_data.products.$model,
+            $$el = $event.target,
+            $$c = $$el.checked ? true : false;
+          if (Array.isArray($$a)) {
+            var $$v = null,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && _vm.$set(_vm.v$.form_data.products, "$model", $$a.concat([$$v]));
+            } else {
+              $$i > -1 && _vm.$set(_vm.v$.form_data.products, "$model", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            }
+          } else {
+            _vm.$set(_vm.v$.form_data.products, "$model", $$c);
+          }
+        }
       }
     })])]);
-  }), 0)])])])])])], 1)], 1)]);
+  }), _vm._v(" "), _vm.v$.form_data.products.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                        Products is required\n                                    ")]) : _vm._e()], 2)])])])])])], 1)], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
