@@ -31,15 +31,10 @@ class ThirdPartyDropOffController extends Controller
     public function store(Request $request)
     {
 
+        $data = $request->all();
+        $this->thirdPartyDropOffService->storeOrUpdate($data, null);
         try {
-            $data = $request->validated();
-            if (Auth::user()->user_type != User::USER_TYPE_ADMIN){
-                $data['user_type'] = Auth::user()->user_type;
-            }else{
-                $user_type = $data['user_type'];
-                $data['user_type'] = $user_type;
-            }
-            $this->userService->storeOrUpdate($data, null);
+
             record_created_flash();
         } catch (\Exception $e) {
         }
