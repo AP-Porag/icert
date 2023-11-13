@@ -86,476 +86,476 @@
                     </div>
                 </div>
             </tab-content>
-<!--            <tab-content-->
-<!--                title="Billing Address"-->
-<!--                icon="ti-infinite"-->
-<!--                :before-change="checkSecondStep"-->
-<!--            >-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-12">-->
-<!--                        <div class="card shipping_address_card">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Drop Off Center-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="customer name"-->
-<!--                                                v-model.trim="v$.form_data.name.$model"-->
-<!--                                                readonly-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">-->
-<!--                                                Name is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100">-->
-<!--                                                Contact Name-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="contact name"-->
-<!--                                                v-model.trim="v$.form_data.contact_name.$model"-->
-<!--                                                readonly-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">-->
-<!--                                                contact name is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Email Address-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="email"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="email"-->
-<!--                                                v-model.trim="v$.form_data.email.$model"-->
-<!--                                                readonly-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">-->
-<!--                                                email is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-12">-->
-<!--                        <div class="card shipping_address_card">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-md-6">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Address Line one-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="address line one"-->
-<!--                                                v-model.trim="v$.form_data.billing_address_line_one.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error">-->
-<!--                                                One Address Line is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+            <tab-content
+                title="Billing Address"
+                icon="ti-infinite"
+                :before-change="checkSecondStep"
+            >
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shipping_address_card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Drop Off Center
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="customer name"
+                                                v-model.trim="v$.form_data.name.$model"
+                                                readonly
+                                            />
+                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">
+                                                Name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100">
+                                                Contact Name
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="contact name"
+                                                v-model.trim="v$.form_data.contact_name.$model"
+                                                readonly
+                                            />
+                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">
+                                                contact name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Email Address
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="email"
+                                                class="form-control"
+                                                placeholder="email"
+                                                v-model.trim="v$.form_data.email.$model"
+                                                readonly
+                                            />
+                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">
+                                                email is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card shipping_address_card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Address Line one
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="address line one"
+                                                v-model.trim="v$.form_data.billing_address_line_one.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error">
+                                                One Address Line is required
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-6">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Address Line two-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="address line two"-->
-<!--                                                v-model.trim="v$.form_data.billing_address_line_two.$model"-->
-<!--                                            />-->
-<!--&lt;!&ndash;                                            <div class="error" v-if="v$.form_data.billing_address_line_two.required.$invalid && show_error">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                Second address Line two is required&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Address Line two
+                                            </label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="address line two"
+                                                v-model.trim="form_data.billing_address_line_two"
+                                            />
+                                            <!--                                            <div class="error" v-if="v$.form_data.billing_address_line_two.required.$invalid && show_error">-->
+                                            <!--                                                Second address Line two is required-->
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-7">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Country-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <select class="form-select" aria-label="Default select example"-->
-<!--                                                    v-model.trim="v$.form_data.billing_country.$model"-->
-<!--                                            >-->
-<!--                                                <option selected disabled>Open this select menu</option>-->
-<!--                                                <option v-for="(country,index) in countries" :key="country.id">{{country.name}}</option>-->
-<!--                                            </select>-->
-<!--                                            <div class="error" v-if="v$.form_data.billing_country.required.$invalid && show_error">-->
-<!--                                                Country is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-7">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Country
+                                                <span class="error">*</span>
+                                            </label>
+                                            <select class="form-select" aria-label="Default select example"
+                                                    v-model.trim="v$.form_data.billing_country.$model"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(country,index) in countries" :key="country.id">{{country.name}}</option>
+                                            </select>
+                                            <div class="error" v-if="v$.form_data.billing_country.required.$invalid && show_error">
+                                                Country is required
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-5">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Province/State-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <select class="form-select" aria-label="Default select example"-->
-<!--                                                    v-model.trim="v$.form_data.billing_province.$model"-->
-<!--                                            >-->
-<!--                                                <option selected disabled>Open this select menu</option>-->
-<!--                                                <option v-for="(province,index) in provinces" :key="province.id">{{province.name}}</option>-->
-<!--                                            </select>-->
-<!--                                            <div class="error" v-if="v$.form_data.billing_province.required.$invalid && show_error">-->
-<!--                                                Province is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Province/State
+                                                <span class="error">*</span>
+                                            </label>
+                                            <select class="form-select" aria-label="Default select example"
+                                                    v-model.trim="v$.form_data.billing_province.$model"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(province,index) in provinces" :key="province.id">{{province.name}}</option>
+                                            </select>
+                                            <div class="error" v-if="v$.form_data.billing_province.required.$invalid && show_error">
+                                                Province is required
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                City-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="city"-->
-<!--                                                v-model.trim="v$.form_data.billing_city.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error">-->
-<!--                                                City is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                City
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="city"
+                                                v-model.trim="v$.form_data.billing_city.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error">
+                                                City is required
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                postal/Zip code-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="postal/zip code"-->
-<!--                                                v-model.trim="v$.form_data.billing_postal.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.billing_postal.required.$invalid && show_error">-->
-<!--                                                Postal is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Telephone#-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <VuePhoneNumberInput-->
-<!--                                                id="phoneNumber1"-->
-<!--                                                v-model.trim="v$.form_data.billing_phone.$model"-->
-<!--                                                default-country-code="CA"-->
-<!--                                                :only-countries="countries_phone"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error">-->
-<!--                                                Phone is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </tab-content>-->
-<!--            <tab-content-->
-<!--                title="Shipping Address"-->
-<!--                icon="ti-map-alt"-->
-<!--                :before-change="checkThirdStep"-->
-<!--            >-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-12">-->
-<!--                        <div class="card shipping_address_card">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Drop Off Center-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="customer name"-->
-<!--                                                v-model.trim="v$.form_data.name.$model"-->
-<!--                                                readonly-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">-->
-<!--                                                Name is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100">-->
-<!--                                                Contact Name-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="contact name"-->
-<!--                                                v-model.trim="v$.form_data.contact_name.$model"-->
-<!--                                                readonly-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">-->
-<!--                                                contact name is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Email Address-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="email"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="email"-->
-<!--                                                v-model.trim="v$.form_data.email.$model"-->
-<!--                                                readonly-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">-->
-<!--                                                email is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                postal/Zip code
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="postal/zip code"
+                                                v-model.trim="v$.form_data.billing_postal.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.billing_postal.required.$invalid && show_error">
+                                                Postal is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Telephone#
+                                                <span class="error">*</span>
+                                            </label>
+                                            <VuePhoneNumberInput
+                                                id="phoneNumber1"
+                                                v-model.trim="v$.form_data.billing_phone.$model"
+                                                default-country-code="CA"
+                                                :only-countries="countries_phone"
+                                            />
+                                            <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error">
+                                                Phone is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tab-content>
+            <tab-content
+                title="Shipping Address"
+                icon="ti-map-alt"
+                :before-change="checkThirdStep"
+            >
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shipping_address_card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Drop Off Center
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="customer name"
+                                                v-model.trim="v$.form_data.name.$model"
+                                                readonly
+                                            />
+                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">
+                                                Name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100">
+                                                Contact Name
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="contact name"
+                                                v-model.trim="v$.form_data.contact_name.$model"
+                                                readonly
+                                            />
+                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">
+                                                contact name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Email Address
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="email"
+                                                class="form-control"
+                                                placeholder="email"
+                                                v-model.trim="v$.form_data.email.$model"
+                                                readonly
+                                            />
+                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">
+                                                email is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<!--                    <div class="col-md-12">-->
-<!--                        <div class="card shipping_address_card">-->
-<!--                            <div class="card-body">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-md-12">-->
-<!--                                        <div class="mb-3 d-flex justify-content-start">-->
-<!--                                            <label class="form-label text-uppercase" style="margin-top: 6px;margin-right: 15px;">-->
-<!--                                                Same as billing address-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="checkbox"-->
-<!--                                                class="form-check"-->
-<!--                                                placeholder="same as billing address"-->
-<!--                                                v-model.trim="v$.form_data.same_as_billing.$model"-->
-<!--                                            />-->
-<!--&lt;!&ndash;                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                Same as Billing is required&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                    <div class="col-md-12">
+                        <div class="card shipping_address_card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-3 d-flex justify-content-start">
+                                            <label class="form-label text-uppercase" style="margin-top: 6px;margin-right: 15px;">
+                                                Same as billing address
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="checkbox"
+                                                class="form-check"
+                                                placeholder="same as billing address"
+                                                v-model.trim="form_data.same_as_billing"
+                                            />
+                                            <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
+                                            <!--                                                Same as Billing is required-->
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-6">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Name (if different)-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="name"-->
-<!--                                                v-model.trim="v$.form_data.shipping_name.$model"-->
-<!--                                            />-->
-<!--&lt;!&ndash;                                            <div class="error" v-if="v$.form_data.shipping_name.required.$invalid && show_error">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                Name for shipping is required&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Name (if different)
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="name"
+                                                v-model.trim="form_data.shipping_name"
+                                            />
+                                            <!--                                            <div class="error" v-if="v$.form_data.shipping_name.required.$invalid && show_error">-->
+                                            <!--                                                Name for shipping is required-->
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-6">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Company name-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="company name"-->
-<!--                                                v-model.trim="v$.form_data.shipping_company_name.$model"-->
-<!--                                            />-->
-<!--&lt;!&ndash;                                            <div class="error" v-if="v$.form_data.shipping_company_name.required.$invalid && show_error">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                Company name is required&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Company name
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="company name"
+                                                v-model.trim="v$.form_data.shipping_company_name.$model"
+                                            />
+                                            <!--                                            <div class="error" v-if="v$.form_data.shipping_company_name.required.$invalid && show_error">-->
+                                            <!--                                                Company name is required-->
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-6">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Address Line one-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="address line one"-->
-<!--                                                v-model.trim="v$.form_data.shipping_address_line_one.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.shipping_address_line_one.required.$invalid && show_error">-->
-<!--                                                One Address is required for shipping-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Address Line one
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="address line one"
+                                                v-model.trim="v$.form_data.shipping_address_line_one.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.shipping_address_line_one.required.$invalid && show_error">
+                                                One Address is required for shipping
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-6">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Address Line two-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="address line two"-->
-<!--                                                v-model.trim="v$.form_data.shipping_address_line_two.$model"-->
-<!--                                            />-->
-<!--&lt;!&ndash;                                            <div class="error" v-if="v$.form_data.shipping_address_line_two.required.$invalid && show_error">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                Second shipping address required&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Address Line two
+                                            </label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="address line two"
+                                                v-model.trim="form_data.shipping_address_line_two"
+                                            />
+                                            <!--                                            <div class="error" v-if="v$.form_data.shipping_address_line_two.required.$invalid && show_error">-->
+                                            <!--                                                Second shipping address required-->
+                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-7">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Country-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="country"-->
-<!--                                                v-model.trim="v$.form_data.shipping_country.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.shipping_country.required.$invalid && show_error">-->
-<!--                                                country is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-7">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Country
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="country"
+                                                v-model.trim="v$.form_data.shipping_country.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.shipping_country.required.$invalid && show_error">
+                                                country is required
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-5">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Province/State-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="province"-->
-<!--                                                v-model.trim="v$.form_data.shipping_province.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.shipping_province.required.$invalid && show_error">-->
-<!--                                                province is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Province/State
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="province"
+                                                v-model.trim="v$.form_data.shipping_province.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.shipping_province.required.$invalid && show_error">
+                                                province is required
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                City-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="city"-->
-<!--                                                v-model.trim="v$.form_data.shipping_city.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.shipping_city.required.$invalid && show_error">-->
-<!--                                                city is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                City
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="city"
+                                                v-model.trim="v$.form_data.shipping_city.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.shipping_city.required.$invalid && show_error">
+                                                city is required
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                postal/Zip code-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <input-->
-<!--                                                autofocus-->
-<!--                                                type="text"-->
-<!--                                                class="form-control"-->
-<!--                                                placeholder="postal/zip code"-->
-<!--                                                v-model.trim="v$.form_data.shipping_postal.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.shipping_postal.required.$invalid && show_error">-->
-<!--                                                Postal is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-4">-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label w-100 text-uppercase">-->
-<!--                                                Telephone#-->
-<!--                                                <span class="error">*</span>-->
-<!--                                            </label>-->
-<!--                                            <VuePhoneNumberInput-->
-<!--                                                id="phoneNumber1"-->
-<!--                                                v-model.trim="v$.form_data.shipping_phone.$model"-->
-<!--                                                default-country-code="CA"-->
-<!--                                                :only-countries="countries_phone"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.shipping_phone.required.$invalid && show_error">-->
-<!--                                                Phone is required-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                postal/Zip code
+                                                <span class="error">*</span>
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="postal/zip code"
+                                                v-model.trim="v$.form_data.shipping_postal.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.shipping_postal.required.$invalid && show_error">
+                                                Postal is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-uppercase">
+                                                Telephone#
+                                                <span class="error">*</span>
+                                            </label>
+                                            <VuePhoneNumberInput
+                                                id="phoneNumber1"
+                                                v-model.trim="v$.form_data.shipping_phone.$model"
+                                                default-country-code="CA"
+                                                :only-countries="countries_phone"
+                                            />
+                                            <div class="error" v-if="v$.form_data.shipping_phone.required.$invalid && show_error">
+                                                Phone is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<!--                </div>-->
-<!--            </tab-content>-->
+                </div>
+            </tab-content>
             <tab-content
                 title="Products"
                 icon="ti-dropbox"
