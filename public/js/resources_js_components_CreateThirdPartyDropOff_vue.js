@@ -389,11 +389,6 @@ __webpack_require__.r(__webpack_exports__);
       this.completed_step_count = 4;
       this.form_wizard_subtitle = 'Almost Done';
       return true;
-    },
-    tabChanged: function tabChanged(oldIndex, newIndex) {
-      console.log('tab change called');
-      console.log(oldIndex);
-      console.log(newIndex);
     }
   },
   validations: {
@@ -407,56 +402,16 @@ __webpack_require__.r(__webpack_exports__);
       email: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required,
         email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email
+      },
+      billing_address_line_one: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_country: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_province: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       }
-      // billing_address_line_one:{
-      //     required,
-      // },
-      // billing_address_line_two:{},
-      // billing_country:{
-      //     required,
-      // },
-      // billing_province:{
-      //     required,
-      // },
-      // billing_city:{
-      //     required,
-      // },
-      // billing_postal:{
-      //     required,
-      // },
-      // billing_phone:{
-      //     required,
-      // },
-      // same_as_billing:{},
-      // shipping_name:{},
-      // shipping_company_name:{
-      //     required,
-      // },
-      // shipping_address_line_one:{
-      //     required,
-      // },
-      // shipping_address_line_two:{},
-      // shipping_country:{
-      //     required,
-      // },
-      // shipping_province:{
-      //     required,
-      // },
-      // shipping_city:{
-      //     required,
-      // },
-      // shipping_postal:{
-      //     required,
-      // },
-      // shipping_phone:{
-      //     required,
-      // },
-      // status:{
-      //     required,
-      // },
-      // products:{
-      //     required,
-      // },
     }
   }
 });
@@ -487,8 +442,7 @@ var render = function render() {
       "finish-button-text": "Save"
     },
     on: {
-      "on-complete": _vm.submit,
-      "on-change": _vm.tabChanged
+      "on-complete": _vm.submit
     }
   }, [_c("tab-content", {
     attrs: {
@@ -602,6 +556,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "email",
       placeholder: "email"
     },
@@ -734,6 +689,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "email",
       placeholder: "email",
       readonly: ""
@@ -769,13 +725,36 @@ var render = function render() {
   }, [_vm._v("\n                                                Address Line one\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.billing_address_line_one.$model,
+      expression: "v$.form_data.billing_address_line_one.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-control",
     attrs: {
       autofocus: "",
       type: "text",
       placeholder: "address line one"
+    },
+    domProps: {
+      value: _vm.v$.form_data.billing_address_line_one.$model
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.v$.form_data.billing_address_line_one, "$model", $event.target.value.trim());
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
     }
-  })])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_address_line_one.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                One Address Line is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -785,24 +764,25 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_address_line_two.$model,
-      expression: "v$.form_data.billing_address_line_two.$model",
+      value: _vm.v$.form_data.name.$model,
+      expression: "v$.form_data.name.$model",
       modifiers: {
         trim: true
       }
     }],
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "text",
       placeholder: "address line two"
     },
     domProps: {
-      value: _vm.v$.form_data.billing_address_line_two.$model
+      value: _vm.v$.form_data.name.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.billing_address_line_two, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
@@ -817,9 +797,29 @@ var render = function render() {
   }, [_vm._v("\n                                                Country\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.billing_country.$model,
+      expression: "v$.form_data.billing_country.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-select",
     attrs: {
       "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.v$.form_data.billing_country, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
   }, [_c("option", {
     attrs: {
@@ -828,9 +828,14 @@ var render = function render() {
     }
   }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.countries, function (country, index) {
     return _c("option", {
-      key: country.id
+      key: country.id,
+      domProps: {
+        value: country.name.toLowerCase()
+      }
     }, [_vm._v(_vm._s(country.name))]);
-  })], 2)])]), _vm._v(" "), _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.billing_country.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Country is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-5"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -839,9 +844,29 @@ var render = function render() {
   }, [_vm._v("\n                                                Province/State\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.billing_province.$model,
+      expression: "v$.form_data.billing_province.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-select",
     attrs: {
       "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.v$.form_data.billing_province, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
   }, [_c("option", {
     attrs: {
@@ -850,9 +875,14 @@ var render = function render() {
     }
   }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.provinces, function (province, index) {
     return _c("option", {
-      key: province.id
+      key: province.id,
+      domProps: {
+        value: province.name.toLowerCase()
+      }
     }, [_vm._v(_vm._s(province.name))]);
-  })], 2)])]), _vm._v(" "), _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.billing_province.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Province is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -863,6 +893,7 @@ var render = function render() {
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "text",
       placeholder: "city"
     }
@@ -877,6 +908,7 @@ var render = function render() {
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "text",
       placeholder: "postal/zip code"
     }
@@ -893,6 +925,13 @@ var render = function render() {
       id: "phoneNumber1",
       "default-country-code": "CA",
       "only-countries": _vm.countries_phone
+    },
+    model: {
+      value: _vm.form_data.name,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form_data, "name", $$v);
+      },
+      expression: "form_data.name"
     }
   })], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
@@ -1007,6 +1046,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "email",
       placeholder: "email",
       readonly: ""
@@ -1076,6 +1116,7 @@ var render = function render() {
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "text",
       placeholder: "company name"
     }
@@ -1090,6 +1131,7 @@ var render = function render() {
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "text",
       placeholder: "address line one"
     }
@@ -1102,6 +1144,7 @@ var render = function render() {
   }, [_vm._v("\n                                                Address Line two\n                                            ")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
+      autofocus: "",
       type: "text",
       placeholder: "address line two"
     }
@@ -1178,6 +1221,13 @@ var render = function render() {
       id: "phoneNumber1",
       "default-country-code": "CA",
       "only-countries": _vm.countries_phone
+    },
+    model: {
+      value: _vm.form_data.name,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form_data, "name", $$v);
+      },
+      expression: "form_data.name"
     }
   })], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
@@ -1325,7 +1375,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateThirdPartyDropOff_vue_vue_type_style_index_0_id_7d5986ec_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateThirdPartyDropOff.vue?vue&type=style&index=0&id=7d5986ec&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CreateThirdPartyDropOff.vue?vue&type=style&index=0&id=7d5986ec&scoped=true&lang=css&");
 
-            
+
 
 var options = {};
 
@@ -1371,7 +1421,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   null,
   "7d5986ec",
   null
-  
+
 )
 
 /* hot reload */
@@ -1393,7 +1443,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateThirdPartyDropOff_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateThirdPartyDropOff.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/CreateThirdPartyDropOff.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateThirdPartyDropOff_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateThirdPartyDropOff_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -4985,7 +5035,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     if (document.currentScript) {
       return document.currentScript
     }
-  
+
     // IE 8-10 support script readyState
     // IE 11+ & Firefox support stack trace
     try {
@@ -5003,24 +5053,24 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         inlineScriptSourceRegExp,
         inlineScriptSource,
         scripts = document.getElementsByTagName('script'); // Live NodeList collection
-  
+
       if (scriptLocation === currentLocation) {
         pageSource = document.documentElement.outerHTML;
         inlineScriptSourceRegExp = new RegExp('(?:[^\\n]+?\\n){0,' + (line - 2) + '}[^<]*<script>([\\d\\D]*?)<\\/script>[\\d\\D]*', 'i');
         inlineScriptSource = pageSource.replace(inlineScriptSourceRegExp, '$1').trim();
       }
-  
+
       for (var i = 0; i < scripts.length; i++) {
         // If ready state is interactive, return the script tag
         if (scripts[i].readyState === 'interactive') {
           return scripts[i];
         }
-  
+
         // If src matches, return the script tag
         if (scripts[i].src === scriptLocation) {
           return scripts[i];
         }
-  
+
         // If inline source matches, return the script tag
         if (
           scriptLocation === currentLocation &&
@@ -5030,7 +5080,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
           return scripts[i];
         }
       }
-  
+
       // If no match, return null
       return null;
     }
@@ -7898,13 +7948,13 @@ __vue_render__._withStripped = true;
   /* functional template */
   const __vue_is_functional_template__ = false;
   /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
 
-  
+  /* style inject SSR */
+
+  /* style inject shadow dom */
+
+
+
   const __vue_component__ = normalizeComponent(
     { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
     __vue_inject_styles__,
@@ -8174,13 +8224,13 @@ __vue_render__$1._withStripped = true;
   /* functional template */
   const __vue_is_functional_template__$1 = false;
   /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
 
-  
+  /* style inject SSR */
+
+  /* style inject shadow dom */
+
+
+
   const __vue_component__$1 = normalizeComponent(
     { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
     __vue_inject_styles__$1,
@@ -8414,13 +8464,13 @@ const __vue_script__$2 = script$2;
   /* functional template */
   const __vue_is_functional_template__$2 = undefined;
   /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
 
-  
+  /* style inject SSR */
+
+  /* style inject shadow dom */
+
+
+
   const __vue_component__$2 = normalizeComponent(
     {},
     __vue_inject_styles__$2,
@@ -14946,7 +14996,7 @@ var InputTelvue_type_template_id_e59be3b4_scoped_true_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/VuePhoneNumberInput/InputTel/index.vue?vue&type=script&lang=js&
- /* harmony default export */ var VuePhoneNumberInput_InputTelvue_type_script_lang_js_ = (InputTelvue_type_script_lang_js_); 
+ /* harmony default export */ var VuePhoneNumberInput_InputTelvue_type_script_lang_js_ = (InputTelvue_type_script_lang_js_);
 // EXTERNAL MODULE: ./src/VuePhoneNumberInput/InputTel/index.vue?vue&type=style&index=0&id=e59be3b4&prod&lang=scss&scoped=true&
 var InputTelvue_type_style_index_0_id_e59be3b4_prod_lang_scss_scoped_true_ = __nested_webpack_require_219114__("d499");
 
@@ -15065,7 +15115,7 @@ var component = normalizeComponent(
   null,
   "e59be3b4",
   null
-  
+
 )
 
 /* harmony default export */ var InputTel = (component.exports);
@@ -15572,7 +15622,7 @@ var vue_virtual_scroller_esm = __nested_webpack_require_219114__("e508");
   }
 });
 // CONCATENATED MODULE: ./src/VuePhoneNumberInput/CountrySelector/index.vue?vue&type=script&lang=js&
- /* harmony default export */ var VuePhoneNumberInput_CountrySelectorvue_type_script_lang_js_ = (CountrySelectorvue_type_script_lang_js_); 
+ /* harmony default export */ var VuePhoneNumberInput_CountrySelectorvue_type_script_lang_js_ = (CountrySelectorvue_type_script_lang_js_);
 // EXTERNAL MODULE: ./src/VuePhoneNumberInput/CountrySelector/index.vue?vue&type=style&index=0&id=46e105de&prod&lang=scss&scoped=true&
 var CountrySelectorvue_type_style_index_0_id_46e105de_prod_lang_scss_scoped_true_ = __nested_webpack_require_219114__("e71e");
 
@@ -15593,7 +15643,7 @@ var CountrySelector_component = normalizeComponent(
   null,
   "46e105de",
   null
-  
+
 )
 
 /* harmony default export */ var CountrySelector = (CountrySelector_component.exports);
@@ -16129,7 +16179,7 @@ var VuePhoneNumberInputvue_type_script_lang_js_isCountryAvailable = function isC
   }
 });
 // CONCATENATED MODULE: ./src/VuePhoneNumberInput/index.vue?vue&type=script&lang=js&
- /* harmony default export */ var src_VuePhoneNumberInputvue_type_script_lang_js_ = (VuePhoneNumberInputvue_type_script_lang_js_); 
+ /* harmony default export */ var src_VuePhoneNumberInputvue_type_script_lang_js_ = (VuePhoneNumberInputvue_type_script_lang_js_);
 // EXTERNAL MODULE: ./src/VuePhoneNumberInput/index.vue?vue&type=style&index=0&id=19351537&prod&lang=scss&scoped=true&
 var VuePhoneNumberInputvue_type_style_index_0_id_19351537_prod_lang_scss_scoped_true_ = __nested_webpack_require_219114__("e214");
 
@@ -16150,7 +16200,7 @@ var VuePhoneNumberInput_component = normalizeComponent(
   null,
   "19351537",
   null
-  
+
 )
 
 /* harmony default export */ var VuePhoneNumberInput = (VuePhoneNumberInput_component.exports);
