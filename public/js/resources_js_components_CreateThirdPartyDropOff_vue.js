@@ -15,6 +15,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.mjs");
 /* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.mjs");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -30,7 +34,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      show_error: false,
+      show_error_one: false,
+      show_error_two: false,
+      show_error_three: false,
+      show_error_four: false,
       step_count: 4,
       completed_step_count: '',
       form_wizard_subtitle: 'Start here',
@@ -342,28 +349,58 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      // alert('Yay. Done!');
-      Swal.fire({
-        // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
-        title: "Are the selected product offerings applicable for drop off center: <br> ".concat(this.form_data.name),
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        denyButtonText: "No",
-        icon: "question"
-      }).then(function (result) {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire("Saved!", "", "success");
-        } else if (result.isDenied) {
-          Swal.fire("Changes are not saved", "", "info");
-        }
-      });
+      var _this = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              if (!_this.checkFourthStep()) {
+                _context.next = 4;
+                break;
+              }
+              // alert('Yay. Done!');
+              Swal.fire({
+                // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
+                title: "Are the selected product offerings applicable for drop off center: <br> ".concat(_this.form_data.name),
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                denyButtonText: "No",
+                icon: "question"
+              }).then(function (result) {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                  // Submit form
+                  axios.post("/admin/third-party-drop-off", _this.form_data).then(function (res) {
+                    Swal.fire("Saved!", "", "success");
+                    window.location.reload();
+                  })["catch"](function (err) {
+                    try {
+                      self.showValidationError(err);
+                    } catch (e) {
+                      self.showSomethingWrong();
+                    }
+                  });
+                  // Swal.fire("Saved!", "", "success");
+                } else if (result.isDenied) {
+                  Swal.fire("Changes are not saved", "", "info");
+                }
+              });
+              _context.next = 5;
+              break;
+            case 4:
+              return _context.abrupt("return");
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
     },
     checkFirstStep: function checkFirstStep() {
       this.v$.$touch();
       if (this.v$.form_data.name.$invalid || this.v$.form_data.contact_name.$invalid || this.v$.form_data.email.$invalid) {
-        this.show_error = true;
+        this.show_error_one = true;
         return false;
       }
       this.completed_step_count = 1;
@@ -371,29 +408,92 @@ __webpack_require__.r(__webpack_exports__);
       return true;
     },
     checkSecondStep: function checkSecondStep() {
-      // this.v$.$touch()
-      // if (this.v$.form_data.name.$invalid) {
-      //     this.show_error = true;
-      //     return false;
-      // }
+      this.v$.$touch();
+      if (this.v$.form_data.billing_address_line_one.$invalid || this.v$.form_data.billing_country.$invalid || this.v$.form_data.billing_province.$invalid || this.v$.form_data.billing_city.$invalid || this.v$.form_data.billing_postal.$invalid || this.v$.form_data.billing_phone.$invalid) {
+        this.show_error_two = true;
+        return false;
+      }
       this.completed_step_count = 2;
       this.form_wizard_subtitle = 'Please Continue to next';
       return true;
     },
     checkThirdStep: function checkThirdStep() {
-      // this.v$.$touch()
-      // if (this.v$.form_data.name.$invalid) {
-      //     this.show_error = true;
-      //     return false;
-      // }
+      this.v$.$touch();
+      if (this.v$.form_data.shipping_address_line_one.$invalid || this.v$.form_data.shipping_country.$invalid || this.v$.form_data.shipping_province.$invalid || this.v$.form_data.shipping_city.$invalid || this.v$.form_data.shipping_postal.$invalid || this.v$.form_data.shipping_phone.$invalid) {
+        this.show_error_three = true;
+        return false;
+      }
       this.completed_step_count = 4;
       this.form_wizard_subtitle = 'Almost Done';
       return true;
     },
-    tabChanged: function tabChanged(oldIndex, newIndex) {
+    checkFourthStep: function checkFourthStep() {
+      this.v$.$touch();
+      if (this.v$.form_data.status.$invalid || this.v$.form_data.products.$invalid) {
+        this.show_error_four = true;
+        return false;
+      } else {
+        return true;
+      }
+    },
+    sameAsBillingChanged: function sameAsBillingChanged(event) {
+      if (this.form_data.same_as_billing) {
+        this.form_data.shipping_address_line_one = this.form_data.billing_address_line_one;
+        this.form_data.shipping_address_line_two = this.form_data.billing_address_line_two;
+        this.form_data.shipping_country = this.form_data.billing_country;
+        this.form_data.shipping_province = this.form_data.billing_province;
+        this.form_data.shipping_city = this.form_data.billing_city;
+        this.form_data.shipping_postal = this.form_data.billing_postal;
+        this.form_data.shipping_phone = this.form_data.billing_phone;
+      } else {
+        this.form_data.shipping_address_line_one = '';
+        this.form_data.shipping_address_line_two = '';
+        this.form_data.shipping_country = '';
+        this.form_data.shipping_province = '';
+        this.form_data.shipping_city = '';
+        this.form_data.shipping_postal = '';
+        this.form_data.shipping_phone = '';
+      }
+    },
+    handleTabChange: function handleTabChange(prevIndex, nextIndex) {
       console.log('tab change called');
-      console.log(oldIndex);
-      console.log(newIndex);
+      console.log(prevIndex);
+      console.log(nextIndex);
+      switch (nextIndex) {
+        case 0:
+          this.$refs.name.focus();
+          console.log('index 0');
+          break;
+        case 1:
+          this.$refs.billing_address_line_one.focus();
+          console.log('index 1');
+          break;
+        case 2:
+          this.$refs.shipping_name.focus();
+          console.log('index 2');
+          break;
+      }
+    }
+  },
+  watch: {
+    handleTabChange: function handleTabChange(prevIndex, nextIndex) {
+      console.log('tab change called');
+      console.log(prevIndex);
+      console.log(nextIndex);
+      switch (nextIndex) {
+        case 0:
+          this.$refs.name.focus();
+          console.log('index 0');
+          break;
+        case 1:
+          this.$refs.billing_address_line_one.focus();
+          console.log('index 1');
+          break;
+        case 2:
+          this.$refs.shipping_name.focus();
+          console.log('index 2');
+          break;
+      }
     }
   },
   validations: {
@@ -405,7 +505,8 @@ __webpack_require__.r(__webpack_exports__);
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       email: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required,
+        email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email
       },
       billing_address_line_one: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
@@ -487,7 +588,7 @@ var render = function render() {
     },
     on: {
       "on-complete": _vm.submit,
-      "on-change": _vm.tabChanged
+      "on-change": _vm.handleTabChange
     }
   }, [_c("tab-content", {
     attrs: {
@@ -523,6 +624,7 @@ var render = function render() {
         trim: true
       }
     }],
+    ref: "name",
     staticClass: "form-control",
     attrs: {
       autofocus: "",
@@ -541,7 +643,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -579,7 +681,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -617,9 +719,9 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e(), _vm._v(" "), _vm.v$.form_data.email.email.$invalid && _vm.show_error ? _c("div", {
+  }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e(), _vm._v(" "), _vm.v$.form_data.email.email.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Give A valid email\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
@@ -674,7 +776,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -712,7 +814,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -751,7 +853,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
@@ -779,6 +881,7 @@ var render = function render() {
         trim: true
       }
     }],
+    ref: "billing_address_line_one",
     staticClass: "form-control",
     attrs: {
       autofocus: "",
@@ -797,7 +900,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_address_line_one.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_address_line_one.required.$invalid && _vm.show_error_two ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                One Address Line is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
@@ -872,9 +975,12 @@ var render = function render() {
     }
   }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.countries, function (country, index) {
     return _c("option", {
-      key: country.id
+      key: country.id,
+      domProps: {
+        value: country.name.toLowerCase()
+      }
     }, [_vm._v(_vm._s(country.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.billing_country.required.$invalid && _vm.show_error ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.billing_country.required.$invalid && _vm.show_error_two ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Country is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-5"
@@ -916,9 +1022,12 @@ var render = function render() {
     }
   }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.provinces, function (province, index) {
     return _c("option", {
-      key: province.id
+      key: province.id,
+      domProps: {
+        value: province.name.toLowerCase()
+      }
     }, [_vm._v(_vm._s(province.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.billing_province.required.$invalid && _vm.show_error ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.billing_province.required.$invalid && _vm.show_error_two ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Province is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -956,7 +1065,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_city.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_city.required.$invalid && _vm.show_error_two ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                City is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -994,7 +1103,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_postal.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_postal.required.$invalid && _vm.show_error_two ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Postal is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -1017,7 +1126,7 @@ var render = function render() {
       },
       expression: "v$.form_data.billing_phone.$model"
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_phone.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_phone.required.$invalid && _vm.show_error_two ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Phone is required\n                                            ")]) : _vm._e()], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
@@ -1072,7 +1181,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -1110,7 +1219,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -1149,7 +1258,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
@@ -1181,7 +1290,6 @@ var render = function render() {
     }],
     staticClass: "form-check",
     attrs: {
-      autofocus: "",
       type: "checkbox",
       placeholder: "same as billing address"
     },
@@ -1189,7 +1297,7 @@ var render = function render() {
       checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
     },
     on: {
-      change: function change($event) {
+      change: [function ($event) {
         var $$a = _vm.form_data.same_as_billing,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
@@ -1204,7 +1312,9 @@ var render = function render() {
         } else {
           _vm.$set(_vm.form_data, "same_as_billing", $$c);
         }
-      }
+      }, function ($event) {
+        return _vm.sameAsBillingChanged($event);
+      }]
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
@@ -1224,6 +1334,7 @@ var render = function render() {
         trim: true
       }
     }],
+    ref: "shipping_name",
     staticClass: "form-control",
     attrs: {
       autofocus: "",
@@ -1312,7 +1423,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_address_line_one.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.shipping_address_line_one.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                One Address is required for shipping\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
@@ -1355,7 +1466,7 @@ var render = function render() {
     staticClass: "form-label w-100 text-uppercase"
   }, [_vm._v("\n                                                Country\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1365,27 +1476,36 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-select",
     attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "country"
-    },
-    domProps: {
-      value: _vm.v$.form_data.shipping_country.$model
+      "aria-label": "Default select example"
     },
     on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.shipping_country, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.v$.form_data.shipping_country, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_country.required.$invalid && _vm.show_error ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.countries, function (country, index) {
+    return _c("option", {
+      key: country.id,
+      domProps: {
+        value: country.name.toLowerCase()
+      }
+    }, [_vm._v(_vm._s(country.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.shipping_country.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                country is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                Country is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-5"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -1393,7 +1513,7 @@ var render = function render() {
     staticClass: "form-label w-100 text-uppercase"
   }, [_vm._v("\n                                                Province/State\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1403,27 +1523,36 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-select",
     attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "province"
-    },
-    domProps: {
-      value: _vm.v$.form_data.shipping_province.$model
+      "aria-label": "Default select example"
     },
     on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.shipping_province, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.v$.form_data.shipping_province, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_province.required.$invalid && _vm.show_error ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.provinces, function (province, index) {
+    return _c("option", {
+      key: province.id,
+      domProps: {
+        value: province.name.toLowerCase()
+      }
+    }, [_vm._v(_vm._s(province.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.shipping_province.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                province is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                Province is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -1459,7 +1588,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_city.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.shipping_city.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                city is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -1497,7 +1626,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_postal.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.shipping_postal.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Postal is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -1520,7 +1649,7 @@ var render = function render() {
       },
       expression: "v$.form_data.shipping_phone.$model"
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_phone.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.shipping_phone.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Phone is required\n                                            ")]) : _vm._e()], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
@@ -1569,14 +1698,14 @@ var render = function render() {
       type: "radio",
       name: "inlineRadioOptions",
       id: "inlineRadio1",
-      value: "option1"
+      value: "active"
     },
     domProps: {
-      checked: _vm._q(_vm.v$.form_data.status.$model, "option1")
+      checked: _vm._q(_vm.v$.form_data.status.$model, "active")
     },
     on: {
       change: function change($event) {
-        return _vm.$set(_vm.v$.form_data.status, "$model", "option1");
+        return _vm.$set(_vm.v$.form_data.status, "$model", "active");
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -1601,14 +1730,14 @@ var render = function render() {
       type: "radio",
       name: "inlineRadioOptions",
       id: "inlineRadio2",
-      value: "option2"
+      value: "suspend"
     },
     domProps: {
-      checked: _vm._q(_vm.v$.form_data.status.$model, "option2")
+      checked: _vm._q(_vm.v$.form_data.status.$model, "suspend")
     },
     on: {
       change: function change($event) {
-        return _vm.$set(_vm.v$.form_data.status, "$model", "option2");
+        return _vm.$set(_vm.v$.form_data.status, "$model", "suspend");
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -1633,17 +1762,17 @@ var render = function render() {
       type: "radio",
       name: "inlineRadioOptions",
       id: "inlineRadio3",
-      value: "option3"
+      value: "delete"
     },
     domProps: {
-      checked: _vm._q(_vm.v$.form_data.status.$model, "option3")
+      checked: _vm._q(_vm.v$.form_data.status.$model, "delete")
     },
     on: {
       change: function change($event) {
-        return _vm.$set(_vm.v$.form_data.status, "$model", "option3");
+        return _vm.$set(_vm.v$.form_data.status, "$model", "delete");
       }
     }
-  })])]), _vm._v(" "), _vm.v$.form_data.status.required.$invalid && _vm.show_error ? _c("div", {
+  })])]), _vm._v(" "), _vm.v$.form_data.status.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                                Status is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
@@ -1683,7 +1812,8 @@ var render = function render() {
         type: "checkbox"
       },
       domProps: {
-        checked: Array.isArray(_vm.v$.form_data.products.$model) ? _vm._i(_vm.v$.form_data.products.$model, null) > -1 : _vm.v$.form_data.products.$model
+        value: product.name.toLowerCase(),
+        checked: Array.isArray(_vm.v$.form_data.products.$model) ? _vm._i(_vm.v$.form_data.products.$model, product.name.toLowerCase()) > -1 : _vm.v$.form_data.products.$model
       },
       on: {
         change: function change($event) {
@@ -1691,7 +1821,7 @@ var render = function render() {
             $$el = $event.target,
             $$c = $$el.checked ? true : false;
           if (Array.isArray($$a)) {
-            var $$v = null,
+            var $$v = product.name.toLowerCase(),
               $$i = _vm._i($$a, $$v);
             if ($$el.checked) {
               $$i < 0 && _vm.$set(_vm.v$.form_data.products, "$model", $$a.concat([$$v]));
@@ -1704,7 +1834,7 @@ var render = function render() {
         }
       }
     })])]);
-  }), _vm._v(" "), _vm.v$.form_data.products.required.$invalid && _vm.show_error ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.products.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                        Products is required\n                                    ")]) : _vm._e()], 2)])])])])])], 1)], 1)]);
 };

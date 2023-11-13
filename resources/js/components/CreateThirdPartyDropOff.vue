@@ -3,7 +3,7 @@
     <form>
         <form-wizard
             @on-complete="submit"
-            @on-change="tabChanged"
+            @on-change="handleTabChange"
             color="#3476ae"
             :title="`Create Third party with ${step_count} steps`"
             :subtitle="form_wizard_subtitle"
@@ -32,8 +32,9 @@
                                                 class="form-control"
                                                 placeholder="name"
                                                 v-model.trim="v$.form_data.name.$model"
+                                                ref="name"
                                             />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Name is required
                                             </div>
                                         </div>
@@ -52,7 +53,7 @@
                                                 placeholder="contact name"
                                                 v-model.trim="v$.form_data.contact_name.$model"
                                             />
-                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
                                                 contact name is required
                                             </div>
                                         </div>
@@ -71,10 +72,10 @@
                                                 placeholder="email"
                                                 v-model.trim="v$.form_data.email.$model"
                                             />
-                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">
                                                 email is required
                                             </div>
-                                            <div class="error" v-if="v$.form_data.email.email.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.email.email.$invalid && show_error_one">
                                                 Give A valid email
                                             </div>
                                         </div>
@@ -110,7 +111,7 @@
                                                 v-model.trim="v$.form_data.name.$model"
                                                 readonly
                                             />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Name is required
                                             </div>
                                         </div>
@@ -128,7 +129,7 @@
                                                 v-model.trim="v$.form_data.contact_name.$model"
                                                 readonly
                                             />
-                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
                                                 contact name is required
                                             </div>
                                         </div>
@@ -147,7 +148,7 @@
                                                 v-model.trim="v$.form_data.email.$model"
                                                 readonly
                                             />
-                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">
                                                 email is required
                                             </div>
                                         </div>
@@ -172,8 +173,9 @@
                                                 class="form-control"
                                                 placeholder="address line one"
                                                 v-model.trim="v$.form_data.billing_address_line_one.$model"
+                                                ref="billing_address_line_one"
                                             />
-                                            <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error_two">
                                                 One Address Line is required
                                             </div>
                                         </div>
@@ -206,9 +208,9 @@
                                                     v-model.trim="v$.form_data.billing_country.$model"
                                             >
                                                 <option selected disabled>Open this select menu</option>
-                                                <option v-for="(country,index) in countries" :key="country.id">{{country.name}}</option>
+                                                <option v-for="(country,index) in countries" :value="country.name.toLowerCase()" :key="country.id">{{country.name}}</option>
                                             </select>
-                                            <div class="error" v-if="v$.form_data.billing_country.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.billing_country.required.$invalid && show_error_two">
                                                 Country is required
                                             </div>
                                         </div>
@@ -224,9 +226,9 @@
                                                     v-model.trim="v$.form_data.billing_province.$model"
                                             >
                                                 <option selected disabled>Open this select menu</option>
-                                                <option v-for="(province,index) in provinces" :key="province.id">{{province.name}}</option>
+                                                <option v-for="(province,index) in provinces" :value="province.name.toLowerCase()" :key="province.id">{{province.name}}</option>
                                             </select>
-                                            <div class="error" v-if="v$.form_data.billing_province.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.billing_province.required.$invalid && show_error_two">
                                                 Province is required
                                             </div>
                                         </div>
@@ -245,7 +247,7 @@
                                                 placeholder="city"
                                                 v-model.trim="v$.form_data.billing_city.$model"
                                             />
-                                            <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error_two">
                                                 City is required
                                             </div>
                                         </div>
@@ -264,7 +266,7 @@
                                                 placeholder="postal/zip code"
                                                 v-model.trim="v$.form_data.billing_postal.$model"
                                             />
-                                            <div class="error" v-if="v$.form_data.billing_postal.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.billing_postal.required.$invalid && show_error_two">
                                                 Postal is required
                                             </div>
                                         </div>
@@ -281,7 +283,7 @@
                                                 default-country-code="CA"
                                                 :only-countries="countries_phone"
                                             />
-                                            <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error_two">
                                                 Phone is required
                                             </div>
                                         </div>
@@ -316,7 +318,7 @@
                                                 v-model.trim="v$.form_data.name.$model"
                                                 readonly
                                             />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Name is required
                                             </div>
                                         </div>
@@ -334,7 +336,7 @@
                                                 v-model.trim="v$.form_data.contact_name.$model"
                                                 readonly
                                             />
-                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
                                                 contact name is required
                                             </div>
                                         </div>
@@ -353,7 +355,7 @@
                                                 v-model.trim="v$.form_data.email.$model"
                                                 readonly
                                             />
-                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">
                                                 email is required
                                             </div>
                                         </div>
@@ -373,11 +375,11 @@
                                                 Same as billing address
                                             </label>
                                             <input
-                                                autofocus
                                                 type="checkbox"
                                                 class="form-check"
                                                 placeholder="same as billing address"
                                                 v-model.trim="form_data.same_as_billing"
+                                                @change="sameAsBillingChanged($event)"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                             <!--                                                Same as Billing is required-->
@@ -397,6 +399,7 @@
                                                 class="form-control"
                                                 placeholder="name"
                                                 v-model.trim="form_data.shipping_name"
+                                                ref="shipping_name"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.shipping_name.required.$invalid && show_error">-->
                                             <!--                                                Name for shipping is required-->
@@ -434,7 +437,7 @@
                                                 placeholder="address line one"
                                                 v-model.trim="v$.form_data.shipping_address_line_one.$model"
                                             />
-                                            <div class="error" v-if="v$.form_data.shipping_address_line_one.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.shipping_address_line_one.required.$invalid && show_error_three">
                                                 One Address is required for shipping
                                             </div>
                                         </div>
@@ -463,15 +466,14 @@
                                                 Country
                                                 <span class="error">*</span>
                                             </label>
-                                            <input
-                                                autofocus
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="country"
-                                                v-model.trim="v$.form_data.shipping_country.$model"
-                                            />
-                                            <div class="error" v-if="v$.form_data.shipping_country.required.$invalid && show_error">
-                                                country is required
+                                            <select class="form-select" aria-label="Default select example"
+                                                    v-model.trim="v$.form_data.shipping_country.$model"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(country,index) in countries" :value="country.name.toLowerCase()" :key="country.id">{{country.name}}</option>
+                                            </select>
+                                            <div class="error" v-if="v$.form_data.shipping_country.required.$invalid && show_error_three">
+                                                Country is required
                                             </div>
                                         </div>
                                     </div>
@@ -482,15 +484,14 @@
                                                 Province/State
                                                 <span class="error">*</span>
                                             </label>
-                                            <input
-                                                autofocus
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="province"
-                                                v-model.trim="v$.form_data.shipping_province.$model"
-                                            />
-                                            <div class="error" v-if="v$.form_data.shipping_province.required.$invalid && show_error">
-                                                province is required
+                                            <select class="form-select" aria-label="Default select example"
+                                                    v-model.trim="v$.form_data.shipping_province.$model"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(province,index) in provinces" :value="province.name.toLowerCase()" :key="province.id">{{province.name}}</option>
+                                            </select>
+                                            <div class="error" v-if="v$.form_data.shipping_province.required.$invalid && show_error_three">
+                                                Province is required
                                             </div>
                                         </div>
                                     </div>
@@ -508,7 +509,7 @@
                                                 placeholder="city"
                                                 v-model.trim="v$.form_data.shipping_city.$model"
                                             />
-                                            <div class="error" v-if="v$.form_data.shipping_city.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.shipping_city.required.$invalid && show_error_three">
                                                 city is required
                                             </div>
                                         </div>
@@ -527,7 +528,7 @@
                                                 placeholder="postal/zip code"
                                                 v-model.trim="v$.form_data.shipping_postal.$model"
                                             />
-                                            <div class="error" v-if="v$.form_data.shipping_postal.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.shipping_postal.required.$invalid && show_error_three">
                                                 Postal is required
                                             </div>
                                         </div>
@@ -544,7 +545,7 @@
                                                 default-country-code="CA"
                                                 :only-countries="countries_phone"
                                             />
-                                            <div class="error" v-if="v$.form_data.shipping_phone.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.shipping_phone.required.$invalid && show_error_three">
                                                 Phone is required
                                             </div>
                                         </div>
@@ -574,26 +575,26 @@
                                             <div class="d-flex justify-content-start w-100">
                                                 <div class="form-check form-check-inline check_right_margin">
                                                     <label class="form-check-label" for="inlineRadio1">Active</label>
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="active"
                                                            v-model.trim="v$.form_data.status.$model"
                                                     />
                                                 </div>
 
                                                 <div class="form-check form-check-inline check_right_margin">
                                                     <label class="form-check-label" for="inlineRadio2">Suspend</label>
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="suspend"
                                                            v-model.trim="v$.form_data.status.$model"
                                                     />
                                                 </div>
 
                                                 <div class="form-check form-check-inline check_right_margin">
                                                     <label class="form-check-label" for="inlineRadio3">Delete</label>
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"
+                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="delete"
                                                            v-model.trim="v$.form_data.status.$model"
                                                     />
                                                 </div>
                                             </div>
-                                            <div class="error" v-if="v$.form_data.status.required.$invalid && show_error">
+                                            <div class="error" v-if="v$.form_data.status.required.$invalid && show_error_four">
                                                 Status is required
                                             </div>
                                         </div>
@@ -618,10 +619,11 @@
                                                 type="checkbox"
                                                 class="form-check"
                                                 v-model.trim="v$.form_data.products.$model"
+                                                :value="product.name.toLowerCase()"
                                             />
                                         </div>
                                     </div>
-                                    <div class="error" v-if="v$.form_data.products.required.$invalid && show_error">
+                                    <div class="error" v-if="v$.form_data.products.required.$invalid && show_error_four">
                                         Products is required
                                     </div>
                                 </div>
@@ -649,7 +651,10 @@ export default {
     setup: () => ({ v$: useVuelidate() }),
     data(){
         return{
-            show_error: false,
+            show_error_one: false,
+            show_error_two: false,
+            show_error_three: false,
+            show_error_four: false,
             step_count:4,
             completed_step_count:'',
             form_wizard_subtitle:'Start here',
@@ -1056,29 +1061,49 @@ export default {
         }
     },
     methods:{
-        submit(){
-            // alert('Yay. Done!');
-            Swal.fire({
-                // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
-                title: `Are the selected product offerings applicable for drop off center: <br> ${this.form_data.name}`,
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: "Yes",
-                denyButtonText: `No`,
-                icon: "question",
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    Swal.fire("Saved!", "", "success");
-                } else if (result.isDenied) {
-                    Swal.fire("Changes are not saved", "", "info");
-                }
-            });
+        async submit(){
+            if (this.checkFourthStep()){
+                // alert('Yay. Done!');
+                Swal.fire({
+                    // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
+                    title: `Are the selected product offerings applicable for drop off center: <br> ${this.form_data.name}`,
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Yes",
+                    denyButtonText: `No`,
+                    icon: "question",
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+
+                        // Submit form
+                        axios
+                            .post("/admin/third-party-drop-off", this.form_data)
+                            .then(function (res) {
+                                Swal.fire("Saved!", "", "success");
+                                window.location.reload()
+                            })
+                            .catch(function (err) {
+                                try {
+                                    self.showValidationError(err);
+                                } catch (e) {
+                                    self.showSomethingWrong();
+                                }
+                            });
+                        // Swal.fire("Saved!", "", "success");
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                    }
+                });
+
+            }else {
+                return;
+            }
         },
         checkFirstStep(){
             this.v$.$touch()
             if (this.v$.form_data.name.$invalid || this.v$.form_data.contact_name.$invalid || this.v$.form_data.email.$invalid) {
-                this.show_error = true;
+                this.show_error_one = true;
                 return false;
             }
             this.completed_step_count = 1;
@@ -1086,29 +1111,106 @@ export default {
             return true;
         },
         checkSecondStep(){
-            // this.v$.$touch()
-            // if (this.v$.form_data.name.$invalid) {
-            //     this.show_error = true;
-            //     return false;
-            // }
+            this.v$.$touch()
+            if (this.v$.form_data.billing_address_line_one.$invalid ||
+                this.v$.form_data.billing_country.$invalid ||
+                this.v$.form_data.billing_province.$invalid ||
+                this.v$.form_data.billing_city.$invalid ||
+                this.v$.form_data.billing_postal.$invalid ||
+                this.v$.form_data.billing_phone.$invalid
+            ) {
+                this.show_error_two = true;
+                return false;
+            }
             this.completed_step_count = 2;
             this.form_wizard_subtitle = 'Please Continue to next'
             return true;
         },
         checkThirdStep(){
-            // this.v$.$touch()
-            // if (this.v$.form_data.name.$invalid) {
-            //     this.show_error = true;
-            //     return false;
-            // }
+            this.v$.$touch()
+            if (this.v$.form_data.shipping_address_line_one.$invalid ||
+                this.v$.form_data.shipping_country.$invalid ||
+                this.v$.form_data.shipping_province.$invalid ||
+                this.v$.form_data.shipping_city.$invalid ||
+                this.v$.form_data.shipping_postal.$invalid ||
+                this.v$.form_data.shipping_phone.$invalid
+            ) {
+                this.show_error_three = true;
+                return false;
+            }
             this.completed_step_count = 4;
             this.form_wizard_subtitle = 'Almost Done'
             return true;
         },
-        tabChanged(oldIndex, newIndex){
+        checkFourthStep(){
+            this.v$.$touch()
+            if (this.v$.form_data.status.$invalid ||
+                this.v$.form_data.products.$invalid
+            ) {
+                this.show_error_four = true;
+                return false;
+            }else {
+                return true;
+            }
+        },
+        sameAsBillingChanged(event){
+            if (this.form_data.same_as_billing){
+                    this.form_data.shipping_address_line_one = this.form_data.billing_address_line_one;
+                    this.form_data.shipping_address_line_two = this.form_data.billing_address_line_two;
+                    this.form_data.shipping_country = this.form_data.billing_country;
+                    this.form_data.shipping_province = this.form_data.billing_province;
+                    this.form_data.shipping_city = this.form_data.billing_city;
+                    this.form_data.shipping_postal = this.form_data.billing_postal;
+                    this.form_data.shipping_phone = this.form_data.billing_phone;
+            }else {
+                this.form_data.shipping_address_line_one = '';
+                this.form_data.shipping_address_line_two = '';
+                this.form_data.shipping_country = '';
+                this.form_data.shipping_province = '';
+                this.form_data.shipping_city = ''
+                this.form_data.shipping_postal = '';
+                this.form_data.shipping_phone = '';
+            }
+        },
+        handleTabChange(prevIndex, nextIndex){
             console.log('tab change called')
-            console.log(oldIndex)
-            console.log(newIndex)
+            console.log(prevIndex)
+            console.log(nextIndex)
+            switch (nextIndex) {
+                case 0:
+                    this.$refs.name.focus()
+                    console.log('index 0')
+                    break;
+                case 1:
+                    this.$refs.billing_address_line_one.focus()
+                    console.log('index 1')
+                    break;
+                case 2:
+                    this.$refs.shipping_name.focus()
+                    console.log('index 2')
+                    break;
+            }
+        }
+    },
+    watch:{
+        handleTabChange(prevIndex, nextIndex){
+            console.log('tab change called')
+            console.log(prevIndex)
+            console.log(nextIndex)
+            switch (nextIndex) {
+                case 0:
+                    this.$refs.name.focus()
+                    console.log('index 0')
+                    break;
+                case 1:
+                    this.$refs.billing_address_line_one.focus()
+                    console.log('index 1')
+                    break;
+                case 2:
+                    this.$refs.shipping_name.focus()
+                    console.log('index 2')
+                    break;
+            }
         }
     },
     validations: {
@@ -1121,6 +1223,7 @@ export default {
             },
             email: {
                 required,
+                email
             },
             billing_address_line_one:{
                 required,
