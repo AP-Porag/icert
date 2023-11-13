@@ -31,10 +31,9 @@ class ThirdPartyDropOffController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
-        $this->thirdPartyDropOffService->storeOrUpdate($data, null);
         try {
-
+            $data = $request->all();
+            $this->thirdPartyDropOffService->storeOrUpdate($data, null);
             record_created_flash();
         } catch (\Exception $e) {
         }
@@ -74,7 +73,7 @@ class ThirdPartyDropOffController extends Controller
     public function destroy($id)
     {
         try {
-            $this->userService->delete($id);
+            $this->thirdPartyDropOffService->delete($id);
             record_deleted_flash();
             return back();
         } catch (\Exception $e) {
