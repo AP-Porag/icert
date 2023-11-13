@@ -317,7 +317,26 @@ __webpack_require__.r(__webpack_exports__);
       form_data: {
         name: '',
         email: '',
-        contact_name: ''
+        contact_name: '',
+        billing_address_line_one: '',
+        billing_address_line_two: '',
+        billing_country: '',
+        billing_province: '',
+        billing_city: '',
+        billing_postal: '',
+        billing_phone: '',
+        same_as_billing: false,
+        shipping_name: '',
+        shipping_company_name: '',
+        shipping_address_line_one: '',
+        shipping_address_line_two: '',
+        shipping_country: '',
+        shipping_province: '',
+        shipping_city: '',
+        shipping_postal: '',
+        shipping_phone: '',
+        status: '',
+        products: []
       }
     };
   },
@@ -383,6 +402,15 @@ __webpack_require__.r(__webpack_exports__);
       email: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required,
         email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email
+      },
+      billing_address_line_one: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_country: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      billing_province: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       }
     }
   }
@@ -697,24 +725,68 @@ var render = function render() {
   }, [_vm._v("\n                                                Address Line one\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.billing_address_line_one.$model,
+      expression: "v$.form_data.billing_address_line_one.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-control",
     attrs: {
       autofocus: "",
       type: "text",
       placeholder: "address line one"
+    },
+    domProps: {
+      value: _vm.v$.form_data.billing_address_line_one.$model
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.v$.form_data.billing_address_line_one, "$model", $event.target.value.trim());
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
     }
-  })])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_address_line_one.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                One Address Line is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-uppercase"
   }, [_vm._v("\n                                                Address Line two\n                                            ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.name.$model,
+      expression: "v$.form_data.name.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-control",
     attrs: {
       autofocus: "",
       type: "text",
       placeholder: "address line two"
+    },
+    domProps: {
+      value: _vm.v$.form_data.name.$model
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-7"
@@ -725,9 +797,29 @@ var render = function render() {
   }, [_vm._v("\n                                                Country\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.billing_country.$model,
+      expression: "v$.form_data.billing_country.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-select",
     attrs: {
       "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.v$.form_data.billing_country, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
   }, [_c("option", {
     attrs: {
@@ -736,9 +828,14 @@ var render = function render() {
     }
   }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.countries, function (country, index) {
     return _c("option", {
-      key: country.id
+      key: country.id,
+      domProps: {
+        value: country.name.toLowerCase()
+      }
     }, [_vm._v(_vm._s(country.name))]);
-  })], 2)])]), _vm._v(" "), _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.billing_country.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Country is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-5"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -747,9 +844,29 @@ var render = function render() {
   }, [_vm._v("\n                                                Province/State\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.billing_province.$model,
+      expression: "v$.form_data.billing_province.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-select",
     attrs: {
       "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.v$.form_data.billing_province, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
   }, [_c("option", {
     attrs: {
@@ -758,9 +875,14 @@ var render = function render() {
     }
   }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.provinces, function (province, index) {
     return _c("option", {
-      key: province.id
+      key: province.id,
+      domProps: {
+        value: province.name.toLowerCase()
+      }
     }, [_vm._v(_vm._s(province.name))]);
-  })], 2)])]), _vm._v(" "), _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.billing_province.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Province is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"

@@ -169,12 +169,12 @@
                                                 autofocus
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="address line one"/>
-                                            <!--                                v-model.trim="v$.form_data.name.$model"-->
-                                            <!--                            />-->
-                                            <!--                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">-->
-                                            <!--                                Zip code is required-->
-                                            <!--                            </div>-->
+                                                placeholder="address line one"
+                                                v-model.trim="v$.form_data.billing_address_line_one.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error">
+                                                One Address Line is required
+                                            </div>
                                         </div>
                                     </div>
 
@@ -187,8 +187,8 @@
                                                 autofocus
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="address line two"/>
-                                            <!--                                v-model.trim="v$.form_data.name.$model"-->
+                                                placeholder="address line two"
+                                                v-model.trim="v$.form_data.name.$model"/>
                                             <!--                            />-->
                                             <!--                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error">-->
                                             <!--                                Zip code is required-->
@@ -202,10 +202,15 @@
                                                 Country
                                                 <span class="error">*</span>
                                             </label>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example"
+                                                    v-model.trim="v$.form_data.billing_country.$model"
+                                            >
                                                 <option selected disabled>Open this select menu</option>
-                                                <option v-for="(country,index) in countries" :key="country.id">{{country.name}}</option>
+                                                <option v-for="(country,index) in countries" :value="country.name.toLowerCase()" :key="country.id">{{country.name}}</option>
                                             </select>
+                                            <div class="error" v-if="v$.form_data.billing_country.required.$invalid && show_error">
+                                                Country is required
+                                            </div>
                                         </div>
                                     </div>
 
@@ -215,10 +220,15 @@
                                                 Province/State
                                                 <span class="error">*</span>
                                             </label>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example"
+                                                    v-model.trim="v$.form_data.billing_province.$model"
+                                            >
                                                 <option selected disabled>Open this select menu</option>
-                                                <option v-for="(province,index) in provinces" :key="province.id">{{province.name}}</option>
+                                                <option v-for="(province,index) in provinces" :value="province.name.toLowerCase()" :key="province.id">{{province.name}}</option>
                                             </select>
+                                            <div class="error" v-if="v$.form_data.billing_province.required.$invalid && show_error">
+                                                Province is required
+                                            </div>
                                         </div>
                                     </div>
 
@@ -1010,7 +1020,26 @@ export default {
             form_data:{
                 name: '',
                 email:'',
-                contact_name:''
+                contact_name:'',
+                billing_address_line_one:'',
+                billing_address_line_two:'',
+                billing_country:'',
+                billing_province:'',
+                billing_city:'',
+                billing_postal:'',
+                billing_phone:'',
+                same_as_billing:false,
+                shipping_name:'',
+                shipping_company_name:'',
+                shipping_address_line_one:'',
+                shipping_address_line_two:'',
+                shipping_country:'',
+                shipping_province:'',
+                shipping_city:'',
+                shipping_postal:'',
+                shipping_phone:'',
+                status:'',
+                products:[],
             },
 
         }
@@ -1077,6 +1106,15 @@ export default {
             email: {
                 required,
                 email
+            },
+            billing_address_line_one: {
+                required,
+            },
+            billing_country: {
+                required,
+            },
+            billing_province: {
+                required,
             },
         }
     }
