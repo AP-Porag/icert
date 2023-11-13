@@ -591,13 +591,37 @@ var render = function render() {
   }, [_vm._v("\n                                                Email Address\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.email.$model,
+      expression: "v$.form_data.email.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
     staticClass: "form-control",
     attrs: {
-      autofocus: "",
       type: "email",
       placeholder: "email"
+    },
+    domProps: {
+      value: _vm.v$.form_data.email.$model
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.v$.form_data.email, "$model", $event.target.value.trim());
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
     }
-  })])])])])])])])]), _vm._v(" "), _c("tab-content", {
+  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e(), _vm._v(" "), _vm.v$.form_data.email.email.$invalid && _vm.show_error ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Give A valid email\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Billing Address",
       icon: "ti-infinite",
@@ -710,7 +734,6 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      autofocus: "",
       type: "email",
       placeholder: "email",
       readonly: ""
@@ -984,7 +1007,6 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      autofocus: "",
       type: "email",
       placeholder: "email",
       readonly: ""

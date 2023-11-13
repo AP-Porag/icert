@@ -65,18 +65,17 @@
                                                 <span class="error">*</span>
                                             </label>
                                             <input
-                                                autofocus
                                                 type="email"
                                                 class="form-control"
-                                                placeholder="email"/>
-<!--                                                v-model.trim="v$.form_data.email.$model"-->
-<!--                                            />-->
-<!--                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">-->
-<!--                                                email is required-->
-<!--                                            </div>-->
-<!--                                            <div class="error" v-if="v$.form_data.email.email.$invalid && show_error">-->
-<!--                                                Give A valid email-->
-<!--                                            </div>-->
+                                                placeholder="email"
+                                                v-model.trim="v$.form_data.email.$model"
+                                            />
+                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error">
+                                                email is required
+                                            </div>
+                                            <div class="error" v-if="v$.form_data.email.email.$invalid && show_error">
+                                                Give A valid email
+                                            </div>
                                         </div>
                                     </div>
 
@@ -140,7 +139,6 @@
                                                 <span class="error">*</span>
                                             </label>
                                             <input
-                                                autofocus
                                                 type="email"
                                                 class="form-control"
                                                 placeholder="email"
@@ -344,7 +342,6 @@
                                                 <span class="error">*</span>
                                             </label>
                                             <input
-                                                autofocus
                                                 type="email"
                                                 class="form-control"
                                                 placeholder="email"
