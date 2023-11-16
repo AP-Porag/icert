@@ -49,7 +49,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('about', AboutController::class);
 
     //third party drop off
-    Route::resource('third-party-drop-off', ThirdPartyDropOffController::class);
+    Route::resource('thirds', ThirdPartyDropOffController::class);
 
 });
 

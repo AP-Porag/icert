@@ -1074,7 +1074,7 @@ export default {
 
                         // Submit form
                         axios
-                            .post("/admin/third-party-drop-off", this.form_data)
+                            .put(`/admin/thirds/${this.third_party.id}`, this.form_data)
                             .then(function (res) {
                                 Swal.fire("Saved!", "", "success");
                                 window.location.reload()

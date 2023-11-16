@@ -372,7 +372,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                   // Submit form
-                  axios.post("/admin/third-party-drop-off", _this.form_data).then(function (res) {
+                  axios.put("/admin/thirds/".concat(_this.third_party.id), _this.form_data).then(function (res) {
                     Swal.fire("Saved!", "", "success");
                     window.location.reload();
                   })["catch"](function (err) {

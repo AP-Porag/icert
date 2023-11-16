@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\ThirdParty;
 use App\DataTables\ThirdPartyDropOffDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\ThirdPartyProduct;
 use App\Services\ThirdPartyDropOffService;
 use Illuminate\Http\Request;
 
@@ -31,10 +32,19 @@ class ThirdPartyDropOffController extends Controller
 
     public function store(Request $request)
     {
-
         try {
             $data = $request->all();
-            $this->thirdPartyDropOffService->storeOrUpdate($data, null);
+            $thirdParty = $this->thirdPartyDropOffService->storeOrUpdate($data, null);
+
+            if ($thirdParty){
+
+                foreach ($data['products'] as $product){
+                    $thirdPartyProduct = ThirdPartyProduct::create([
+                        "third_party_id"=>$thirdParty->id,
+                        "product_id"=>$product,
+                    ]);
+                }
+            }
             record_created_flash();
         } catch (\Exception $e) {
         }
@@ -43,6 +53,7 @@ class ThirdPartyDropOffController extends Controller
 
     public function edit($id)
     {
+
         try {
             set_page_meta('Edit Third Party Drop Off Center');
             $item = $this->thirdPartyDropOffService->get($id);
@@ -53,13 +64,30 @@ class ThirdPartyDropOffController extends Controller
         return back();
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->validated();
+
         try {
-            $this->userService->storeOrUpdate($data, $id);
+
+            $data = $request->all();
+            $thirdParty = $this->thirdPartyDropOffService->storeOrUpdate($data, $id);
+
+            if ($thirdParty){
+                $ThirdPartyProducts = ThirdPartyProduct::where('third_party_id',$id)->get();
+
+                foreach ($ThirdPartyProducts as $thirdPartyProduct){
+                    $thirdPartyProduct->delete();
+                }
+
+                foreach ($data['products'] as $product){
+                    $thirdPartyProduct = ThirdPartyProduct::create([
+                        "third_party_id"=>$id,
+                        "product_id"=>$product,
+                    ]);
+                }
+            }
+
             record_updated_flash();
-            return redirect()->route('admin.third_party.third_party_drop_off.index');
         } catch (\Exception $e) {
             return back();
         }
