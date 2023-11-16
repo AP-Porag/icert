@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\ThirdParty;
 use App\Models\ThirdPartyDropOff;
 use App\Models\ThirdPartyDropOffCenter;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -25,16 +26,14 @@ class ThirdPartyDropOffDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
                 $buttons = '';
-//                $buttons .= '<a class="dropdown-item" href="' . route('admin.third-party-drop-off.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.third-party-drop-off.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-                if ($item->id != 2 && $item->id != 1){
                     $buttons .= '<form action="' . route('admin.third-party-drop-off.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
                         ';
-                }
 
                 return '<div class="btn-group dropleft">
                 <a href="#" onclick="return false;" class="btn btn-sm btn-dark text-white dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
@@ -73,9 +72,9 @@ class ThirdPartyDropOffDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(ThirdPartyDropOffCenter $model): QueryBuilder
+    public function query(ThirdParty $model): QueryBuilder
     {
-        return $model->newQuery()->orderBy('id', 'DESC')->select('third_party_drop_off_centers.*');
+        return $model->newQuery()->orderBy('id', 'DESC')->select('third_parties.*');
 
     }
 

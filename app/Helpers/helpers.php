@@ -290,6 +290,7 @@ if (!function_exists('custom_flash')) {
 
     function custom_flash($title = null, $message = null)
     {
+
         Session::flash('custom_title', $title);
         Session::flash('custom_message', $message);
     }

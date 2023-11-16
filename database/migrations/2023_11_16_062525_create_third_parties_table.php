@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('third_party_drop_off_centers', function (Blueprint $table) {
+        Schema::create('third_parties', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email');
@@ -44,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('third_party_drop_off_centers');
+        Schema::dropIfExists('third_parties');
     }
 };

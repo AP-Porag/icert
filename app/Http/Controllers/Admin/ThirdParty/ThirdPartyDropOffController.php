@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\ThirdParty;
 
 use App\DataTables\ThirdPartyDropOffDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Services\ThirdPartyDropOffService;
 use Illuminate\Http\Request;
 
@@ -73,8 +74,15 @@ class ThirdPartyDropOffController extends Controller
     public function destroy($id)
     {
         try {
-            $this->thirdPartyDropOffService->delete($id);
-            record_deleted_flash();
+            $orderOfThisThirdParty = Order::where('third_party_id',$id)->count();
+
+            if ($orderOfThisThirdParty > 0){
+                something_wrong_flash("There is some order with this Third Party, So not possible to delete this!");
+            }else{
+                $this->thirdPartyDropOffService->delete($id);
+                record_deleted_flash();
+            }
+
             return back();
         } catch (\Exception $e) {
             return back();

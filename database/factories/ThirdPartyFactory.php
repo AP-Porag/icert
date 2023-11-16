@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ThirdPartyDropOffCenter>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ThirdParty>
  */
-class ThirdPartyDropOffCenterFactory extends Factory
+class ThirdPartyFactory extends Factory
 {
     /**
      * Define the model's default state.

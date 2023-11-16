@@ -3,7 +3,7 @@
 namespace App\Services;
 
 
-use App\Models\ThirdPartyDropOffCenter;
+use App\Models\ThirdParty;
 use App\Services\BaseService;
 
 class ThirdPartyDropOffService extends BaseService
@@ -13,7 +13,7 @@ class ThirdPartyDropOffService extends BaseService
 
     public function __construct()
     {
-        $this->model = ThirdPartyDropOffCenter::class;
+        $this->model = ThirdParty::class;
     }
 
     public function storeOrUpdate($data, $id = null)
