@@ -639,7 +639,8 @@ import { required,email } from '@vuelidate/validators'
 
 
 export default {
-    name: "CreateThirdPartyDropOff",
+    name: "EditThirdPartyDropOff",
+    props: ["third_party"],
     components: {
         VuePhoneNumberInput,
     },
@@ -1193,6 +1194,33 @@ export default {
                     break;
             }
         }
+    },
+    mounted() {
+        let self = this;
+        console.log(self.third_party)
+
+            self.form_data.name = self.third_party.name
+            self.form_data.email = self.third_party.email
+            self.form_data.contact_name = self.third_party.contact_name
+            self.form_data.billing_address_line_one = self.third_party.billing_address_line_one
+            self.form_data.billing_address_line_two = self.third_party.billing_address_line_two
+            self.form_data.billing_country = self.third_party.billing_country
+            self.form_data.billing_province = self.third_party.billing_province
+            self.form_data.billing_city = self.third_party.billing_city
+            self.form_data.billing_postal = self.third_party.billing_postal
+            self.form_data.billing_phone = self.third_party.billing_phone
+            self.form_data.same_as_billing = self.third_party.same_as_billing
+            self.form_data.shipping_name = self.third_party.shipping_name
+            self.form_data.shipping_company_name = self.third_party.shipping_company_name
+            self.form_data.shipping_address_line_one = self.third_party.shipping_address_line_one
+            self.form_data.shipping_address_line_two = self.third_party.shipping_address_line_two
+            self.form_data.shipping_country = self.third_party.shipping_country
+            self.form_data.shipping_province = self.third_party.shipping_province
+            self.form_data.shipping_city = self.third_party.shipping_city
+            self.form_data.shipping_postal = self.third_party.shipping_postal
+            self.form_data.shipping_phone = self.third_party.shipping_phone
+            self.form_data.status = self.third_party.status
+            // self.form_data.products = self.third_party.products
     },
 
     validations: {

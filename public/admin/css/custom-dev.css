@@ -615,3 +615,14 @@ ul li {
     margin-top: 10px !important;
     text-transform: capitalize !important;
 }
+.wizard-progress-with-circle{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.stepTitle{
+    font-size: 18px;
+}
+.md-readonly{
+    background: #d2d2d2 !important;
+    cursor: not-allowed!important;
+}

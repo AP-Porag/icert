@@ -22,6 +22,10 @@ Vue.component("create-third-party-drop-off", () =>
     import("./components/CreateThirdPartyDropOff.vue")
 );
 
+Vue.component("edit-third-party-drop-off", () =>
+    import("./components/EditThirdPartyDropOff.vue")
+);
+
 // Global mixin
 Vue.mixin({
     methods: {

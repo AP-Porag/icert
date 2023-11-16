@@ -25,7 +25,7 @@ class ThirdPartyDropOffController extends Controller
 
     public function create()
     {
-        set_page_meta('Create Third Party Drop');
+        set_page_meta('Create Third Party Drop Off Center');
         return view('admin.third_party.third_party_drop_off.create');
     }
 
@@ -44,9 +44,9 @@ class ThirdPartyDropOffController extends Controller
     public function edit($id)
     {
         try {
-            set_page_meta('Edit Third Party Drop');
-            $user = $this->userService->get($id);
-            return view('admin.third_party.third_party_drop_off.edit', compact('user'));
+            set_page_meta('Edit Third Party Drop Off Center');
+            $item = $this->thirdPartyDropOffService->get($id);
+            return view('admin.third_party.third_party_drop_off.edit', compact('item'));
         } catch (\Exception $e) {
             log_error($e);
         }
