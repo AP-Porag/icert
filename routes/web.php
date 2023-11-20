@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\About\AboutController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
+use App\Http\Controllers\Admin\ThirdParty\AuthenticatorController;
 use App\Http\Controllers\Admin\ThirdParty\ThirdPartyDropOffController;
 use App\Http\Controllers\Admin\User\UsersController;
 use App\Http\Controllers\HomeController;
@@ -50,6 +51,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     //third party drop off
     Route::resource('thirds', ThirdPartyDropOffController::class);
+
+    //authenticators
+    Route::resource('authenticators', AuthenticatorController::class);
 
 });
 

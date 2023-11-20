@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('third_party_products', function (Blueprint $table) {
+        Schema::create('authenticators', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('third_party_id')->nullable()->constrained('third_parties')->onDelete('set null');
-//            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
-            $table->string('product_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('status')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('third_party_products');
+        Schema::dropIfExists('authenticators');
     }
 };

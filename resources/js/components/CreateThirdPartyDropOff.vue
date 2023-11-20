@@ -568,7 +568,7 @@
                                                 Status (select one)
                                                 <span class="error">*</span>
                                             </label>
-                                            <div class="d-flex justify-content-start w-100">
+                                            <div class="d-flex justify-content-center w-100">
                                                 <div class="form-check form-check-inline check_right_margin">
                                                     <label class="form-check-label" for="inlineRadio1">Active</label>
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="active"
@@ -611,7 +611,7 @@
                                                 type="checkbox"
                                                 class="form-check mr-3"
                                                 v-model.trim="v$.form_data.products.$model"
-                                                :value="product.name.toLowerCase()"
+                                                :value="product.id"
                                             />
                                             <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">
                                                 {{product.name}}
@@ -640,6 +640,7 @@ import { required,email } from '@vuelidate/validators'
 
 export default {
     name: "CreateThirdPartyDropOff",
+    props: ["products"],
     components: {
         VuePhoneNumberInput,
     },
@@ -962,72 +963,6 @@ export default {
                     "name": "WA"
                 }
             ],
-            products:[
-                {
-                    "id": 1,
-                    "name": "Check"
-                },
-                {
-                    "id": 2,
-                    "name": "Display Box"
-                },
-                {
-                    "id": 3,
-                    "name": "First Day Cover"
-                },
-                {
-                    "id": 4,
-                    "name": "Food"
-                },
-                {
-                    "id": 5,
-                    "name": "Index Card"
-                },
-                {
-                    "id": 6,
-                    "name": "Pack"
-                },
-                {
-                    "id": 7,
-                    "name": "Pass"
-                },
-                {
-                    "id": 8,
-                    "name": "Photo"
-                },
-                {
-                    "id": 9,
-                    "name": "Postcard"
-                },
-                {
-                    "id": 10,
-                    "name": "Rack Pack"
-                },
-                {
-                    "id": 11,
-                    "name": "Set"
-                },
-                {
-                    "id": 12,
-                    "name": "Ticket"
-                },
-                {
-                    "id": 13,
-                    "name": "Wax Box"
-                },
-                {
-                    "id": 14,
-                    "name": "Wrapper"
-                },
-                {
-                    "id": 15,
-                    "name": "Reholder"
-                },
-                {
-                    "id": 16,
-                    "name": "Crossover"
-                }
-            ],
             form_data:{
                 name: '',
                 email:'',
@@ -1076,7 +1011,8 @@ export default {
                             .post("/admin/thirds", this.form_data)
                             .then(function (res) {
                                 Swal.fire("Saved!", "", "success");
-                                window.location.reload()
+                                // window.location.reload()
+                                window.location.href = "/admin/thirds";
                             })
                             .catch(function (err) {
                                 try {

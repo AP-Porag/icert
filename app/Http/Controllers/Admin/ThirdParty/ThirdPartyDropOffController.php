@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\ThirdParty;
 use App\DataTables\ThirdPartyDropOffDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\ThirdParty;
 use App\Models\ThirdPartyProduct;
 use App\Services\ThirdPartyDropOffService;
 use Illuminate\Http\Request;
@@ -27,13 +29,16 @@ class ThirdPartyDropOffController extends Controller
     public function create()
     {
         set_page_meta('Create Third Party Drop Off Center');
-        return view('admin.third_party.third_party_drop_off.create');
+        $products = Product::orderBy('id','ASC')->get();
+        return view('admin.third_party.third_party_drop_off.create',compact('products'));
     }
 
     public function store(Request $request)
     {
+
         try {
             $data = $request->all();
+            dd($data);
             $thirdParty = $this->thirdPartyDropOffService->storeOrUpdate($data, null);
 
             if ($thirdParty){
@@ -56,8 +61,9 @@ class ThirdPartyDropOffController extends Controller
 
         try {
             set_page_meta('Edit Third Party Drop Off Center');
-            $item = $this->thirdPartyDropOffService->get($id);
-            return view('admin.third_party.third_party_drop_off.edit', compact('item'));
+            $item = $this->thirdPartyDropOffService->get($id,['products']);
+            $products = Product::orderBy('id','ASC')->get();
+            return view('admin.third_party.third_party_drop_off.edit', compact('item','products'));
         } catch (\Exception $e) {
             log_error($e);
         }
@@ -66,7 +72,8 @@ class ThirdPartyDropOffController extends Controller
 
     public function update(Request $request, $id)
     {
-
+//        $data = $request->all();
+//        dd($data);
         try {
 
             $data = $request->all();

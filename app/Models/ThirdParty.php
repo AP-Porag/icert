@@ -33,4 +33,9 @@ class ThirdParty extends Model
         'shipping_phone',
         'status',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(ThirdPartyProduct::class,'third_party_id');
+    }
 }

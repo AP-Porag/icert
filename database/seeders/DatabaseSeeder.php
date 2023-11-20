@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         ThirdParty::factory(2)->create();
         $this->call([
             UserSeeder::class,
-            OrderSeeder::class
+            OrderSeeder::class,
+            ProductSeeder::class
         ]);
     }
 }

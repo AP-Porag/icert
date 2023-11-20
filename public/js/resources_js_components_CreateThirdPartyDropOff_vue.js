@@ -24,6 +24,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateThirdPartyDropOff",
+  props: ["products"],
   components: {
     VuePhoneNumberInput: (vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0___default())
   },
@@ -272,55 +273,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         "id": 71,
         "name": "WA"
       }],
-      products: [{
-        "id": 1,
-        "name": "Check"
-      }, {
-        "id": 2,
-        "name": "Display Box"
-      }, {
-        "id": 3,
-        "name": "First Day Cover"
-      }, {
-        "id": 4,
-        "name": "Food"
-      }, {
-        "id": 5,
-        "name": "Index Card"
-      }, {
-        "id": 6,
-        "name": "Pack"
-      }, {
-        "id": 7,
-        "name": "Pass"
-      }, {
-        "id": 8,
-        "name": "Photo"
-      }, {
-        "id": 9,
-        "name": "Postcard"
-      }, {
-        "id": 10,
-        "name": "Rack Pack"
-      }, {
-        "id": 11,
-        "name": "Set"
-      }, {
-        "id": 12,
-        "name": "Ticket"
-      }, {
-        "id": 13,
-        "name": "Wax Box"
-      }, {
-        "id": 14,
-        "name": "Wrapper"
-      }, {
-        "id": 15,
-        "name": "Reholder"
-      }, {
-        "id": 16,
-        "name": "Crossover"
-      }],
       form_data: {
         name: '',
         email: '',
@@ -373,7 +325,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // Submit form
                   axios.post("/admin/thirds", _this.form_data).then(function (res) {
                     Swal.fire("Saved!", "", "success");
-                    window.location.reload();
+                    // window.location.reload()
+                    window.location.href = "/admin/thirds";
                   })["catch"](function (err) {
                     try {
                       self.showValidationError(err);
@@ -1655,7 +1608,7 @@ var render = function render() {
   }, [_vm._v("\n                                                Status (select one)\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("div", {
-    staticClass: "d-flex justify-content-start w-100"
+    staticClass: "d-flex justify-content-center w-100"
   }, [_c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
   }, [_c("label", {
@@ -1785,8 +1738,8 @@ var render = function render() {
         type: "checkbox"
       },
       domProps: {
-        value: product.name.toLowerCase(),
-        checked: Array.isArray(_vm.v$.form_data.products.$model) ? _vm._i(_vm.v$.form_data.products.$model, product.name.toLowerCase()) > -1 : _vm.v$.form_data.products.$model
+        value: product.id,
+        checked: Array.isArray(_vm.v$.form_data.products.$model) ? _vm._i(_vm.v$.form_data.products.$model, product.id) > -1 : _vm.v$.form_data.products.$model
       },
       on: {
         change: function change($event) {
@@ -1794,7 +1747,7 @@ var render = function render() {
             $$el = $event.target,
             $$c = $$el.checked ? true : false;
           if (Array.isArray($$a)) {
-            var $$v = product.name.toLowerCase(),
+            var $$v = product.id,
               $$i = _vm._i($$a, $$v);
             if ($$el.checked) {
               $$i < 0 && _vm.$set(_vm.v$.form_data.products, "$model", $$a.concat([$$v]));

@@ -53,9 +53,9 @@
                             </a>
                         </li>
 
-                        <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
-                            <a href="#"
-                               class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                        <li class="{{ request()->is('admin/authenticators*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.authenticators.index') }}"
+                               class="{{ request()->routeIs('admin.authenticators.index') ? 'active' : '' }}">
                                 Third Party Authenticators
                             </a>
                         </li>

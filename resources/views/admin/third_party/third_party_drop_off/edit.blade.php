@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-3">{{get_page_meta('title', true)}}</h4>
 
-                    <edit-third-party-drop-off :third_party="{{json_encode($item)}}"/>
+                    <edit-third-party-drop-off :third_party="{{json_encode($item)}}" :products="{{json_encode($products)}}"/>
                 </div>
             </div>
         </div>
