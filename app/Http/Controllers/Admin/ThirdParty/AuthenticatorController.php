@@ -72,7 +72,9 @@ class AuthenticatorController extends Controller
     public function update(AuthenticatorRequest $request, $id)
     {
         $data = $request->validated();
+
         try {
+
             $authenticator =  $this->authenticatorService->storeOrUpdate($data, $id);
 
             if ($authenticator){
@@ -84,11 +86,12 @@ class AuthenticatorController extends Controller
 
                 foreach ($data['products'] as $product){
                     $authenticatorProduct = AuthenticatorProduct::create([
-                        "authenticator_id"=>$authenticator->id,
+                        "authenticator_id"=>$id,
                         "product_id"=>$product,
                     ]);
                 }
             }
+
             record_updated_flash();
             return redirect()->route('admin.authenticators.index');
         } catch (\Exception $e) {

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthenticatorRequest extends FormRequest
+class PromoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,15 +21,15 @@ class AuthenticatorRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'name'=>'required',
-            'status'=>'required',
-            'products'=>["required","array","min:1"],
+            'value'=>'required',
+            'number_of_items'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'no_end_date'=>'nullable',
+            'is_select_customer'=>'nullable',
         ];
-    }
-
-    public function messages()
-    {
-        return ['products.required' => 'Minimum one product is required'];
     }
 }

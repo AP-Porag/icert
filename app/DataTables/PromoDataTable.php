@@ -2,8 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Authenticator;
-use App\Utils\GlobalConstant;
+use App\Models\Promo;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Str;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class AuthenticatorDataTable extends DataTable
+class PromoDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -26,10 +25,10 @@ class AuthenticatorDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
                 $buttons = '';
-                $buttons .= '<a class="dropdown-item" href="' . route('admin.authenticators.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.promos.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-                $buttons .= '<form action="' . route('admin.authenticators.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                $buttons .= '<form action="' . route('admin.promos.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
@@ -42,22 +41,20 @@ class AuthenticatorDataTable extends DataTable
                 </div>
                 </div>';
             })
-            ->editColumn('status',function ($item){
-                $badge = $item->status == Authenticator::STATUS_ACTIVE ? "bg-success" : ($item->status == Authenticator::STATUS_SUSPEND ? "bg-warning" : "bg-danger");
-                return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
+            ->editColumn('start_date',function ($item){
+                return custom_date($item->start_date,'D-M-Y');
             })
-            ->editColumn('products',function ($item){
-                $pro = '';
-                foreach ($item->products as $product){
-
-                    $pro .= '<span class="bg-secondary text-dark p-1" style="margin-right: 5px; border-radius: 4px;">'.$product->product->name.'</span>';
-                }
-                return $pro;
+            ->editColumn('end_date',function ($item){
+                return custom_date($item->end_date,'D-M-Y');
+            })
+            ->editColumn('status',function ($item){
+                $badge = $item->status == Promo::STATUS_ACTIVE ? "bg-success" : "bg-danger";
+                return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
             })
             ->rawColumns([
                 'action',
                 'status',
-                'products',
+                'start_date',
             ])
             ->setRowId('id');
 
@@ -66,9 +63,9 @@ class AuthenticatorDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Authenticator $model): QueryBuilder
+    public function query(Promo $model): QueryBuilder
     {
-        return $model->newQuery()->orderBy('id', 'DESC')->select('authenticators.*');
+        return $model->newQuery()->orderBy('id', 'DESC')->select('promos.*');
 
     }
 
@@ -78,7 +75,7 @@ class AuthenticatorDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('authenticator')
+            ->setTableId('promo')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -101,11 +98,13 @@ class AuthenticatorDataTable extends DataTable
      */
     public function getColumns(): array
     {
-
         return [
             Column::make('name', 'name')->title('Name')->searchable(true),
+            Column::make('value', 'value')->title('Value')->searchable(true),
+            Column::make('number_of_items', 'number_of_items')->title('Number Of Items')->searchable(true),
+            Column::make('start_date', 'start_date')->title('Start Date')->searchable(true),
+            Column::make('end_date', 'end_date')->title('End Date')->searchable(true),
             Column::make('status', 'status')->title('Status'),
-            Column::make('products', 'products')->title('Items'),
         ];
     }
 
@@ -114,6 +113,6 @@ class AuthenticatorDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Authenticator_' . date('YmdHis');
+        return 'Promo Code_' . date('YmdHis');
     }
 }

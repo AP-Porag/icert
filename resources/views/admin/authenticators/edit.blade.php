@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-3">{{get_page_meta('title', true)}}</h4>
 
-                    <form action="{{ route('admin.users.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.authenticators.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -69,6 +69,8 @@
                                                             name="products[]"
                                                             class="form-check mr-3"
                                                             value="{{$product->id}}"
+                                                            @foreach($item->products as $pro) @if($product->id == $pro->product_id) checked @endif @endforeach
+
                                                         />
                                                         <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">
                                                             {{$product->name}}
@@ -107,6 +109,13 @@
 @endsection
 
 @push('script')
-    <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
+@endpush
+
+@push('style')
+    <style>
+        .shipping_address_card{
+            background: #eeeeee;
+        }
+    </style>
 @endpush
 
