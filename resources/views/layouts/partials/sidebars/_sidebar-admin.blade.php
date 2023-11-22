@@ -67,9 +67,9 @@
                             </a>
                         </li>
 
-                        <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
-                            <a href="#"
-                               class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                        <li class="{{ request()->is('admin/slpromos*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.slpromos.index') }}"
+                               class="{{ request()->routeIs('admin.slpromos.index') ? 'active' : '' }}">
                                 Special Promo Codes
                             </a>
                         </li>

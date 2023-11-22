@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('number_of_items')->nullable();
             $table->string('start_date')->nullable();
             $table->string('end_date')->nullable();
-            $table->string('no_end_date')->nullable();
+            $table->string('no_end_date')->default(false)->nullable();
             $table->string('is_select_customer')->nullable();
             $table->string('priority')->nullable()->default(Promo::PRIORITY_NORMAL);
             $table->string('status')->nullable()->default(Promo::STATUS_ACTIVE);

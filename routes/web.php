@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\About\AboutController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Promo\PromoController;
+use App\Http\Controllers\Admin\Promo\SpecialPromoController;
 use App\Http\Controllers\Admin\ThirdParty\AuthenticatorController;
 use App\Http\Controllers\Admin\ThirdParty\ThirdPartyDropOffController;
 use App\Http\Controllers\Admin\User\UsersController;
@@ -56,8 +57,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
     //authenticators
     Route::resource('authenticators', AuthenticatorController::class);
 
-    //authenticators
+    //promos
     Route::resource('promos', PromoController::class);
+    Route::resource('slpromos', SpecialPromoController::class);
 
 });
 

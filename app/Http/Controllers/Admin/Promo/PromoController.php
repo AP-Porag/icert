@@ -6,6 +6,7 @@ use App\DataTables\PromoDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PromoRequest;
 use App\Models\Customer;
+use App\Models\Promo;
 use App\Services\PromoService;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,9 @@ class PromoController extends Controller
 
         try {
             $data = $request->validated();
+            $data['priority']= Promo::PRIORITY_NORMAL;
+            $data['is_select_customer']= false;
+            $data['status']= Promo::STATUS_ACTIVE;
             $promo = $this->promoService->storeOrUpdate($data, null);
             record_created_flash();
             return redirect()->route('admin.promos.index');

@@ -13,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class PromoDataTable extends DataTable
+class SpecialPromoDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -25,10 +25,10 @@ class PromoDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
                 $buttons = '';
-                $buttons .= '<a class="dropdown-item" href="' . route('admin.promos.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.slpromos.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-                $buttons .= '<form action="' . route('admin.promos.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                $buttons .= '<form action="' . route('admin.slpromos.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
@@ -65,7 +65,7 @@ class PromoDataTable extends DataTable
      */
     public function query(Promo $model): QueryBuilder
     {
-        return $model->newQuery()->where('priority',Promo::PRIORITY_NORMAL)->orderBy('id', 'DESC')->select('promos.*');
+        return $model->newQuery()->where('priority',Promo::PRIORITY_SPECIAL)->orderBy('id', 'DESC')->select('promos.*');
 
     }
 
@@ -113,6 +113,6 @@ class PromoDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Promo Code_' . date('YmdHis');
+        return 'Special Promo Code_' . date('YmdHis');
     }
 }
