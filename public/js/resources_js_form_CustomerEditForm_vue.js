@@ -90,7 +90,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return true;
       }
     },
-    cancelCreate: function cancelCreate() {
+    cancelCreate: function cancelCreate(e) {
+      e.preventDefault();
       window.location.href = "/admin/customers";
     }
   },

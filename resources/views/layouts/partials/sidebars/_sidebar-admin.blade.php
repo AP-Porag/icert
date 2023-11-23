@@ -36,12 +36,12 @@
                             </a>
                         </li>
 
-                        {{--                            <li class="{{ request()->is('admin/mentors*') ? 'mm-active' : '' }}">--}}
-                        {{--                                <a href="{{ route('admin.mentors.index') }}"--}}
-                        {{--                                   class="{{ (request()->routeIs('admin.mentors.index') || request()->routeIs('admin.mentors.create') || request()->routeIs('admin.mentors.edit')) ? 'active' : '' }}">--}}
-                        {{--                                    Mentor--}}
-                        {{--                                </a>--}}
-                        {{--                            </li>--}}
+                        <li class="{{ request()->is('admin/products*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.products.index') }}"
+                               class="{{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
+                                Products
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -113,8 +113,8 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#" class="waves-effect">
+                <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.roles.index') }}" class="waves-effect {{ request()->routeIs('admin.roles*') ? 'active' : '' }}">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/grading.png')}}" alt=""><span> Grading </span>
                     </a>
                 </li>

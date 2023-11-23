@@ -115,7 +115,8 @@ export default {
                 return true;
             }
         },
-        cancelCreate(){
+        cancelCreate(e){
+            e.preventDefault();
             window.location.href = "/admin/customers";
         }
     },
