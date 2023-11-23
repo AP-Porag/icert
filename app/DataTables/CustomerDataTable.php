@@ -22,8 +22,29 @@ class CustomerDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'customer.action')
+            ->addColumn('action', function ($item) {
+                $buttons = '';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.customers.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+
+                // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
+                $buttons .= '<form action="' . route('admin.customers.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                        <input type="hidden" name="_token" value="' . csrf_token() . '">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
+                        ';
+
+                return '<div class="btn-group dropleft">
+                <a href="#" onclick="return false;" class="btn btn-sm btn-dark text-white dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu">
+                ' . $buttons . '
+                </div>
+                </div>';
+            })
+            ->rawColumns([
+                'action',
+            ])
             ->setRowId('id');
+
     }
 
     /**
@@ -31,7 +52,8 @@ class CustomerDataTable extends DataTable
      */
     public function query(Customer $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->orderBy('id', 'DESC')->select('customers.*');
+
     }
 
     /**
@@ -40,19 +62,22 @@ class CustomerDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('customer-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('customer')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
+//             ->buttons([
+//                        Button::make('excel'),
+//                        Button::make('csv'),
+//                        Button::make('pdf'),
+//                        Button::make('print'),
+//                        Button::make('reset'),
+//                        Button::make('reload')
+//                    ]);
+
     }
 
     /**
@@ -60,16 +85,12 @@ class CustomerDataTable extends DataTable
      */
     public function getColumns(): array
     {
+
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('name', 'name')->title('Name')->searchable(true),
+            Column::make('email', 'email')->title('Email'),
+            Column::make('contact_name', 'contact_name')->title('Contact Name'),
+            Column::make('phone', 'phone')->title('Telephone'),
         ];
     }
 

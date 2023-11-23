@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\About\AboutController;
+use App\Http\Controllers\Admin\Customer\CustomerController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Promo\PromoController;
 use App\Http\Controllers\Admin\Promo\SpecialPromoController;
@@ -60,6 +61,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
     //promos
     Route::resource('promos', PromoController::class);
     Route::resource('slpromos', SpecialPromoController::class);
+
+    //customers
+    Route::resource('customers', CustomerController::class);
 
 });
 

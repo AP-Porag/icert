@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('customer_promos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('promo_id')->nullable()->constrained('promos')->onDelete('set null');
+            $table->foreignId('customer_id')->nullable()->constrained('customers')->onDelete('set null');
             $table->timestamps();
         });
     }

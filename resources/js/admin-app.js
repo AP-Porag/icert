@@ -26,6 +26,13 @@ Vue.component("edit-third-party-drop-off", () =>
     import("./components/EditThirdPartyDropOff.vue")
 );
 
+Vue.component("customer-create-form", () =>
+    import("./form/CustomerCreateForm.vue")
+);
+Vue.component("customer-edit-form", () =>
+    import("./form/CustomerEditForm.vue")
+);
+
 // Global mixin
 Vue.mixin({
     methods: {
