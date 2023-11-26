@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -29,7 +31,8 @@ class UsersController extends Controller
     public function create()
     {
         set_page_meta('Create User');
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create',compact('roles'));
     }
 
     public function store(UserRequest $request)
@@ -43,7 +46,12 @@ class UsersController extends Controller
                 $user_type = $data['user_type'];
                 $data['user_type'] = $user_type;
             }
-            $this->userService->storeOrUpdate($data, null);
+            $user = $this->userService->storeOrUpdate($data, null);
+
+            DB::table('model_has_roles')->insert(
+                ['role_id' => $request->input('role'), 'model_id' => $user->id,'model_type'=>'App\Models\User
+']
+            );
             record_created_flash();
         } catch (\Exception $e) {
         }
@@ -54,8 +62,11 @@ class UsersController extends Controller
     {
         try {
             set_page_meta('Edit User');
-            $user = $this->userService->get($id);
-            return view('admin.users.edit', compact('user'));
+//            $user = $this->userService->get($id);
+            $user = User::where('id',$id)->with('roles')->get();
+            return $user;
+            $roles = Role::select('id', 'name')->get();
+            return view('admin.users.edit', compact('user','roles'));
         } catch (\Exception $e) {
             log_error($e);
         }
@@ -65,9 +76,22 @@ class UsersController extends Controller
     public function update(UserRequest $request, $id)
     {
         $data = $request->validated();
+
+        $this->userService->storeOrUpdate($data, $id);
+
+        $mhrs = DB::table('model_has_roles')->get();
+
+        foreach ($mhrs as $mhr){
+            $mhr->delete();
+        }
+
+        DB::table('model_has_roles')->insert(
+            ['role_id' => $request->input('role'), 'model_id' => $id,'model_type'=>'App\Models\User
+']
+        );
+        record_updated_flash();
         try {
-            $this->userService->storeOrUpdate($data, $id);
-            record_updated_flash();
+
             return redirect()->route('admin.users.index');
         } catch (\Exception $e) {
             return back();

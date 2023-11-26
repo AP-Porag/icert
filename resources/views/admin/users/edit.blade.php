@@ -39,33 +39,6 @@
                                 @enderror
                             </div>
 
-{{--                            <div class="mb-3 col-md-6">--}}
-{{--                                <label class="form-label">Phone <span class="error">*</span></label>--}}
-{{--                                <input type="tel" name="phone" class="form-control" required="" placeholder="Phone"--}}
-{{--                                       value="{{ $user->phone }}">--}}
-{{--                                @error('phone')--}}
-{{--                                <p class="error">{{ $message }}</p>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-
-{{--                            <div class="mb-3 col-md-6">--}}
-{{--                                <label class="form-label">Date of hire <span class="error">*</span></label>--}}
-{{--                                <input type="date" name="date_of_hire" class="form-control" required="" placeholder="Date of hire"--}}
-{{--                                       value="{{ $user->date_of_hire }}">--}}
-{{--                                @error('date_of_hire')--}}
-{{--                                <p class="error">{{ $message }}</p>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-
-{{--                            <div class="mb-3 col-md-6">--}}
-{{--                                <label class="form-label">Title </label>--}}
-{{--                                <input type="text" name="title" class="form-control" placeholder="Title"--}}
-{{--                                       value="{{ $user->title }}">--}}
-{{--                                @error('title')--}}
-{{--                                <p class="error">{{ $message }}</p>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-
                             @if(auth()->user()->user_type == \App\Models\User::USER_TYPE_ADMIN)
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">User Type <span class="error">*</span></label>
@@ -132,6 +105,22 @@
                                 <input type="password" name="password_confirmation" class="form-control"
                                        placeholder="Confirm Password" value="">
                                 @error('password_confirmation')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Select Grade <span class="error">*</span></label>
+                                <select class="form-control select2" name="role" required>
+                                    <option selected disabled>----------------------</option>
+                                    @forelse ($roles as $role)
+                                        <option value="{{ $role->id }}" {{ old('role')==$role->id ? 'selected' : '' }}>{{
+                                                            $role->name }}</option>
+                                    @empty
+                                        <option value="">Nothing in the list</option>
+                                    @endforelse
+                                </select>
+                                @error('role')
                                 <p class="error">{{ $message }}</p>
                                 @enderror
                             </div>

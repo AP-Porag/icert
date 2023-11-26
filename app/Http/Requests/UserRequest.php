@@ -33,6 +33,7 @@ class UserRequest extends FormRequest
             'status'     => ['nullable'],
             'user_type'  => ['nullable'],
             'department' => ['nullable'],
+            'role' => ['nullable'],
 //            'department' => ['required_if:user_type,employee'],
             'password'   => [
                 'required', 'string','max:18', 'confirmed', Password::min(8)

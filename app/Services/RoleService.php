@@ -22,8 +22,17 @@ class RoleService extends BaseService
     public function storeOrUpdate($data, $id = null)
     {
         try {
-            // Call patent method
-            return parent::storeOrUpdate($data, $id);
+            if ($id == null) {
+                $role = Role::create(['name' => $data['name']]);
+                // sync all permission to the role
+                return $role->syncPermissions($data['permission']);
+            } else {
+                $role = Role::find($id);
+                $role->name = $data['name'];
+                $role->save();
+
+                return $role->syncPermissions($data['permission']);
+            }
         } catch (\Exception $e) {
             $this->logFlashThrow($e);
         }

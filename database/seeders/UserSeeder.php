@@ -49,6 +49,7 @@ class UserSeeder extends Seeder
 
         $role = Role::create(['name' => 'Super Admin']);
         $permissions = Permission::pluck('id', 'id')->all();
+
         $role->syncPermissions($permissions);
 
         foreach ($users as $user) {
