@@ -42,10 +42,10 @@ class PromoDataTable extends DataTable
                 </div>';
             })
             ->editColumn('start_date',function ($item){
-                return custom_date($item->start_date,'D-M-Y');
+                return custom_date($item->start_date,'d-m-Y');
             })
             ->editColumn('end_date',function ($item){
-                return custom_date($item->end_date,'D-M-Y');
+                return custom_date($item->end_date,'d-m-Y');
             })
             ->editColumn('status',function ($item){
                 $badge = $item->status == Promo::STATUS_ACTIVE ? "bg-success" : "bg-danger";

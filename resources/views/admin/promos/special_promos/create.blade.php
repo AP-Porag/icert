@@ -52,7 +52,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Start Date <span class="error">*</span></label>
-                                                <input type="date" name="start_date" class="form-control" required="" placeholder="Start Date"
+                                                <input type="date" name="start_date" class="form-control datepicker-start-date" required="" placeholder="Start Date"
                                                        value="{{ old('start_date') }}">
                                                 @error('start_date')
                                                 <p class="error">{{ $message }}</p>
@@ -61,7 +61,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">End Date <span class="error">*</span></label>
-                                                <input type="date" name="end_date" class="form-control" required="" placeholder="End Date"
+                                                <input type="date" name="end_date" class="form-control datepicker-end-date" required="" placeholder="End Date"
                                                        value="{{ old('end_date') }}">
                                                 @error('end_date')
                                                 <p class="error">{{ $message }}</p>
@@ -80,20 +80,6 @@
                                                     </label>
                                                 </div>
                                             </div>
-
-{{--                                            <div class="col-md-6">--}}
-{{--                                                <div class="mb-3 d-flex justify-content-start w-100">--}}
-{{--                                                    <input--}}
-{{--                                                        type="checkbox"--}}
-{{--                                                        name="is_select_customer"--}}
-{{--                                                        class="form-check mr-3"--}}
-{{--                                                        id="is_select_customer"--}}
-{{--                                                    />--}}
-{{--                                                    <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">--}}
-{{--                                                        Is this code for select customer--}}
-{{--                                                    </label>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -144,23 +130,37 @@
 @endsection
 
 @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        $('#customer_id').select2();
+        let startDate = $('.datepicker-start-date');
+        let endDate = $('.datepicker-end-date');
 
-        // $('#category_id').val()
-        // $(document).on('change', '#is_select_customer', function () {
-        //     var is_select_customer = $(this).val();
-        //     if (is_select_customer){
-        //         $('#customer_id_box').removeClass('hide-div').addClass('show-div')
-        //     }else {
-        //         $('#customer_id_box').removeClass('show-div').addClass('hide-div')
-        //     }
-        //
-        // })
+        startDate.flatpickr({
+            enableTime: false,
+            minDate: "today",
+            dateFormat:'d-m-Y',
+            onChange: function (selectedDates, dateStr, instance) {
+                startDate = selectedDates;
+                console.log(startDate)
+                endDate.flatpickr({
+                    enableTime: false,
+                    minDate: new Date(selectedDates),
+                    dateFormat:'d-m-Y',
+                });
+            },
+        });
+
+        endDate.flatpickr({
+            enableTime: false,
+            minDate: "today",
+            dateFormat:'d-m-Y',
+        });
     </script>
 @endpush
 
 @push('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
     <style>
         .shipping_address_card{
             background: #eeeeee;
