@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
             'status'     => ['nullable'],
             'user_type'  => ['nullable'],
             'department' => ['nullable'],
-            'role' => ['nullable'],
+            'role' => ['required'],
 //            'department' => ['required_if:user_type,employee'],
             'password'   => [
                 'required', 'string','max:18', 'confirmed', Password::min(8)
@@ -58,4 +58,10 @@ class UserRequest extends FormRequest
         return $rules;
     }
 
+    public function messages()
+    {
+        return [
+            'role.required'=>'User Grading is required'
+        ];
+    }
 }

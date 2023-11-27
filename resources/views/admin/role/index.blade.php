@@ -6,8 +6,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-3">Promo Codes</h4>
-                        <a href="{{route('admin.roles.create')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create Role</a>
+                        <h4 class="card-title mb-3">Roles</h4>
+                        <a href="{{route('admin.roles.create')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create Grading</a>
                     </div>
                     {!! $dataTable->table(['class'=>'table-responsive']) !!}
                 </div>

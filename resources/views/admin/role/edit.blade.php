@@ -5,52 +5,65 @@
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-3">Edit Role</h4>
+                    <h4 class="card-title mb-3">Edit Grading</h4>
                     <div class="row">
                         <form action="{{ route('admin.roles.update', $role->id) }}" method="POST" id="form">
                             @csrf
                             @method('PUT')
 
-                            <div class="form-group mb-2">
-                                <label for="name">Role Name <span class="error">*</span></label>
-                                <input type="text" class="form-control" id="name" name="name" autocomplete="off"
-                                       placeholder="Enter Role Name" value="{{ $role->name }}" required>
-                            </div>
-
-                            <div class="form-group mb-2">
-                                <strong>Permission <span class="error">*</span></strong>
-                                <br />
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check"
-                                           onClick="permissionAll(this)">
-                                    <label class="form-check-label" for="check">
-                                        All Permission
-                                    </label>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @foreach ($permissions as $permission)
-                                            <div class="form-group ic-single-permission @if (isset($permission->parent_id))ic-child-permission parent-{{$permission->parent_id}} @else ic-parent-permission @endif"
-                                                 @if ($permission->parent_id === null)
-                                                     data-id="{{$permission->id}}"
-                                                @endif >
-                                                <label
-                                                    class="ic-permission-label @if($permission->parent_id === null) ic-parent-permission-label @endif()">
-                                                    <input @if (isset($permission->parent_id))
-                                                               class="child-permission-{{$permission->parent_id}}"@else
-                                                               class="ic-parent-check" @endif value="{{ $permission->name }}"
-                                                           name="permission[]" type="checkbox" {{
-                                            in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
-                                                    >
-                                                    <span class="ml-1">{{ $permission->name }}</span>
-
-                                                </label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card shipping_address_card">
+                                        <div class="card-body">
+                                            <div class="form-group mb-2">
+                                                <label for="name">Grading Name <span class="error">*</span></label>
+                                                <input type="text" class="form-control" id="name" name="name" autocomplete="off"
+                                                       placeholder="Enter Grade Name" value="{{ $role->name }}" required>
                                             </div>
-                                        @endforeach
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="card shipping_address_card">
+                                        <div class="card-body">
+                                            <div class="form-group mb-2">
+                                                <strong>Permission <span class="error">*</span></strong>
+                                                <br />
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="check"
+                                                           onClick="permissionAll(this)">
+                                                    <label class="form-check-label" for="check">
+                                                        All Permission
+                                                    </label>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        @foreach ($permissions as $permission)
+                                                            <div class="form-group ic-single-permission @if (isset($permission->parent_id))ic-child-permission parent-{{$permission->parent_id}} @else ic-parent-permission @endif"
+                                                                 @if ($permission->parent_id === null)
+                                                                     data-id="{{$permission->id}}"
+                                                                @endif >
+                                                                <label
+                                                                    class="ic-permission-label @if($permission->parent_id === null) ic-parent-permission-label @endif()">
+                                                                    <input @if (isset($permission->parent_id))
+                                                                               class="child-permission-{{$permission->parent_id}}"@else
+                                                                               class="ic-parent-check" @endif value="{{ $permission->name }}"
+                                                                           name="permission[]" type="checkbox" {{
+                                            in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
+                                                                    >
+                                                                    <span class="ml-1">{{ $permission->name }}</span>
 
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -138,4 +151,15 @@
         }
 
     </script>
+@endpush
+@push('style')
+    <style>
+        .ic-single-permission {
+            background-color: #b7c6ec;
+        }
+
+        .shipping_address_card {
+            background: #eeeeee;
+        }
+    </style>
 @endpush

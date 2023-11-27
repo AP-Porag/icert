@@ -81,7 +81,7 @@
                                 <select class="form-control select2" name="role" required>
                                     <option selected disabled>----------------------</option>
                                     @forelse ($roles as $role)
-                                        <option value="{{ $role->id }}" {{ old('role')==$role->id ? 'selected' : '' }}>{{
+                                        <option value="{{ $role->name }}" {{ old('role')==$role->id ? 'selected' : '' }}>{{
                                                             $role->name }}</option>
                                     @empty
                                         <option value="">Nothing in the list</option>
