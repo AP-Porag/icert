@@ -50,7 +50,7 @@ class AuthenticatorDataTable extends DataTable
                 $pro = '';
                 foreach ($item->products as $product){
 
-                    $pro .= '<span class="bg-secondary text-dark p-1" style="margin-right: 5px; border-radius: 4px;">'.$product->product->name.'</span>';
+                    $pro .= '<span class="bg-secondary text-dark p-1 mb-3" style="margin-right: 5px; border-radius: 4px;">'.$product->product->name.'</span>';
                 }
                 return $pro;
             })

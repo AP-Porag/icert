@@ -386,8 +386,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Name (if different)
-                                                <span class="error">*</span>
+                                                Drop Off Center Name (if different)
                                             </label>
                                             <input
                                                 autofocus
@@ -406,8 +405,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Company name
-                                                <span class="error">*</span>
+                                                Contact Name (if different)
                                             </label>
                                             <input
                                                 type="text"
@@ -571,7 +569,7 @@
                                             <div class="d-flex justify-content-center w-100">
                                                 <div class="form-check form-check-inline check_right_margin">
                                                     <label class="form-check-label" for="inlineRadio1">Active</label>
-                                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="active"
+                                                    <input class="form-check-input" type="radio" checked="checked" name="inlineRadioOptions" id="inlineRadio1" value="active"
                                                            v-model.trim="v$.form_data.status.$model"
                                                     />
                                                 </div>
@@ -603,7 +601,7 @@
                     <div class="col-md-12">
                         <div class="card shipping_address_card">
                             <div class="card-body">
-                                <p class="font-size-18 mb-3">Check only the product offering at this drop off center</p>
+                                <p class="font-size-18 mb-3">Check only the product offering available at this drop off center</p>
                                 <div class="row">
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">
@@ -984,7 +982,7 @@ export default {
                 shipping_city:'',
                 shipping_postal:'',
                 shipping_phone:'',
-                status:'',
+                status:'active',
                 products:[],
             },
 

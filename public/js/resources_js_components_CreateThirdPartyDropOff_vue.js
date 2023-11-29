@@ -294,7 +294,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         shipping_city: '',
         shipping_postal: '',
         shipping_phone: '',
-        status: '',
+        status: 'active',
         products: []
       }
     };
@@ -1255,9 +1255,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Name (if different)\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Drop Off Center Name (if different)\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1292,9 +1290,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Company name\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Contact Name (if different)\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1629,6 +1625,7 @@ var render = function render() {
     staticClass: "form-check-input",
     attrs: {
       type: "radio",
+      checked: "checked",
       name: "inlineRadioOptions",
       id: "inlineRadio1",
       value: "active"
@@ -1715,7 +1712,7 @@ var render = function render() {
     staticClass: "card-body"
   }, [_c("p", {
     staticClass: "font-size-18 mb-3"
-  }, [_vm._v("Check only the product offering at this drop off center")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Check only the product offering available at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_vm._l(_vm.products, function (product, index) {
     return _c("div", {

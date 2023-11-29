@@ -38,6 +38,13 @@ class PromoController extends Controller
 
         try {
             $data = $request->validated();
+
+            if ($request->has('no_end_date') && $data['no_end_date'] == 'on'){
+                $data['end_data'] = "31-12-2099";
+            }else{
+                $data['end_data'] = $request->end_data;
+            }
+
             $data['priority']= Promo::PRIORITY_NORMAL;
             $data['is_select_customer']= false;
             $data['status']= Promo::STATUS_ACTIVE;

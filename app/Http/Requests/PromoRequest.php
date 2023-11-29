@@ -23,7 +23,7 @@ class PromoRequest extends FormRequest
     {
 
         return [
-            'name'=>'required',
+            'name'=>['required','uppercase'],
             'value'=>'required',
             'number_of_items'=>'required',
             'start_date'=>'required',

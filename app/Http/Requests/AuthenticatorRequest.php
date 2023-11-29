@@ -24,7 +24,8 @@ class AuthenticatorRequest extends FormRequest
         return [
             'name'=>'required',
             'status'=>'required',
-            'products'=>["required","array","min:1"],
+//            'products'=>["required","array","min:1"],
+            'products'=>["nullable","array","min:1"],
         ];
     }
 

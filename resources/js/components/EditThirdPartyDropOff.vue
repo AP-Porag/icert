@@ -386,8 +386,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Name (if different)
-                                                <span class="error">*</span>
+                                                Drop Off Center Name (if different)
                                             </label>
                                             <input
                                                 autofocus
@@ -406,8 +405,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Company name
-                                                <span class="error">*</span>
+                                                Contact Name (if different)
                                             </label>
                                             <input
                                                 type="text"
@@ -603,7 +601,7 @@
                     <div class="col-md-12">
                         <div class="card shipping_address_card">
                             <div class="card-body">
-                                <p class="font-size-18 mb-3">Check only the product offering at this drop off center</p>
+                                <p class="font-size-18 mb-3">Check only the product offering available at this drop off center</p>
                                 <div class="row">
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">

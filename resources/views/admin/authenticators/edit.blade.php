@@ -61,6 +61,7 @@
                                     <div class="card-body">
                                         <p class="font-size-18 mb-3">Check only the products that can be certified by this 3rd party authenticator</p>
                                         <div class="row">
+                                            <span class="input-group-addon"><input type="checkbox" class="checkbox_selector"  data-role="products[]" /> <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">Select All </label></span>
                                             @foreach($products as $product)
                                                 <div class="col-md-3">
                                                     <div class="mb-3 d-flex justify-content-start w-100">
@@ -109,6 +110,15 @@
 @endsection
 
 @push('script')
+    <script>
+        $('.checkbox_selector').change(function () {
+            var goroupp = $(this).data( "role" );
+            //alert(goroupp);
+            //$("input[name='"+goroupp+"']:checkbox").prop('checked', false);
+            var checkBoxes = $("input[name='"+goroupp+"']");
+            checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+        });
+    </script>
 @endpush
 
 @push('style')

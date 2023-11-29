@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\ThirdParty;
 use App\DataTables\AuthenticatorDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthenticatorRequest;
+use App\Models\Authenticator;
 use App\Models\AuthenticatorProduct;
 use App\Models\Product;
 use App\Services\AuthenticatorService;
@@ -21,13 +22,13 @@ class AuthenticatorController extends Controller
 
     public function index(AuthenticatorDataTable $dataTable)
     {
-        set_page_meta('Authenticators');
+        set_page_meta('Third Party Authenticators');
         return $dataTable->render('admin.authenticators.index');
     }
 
     public function create()
     {
-        set_page_meta('Create Authenticator');
+        set_page_meta('Create Third Party Authenticators');
 
         $products = Product::orderBy('id','ASC')->get();
         return view('admin.authenticators.create',compact('products'));
@@ -36,9 +37,10 @@ class AuthenticatorController extends Controller
     public function store(AuthenticatorRequest $request)
     {
 
+        $data = $request->validated();
+        $authenticator = $this->authenticatorService->storeOrUpdate($data, null);
         try {
-            $data = $request->validated();
-            $authenticator = $this->authenticatorService->storeOrUpdate($data, null);
+
 
             if ($authenticator){
 
@@ -59,7 +61,7 @@ class AuthenticatorController extends Controller
     public function edit($id)
     {
         try {
-            set_page_meta('Edit Authenticator');
+            set_page_meta('Edit Third Party Authenticators');
             $item = $this->authenticatorService->get($id);
             $products = Product::orderBy('id','ASC')->get();
             return view('admin.authenticators.edit', compact('item','products'));
@@ -108,7 +110,17 @@ class AuthenticatorController extends Controller
     public function destroy($id)
     {
         try {
-            $this->authenticatorService->delete($id);
+            $AuthenticatorsProducts = AuthenticatorProduct::where('authenticator_id',$id)->get();
+
+            if ($AuthenticatorsProducts->count() > 0){
+                //find the third party authenticator and update to suspend
+                $authenticator =  Authenticator::find($id);
+                $authenticator->status = Authenticator::STATUS_SUSPEND;
+                $authenticator->save();
+            }else{
+                $this->authenticatorService->delete($id);
+            }
+
             record_deleted_flash();
             return back();
         } catch (\Exception $e) {
