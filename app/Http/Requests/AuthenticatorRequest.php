@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AuthenticatorRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class AuthenticatorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required',
+            'name'=>['required', Rule::unique('authenticators')->ignore($this->authenticator)],
             'status'=>'required',
 //            'products'=>["required","array","min:1"],
             'products'=>["nullable","array","min:1"],
@@ -31,6 +32,9 @@ class AuthenticatorRequest extends FormRequest
 
     public function messages()
     {
-        return ['products.required' => 'Minimum one product is required'];
+        return [
+            'products.required' => 'Minimum one product is required',
+            'name.unique' => 'The name is already exist'
+        ];
     }
 }
