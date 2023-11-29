@@ -62,7 +62,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">End Date <span class="error">*</span></label>
-                                                <input type="date" name="end_date" class="form-control datepicker-end-date" required="" placeholder="End Date"
+                                                <input type="date" name="end_date" id="end_date" class="form-control datepicker-end-date" required="" placeholder="End Date"
                                                        value="{{custom_date($item->end_date,'Y-m-d'), old('end_date') }}">
                                                 @error('end_date')
                                                 <p class="error">{{ $message }}</p>
@@ -75,6 +75,7 @@
                                                         type="checkbox"
                                                         name="no_end_date"
                                                         class="form-check mr-3"
+                                                        id="no_end_date"
                                                     />
                                                     <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">
                                                         Make this code have no end date
@@ -133,6 +134,21 @@
             enableTime: false,
             minDate: "today",
             dateFormat:'d-m-Y',
+            onChange: function(selectedDates, dateStr, instance) {
+                $("#no_end_date").addClass("disable_checkbox");
+            },
+        });
+
+        $("#no_end_date").change(function() {
+            if(this.checked) {
+                $("#end_date").addClass("disable_checkbox");
+                $("#end_date").val("31-12-2099");
+                console.log('checked')
+            }else {
+                console.log('unchecked')
+                $("#end_date").removeClass("disable_checkbox");
+                $("#end_date").val("");
+            }
         });
     </script>
 @endpush

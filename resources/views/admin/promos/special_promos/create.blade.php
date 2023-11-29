@@ -61,7 +61,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">End Date <span class="error">*</span></label>
-                                                <input type="date" name="end_date" class="form-control datepicker-end-date" required="" placeholder="End Date"
+                                                <input type="date" name="end_date" id="end_date" class="form-control datepicker-end-date" required="" placeholder="End Date"
                                                        value="{{ old('end_date') }}">
                                                 @error('end_date')
                                                 <p class="error">{{ $message }}</p>
@@ -74,6 +74,7 @@
                                                         type="checkbox"
                                                         name="no_end_date"
                                                         class="form-check mr-3"
+                                                        id="no_end_date"
                                                     />
                                                     <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">
                                                         Make this code have no end date
@@ -154,6 +155,20 @@
             enableTime: false,
             minDate: "today",
             dateFormat:'d-m-Y',
+            onChange: function(selectedDates, dateStr, instance) {
+                $("#no_end_date").addClass("disable_checkbox");
+            },
+        });
+        $("#no_end_date").change(function() {
+            if(this.checked) {
+                $("#end_date").addClass("disable_checkbox");
+                $("#end_date").val("31-12-2099");
+                console.log('checked')
+            }else {
+                console.log('unchecked')
+                $("#end_date").removeClass("disable_checkbox");
+                $("#end_date").val("");
+            }
         });
     </script>
 @endpush
@@ -162,6 +177,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
     <style>
+        .disable_checkbox{
+            pointer-events: none;
+            background: #d0d0d0 !important;
+        }
         .shipping_address_card{
             background: #eeeeee;
         }
@@ -171,6 +190,26 @@
         }
         .show-div{
             display: block;
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .input-icon > i {
+            position: absolute;
+            display: block;
+            transform: translate(0, -50%);
+            top: 72%;
+            pointer-events: none;
+            width: 25px;
+            text-align: center;
+            font-style: normal;
+        }
+
+        .input-icon > input {
+            padding-left: 25px;
+            padding-right: 0;
         }
     </style>
 @endpush
