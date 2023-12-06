@@ -41,7 +41,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       show_error_two: false,
       show_error_three: false,
       show_error_four: false,
-      isReadonly: true,
+      isReadonly: false,
       step_count: 4,
       completed_step_count: '',
       form_wizard_subtitle: 'Start here',
@@ -381,6 +381,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (res.data.status == 200) {
                   //if already exists
                   console.log('mil ache');
+                  _self.isReadonly = true;
                   _self.form_data.name = res.data.data.name;
                   _self.form_data.email = res.data.data.email;
                   _self.form_data.contact_name = res.data.data.contact_name;
@@ -651,7 +652,15 @@ var render = function render() {
               return props.nextTab();
             }
           }
-        }, [_vm._v("Continue")]) : _vm._e()], 1)];
+        }, [_vm._v("Continue")]) : _c("wizard-button", {
+          staticClass: "wizard-footer-right",
+          style: props.fillButtonStyle,
+          nativeOn: {
+            click: function click($event) {
+              return _vm.submit.apply(null, arguments);
+            }
+          }
+        }, [_vm._v("Save")])], 1)];
       }
     }])
   }, [_vm._v(" "), _c("tab-content", {
@@ -693,8 +702,7 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "name",
-      readonly: _vm.isReadonly
+      placeholder: "name"
     },
     domProps: {
       value: _vm.v$.form_data.name.$model
@@ -947,7 +955,8 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "address line one"
+      placeholder: "address line one",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.v$.form_data.billing_address_line_one.$model
@@ -982,7 +991,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "address line two"
+      placeholder: "address line two",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.form_data.billing_address_line_two
@@ -1017,7 +1027,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "city"
+      placeholder: "city",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.v$.form_data.billing_city.$model
@@ -1053,7 +1064,8 @@ var render = function render() {
     }],
     staticClass: "form-select",
     attrs: {
-      "aria-label": "Default select example"
+      "aria-label": "Default select example",
+      readonly: _vm.isReadonly
     },
     on: {
       change: function change($event) {
@@ -1101,7 +1113,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "postal/zip code"
+      placeholder: "postal/zip code",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.v$.form_data.billing_postal.$model
@@ -1139,7 +1152,8 @@ var render = function render() {
     }],
     staticClass: "form-select",
     attrs: {
-      "aria-label": "Default select example"
+      "aria-label": "Default select example",
+      readonly: _vm.isReadonly
     },
     on: {
       change: function change($event) {
@@ -1177,6 +1191,7 @@ var render = function render() {
   }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
     attrs: {
       id: "phoneNumber1",
+      readonly: _vm.isReadonly,
       "default-country-code": "CA",
       "only-countries": _vm.countries_phone
     },
@@ -1350,7 +1365,8 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "same as billing address"
+      placeholder: "same as billing address",
+      readonly: _vm.isReadonly
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
@@ -1396,7 +1412,8 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "name"
+      placeholder: "name",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.form_data.shipping_name
@@ -1429,7 +1446,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "company name"
+      placeholder: "company name",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.v$.form_data.shipping_company_name.$model
@@ -1464,7 +1482,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "address line one"
+      placeholder: "address line one",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.v$.form_data.shipping_address_line_one.$model
@@ -1499,7 +1518,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "address line two"
+      placeholder: "address line two",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.form_data.shipping_address_line_two
@@ -1534,7 +1554,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "city"
+      placeholder: "city",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.v$.form_data.shipping_city.$model
@@ -1570,7 +1591,8 @@ var render = function render() {
     }],
     staticClass: "form-select",
     attrs: {
-      "aria-label": "Default select example"
+      "aria-label": "Default select example",
+      readonly: _vm.isReadonly
     },
     on: {
       change: function change($event) {
@@ -1618,7 +1640,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "postal/zip code"
+      placeholder: "postal/zip code",
+      readonly: _vm.isReadonly
     },
     domProps: {
       value: _vm.v$.form_data.shipping_postal.$model
@@ -1656,7 +1679,8 @@ var render = function render() {
     }],
     staticClass: "form-select",
     attrs: {
-      "aria-label": "Default select example"
+      "aria-label": "Default select example",
+      readonly: _vm.isReadonly
     },
     on: {
       change: function change($event) {
@@ -1694,6 +1718,7 @@ var render = function render() {
   }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
     attrs: {
       id: "phoneNumber1",
+      readonly: _vm.isReadonly,
       "default-country-code": "CA",
       "only-countries": _vm.countries_phone
     },
@@ -1754,7 +1779,8 @@ var render = function render() {
       checked: "checked",
       name: "inlineRadioOptions",
       id: "inlineRadio1",
-      value: "active"
+      value: "active",
+      readonly: _vm.isReadonly
     },
     domProps: {
       checked: _vm._q(_vm.v$.form_data.status.$model, "active")
@@ -1786,7 +1812,8 @@ var render = function render() {
       type: "radio",
       name: "inlineRadioOptions",
       id: "inlineRadio2",
-      value: "suspend"
+      value: "suspend",
+      readonly: _vm.isReadonly
     },
     domProps: {
       checked: _vm._q(_vm.v$.form_data.status.$model, "suspend")
@@ -1818,7 +1845,8 @@ var render = function render() {
       type: "radio",
       name: "inlineRadioOptions",
       id: "inlineRadio3",
-      value: "delete"
+      value: "delete",
+      readonly: _vm.isReadonly
     },
     domProps: {
       checked: _vm._q(_vm.v$.form_data.status.$model, "delete")
@@ -1858,7 +1886,8 @@ var render = function render() {
       }],
       staticClass: "form-check mr-3",
       attrs: {
-        type: "checkbox"
+        type: "checkbox",
+        readonly: _vm.isReadonly
       },
       domProps: {
         value: product.id,

@@ -38,7 +38,7 @@ class ThirdPartyDropOffController extends Controller
 
         try {
             $data = $request->all();
-            dd($data);
+//            dd($data);
             $thirdParty = $this->thirdPartyDropOffService->storeOrUpdate($data, null);
 
             if ($thirdParty){

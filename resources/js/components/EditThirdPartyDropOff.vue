@@ -12,6 +12,16 @@
             next-button-text="Continue"
             finish-button-text="Save"
         >
+            <template v-slot:footer="props">
+                <div class="wizard-footer-left">
+                    <wizard-button  v-if="props.activeTabIndex > 0 && !props.isLastStep" @click.native="props.prevTab()" :style="props.fillButtonStyle">Back</wizard-button>
+                </div>
+                <div class="wizard-footer-right">
+                    <wizard-button @click.native="cancel" class="wizard-footer-right finish-button" style="background: orange;margin-left: 15px;color: white;">Cancel</wizard-button>
+                    <wizard-button v-if="!props.isLastStep"@click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Continue</wizard-button>
+                    <wizard-button v-else @click.native="submit" class="wizard-footer-right" :style="props.fillButtonStyle">Save</wizard-button>
+                </div>
+            </template>
             <tab-content
                 title="General Info"
                 icon="ti-user"
@@ -1127,6 +1137,9 @@ export default {
                     break;
             }
         },
+        cancel(){
+            window.location.assign("/admin/thirds");
+        }
     },
     mounted() {
         let self = this;

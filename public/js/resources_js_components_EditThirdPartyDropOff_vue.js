@@ -433,6 +433,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           console.log('index 2');
           break;
       }
+    },
+    cancel: function cancel() {
+      window.location.assign("/admin/thirds");
     }
   },
   mounted: function mounted() {
@@ -555,8 +558,53 @@ var render = function render() {
     on: {
       "on-complete": _vm.submit,
       "on-change": _vm.handleTabChange
-    }
-  }, [_c("tab-content", {
+    },
+    scopedSlots: _vm._u([{
+      key: "footer",
+      fn: function fn(props) {
+        return [_c("div", {
+          staticClass: "wizard-footer-left"
+        }, [props.activeTabIndex > 0 && !props.isLastStep ? _c("wizard-button", {
+          style: props.fillButtonStyle,
+          nativeOn: {
+            click: function click($event) {
+              return props.prevTab();
+            }
+          }
+        }, [_vm._v("Back")]) : _vm._e()], 1), _vm._v(" "), _c("div", {
+          staticClass: "wizard-footer-right"
+        }, [_c("wizard-button", {
+          staticClass: "wizard-footer-right finish-button",
+          staticStyle: {
+            background: "orange",
+            "margin-left": "15px",
+            color: "white"
+          },
+          nativeOn: {
+            click: function click($event) {
+              return _vm.cancel.apply(null, arguments);
+            }
+          }
+        }, [_vm._v("Cancel")]), _vm._v(" "), !props.isLastStep ? _c("wizard-button", {
+          staticClass: "wizard-footer-right",
+          style: props.fillButtonStyle,
+          nativeOn: {
+            click: function click($event) {
+              return props.nextTab();
+            }
+          }
+        }, [_vm._v("Continue")]) : _c("wizard-button", {
+          staticClass: "wizard-footer-right",
+          style: props.fillButtonStyle,
+          nativeOn: {
+            click: function click($event) {
+              return _vm.submit.apply(null, arguments);
+            }
+          }
+        }, [_vm._v("Save")])], 1)];
+      }
+    }])
+  }, [_vm._v(" "), _c("tab-content", {
     attrs: {
       title: "General Info",
       icon: "ti-user",

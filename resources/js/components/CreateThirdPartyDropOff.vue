@@ -20,6 +20,7 @@
                 <div class="wizard-footer-right">
                     <wizard-button @click.native="cancel" class="wizard-footer-right finish-button" style="background: orange;margin-left: 15px;color: white;">Cancel</wizard-button>
                     <wizard-button v-if="!props.isLastStep"@click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Continue</wizard-button>
+                    <wizard-button v-else @click.native="submit" class="wizard-footer-right" :style="props.fillButtonStyle">Save</wizard-button>
                 </div>
             </template>
             <tab-content
@@ -45,7 +46,6 @@
                                                 placeholder="name"
                                                 v-model.trim="v$.form_data.name.$model"
                                                 ref="name"
-                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Name is required
@@ -183,6 +183,7 @@
                                                 placeholder="address line one"
                                                 v-model.trim="v$.form_data.billing_address_line_one.$model"
                                                 ref="billing_address_line_one"
+                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error_two">
                                                 One Address Line is required
@@ -200,6 +201,7 @@
                                                 class="form-control"
                                                 placeholder="address line two"
                                                 v-model.trim="form_data.billing_address_line_two"
+                                                :readonly="isReadonly"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.billing_address_line_two.required.$invalid && show_error">-->
                                             <!--                                                Second address Line two is required-->
@@ -218,6 +220,7 @@
                                                 class="form-control"
                                                 placeholder="city"
                                                 v-model.trim="v$.form_data.billing_city.$model"
+                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error_two">
                                                 City is required
@@ -233,6 +236,7 @@
                                             </label>
                                             <select class="form-select" aria-label="Default select example"
                                                     v-model.trim="v$.form_data.billing_province.$model"
+                                                    :readonly="isReadonly"
                                             >
                                                 <option selected disabled>Open this select menu</option>
                                                 <option v-for="(province,index) in provinces" :value="province.name.toLowerCase()" :key="province.id">{{province.name}}</option>
@@ -255,6 +259,7 @@
                                                 class="form-control"
                                                 placeholder="postal/zip code"
                                                 v-model.trim="v$.form_data.billing_postal.$model"
+                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_postal.required.$invalid && show_error_two">
                                                 Postal is required
@@ -270,6 +275,7 @@
                                                 </label>
                                                 <select class="form-select" aria-label="Default select example"
                                                         v-model.trim="v$.form_data.billing_country.$model"
+                                                        :readonly="isReadonly"
                                                 >
                                                     <option selected disabled>Open this select menu</option>
                                                     <option v-for="(country,index) in countries" :value="country.name.toLowerCase()" :key="country.id">{{country.name}}</option>
@@ -288,6 +294,7 @@
                                                 <VuePhoneNumberInput
                                                     id="phoneNumber1"
                                                     v-model.trim="v$.form_data.billing_phone.$model"
+                                                    :readonly="isReadonly"
                                                     default-country-code="CA"
                                                     :only-countries="countries_phone"
                                                 />
@@ -386,6 +393,7 @@
                                                 class="form-check"
                                                 placeholder="same as billing address"
                                                 v-model.trim="form_data.same_as_billing"
+                                                :readonly="isReadonly"
                                                 @change="sameAsBillingChanged($event)"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
@@ -405,6 +413,7 @@
                                                 class="form-control"
                                                 placeholder="name"
                                                 v-model.trim="form_data.shipping_name"
+                                                :readonly="isReadonly"
                                                 ref="shipping_name"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.shipping_name.required.$invalid && show_error">-->
@@ -423,6 +432,7 @@
                                                 class="form-control"
                                                 placeholder="company name"
                                                 v-model.trim="v$.form_data.shipping_company_name.$model"
+                                                :readonly="isReadonly"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.shipping_company_name.required.$invalid && show_error">-->
                                             <!--                                                Company name is required-->
@@ -441,6 +451,7 @@
                                                 class="form-control"
                                                 placeholder="address line one"
                                                 v-model.trim="v$.form_data.shipping_address_line_one.$model"
+                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.shipping_address_line_one.required.$invalid && show_error_three">
                                                 One Address is required for shipping
@@ -458,6 +469,7 @@
                                                 class="form-control"
                                                 placeholder="address line two"
                                                 v-model.trim="form_data.shipping_address_line_two"
+                                                :readonly="isReadonly"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.shipping_address_line_two.required.$invalid && show_error">-->
                                             <!--                                                Second shipping address required-->
@@ -476,6 +488,7 @@
                                                 class="form-control"
                                                 placeholder="city"
                                                 v-model.trim="v$.form_data.shipping_city.$model"
+                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.shipping_city.required.$invalid && show_error_three">
                                                 city is required
@@ -491,6 +504,7 @@
                                             </label>
                                             <select class="form-select" aria-label="Default select example"
                                                     v-model.trim="v$.form_data.shipping_province.$model"
+                                                    :readonly="isReadonly"
                                             >
                                                 <option selected disabled>Open this select menu</option>
                                                 <option v-for="(province,index) in provinces" :value="province.name.toLowerCase()" :key="province.id">{{province.name}}</option>
@@ -512,6 +526,7 @@
                                                 class="form-control"
                                                 placeholder="postal/zip code"
                                                 v-model.trim="v$.form_data.shipping_postal.$model"
+                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.shipping_postal.required.$invalid && show_error_three">
                                                 Postal is required
@@ -528,6 +543,7 @@
                                                 </label>
                                                 <select class="form-select" aria-label="Default select example"
                                                         v-model.trim="v$.form_data.shipping_country.$model"
+                                                        :readonly="isReadonly"
                                                 >
                                                     <option selected disabled>Open this select menu</option>
                                                     <option v-for="(country,index) in countries" :value="country.name.toLowerCase()" :key="country.id">{{country.name}}</option>
@@ -546,6 +562,7 @@
                                                 <VuePhoneNumberInput
                                                     id="phoneNumber1"
                                                     v-model.trim="v$.form_data.shipping_phone.$model"
+                                                    :readonly="isReadonly"
                                                     default-country-code="CA"
                                                     :only-countries="countries_phone"
                                                 />
@@ -582,6 +599,7 @@
                                                     <label class="form-check-label" for="inlineRadio1">Active</label>
                                                     <input class="form-check-input" type="radio" checked="checked" name="inlineRadioOptions" id="inlineRadio1" value="active"
                                                            v-model.trim="v$.form_data.status.$model"
+                                                           :readonly="isReadonly"
                                                     />
                                                 </div>
 
@@ -589,6 +607,7 @@
                                                     <label class="form-check-label" for="inlineRadio2">Suspend</label>
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="suspend"
                                                            v-model.trim="v$.form_data.status.$model"
+                                                           :readonly="isReadonly"
                                                     />
                                                 </div>
 
@@ -596,6 +615,7 @@
                                                     <label class="form-check-label" for="inlineRadio3">Delete</label>
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="delete"
                                                            v-model.trim="v$.form_data.status.$model"
+                                                           :readonly="isReadonly"
                                                     />
                                                 </div>
                                             </div>
@@ -620,6 +640,7 @@
                                                 type="checkbox"
                                                 class="form-check mr-3"
                                                 v-model.trim="v$.form_data.products.$model"
+                                                :readonly="isReadonly"
                                                 :value="product.id"
                                             />
                                             <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">
@@ -661,7 +682,7 @@ export default {
             show_error_two: false,
             show_error_three: false,
             show_error_four: false,
-            isReadonly:true,
+            isReadonly:false,
             step_count:4,
             completed_step_count:'',
             form_wizard_subtitle:'Start here',
@@ -1064,6 +1085,7 @@ export default {
                             //if already exists
                             console.log('mil ache')
 
+                            self.isReadonly = true;
                             self.form_data.name = res.data.data.name
                             self.form_data.email = res.data.data.email
                             self.form_data.contact_name = res.data.data.contact_name
