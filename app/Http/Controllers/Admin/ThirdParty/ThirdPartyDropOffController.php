@@ -123,4 +123,19 @@ class ThirdPartyDropOffController extends Controller
             return back();
         }
     }
+
+    public function findIfExists(Request $request)
+    {
+//        dd($request->all());
+
+        $thirdParty = ThirdParty::where('name',$request->name)->with('products')->first();
+
+        if ($thirdParty != null){
+            $data = ['status'=>200,'message'=>'Already Exist','data'=>$thirdParty];
+            return response()->json($data);
+        }else{
+            $data = ['status'=>300,'message'=>'Not Exist','data'=>$thirdParty];
+            return response()->json($data);
+        }
+    }
 }

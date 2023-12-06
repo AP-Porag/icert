@@ -3,15 +3,25 @@
     <form>
         <!--            :title="`Create Third party with ${step_count} steps`"-->
 <!--        :subtitle="form_wizard_subtitle"-->
+<!--        @on-change="handleTabChange"-->
         <form-wizard
             @on-complete="submit"
-            @on-change="handleTabChange"
             color="#3476ae"
             title=""
             subtitle=""
             next-button-text="Continue"
             finish-button-text="Save"
         >
+
+            <template v-slot:footer="props">
+                <div class="wizard-footer-left">
+                    <wizard-button  v-if="props.activeTabIndex > 0 && !props.isLastStep" @click.native="props.prevTab()" :style="props.fillButtonStyle">Back</wizard-button>
+                </div>
+                <div class="wizard-footer-right">
+                    <wizard-button @click.native="cancel" class="wizard-footer-right finish-button" style="background: orange;margin-left: 15px;color: white;">Cancel</wizard-button>
+                    <wizard-button v-if="!props.isLastStep"@click.native="props.nextTab()" class="wizard-footer-right" :style="props.fillButtonStyle">Continue</wizard-button>
+                </div>
+            </template>
             <tab-content
                 title="General Info"
                 icon="ti-user"
@@ -35,6 +45,7 @@
                                                 placeholder="name"
                                                 v-model.trim="v$.form_data.name.$model"
                                                 ref="name"
+                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Name is required
@@ -634,6 +645,7 @@
 import VuePhoneNumberInput from 'vue-phone-number-input';
 import { useVuelidate } from '@vuelidate/core'
 import { required,email } from '@vuelidate/validators'
+import {isReadonly} from "vue";
 
 
 export default {
@@ -649,6 +661,7 @@ export default {
             show_error_two: false,
             show_error_three: false,
             show_error_four: false,
+            isReadonly:true,
             step_count:4,
             completed_step_count:'',
             form_wizard_subtitle:'Start here',
@@ -989,9 +1002,9 @@ export default {
         }
     },
     methods:{
+        isReadonly,
         async submit(){
             if (this.checkFourthStep()){
-                // alert('Yay. Done!');
                 Swal.fire({
                     // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
                     title: `Are the selected product offerings applicable for drop off center: <br> ${this.form_data.name}`,
@@ -1029,15 +1042,103 @@ export default {
                 return;
             }
         },
-        checkFirstStep(){
+        async checkFirstStep(){
             this.v$.$touch()
             if (this.v$.form_data.name.$invalid || this.v$.form_data.contact_name.$invalid || this.v$.form_data.email.$invalid) {
                 this.show_error_one = true;
                 return false;
+            }else {
+                let self = this;
+                let data = {
+                    name:self.form_data.name,
+                    contact_name:self.form_data.contact_name,
+                    email:self.form_data.email,
+                }
+
+                await axios
+                    .post("/admin/thirds/find/if/exists", data)
+                    .then(function (res) {
+                        console.log(res.data.data)
+                        //check if exists
+                        if (res.data.status == 200){
+                            //if already exists
+                            console.log('mil ache')
+
+                            self.form_data.name = res.data.data.name
+                            self.form_data.email = res.data.data.email
+                            self.form_data.contact_name = res.data.data.contact_name
+                            self.form_data.billing_address_line_one = res.data.data.billing_address_line_one
+                            self.form_data.billing_address_line_two = res.data.data.billing_address_line_two
+                            self.form_data.billing_country = res.data.data.billing_country
+                            self.form_data.billing_province = res.data.data.billing_province
+                            self.form_data.billing_city = res.data.data.billing_city
+                            self.form_data.billing_postal = res.data.data.billing_postal
+                            self.form_data.billing_phone = res.data.data.billing_phone
+                            self.form_data.same_as_billing = res.data.data.same_as_billing == 0 ? false: true
+                            self.form_data.shipping_name = res.data.data.shipping_name
+                            self.form_data.shipping_company_name = res.data.data.shipping_company_name
+                            self.form_data.shipping_address_line_one = res.data.data.shipping_address_line_one
+                            self.form_data.shipping_address_line_two = res.data.data.shipping_address_line_two
+                            self.form_data.shipping_country = res.data.data.shipping_country
+                            self.form_data.shipping_province = res.data.data.shipping_province
+                            self.form_data.shipping_city = res.data.data.shipping_city
+                            self.form_data.shipping_postal = res.data.data.shipping_postal
+                            self.form_data.shipping_phone = res.data.data.shipping_phone
+                            self.form_data.status = res.data.data.status
+                            res.data.data.products.forEach((value, index) => {
+                                self.form_data.products.push(value.product_id)
+                            });
+                            // return false;
+                            Swal.fire({
+                                title: "Drop off center already exists.Do you want to edit this?",
+                                icon: "question",
+                                html: `<div class="exists_modal">
+        <div class="form-groups" style="margin-bottom: 15px;">
+            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Drop Off Center</label>
+            <input type="text" class="form-control" readonly disabled value="${self.form_data.name}">
+        </div>
+        <div class="form-groups" style="margin-bottom: 15px;">
+            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Contact Name</label>
+            <input type="text" class="form-control" readonly disabled value="${self.form_data.contact_name}">
+        </div>
+        <div class="form-groups" style="margin-bottom: 15px;">
+            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Email Address</label>
+            <input type="text" class="form-control" readonly disabled value="${self.form_data.email}">
+        </div>
+    </div>`,
+                                showCloseButton: true,
+                                showCancelButton: true,
+                                focusConfirm: false,
+                                confirmButtonText: `Edit`,
+                                cancelButtonText: `Cancel`,
+                            }).then((result)=>{
+                                if (result.isConfirmed){
+                                    window.location.assign(`/admin/thirds/${res.data.data.id}/edit`);
+                                }else {
+                                    return false;
+                                }
+                            });
+
+                            return false;
+                        }else {
+                            //if not exist
+                            console.log('mil nai')
+                            self.completed_step_count = 1;
+                            self.form_wizard_subtitle = 'Awesome start lets Continue 😀'
+                            return true;
+                        }
+                    })
+                    .catch(function (err) {
+                        try {
+                            self.showValidationError(err);
+                        } catch (e) {
+                            self.showSomethingWrong();
+                        }
+                    });
+
+                return true;
             }
-            this.completed_step_count = 1;
-            this.form_wizard_subtitle = 'Awesome start lets Continue 😀'
-            return true;
+
         },
         checkSecondStep(){
             this.v$.$touch()
@@ -1126,6 +1227,9 @@ export default {
                     console.log('index 2')
                     break;
             }
+        },
+        cancel(){
+            window.location.assign("/admin/thirds");
         }
     },
 

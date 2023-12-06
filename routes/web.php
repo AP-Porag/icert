@@ -60,6 +60,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     //third party drop off
     Route::resource('thirds', ThirdPartyDropOffController::class);
+    Route::post('/thirds/find/if/exists', [ThirdPartyDropOffController::class,'findIfExists']);
 
     //authenticators
     Route::resource('authenticators', AuthenticatorController::class);
