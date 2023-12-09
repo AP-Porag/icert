@@ -67,7 +67,7 @@
                                                         <input
                                                             type="checkbox"
                                                             name="products[]"
-                                                            class="form-check mr-3"
+                                                            class="form-check mr-3 product_checkItem"
                                                             value="{{$product->id}}"
                                                         />
                                                         <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">
@@ -114,6 +114,16 @@
             //$("input[name='"+goroupp+"']:checkbox").prop('checked', false);
             var checkBoxes = $("input[name='"+goroupp+"']");
             checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+        });
+
+        $('.product_checkItem').change(function () {
+            let allBox = $('.checkbox_selector');
+            let count = $('.product_checkItem:checkbox:checked').length
+            if (count === {{$products->count()}}){
+                allBox.prop('checked',true)
+            }else {
+                allBox.prop('checked',false)
+            }
         });
     </script>
 @endpush

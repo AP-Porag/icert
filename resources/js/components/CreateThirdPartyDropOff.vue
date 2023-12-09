@@ -15,7 +15,7 @@
 
             <template v-slot:footer="props">
                 <div class="wizard-footer-left">
-                    <wizard-button  v-if="props.activeTabIndex > 0 && !props.isLastStep" @click.native="props.prevTab()" :style="props.fillButtonStyle">Back</wizard-button>
+                    <wizard-button  v-if="props.activeTabIndex > 0" @click.native="props.prevTab()" :style="props.fillButtonStyle">Back</wizard-button>
                 </div>
                 <div class="wizard-footer-right">
                     <wizard-button @click.native="cancel" class="wizard-footer-right finish-button" style="background: orange;margin-left: 15px;color: white;">Cancel</wizard-button>
@@ -634,16 +634,21 @@
                             <div class="card-body">
                                 <p class="font-size-18 mb-3">Check only the product offering available at this drop off center</p>
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <label style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
+                                    </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">
+                                            <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px; display: flex;">
                                             <input
                                                 type="checkbox"
                                                 class="form-check mr-3"
                                                 v-model.trim="v$.form_data.products.$model"
                                                 :readonly="isReadonly"
                                                 :value="product.id"
+                                                style="margin-right: 5px;"
+                                                @change="select"
                                             />
-                                            <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px;">
                                                 {{product.name}}
                                             </label>
                                         </div>
@@ -995,6 +1000,7 @@ export default {
                     "name": "WA"
                 }
             ],
+            isAllSelected: false,
             form_data:{
                 name: '',
                 email:'',
@@ -1035,6 +1041,7 @@ export default {
                     denyButtonText: `No`,
                     icon: "question",
                 }).then((result) => {
+                    console.log(result)
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
 
@@ -1054,8 +1061,11 @@ export default {
                                 }
                             });
                         // Swal.fire("Saved!", "", "success");
-                    } else if (result.isDenied) {
-                        Swal.fire("Changes are not saved", "", "info");
+                    }else if (result.isDismissed){
+                        window.location.href = "/admin/thirds";
+                    }else if (result.isDenied) {
+                        console.log(result.isDenied)
+                        // Swal.fire("Changes are not saved", "", "info");
                     }
                 });
 
@@ -1115,7 +1125,7 @@ export default {
                                 title: "Drop off center already exists.Do you want to edit this?",
                                 icon: "question",
                                 html: `<div class="exists_modal">
-        <div class="form-groups" style="margin-bottom: 15px;">
+        <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">
             <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Drop Off Center</label>
             <input type="text" class="form-control" readonly disabled value="${self.form_data.name}">
         </div>
@@ -1128,7 +1138,7 @@ export default {
             <input type="text" class="form-control" readonly disabled value="${self.form_data.email}">
         </div>
     </div>`,
-                                showCloseButton: true,
+                                showCloseButton: false,
                                 showCancelButton: true,
                                 focusConfirm: false,
                                 confirmButtonText: `Edit`,
@@ -1137,6 +1147,7 @@ export default {
                                 if (result.isConfirmed){
                                     window.location.assign(`/admin/thirds/${res.data.data.id}/edit`);
                                 }else {
+                                    window.location.assign(`/admin/thirds`);
                                     return false;
                                 }
                             });
@@ -1252,6 +1263,25 @@ export default {
         },
         cancel(){
             window.location.assign("/admin/thirds");
+        },
+        selectAllCats () {
+            if (this.isAllSelected) {
+                this.form_data.products = []
+                this.isAllSelected = false
+            } else {
+                this.form_data.products = []
+                for (let product in this.products) {
+                    this.form_data.products.push(this.products[product].id)
+                }
+                this.isAllSelected = true
+            }
+        },
+        select () {
+            if (this.form_data.products.length !== this.products.length) {
+                this.isAllSelected = false
+            } else {
+                this.isAllSelected = true
+            }
         }
     },
 

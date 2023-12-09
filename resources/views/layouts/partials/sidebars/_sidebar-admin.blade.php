@@ -46,7 +46,7 @@
                         <li class="{{ request()->is('admin/thirds*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.thirds.index') }}"
                                class="{{ request()->routeIs('admin.third-party-drop-off.index') ? 'active' : '' }}">
-                                Name of Third Party Drop Off Center
+                                Third Party Drop Off Center
                             </a>
                         </li>
 

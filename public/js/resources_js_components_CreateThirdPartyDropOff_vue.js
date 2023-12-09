@@ -276,6 +276,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         "id": 71,
         "name": "WA"
       }],
+      isAllSelected: false,
       form_data: {
         name: '',
         email: '',
@@ -323,6 +324,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 denyButtonText: "No",
                 icon: "question"
               }).then(function (result) {
+                console.log(result);
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                   // Submit form
@@ -338,8 +340,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }
                   });
                   // Swal.fire("Saved!", "", "success");
+                } else if (result.isDismissed) {
+                  window.location.href = "/admin/thirds";
                 } else if (result.isDenied) {
-                  Swal.fire("Changes are not saved", "", "info");
+                  console.log(result.isDenied);
+                  // Swal.fire("Changes are not saved", "", "info");
                 }
               });
               _context.next = 5;
@@ -410,8 +415,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   Swal.fire({
                     title: "Drop off center already exists.Do you want to edit this?",
                     icon: "question",
-                    html: "<div class=\"exists_modal\">\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Drop Off Center</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"".concat(_self.form_data.name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Contact Name</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"").concat(_self.form_data.contact_name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Email Address</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"").concat(_self.form_data.email, "\">\n        </div>\n    </div>"),
-                    showCloseButton: true,
+                    html: "<div class=\"exists_modal\">\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;margin-top: 30px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Drop Off Center</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"".concat(_self.form_data.name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Contact Name</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"").concat(_self.form_data.contact_name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Email Address</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"").concat(_self.form_data.email, "\">\n        </div>\n    </div>"),
+                    showCloseButton: false,
                     showCancelButton: true,
                     focusConfirm: false,
                     confirmButtonText: "Edit",
@@ -420,6 +425,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     if (result.isConfirmed) {
                       window.location.assign("/admin/thirds/".concat(res.data.data.id, "/edit"));
                     } else {
+                      window.location.assign("/admin/thirds");
                       return false;
                     }
                   });
@@ -523,6 +529,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     cancel: function cancel() {
       window.location.assign("/admin/thirds");
+    },
+    selectAllCats: function selectAllCats() {
+      if (this.isAllSelected) {
+        this.form_data.products = [];
+        this.isAllSelected = false;
+      } else {
+        this.form_data.products = [];
+        for (var product in this.products) {
+          this.form_data.products.push(this.products[product].id);
+        }
+        this.isAllSelected = true;
+      }
+    },
+    select: function select() {
+      if (this.form_data.products.length !== this.products.length) {
+        this.isAllSelected = false;
+      } else {
+        this.isAllSelected = true;
+      }
     }
   },
   validations: {
@@ -623,7 +648,7 @@ var render = function render() {
       fn: function fn(props) {
         return [_c("div", {
           staticClass: "wizard-footer-left"
-        }, [props.activeTabIndex > 0 && !props.isLastStep ? _c("wizard-button", {
+        }, [props.activeTabIndex > 0 ? _c("wizard-button", {
           style: props.fillButtonStyle,
           nativeOn: {
             click: function click($event) {
@@ -1868,12 +1893,44 @@ var render = function render() {
     staticClass: "font-size-18 mb-3"
   }, [_vm._v("Check only the product offering available at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._l(_vm.products, function (product, index) {
+  }, [_c("div", {
+    staticClass: "col-md-12"
+  }, [_c("label", {
+    staticStyle: {
+      "margin-top": "6px",
+      "margin-bottom": "15px"
+    }
+  }, [_c("input", {
+    staticStyle: {
+      "margin-left": "15px",
+      "margin-right": "5px"
+    },
+    attrs: {
+      type: "checkbox"
+    },
+    domProps: {
+      checked: _vm.isAllSelected
+    },
+    on: {
+      click: _vm.selectAllCats
+    }
+  }), _c("span", {
+    staticStyle: {
+      "margin-bottom": "10px"
+    }
+  }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {
       key: product.id,
       staticClass: "col-md-3"
     }, [_c("div", {
       staticClass: "mb-3 d-flex justify-content-start w-100"
+    }, [_c("label", {
+      staticClass: "form-label text-capitalize",
+      staticStyle: {
+        "margin-top": "6px",
+        "margin-left": "15px",
+        display: "flex"
+      }
     }, [_c("input", {
       directives: [{
         name: "model",
@@ -1885,6 +1942,9 @@ var render = function render() {
         }
       }],
       staticClass: "form-check mr-3",
+      staticStyle: {
+        "margin-right": "5px"
+      },
       attrs: {
         type: "checkbox",
         readonly: _vm.isReadonly
@@ -1894,7 +1954,7 @@ var render = function render() {
         checked: Array.isArray(_vm.v$.form_data.products.$model) ? _vm._i(_vm.v$.form_data.products.$model, product.id) > -1 : _vm.v$.form_data.products.$model
       },
       on: {
-        change: function change($event) {
+        change: [function ($event) {
           var $$a = _vm.v$.form_data.products.$model,
             $$el = $event.target,
             $$c = $$el.checked ? true : false;
@@ -1909,15 +1969,9 @@ var render = function render() {
           } else {
             _vm.$set(_vm.v$.form_data.products, "$model", $$c);
           }
-        }
+        }, _vm.select]
       }
-    }), _vm._v(" "), _c("label", {
-      staticClass: "form-label text-capitalize",
-      staticStyle: {
-        "margin-top": "6px",
-        "margin-left": "15px"
-      }
-    }, [_vm._v("\n                                                " + _vm._s(product.name) + "\n                                            ")])])]);
+    }), _vm._v("\n                                                " + _vm._s(product.name) + "\n                                            ")])])]);
   }), _vm._v(" "), _vm.v$.form_data.products.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                        At least one product is required\n                                    ")]) : _vm._e()], 2)])])])])])], 1)], 1)]);

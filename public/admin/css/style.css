@@ -3448,4 +3448,9 @@ table.dataTable.no-footer {
 .shipping_address_card {
     background: #eeeeee;
 }
+
+.select-country-container .country-selector .country-selector__list{
+    height: 165px!important;
+    max-height: 165px !important;
+}
 /*# sourceMappingURL=style.css.map */

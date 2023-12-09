@@ -273,6 +273,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         "id": 71,
         "name": "WA"
       }],
+      isAllSelected: false,
       form_data: {
         name: '',
         email: '',
@@ -335,9 +336,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }
                   });
                   // Swal.fire("Saved!", "", "success");
-                } else if (result.isDenied) {
-                  Swal.fire("Changes are not saved", "", "info");
                 }
+                // else if (result.isDenied) {
+                //     Swal.fire("Changes are not saved", "", "info");
+                // }
               });
               _context.next = 5;
               break;
@@ -436,6 +438,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     cancel: function cancel() {
       window.location.assign("/admin/thirds");
+    },
+    selectAllCats: function selectAllCats() {
+      if (this.isAllSelected) {
+        this.form_data.products = [];
+        this.isAllSelected = false;
+      } else {
+        this.form_data.products = [];
+        for (var product in this.products) {
+          this.form_data.products.push(this.products[product].id);
+        }
+        this.isAllSelected = true;
+      }
+    },
+    select: function select() {
+      if (this.form_data.products.length !== this.products.length) {
+        this.isAllSelected = false;
+      } else {
+        this.isAllSelected = true;
+      }
     }
   },
   mounted: function mounted() {
@@ -564,7 +585,7 @@ var render = function render() {
       fn: function fn(props) {
         return [_c("div", {
           staticClass: "wizard-footer-left"
-        }, [props.activeTabIndex > 0 && !props.isLastStep ? _c("wizard-button", {
+        }, [props.activeTabIndex > 0 ? _c("wizard-button", {
           style: props.fillButtonStyle,
           nativeOn: {
             click: function click($event) {
@@ -643,7 +664,8 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "name"
+      placeholder: "name",
+      readonly: "readonly"
     },
     domProps: {
       value: _vm.v$.form_data.name.$model
@@ -1788,12 +1810,44 @@ var render = function render() {
     staticClass: "font-size-18 mb-3"
   }, [_vm._v("Check only the product offering available at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._l(_vm.products, function (product, index) {
+  }, [_c("div", {
+    staticClass: "col-md-12"
+  }, [_c("label", {
+    staticStyle: {
+      "margin-top": "6px",
+      "margin-bottom": "15px"
+    }
+  }, [_c("input", {
+    staticStyle: {
+      "margin-left": "15px",
+      "margin-right": "5px"
+    },
+    attrs: {
+      type: "checkbox"
+    },
+    domProps: {
+      checked: _vm.isAllSelected
+    },
+    on: {
+      click: _vm.selectAllCats
+    }
+  }), _c("span", {
+    staticStyle: {
+      "margin-bottom": "10px"
+    }
+  }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {
       key: product.id,
       staticClass: "col-md-3"
     }, [_c("div", {
       staticClass: "mb-3 d-flex justify-content-start w-100"
+    }, [_c("label", {
+      staticClass: "form-label text-capitalize",
+      staticStyle: {
+        "margin-top": "6px",
+        "margin-left": "15px",
+        display: "flex"
+      }
     }, [_c("input", {
       directives: [{
         name: "model",
@@ -1805,6 +1859,9 @@ var render = function render() {
         }
       }],
       staticClass: "form-check mr-3",
+      staticStyle: {
+        "margin-right": "5px"
+      },
       attrs: {
         type: "checkbox"
       },
@@ -1813,7 +1870,7 @@ var render = function render() {
         checked: Array.isArray(_vm.v$.form_data.products.$model) ? _vm._i(_vm.v$.form_data.products.$model, product.id) > -1 : _vm.v$.form_data.products.$model
       },
       on: {
-        change: function change($event) {
+        change: [function ($event) {
           var $$a = _vm.v$.form_data.products.$model,
             $$el = $event.target,
             $$c = $$el.checked ? true : false;
@@ -1828,15 +1885,9 @@ var render = function render() {
           } else {
             _vm.$set(_vm.v$.form_data.products, "$model", $$c);
           }
-        }
+        }, _vm.select]
       }
-    }), _vm._v(" "), _c("label", {
-      staticClass: "form-label text-capitalize",
-      staticStyle: {
-        "margin-top": "6px",
-        "margin-left": "15px"
-      }
-    }, [_vm._v("\n                                                " + _vm._s(product.name) + "\n                                            ")])])]);
+    }), _vm._v("\n                                                " + _vm._s(product.name) + "\n                                            ")])])]);
   }), _vm._v(" "), _vm.v$.form_data.products.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
   }, [_vm._v("\n                                        At least one product is required\n                                    ")]) : _vm._e()], 2)])])])])])], 1)], 1)]);
@@ -1864,7 +1915,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-28be937c]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-28be937c]{\n    margin-right: 100px;\n}\n.error[data-v-28be937c]{\n    text-transform: capitalize;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-28be937c]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-28be937c]{\n    margin-right: 100px;\n}\n.error[data-v-28be937c]{\n    text-transform: capitalize;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
