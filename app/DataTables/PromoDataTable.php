@@ -26,6 +26,7 @@ class PromoDataTable extends DataTable
             ->addColumn('action', function ($item) {
                 $buttons = '';
                 $buttons .= '<a class="dropdown-item" href="' . route('admin.promos.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.promos.makeSPC', $item->id) . '" title="Make SPC"><i class="mdi mdi-check-bold"></i> Make SPC </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
                 $buttons .= '<form action="' . route('admin.promos.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">

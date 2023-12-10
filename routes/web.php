@@ -67,7 +67,10 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     //promos
     Route::resource('promos', PromoController::class);
+    Route::get('/promos/makeSPC/${id}',[PromoController::class,'makeSPC'] )->name('promos.makeSPC');
+
     Route::resource('slpromos', SpecialPromoController::class);
+    Route::get('/slpromos/makeNPC/${id}',[SpecialPromoController::class,'makeNPC'] )->name('slpromos.makeNPC');
 
     //customers
     Route::resource('customers', CustomerController::class);

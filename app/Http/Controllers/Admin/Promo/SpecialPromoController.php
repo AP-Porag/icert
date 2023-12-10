@@ -120,4 +120,14 @@ class SpecialPromoController extends Controller
             return back();
         }
     }
+
+    public function makeNPC($id)
+    {
+
+        $promo = Promo::find($id);
+        $promo->priority = Promo::PRIORITY_NORMAL;
+        $promo->save();
+
+        return back();
+    }
 }

@@ -100,4 +100,14 @@ class PromoController extends Controller
             return back();
         }
     }
+
+    public function makeSPC($id)
+    {
+
+        $promo = Promo::find($id);
+        $promo->priority = Promo::PRIORITY_SPECIAL;
+        $promo->save();
+
+        return back();
+    }
 }

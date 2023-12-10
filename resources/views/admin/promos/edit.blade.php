@@ -35,7 +35,7 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Base Value <span class="error">*</span></label>
-                                                <input type="number" name="value" class="form-control" required="" placeholder="Base Value"
+                                                <input type="number" id="base_value" name="value" class="form-control" required="" placeholder="Base Value"
                                                        value="{{$item->value, old('value') }}">
                                                 @error('value')
                                                 <p class="error">{{ $message }}</p>
@@ -44,7 +44,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Number of items <span class="error">*</span></label>
-                                                <input type="number" name="number_of_items" class="form-control" required="" placeholder="Number of items"
+                                                <input type="number" id="number_of_items" name="number_of_items" class="form-control" required="" placeholder="Number of items"
                                                        value="{{ $item->number_of_items,old('number_of_items') }}">
                                                 @error('number_of_items')
                                                 <p class="error">{{ $message }}</p>
@@ -53,7 +53,7 @@
 
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Start Date <span class="error">*</span></label>
-                                                <input type="date" name="start_date" class="form-control datepicker-start-date" required="" placeholder="Start Date"
+                                                <input type="date" name="start_date" id="start_date" class="form-control datepicker-start-date" required="" placeholder="Start Date"
                                                        value="{{custom_date($item->start_date,'Y-m-d'), old('start_date') }}">
                                                 @error('start_date')
                                                 <p class="error">{{ $message }}</p>
@@ -115,6 +115,7 @@
         let startDate = $('.datepicker-start-date');
         let endDate = $('.datepicker-end-date');
         let noEndDate = $('.no_end_date');
+        const today = new Date();
 
         startDate.flatpickr({
             enableTime: false,
@@ -150,6 +151,33 @@
                 $("#end_date").removeClass("disable_checkbox");
                 $("#end_date").val("");
             }
+        });
+
+        $( document ).ready(function() {
+            // console.log( "ready!" );
+
+            // console.log(today)
+            // console.log(startDate.val())
+            if ( new Date(startDate.val()) <= new Date(today)) {
+                // console.log("the date is past or today");
+                $("#start_date").addClass("disable_checkbox");
+                $("#base_value").addClass("disable_checkbox");
+                $("#number_of_items").addClass("disable_checkbox");
+            } else {
+                // console.log("the date is for future");
+                $("#start_date").removeClass("disable_checkbox");
+                $("#base_value").removeClass("disable_checkbox");
+                $("#number_of_items").removeClass("disable_checkbox");
+            }
+
+            if ( new Date(endDate.val()) <= new Date(today)) {
+                // console.log("the date is past or today");
+                $("#end_date").addClass("disable_checkbox");
+            } else {
+                // console.log("the date is for future");
+                $("#end_date").removeClass("disable_checkbox");
+            }
+
         });
     </script>
 @endpush
