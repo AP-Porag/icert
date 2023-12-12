@@ -27,12 +27,13 @@ class AuthenticatorDataTable extends DataTable
             ->addColumn('action', function ($item) {
                 $buttons = '';
                 $buttons .= '<a class="dropdown-item" href="' . route('admin.authenticators.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.authenticators.change-status', $item->id) . '" title="Change Status"><i class="fas fa-fw fa-check-circle"></i> Change Status </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
                 $buttons .= '<form action="' . route('admin.authenticators.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
-                        <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
+                        <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Destroy</button></form>
                         ';
 
                 return '<div class="btn-group dropleft">

@@ -110,21 +110,39 @@ class AuthenticatorController extends Controller
     public function destroy($id)
     {
         try {
-            $AuthenticatorsProducts = AuthenticatorProduct::where('authenticator_id',$id)->get();
-
-            if ($AuthenticatorsProducts->count() > 0){
-                //find the third party authenticator and update to suspend
-                $authenticator =  Authenticator::find($id);
-                $authenticator->status = Authenticator::STATUS_SUSPEND;
-                $authenticator->save();
-            }else{
-                $this->authenticatorService->delete($id);
-            }
+//            $AuthenticatorsProducts = AuthenticatorProduct::where('authenticator_id',$id)->get();
+//
+//            if ($AuthenticatorsProducts->count() > 0){
+//                //find the third party authenticator and update to suspend
+//                $authenticator =  Authenticator::find($id);
+//                $authenticator->status = Authenticator::STATUS_SUSPEND;
+//                $authenticator->save();
+//            }else{
+//                $this->authenticatorService->delete($id);
+//            }
+            $this->authenticatorService->delete($id);
 
             record_deleted_flash();
             return back();
         } catch (\Exception $e) {
             return back();
         }
+    }
+
+    public function changeStatus($id)
+    {
+        set_page_meta('Change Status');
+        $item = Authenticator::find($id);
+        return view('admin.authenticators.change_status', compact('item'));
+    }
+
+    public function saveStatus(Request $request,$id)
+    {
+        $item = Authenticator::find($id);
+        $item->status = $request->status;
+        $item->save();
+
+        record_updated_flash();
+        return redirect()->route('admin.authenticators.index');
     }
 }
