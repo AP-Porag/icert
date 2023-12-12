@@ -590,7 +590,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
+                                            <label class="form-label w-100 text-capitalize text-center">
                                                 Status (select one)
                                                 <span class="error">*</span>
                                             </label>
@@ -632,7 +632,7 @@
                     <div class="col-md-12">
                         <div class="card shipping_address_card">
                             <div class="card-body">
-                                <p class="font-size-18 mb-3">Check only the product offering available at this drop off center</p>
+                                <p class="font-size-18 mb-3 text-center">Check only the product offering available at this drop off center</p>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>

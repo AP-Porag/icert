@@ -1776,7 +1776,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
+    staticClass: "form-label w-100 text-capitalize text-center"
   }, [_vm._v("\n                                                Status (select one)\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("div", {
@@ -1890,7 +1890,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "card-body"
   }, [_c("p", {
-    staticClass: "font-size-18 mb-3"
+    staticClass: "font-size-18 mb-3 text-center"
   }, [_vm._v("Check only the product offering available at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
