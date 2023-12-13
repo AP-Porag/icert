@@ -40951,7 +40951,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_ExampleComponent_vue":1,"resources_js_components_CreateThirdPartyDropOff_vue":1,"resources_js_components_EditThirdPartyDropOff_vue":1,"resources_js_form_CustomerCreateForm_vue":1,"resources_js_form_CustomerEditForm_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_ExampleComponent_vue":1,"resources_js_components_CreateThirdPartyDropOff_vue":1,"resources_js_components_CreateAuthenticator_vue":1,"resources_js_components_EditAuthenticator_vue":1,"resources_js_components_EditThirdPartyDropOff_vue":1,"resources_js_form_CustomerCreateForm_vue":1,"resources_js_form_CustomerEditForm_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
@@ -41180,6 +41180,12 @@ Vue.component("example-component", function () {
 });
 Vue.component("create-third-party-drop-off", function () {
   return __webpack_require__.e(/*! import() */ "resources_js_components_CreateThirdPartyDropOff_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/CreateThirdPartyDropOff.vue */ "./resources/js/components/CreateThirdPartyDropOff.vue"));
+});
+Vue.component("create-authenticator", function () {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_CreateAuthenticator_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/CreateAuthenticator.vue */ "./resources/js/components/CreateAuthenticator.vue"));
+});
+Vue.component("edit-authenticator", function () {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_EditAuthenticator_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/EditAuthenticator.vue */ "./resources/js/components/EditAuthenticator.vue"));
 });
 Vue.component("edit-third-party-drop-off", function () {
   return __webpack_require__.e(/*! import() */ "resources_js_components_EditThirdPartyDropOff_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/EditThirdPartyDropOff.vue */ "./resources/js/components/EditThirdPartyDropOff.vue"));

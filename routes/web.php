@@ -66,6 +66,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::resource('authenticators', AuthenticatorController::class);
     Route::get('/authenticators/change/status/{id}', [AuthenticatorController::class,'changeStatus'])->name('authenticators.change-status');
     Route::post('/authenticators/save/status/{id}', [AuthenticatorController::class,'saveStatus'])->name('authenticators.save-status');
+    Route::post('/authenticators/find/if/exists', [AuthenticatorController::class,'findIfExists']);
+
 
     //promos
     Route::resource('promos', PromoController::class);

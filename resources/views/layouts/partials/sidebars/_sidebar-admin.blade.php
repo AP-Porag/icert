@@ -46,14 +46,16 @@
                         <li class="{{ request()->is('admin/thirds*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.thirds.index') }}"
                                class="{{ request()->routeIs('admin.third-party-drop-off.index') ? 'active' : '' }}">
-                                Third Party Drop Off Center
+{{--                                Third Party Drop Off Center--}}
+                                TPDC
                             </a>
                         </li>
 
                         <li class="{{ request()->is('admin/authenticators*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.authenticators.index') }}"
                                class="{{ request()->routeIs('admin.authenticators.index') ? 'active' : '' }}">
-                                Third Party Authenticators
+{{--                                Third Party Authenticators--}}
+                                TPA
                             </a>
                         </li>
 

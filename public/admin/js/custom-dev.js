@@ -54,6 +54,7 @@ function makeDeleteRequest(event, id) {
 }
 
 function makeDeleteRequestCM(event, id) {
+    console.log(event)
     event.preventDefault();
     Swal.fire({
         title: "Are you sure?",

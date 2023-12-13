@@ -55,7 +55,8 @@ class SpecialPromoController extends Controller
             }
 
             record_created_flash();
-            return redirect()->route('admin.slpromos.index');
+            return response(['status' => 200,'message'=>'Created successfully']);
+//            return redirect()->route('admin.slpromos.index');
         } catch (\Exception $e) {
         }
         return back();

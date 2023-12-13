@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-3">{{get_page_meta('title', true)}}</h4>
 
-                    <form action="{{ route('admin.slpromos.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.slpromos.store') }}" id="form-data" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row">
@@ -111,7 +111,11 @@
                         <div class="row">
                             <div class="mb-3 offset-md-6 col-md-6">
                                 <div class="text-end">
-                                    <button class="btn btn-primary waves-effect waves-lightml-2 me-2" type="submit">
+{{--                                    <button class="btn btn-primary waves-effect waves-lightml-2 me-2" type="submit">--}}
+{{--                                        <i class="fa fa-save"></i> Save--}}
+{{--                                    </button>--}}
+
+                                    <button id="saveButton" class="btn btn-primary waves-effect waves-lightml-2 me-2" type="submit">
                                         <i class="fa fa-save"></i> Save
                                     </button>
 
@@ -125,9 +129,37 @@
                     </form>
                 </div>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="icon_div">
+                                <div class="icon_div_inner text-center align-center">
+                                    <i class="fa fa-question-circle text-warning text-center question_icon"></i>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="question_text">Are you sure this code is for select customers?</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="confirmBtn" class="btn btn-primary waves-effect" data-dismiss="modal">Yes</button>
+                            <button type="button" id="closeBtn" class="btn btn-warning waves-effect" data-dismiss="modal">No</button>
+                            <a class="btn btn-secondary waves-effect" href="{{ route('admin.slpromos.index') }}">
+                                <i class="fa fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
     </div>
+
 @endsection
 
 @push('script')
@@ -170,6 +202,42 @@
                 $("#end_date").val("");
             }
         });
+
+        $("#saveButton").click(function(e){
+            e.preventDefault();
+            $("#myModal").modal("toggle");
+        });
+
+        $("#closeBtn").click(function(e){
+            e.preventDefault();
+            $("#myModal").modal("toggle");
+        });
+
+        $("#confirmBtn").click(function(e){
+            e.preventDefault();
+            var data = $('#form-data').serialize();
+            $.ajax({
+                type: 'post',
+                url: "{{ route('admin.slpromos.store') }}",
+                data: data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                // beforeSend: function(){
+                //     $('#create_new').html('....Please wait');
+                // },
+                success: function(response){
+                    if (response.status == 200){
+                        $("#myModal").modal("toggle");
+                        window.location.assign('{{ route('admin.slpromos.index') }}')
+                    }
+                    // alert(response.success);
+                },
+                // complete: function(response){
+                //     $('#create_new').html('Create New');
+                // }
+            });
+        });
     </script>
 @endpush
 
@@ -177,6 +245,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
     <style>
+        .icon_div{
+            margin-top: 30px;
+        }
+        .icon_div_inner{
+            height: 70px;
+            width: 70px;
+            border: 1px solid #d0d0d0;
+            border-radius: 50px;
+            margin: 0 auto;
+        }
+        .question_icon{
+            font-size: 60px;
+            margin-top: 4px;
+        }
+        .question_text{
+            font-size: 24px;
+            margin-top: 30px;
+        }
         .disable_checkbox{
             pointer-events: none;
             background: #d0d0d0 !important;

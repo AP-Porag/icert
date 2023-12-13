@@ -727,7 +727,7 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "name"
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.name.$model
@@ -764,7 +764,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "contact name"
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.contact_name.$model
@@ -801,7 +801,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "email",
-      placeholder: "email"
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.email.$model
@@ -856,7 +856,7 @@ var render = function render() {
     staticClass: "form-control md-readonly",
     attrs: {
       type: "text",
-      placeholder: "customer name",
+      placeholder: "",
       readonly: ""
     },
     domProps: {
@@ -894,7 +894,7 @@ var render = function render() {
     staticClass: "form-control md-readonly",
     attrs: {
       type: "text",
-      placeholder: "contact name",
+      placeholder: "",
       readonly: ""
     },
     domProps: {
@@ -932,7 +932,7 @@ var render = function render() {
     staticClass: "form-control md-readonly",
     attrs: {
       type: "email",
-      placeholder: "email",
+      placeholder: "",
       readonly: ""
     },
     domProps: {
@@ -980,7 +980,7 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "address line one",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1016,7 +1016,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "address line two",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1052,7 +1052,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "city",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1138,7 +1138,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "postal/zip code",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1266,7 +1266,7 @@ var render = function render() {
     staticClass: "form-control md-readonly",
     attrs: {
       type: "text",
-      placeholder: "customer name",
+      placeholder: "",
       readonly: ""
     },
     domProps: {
@@ -1304,7 +1304,7 @@ var render = function render() {
     staticClass: "form-control md-readonly",
     attrs: {
       type: "text",
-      placeholder: "contact name",
+      placeholder: "",
       readonly: ""
     },
     domProps: {
@@ -1342,7 +1342,7 @@ var render = function render() {
     staticClass: "form-control md-readonly",
     attrs: {
       type: "email",
-      placeholder: "email",
+      placeholder: "",
       readonly: ""
     },
     domProps: {
@@ -1390,7 +1390,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "same as billing address",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1437,7 +1437,7 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "name",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1471,7 +1471,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "company name",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1507,7 +1507,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "address line one",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1543,7 +1543,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "address line two",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1579,7 +1579,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "city",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1665,7 +1665,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "postal/zip code",
+      placeholder: "",
       readonly: _vm.isReadonly
     },
     domProps: {
@@ -1784,7 +1784,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
   }, [_c("label", {
-    staticClass: "form-check-label",
+    staticClass: "form-check-label font_big_text",
     attrs: {
       "for": "inlineRadio1"
     }
@@ -1818,7 +1818,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
   }, [_c("label", {
-    staticClass: "form-check-label",
+    staticClass: "form-check-label font_big_text",
     attrs: {
       "for": "inlineRadio2"
     }
@@ -1851,7 +1851,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
   }, [_c("label", {
-    staticClass: "form-check-label",
+    staticClass: "form-check-label font_big_text",
     attrs: {
       "for": "inlineRadio3"
     }
@@ -1891,11 +1891,12 @@ var render = function render() {
     staticClass: "card-body"
   }, [_c("p", {
     staticClass: "font-size-18 mb-3 text-center"
-  }, [_vm._v("Check only the product offering available at this drop off center")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Check only the product offerings available at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12"
   }, [_c("label", {
+    staticClass: "font_big_text",
     staticStyle: {
       "margin-top": "6px",
       "margin-bottom": "15px"
@@ -1925,7 +1926,7 @@ var render = function render() {
     }, [_c("div", {
       staticClass: "mb-3 d-flex justify-content-start w-100"
     }, [_c("label", {
-      staticClass: "form-label text-capitalize",
+      staticClass: "form-label text-capitalize font_big_text",
       staticStyle: {
         "margin-top": "6px",
         "margin-left": "15px",
@@ -1999,7 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-7d5986ec]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-7d5986ec]{\n    margin-right: 100px;\n}\n.error[data-v-7d5986ec]{\n    text-transform: capitalize;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-7d5986ec]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-7d5986ec]{\n    margin-right: 100px;\n}\n.error[data-v-7d5986ec]{\n    text-transform: capitalize;\n}\n.font_big_text[data-v-7d5986ec]{\n    font-size: 17px;\n    font-weight: 100;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

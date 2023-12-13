@@ -62,7 +62,8 @@ class AuthenticatorController extends Controller
     {
         try {
             set_page_meta('Edit Third Party Authenticators');
-            $item = $this->authenticatorService->get($id);
+//            $item = $this->authenticatorService->get($id);
+            $item = $this->authenticatorService->get($id,['products']);
             $products = Product::orderBy('id','ASC')->get();
             return view('admin.authenticators.edit', compact('item','products'));
         } catch (\Exception $e) {
@@ -144,5 +145,20 @@ class AuthenticatorController extends Controller
 
         record_updated_flash();
         return redirect()->route('admin.authenticators.index');
+    }
+
+    public function findIfExists(Request $request)
+    {
+//        dd($request->all());
+
+        $item = Authenticator::where('name',$request->name)->with('products')->first();
+
+        if ($item != null){
+            $data = ['status'=>200,'message'=>'Already Exist','data'=>$item];
+            return response()->json($data);
+        }else{
+            $data = ['status'=>300,'message'=>'Not Exist','data'=>$item];
+            return response()->json($data);
+        }
     }
 }

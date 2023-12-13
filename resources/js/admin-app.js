@@ -22,6 +22,15 @@ Vue.component("create-third-party-drop-off", () =>
     import("./components/CreateThirdPartyDropOff.vue")
 );
 
+Vue.component("create-authenticator", () =>
+    import("./components/CreateAuthenticator.vue")
+);
+
+Vue.component("edit-authenticator", () =>
+    import("./components/EditAuthenticator.vue")
+);
+
+
 Vue.component("edit-third-party-drop-off", () =>
     import("./components/EditThirdPartyDropOff.vue")
 );

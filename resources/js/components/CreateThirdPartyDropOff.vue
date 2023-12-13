@@ -43,7 +43,7 @@
                                                 autofocus
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="name"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.name.$model"
                                                 ref="name"
                                             />
@@ -62,7 +62,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="contact name"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.contact_name.$model"
                                             />
                                             <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
@@ -80,7 +80,7 @@
                                             <input
                                                 type="email"
                                                 class="form-control"
-                                                placeholder="email"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.email.$model"
                                             />
                                             <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">
@@ -117,7 +117,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control md-readonly"
-                                                placeholder="customer name"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.name.$model"
                                                 readonly
                                             />
@@ -135,7 +135,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control md-readonly"
-                                                placeholder="contact name"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.contact_name.$model"
                                                 readonly
                                             />
@@ -153,7 +153,7 @@
                                             <input
                                                 type="email"
                                                 class="form-control md-readonly"
-                                                placeholder="email"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.email.$model"
                                                 readonly
                                             />
@@ -180,7 +180,7 @@
                                                 autofocus
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="address line one"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.billing_address_line_one.$model"
                                                 ref="billing_address_line_one"
                                                 :readonly="isReadonly"
@@ -199,7 +199,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="address line two"
+                                                placeholder=""
                                                 v-model.trim="form_data.billing_address_line_two"
                                                 :readonly="isReadonly"
                                             />
@@ -218,7 +218,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="city"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.billing_city.$model"
                                                 :readonly="isReadonly"
                                             />
@@ -257,7 +257,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="postal/zip code"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.billing_postal.$model"
                                                 :readonly="isReadonly"
                                             />
@@ -329,7 +329,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control md-readonly"
-                                                placeholder="customer name"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.name.$model"
                                                 readonly
                                             />
@@ -347,7 +347,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control md-readonly"
-                                                placeholder="contact name"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.contact_name.$model"
                                                 readonly
                                             />
@@ -365,7 +365,7 @@
                                             <input
                                                 type="email"
                                                 class="form-control md-readonly"
-                                                placeholder="email"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.email.$model"
                                                 readonly
                                             />
@@ -391,7 +391,7 @@
                                             <input
                                                 type="checkbox"
                                                 class="form-check"
-                                                placeholder="same as billing address"
+                                                placeholder=""
                                                 v-model.trim="form_data.same_as_billing"
                                                 :readonly="isReadonly"
                                                 @change="sameAsBillingChanged($event)"
@@ -411,7 +411,7 @@
                                                 autofocus
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="name"
+                                                placeholder=""
                                                 v-model.trim="form_data.shipping_name"
                                                 :readonly="isReadonly"
                                                 ref="shipping_name"
@@ -430,7 +430,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="company name"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.shipping_company_name.$model"
                                                 :readonly="isReadonly"
                                             />
@@ -449,7 +449,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="address line one"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.shipping_address_line_one.$model"
                                                 :readonly="isReadonly"
                                             />
@@ -467,7 +467,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="address line two"
+                                                placeholder=""
                                                 v-model.trim="form_data.shipping_address_line_two"
                                                 :readonly="isReadonly"
                                             />
@@ -486,7 +486,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="city"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.shipping_city.$model"
                                                 :readonly="isReadonly"
                                             />
@@ -524,7 +524,7 @@
                                             <input
                                                 type="text"
                                                 class="form-control"
-                                                placeholder="postal/zip code"
+                                                placeholder=""
                                                 v-model.trim="v$.form_data.shipping_postal.$model"
                                                 :readonly="isReadonly"
                                             />
@@ -596,7 +596,7 @@
                                             </label>
                                             <div class="d-flex justify-content-center w-100">
                                                 <div class="form-check form-check-inline check_right_margin">
-                                                    <label class="form-check-label" for="inlineRadio1">Active</label>
+                                                    <label class="form-check-label font_big_text" for="inlineRadio1">Active</label>
                                                     <input class="form-check-input" type="radio" checked="checked" name="inlineRadioOptions" id="inlineRadio1" value="active"
                                                            v-model.trim="v$.form_data.status.$model"
                                                            :readonly="isReadonly"
@@ -604,7 +604,7 @@
                                                 </div>
 
                                                 <div class="form-check form-check-inline check_right_margin">
-                                                    <label class="form-check-label" for="inlineRadio2">Suspend</label>
+                                                    <label class="form-check-label font_big_text" for="inlineRadio2">Suspend</label>
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="suspend"
                                                            v-model.trim="v$.form_data.status.$model"
                                                            :readonly="isReadonly"
@@ -612,7 +612,7 @@
                                                 </div>
 
                                                 <div class="form-check form-check-inline check_right_margin">
-                                                    <label class="form-check-label" for="inlineRadio3">Delete</label>
+                                                    <label class="form-check-label font_big_text" for="inlineRadio3">Delete</label>
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="delete"
                                                            v-model.trim="v$.form_data.status.$model"
                                                            :readonly="isReadonly"
@@ -632,14 +632,14 @@
                     <div class="col-md-12">
                         <div class="card shipping_address_card">
                             <div class="card-body">
-                                <p class="font-size-18 mb-3 text-center">Check only the product offering available at this drop off center</p>
+                                <p class="font-size-18 mb-3 text-center">Check only the product offerings available at this drop off center</p>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
+                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
                                     </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">
-                                            <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px; display: flex;">
+                                            <label class="form-label text-capitalize font_big_text" style="margin-top: 6px;margin-left: 15px; display: flex;">
                                             <input
                                                 type="checkbox"
                                                 class="form-check mr-3"
@@ -1361,5 +1361,10 @@ export default {
 }
 .error{
     text-transform: capitalize;
+}
+
+.font_big_text{
+    font-size: 17px;
+    font-weight: 100;
 }
 </style>
