@@ -231,7 +231,6 @@
                         $("#myModal").modal("toggle");
                         window.location.assign('{{ route('admin.slpromos.index') }}')
                     }
-                    // alert(response.success);
                 },
                 // complete: function(response){
                 //     $('#create_new').html('Create New');

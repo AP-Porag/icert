@@ -35,7 +35,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Drop Off Center
+                                                Name of Third Party Drop Off Center
                                                 <span class="error">*</span>
                                             </label>
                                             <input
@@ -111,7 +111,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Drop Off Center
+                                                Name of Third Party Drop Off Center
                                                 <span class="error">*</span>
                                             </label>
                                             <input
@@ -316,7 +316,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Drop Off Center
+                                                Name of Third Party Drop Off Center
                                                 <span class="error">*</span>
                                             </label>
                                             <input
