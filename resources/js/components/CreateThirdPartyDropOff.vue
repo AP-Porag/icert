@@ -36,7 +36,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Name of Third Party Drop Off Center
+                                                Drop Off Center
                                                 <span class="error">*</span>
                                             </label>
                                             <input
@@ -111,8 +111,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Name of Third Party Drop Off Center
-                                                <span class="error">*</span>
+                                                Drop Off Center
                                             </label>
                                             <input
                                                 type="text"
@@ -130,7 +129,6 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100">
                                                 Contact Name
-                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 type="text"
@@ -148,7 +146,6 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
                                                 Email Address
-                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 type="email"
@@ -260,6 +257,7 @@
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_postal.$model"
                                                 :readonly="isReadonly"
+                                                @input="event => v$.form_data.billing_postal.$model = event.target.value.toUpperCase()"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_postal.required.$invalid && show_error_two">
                                                 Postal is required
@@ -323,8 +321,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Name of Third Party Drop Off Center
-                                                <span class="error">*</span>
+                                                Drop Off Center
                                             </label>
                                             <input
                                                 type="text"
@@ -342,7 +339,6 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100">
                                                 Contact Name
-                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 type="text"
@@ -360,7 +356,6 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
                                                 Email Address
-                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 type="email"
@@ -527,6 +522,7 @@
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_postal.$model"
                                                 :readonly="isReadonly"
+                                                @input="event => v$.form_data.shipping_postal.$model = event.target.value.toUpperCase()"
                                             />
                                             <div class="error" v-if="v$.form_data.shipping_postal.required.$invalid && show_error_three">
                                                 Postal is required
@@ -635,7 +631,7 @@
                                 <p class="font-size-18 mb-3 text-center">Check only the product offerings available at this drop off center</p>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
+                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;font-weight: bold;">Select All</span></label>
                                     </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">
@@ -1122,7 +1118,7 @@ export default {
                             });
                             // return false;
                             Swal.fire({
-                                title: "Drop off center already exists.Do you want to edit this?",
+                                title: "Drop Off Center already exists.Do you want to edit this center?",
                                 icon: "question",
                                 html: `<div class="exists_modal">
         <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">

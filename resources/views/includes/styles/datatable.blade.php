@@ -7,4 +7,11 @@
         margin-left: 10px;
         padding-top: 0.5em;
     }
+
+    table.dataTable thead .sorting {
+        background-image: none;
+    }
+    table.dataTable thead .sorting_desc {
+        background-image: none;
+    }
 </style>

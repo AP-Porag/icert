@@ -64,8 +64,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 break;
               }
               Swal.fire({
-                // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
-                title: "Are the selected product offerings applicable for drop off center: <br> ".concat(_this.form_data.name),
+                title: "Are the selected product offerings applicable for The Third Party Authenticator: <br> ".concat(_this.form_data.name),
                 showDenyButton: true,
                 showCancelButton: true,
                 confirmButtonText: "Yes",
@@ -142,7 +141,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                   // return false;
                   Swal.fire({
-                    title: "Drop off center already exists.Do you want to edit this?",
+                    title: "Third Party Authenticator already exists.Do you want to edit this?",
                     icon: "question",
                     html: "<div class=\"exists_modal\">\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;margin-top: 30px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Drop Off Center</label>\n            <input type=\"text\" class=\"form-control text-capitalize\" readonly disabled value=\"".concat(_self.form_data.name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Status</label>\n            <input type=\"text\" class=\"form-control text-capitalize\" readonly disabled value=\"").concat(_self.form_data.status, "\">\n        </div>\n<!--        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">-->\n<!--            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Certified Products</label>-->\n<!--            <span class=\"badge badge-soft-lime text-capitalize text-muted\">Product one</span>-->\n<!--        </div>-->\n    </div>"),
                     showCloseButton: false,
@@ -391,6 +390,51 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
+    staticClass: "col-md-12"
+  }, [_c("div", {
+    staticClass: "card shipping_address_card"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label w-100 text-capitalize"
+  }, [_vm._v("\n                                                Name\n                                            ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.name.$model,
+      expression: "v$.form_data.name.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
+    ref: "name",
+    staticClass: "form-control",
+    attrs: {
+      autofocus: "",
+      type: "text",
+      placeholder: ""
+    },
+    domProps: {
+      value: _vm.v$.form_data.name.$model
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
+    }
+  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"

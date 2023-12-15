@@ -63,8 +63,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
               // alert('Yay. Done!');
               Swal.fire({
-                // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
-                title: "Are the selected product offerings applicable for drop off center: <br> ".concat(_this.form_data.name),
+                title: "Are the selected product offerings applicable for The Third Party Authenticator: <br> ".concat(_this.form_data.name),
                 showDenyButton: true,
                 showCancelButton: true,
                 confirmButtonText: "Yes",
@@ -289,7 +288,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Drop Off Center\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                Name\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
@@ -331,6 +330,52 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
+    staticClass: "col-md-12"
+  }, [_c("div", {
+    staticClass: "card shipping_address_card"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label w-100 text-capitalize"
+  }, [_vm._v("\n                                                Name\n                                            ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.name.$model,
+      expression: "v$.form_data.name.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
+    ref: "name",
+    staticClass: "form-control",
+    attrs: {
+      autofocus: "",
+      type: "text",
+      placeholder: "",
+      readonly: "readonly"
+    },
+    domProps: {
+      value: _vm.v$.form_data.name.$model
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
+    }
+  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -480,7 +525,8 @@ var render = function render() {
     }
   }), _c("span", {
     staticStyle: {
-      "margin-bottom": "10px"
+      "margin-bottom": "10px",
+      "font-weight": "bold"
     }
   }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {

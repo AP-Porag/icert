@@ -413,7 +413,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                   // return false;
                   Swal.fire({
-                    title: "Drop off center already exists.Do you want to edit this?",
+                    title: "Drop Off Center already exists.Do you want to edit this center?",
                     icon: "question",
                     html: "<div class=\"exists_modal\">\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;margin-top: 30px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Drop Off Center</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"".concat(_self.form_data.name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Contact Name</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"").concat(_self.form_data.contact_name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Email Address</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"").concat(_self.form_data.email, "\">\n        </div>\n    </div>"),
                     showCloseButton: false,
@@ -841,9 +841,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Drop Off Center\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Drop Off Center\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -879,9 +877,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Contact Name\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Contact Name\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -917,9 +913,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Email Address\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Email Address\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1145,10 +1139,12 @@ var render = function render() {
       value: _vm.v$.form_data.billing_postal.$model
     },
     on: {
-      input: function input($event) {
+      input: [function ($event) {
         if ($event.target.composing) return;
         _vm.$set(_vm.v$.form_data.billing_postal, "$model", $event.target.value.trim());
-      },
+      }, function (event) {
+        return _vm.v$.form_data.billing_postal.$model = event.target.value.toUpperCase();
+      }],
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
@@ -1251,9 +1247,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Drop Off Center\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Drop Off Center\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1289,9 +1283,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Contact Name\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Contact Name\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1327,9 +1319,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Email Address\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Email Address\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1672,10 +1662,12 @@ var render = function render() {
       value: _vm.v$.form_data.shipping_postal.$model
     },
     on: {
-      input: function input($event) {
+      input: [function ($event) {
         if ($event.target.composing) return;
         _vm.$set(_vm.v$.form_data.shipping_postal, "$model", $event.target.value.trim());
-      },
+      }, function (event) {
+        return _vm.v$.form_data.shipping_postal.$model = event.target.value.toUpperCase();
+      }],
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
@@ -1917,7 +1909,8 @@ var render = function render() {
     }
   }), _c("span", {
     staticStyle: {
-      "margin-bottom": "10px"
+      "margin-bottom": "10px",
+      "font-weight": "bold"
     }
   }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {

@@ -35,7 +35,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Drop Off Center
+                                                Name
                                                 <span class="error">*</span>
                                             </label>
                                             <input
@@ -64,6 +64,35 @@
                 icon="ti-dropbox"
             >
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shipping_address_card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-capitalize">
+                                                Name
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder=""
+                                                v-model.trim="v$.form_data.name.$model"
+                                                ref="name"
+                                                readonly="readonly"
+                                            />
+                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
+                                                Name is required
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-md-12">
                         <div class="card shipping_address_card">
                             <div class="card-body">
@@ -112,7 +141,7 @@
                                 <p class="font-size-18 mb-3 font_big_text text-center">Check only the products that can be certified by this 3rd party authenticator</p>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
+                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;font-weight: bold;">Select All</span></label>
                                     </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">
@@ -179,8 +208,7 @@ export default {
             if (this.checkFourthStep()){
                 // alert('Yay. Done!');
                 Swal.fire({
-                    // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
-                    title: `Are the selected product offerings applicable for drop off center: <br> ${this.form_data.name}`,
+                    title: `Are the selected product offerings applicable for The Third Party Authenticator: <br> ${this.form_data.name}`,
                     showDenyButton: true,
                     showCancelButton: true,
                     confirmButtonText: "Yes",

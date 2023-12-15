@@ -30,7 +30,12 @@ class AuthenticatorController extends Controller
     {
         set_page_meta('Create Third Party Authenticators');
 
-        $products = Product::orderBy('id','ASC')->get();
+        $products = Product::orderBy('id','ASC')
+            ->where('name','!=','Rack Pack')
+            ->where('name','!=','Set')
+            ->where('name','!=','Reholder')
+            ->where('name','!=','Crossover')
+            ->get();
         return view('admin.authenticators.create',compact('products'));
     }
 
@@ -64,7 +69,13 @@ class AuthenticatorController extends Controller
             set_page_meta('Edit Third Party Authenticators');
 //            $item = $this->authenticatorService->get($id);
             $item = $this->authenticatorService->get($id,['products']);
-            $products = Product::orderBy('id','ASC')->get();
+            $products = Product::orderBy('id','ASC')
+                ->where('name','!=','Rack Pack')
+                ->where('name','!=','Set')
+                ->where('name','!=','Reholder')
+                ->where('name','!=','Crossover')
+                ->get();
+
             return view('admin.authenticators.edit', compact('item','products'));
         } catch (\Exception $e) {
             log_error($e);

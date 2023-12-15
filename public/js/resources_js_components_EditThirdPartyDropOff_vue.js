@@ -647,9 +647,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Drop Off Center\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Drop Off center\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1078,10 +1076,12 @@ var render = function render() {
       value: _vm.v$.form_data.billing_postal.$model
     },
     on: {
-      input: function input($event) {
+      input: [function ($event) {
         if ($event.target.composing) return;
         _vm.$set(_vm.v$.form_data.billing_postal, "$model", $event.target.value.trim());
-      },
+      }, function (event) {
+        return _vm.v$.form_data.billing_postal.$model = event.target.value.toUpperCase();
+      }],
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
@@ -1595,10 +1595,12 @@ var render = function render() {
       value: _vm.v$.form_data.shipping_postal.$model
     },
     on: {
-      input: function input($event) {
+      input: [function ($event) {
         if ($event.target.composing) return;
         _vm.$set(_vm.v$.form_data.shipping_postal, "$model", $event.target.value.trim());
-      },
+      }, function (event) {
+        return _vm.v$.form_data.shipping_postal.$model = event.target.value.toUpperCase();
+      }],
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
@@ -1834,7 +1836,8 @@ var render = function render() {
     }
   }), _c("span", {
     staticStyle: {
-      "margin-bottom": "10px"
+      "margin-bottom": "10px",
+      "font-weight": "bold"
     }
   }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {

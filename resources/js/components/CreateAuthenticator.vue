@@ -63,6 +63,34 @@
                 icon="ti-dropbox"
             >
                 <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card shipping_address_card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-capitalize">
+                                                Name
+                                            </label>
+                                            <input
+                                                autofocus
+                                                type="text"
+                                                class="form-control"
+                                                placeholder=""
+                                                v-model.trim="v$.form_data.name.$model"
+                                                ref="name"
+                                            />
+                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
+                                                Name is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-md-12">
                         <div class="card shipping_address_card">
                             <div class="card-body">
@@ -183,8 +211,7 @@ export default {
         async submit(){
             if (this.checkFourthStep()){
                 Swal.fire({
-                    // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
-                    title: `Are the selected product offerings applicable for drop off center: <br> ${this.form_data.name}`,
+                    title: `Are the selected product offerings applicable for The Third Party Authenticator: <br> ${this.form_data.name}`,
                     showDenyButton: true,
                     showCancelButton: true,
                     confirmButtonText: "Yes",
@@ -253,7 +280,7 @@ export default {
                             });
                             // return false;
                             Swal.fire({
-                                title: "Drop off center already exists.Do you want to edit this?",
+                                title: "Third Party Authenticator already exists.Do you want to edit this?",
                                 icon: "question",
                                 html: `<div class="exists_modal">
         <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">

@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-3">Third Party Drop Offs</h4>
+                        <h4 class="card-title mb-3">Third Party Drop Off Centers</h4>
                         <a href="{{route('admin.thirds.create')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create Third Party Drop Off</a>
                     </div>
                     {!! $dataTable->table(['class'=>'table-responsive']) !!}
@@ -23,4 +23,8 @@
 
 @push('script')
     @include('includes.scripts.datatable')
+
+    <script>
+
+    </script>
 @endpush
