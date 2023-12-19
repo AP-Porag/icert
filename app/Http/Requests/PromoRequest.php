@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PromoRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class PromoRequest extends FormRequest
     {
 
         return [
-            'name'=>['required','uppercase'],
+            'name'=>['required','uppercase',Rule::unique('promos')->ignore($this->promo)],
             'value'=>'required',
             'number_of_items'=>'required',
             'start_date'=>'required',

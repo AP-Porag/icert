@@ -107,7 +107,7 @@ class AuthenticatorController extends Controller
             }
 
             record_updated_flash();
-            return redirect()->route('admin.authenticators.index');
+//            return redirect()->route('admin.authenticators.index');
         } catch (\Exception $e) {
             return back();
         }

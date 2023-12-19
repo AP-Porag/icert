@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title mb-3">Third Party Authenticators</h4>
-                        <a href="{{route('admin.authenticators.create')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create Authenticator</a>
+                        <a href="{{route('admin.authenticators.create')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Create New Authenticator</a>
                     </div>
                     {!! $dataTable->table(['class'=>'table-responsive']) !!}
                 </div>

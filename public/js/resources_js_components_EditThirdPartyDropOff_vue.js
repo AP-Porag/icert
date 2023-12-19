@@ -313,7 +313,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
               // alert('Yay. Done!');
               Swal.fire({
-                // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
                 title: "Are the selected product offerings applicable for drop off center: <br> ".concat(_this.form_data.name),
                 showDenyButton: true,
                 showCancelButton: true,
@@ -321,6 +320,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 denyButtonText: "No",
                 icon: "question"
               }).then(function (result) {
+                console.log(result);
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                   // Submit form
@@ -336,10 +336,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }
                   });
                   // Swal.fire("Saved!", "", "success");
+                } else {
+                  if (result.isDismissed) {
+                    window.location.assign("/admin/thirds");
+                  }
                 }
-                // else if (result.isDenied) {
-                //     Swal.fire("Changes are not saved", "", "info");
-                // }
               });
               _context.next = 5;
               break;
@@ -685,9 +686,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Contact Name\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Contact Name\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -722,9 +721,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Email Address\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Email Address\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -912,7 +909,7 @@ var render = function render() {
       }
     }],
     ref: "billing_address_line_one",
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       autofocus: "",
       type: "text",
@@ -948,7 +945,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: ""
@@ -983,7 +980,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: ""
@@ -1020,7 +1017,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-select",
+    staticClass: "form-select mb-text-only",
     attrs: {
       "aria-label": "Default select example"
     },
@@ -1067,7 +1064,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: ""
@@ -1108,7 +1105,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-select",
+    staticClass: "form-select mb-text-only",
     attrs: {
       "aria-label": "Default select example"
     },
@@ -1146,6 +1143,7 @@ var render = function render() {
   }, [_vm._v("\n                                                    Telephone#\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
+    staticClass: "mb-text-only",
     attrs: {
       id: "phoneNumber1",
       "default-country-code": "CA",
@@ -1305,10 +1303,11 @@ var render = function render() {
   }, [_c("label", {
     staticClass: "form-label text-capitalize",
     staticStyle: {
+      display: "flex",
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                Same as billing address\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1319,6 +1318,9 @@ var render = function render() {
       }
     }],
     staticClass: "form-check",
+    staticStyle: {
+      "margin-right": "10px"
+    },
     attrs: {
       type: "checkbox",
       placeholder: ""
@@ -1346,7 +1348,7 @@ var render = function render() {
         return _vm.sameAsBillingChanged($event);
       }]
     }
-  })])]), _vm._v(" "), _c("div", {
+  }), _vm._v("\n                                                Same as billing address\n                                            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -1813,7 +1815,10 @@ var render = function render() {
   }, [_vm._v("Check only the product offerings available at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-12"
+    staticClass: "col-md-12",
+    staticStyle: {
+      "margin-left": "40px"
+    }
   }, [_c("label", {
     staticClass: "font_big_text",
     staticStyle: {
@@ -1919,7 +1924,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-28be937c]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-28be937c]{\n    margin-right: 100px;\n}\n.error[data-v-28be937c]{\n    text-transform: capitalize;\n}\n.font_big_text[data-v-28be937c]{\n    font-size: 17px;\n    font-weight: 100;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-28be937c]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-28be937c]{\n    margin-right: 100px;\n}\n.error[data-v-28be937c]{\n    text-transform: capitalize;\n}\n.font_big_text[data-v-28be937c]{\n    font-size: 17px;\n    font-weight: 100;\n}\n.mb-text-only[data-v-28be937c]{\n    background-color: #e8f0fe !important;\n}\ninput#phoneNumber1-5_phone_number.input-tel__input[data-v-28be937c]{\n    background-color: #e8f0fe !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

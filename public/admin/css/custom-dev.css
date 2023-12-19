@@ -626,3 +626,9 @@ ul li {
     background: #d2d2d2 !important;
     cursor: not-allowed!important;
 }
+.vue-form-wizard .wizard-nav-pills {
+    display: none !important;
+}
+.vue-form-wizard .wizard-header {
+    display: none !important;
+}

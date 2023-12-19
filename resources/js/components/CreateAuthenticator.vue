@@ -70,16 +70,17 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
+                                            <label class="form-label w-100 text-capitalize font_big_text">
                                                 Name
                                             </label>
                                             <input
                                                 autofocus
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control md-readonly"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.name.$model"
                                                 ref="name"
+                                                readonly="readonly"
                                             />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Name is required
@@ -97,13 +98,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize text-center">
+                                            <label class="form-label w-100 text-capitalize text-center font_big_text">
                                                 Status (select one)
                                                 <span class="error">*</span>
                                             </label>
                                             <div class="d-flex justify-content-center w-100">
                                                 <div class="form-check form-check-inline check_right_margin">
-                                                    <label class="form-check-label" for="inlineRadio1">Active</label>
+                                                    <label class="form-check-label font_big_text" for="inlineRadio1">Active</label>
                                                     <input class="form-check-input" type="radio" checked="checked" name="inlineRadioOptions" id="inlineRadio1" value="active"
                                                            v-model.trim="v$.form_data.status.$model"
                                                            :readonly="isReadonly"
@@ -111,7 +112,7 @@
                                                 </div>
 
                                                 <div class="form-check form-check-inline check_right_margin">
-                                                    <label class="form-check-label" for="inlineRadio2">Suspend</label>
+                                                    <label class="form-check-label font_big_text" for="inlineRadio2">Suspend</label>
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="suspend"
                                                            v-model.trim="v$.form_data.status.$model"
                                                            :readonly="isReadonly"
@@ -119,7 +120,7 @@
                                                 </div>
 
                                                 <div class="form-check form-check-inline check_right_margin">
-                                                    <label class="form-check-label" for="inlineRadio3">Delete</label>
+                                                    <label class="form-check-label font_big_text" for="inlineRadio3">Delete</label>
                                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="delete"
                                                            v-model.trim="v$.form_data.status.$model"
                                                            :readonly="isReadonly"
@@ -141,12 +142,11 @@
                             <div class="card-body">
                                 <p class="font-size-18 mb-3 text-center">Check only the products that can be certified by this 3rd party authenticator</p>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <label style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
-                                    </div>
+                                    <div class="col-md-12" style="margin-left: 40px;">
+                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;font-weight: bold;">Select All</span></label>                                    </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">
-                                            <label class="form-label text-capitalize" style="margin-top: 6px;margin-left: 15px; display: flex;">
+                                            <label class="form-label text-capitalize font_big_text" style="margin-top: 6px;margin-left: 15px; display: flex;">
                                             <input
                                                 type="checkbox"
                                                 class="form-check mr-3"
@@ -211,7 +211,7 @@ export default {
         async submit(){
             if (this.checkFourthStep()){
                 Swal.fire({
-                    title: `Are the selected product offerings applicable for The Third Party Authenticator: <br> ${this.form_data.name}`,
+                    title: `Are the selected product offerings applicable for the third party authenticator: <br> ${this.form_data.name}`,
                     showDenyButton: true,
                     showCancelButton: true,
                     confirmButtonText: "Yes",
@@ -299,8 +299,8 @@ export default {
                                 showCloseButton: false,
                                 showCancelButton: true,
                                 focusConfirm: false,
-                                confirmButtonText: `Edit`,
-                                cancelButtonText: `Cancel`,
+                                confirmButtonText: `Yes`,
+                                cancelButtonText: `No`,
                             }).then((result)=>{
                                 if (result.isConfirmed){
                                     window.location.assign(`/admin/authenticators/${res.data.data.id}/edit`);
@@ -418,5 +418,9 @@ export default {
 }
 .error{
     text-transform: capitalize;
+}
+.font_big_text{
+    font-size: 17px;
+    font-weight: 100;
 }
 </style>

@@ -28,4 +28,9 @@
 
 <link href="{{ asset('admin/css/custom-dev.css') }}" rel="stylesheet" type="text/css">
 
+<style>
+    .vertical-menu {
+        width: 255px !important;
+    }
+</style>
 @stack('style')

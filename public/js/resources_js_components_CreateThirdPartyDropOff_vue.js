@@ -419,8 +419,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     showCloseButton: false,
                     showCancelButton: true,
                     focusConfirm: false,
-                    confirmButtonText: "Edit",
-                    cancelButtonText: "Cancel"
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No"
                   }).then(function (result) {
                     if (result.isConfirmed) {
                       window.location.assign("/admin/thirds/".concat(res.data.data.id, "/edit"));
@@ -970,7 +970,7 @@ var render = function render() {
       }
     }],
     ref: "billing_address_line_one",
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       autofocus: "",
       type: "text",
@@ -1007,7 +1007,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: "",
@@ -1043,7 +1043,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: "",
@@ -1081,7 +1081,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-select",
+    staticClass: "form-select mb-text-only",
     attrs: {
       "aria-label": "Default select example",
       readonly: _vm.isReadonly
@@ -1129,7 +1129,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: "",
@@ -1171,7 +1171,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-select",
+    staticClass: "form-select mb-text-only",
     attrs: {
       "aria-label": "Default select example",
       readonly: _vm.isReadonly
@@ -1210,6 +1210,10 @@ var render = function render() {
   }, [_vm._v("\n                                                    Telephone#\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
+    staticClass: "mb-text-only",
+    staticStyle: {
+      "background-color": "#e8f0fe !important"
+    },
     attrs: {
       id: "phoneNumber1",
       readonly: _vm.isReadonly,
@@ -1886,7 +1890,10 @@ var render = function render() {
   }, [_vm._v("Check only the product offerings available at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-12"
+    staticClass: "col-md-12",
+    staticStyle: {
+      "margin-left": "40px"
+    }
   }, [_c("label", {
     staticClass: "font_big_text",
     staticStyle: {
@@ -1993,7 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-7d5986ec]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-7d5986ec]{\n    margin-right: 100px;\n}\n.error[data-v-7d5986ec]{\n    text-transform: capitalize;\n}\n.font_big_text[data-v-7d5986ec]{\n    font-size: 17px;\n    font-weight: 100;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-7d5986ec]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-7d5986ec]{\n    margin-right: 100px;\n}\n.error[data-v-7d5986ec]{\n    text-transform: capitalize;\n}\n.font_big_text[data-v-7d5986ec]{\n    font-size: 17px;\n    font-weight: 100;\n}\n.mb-text-only[data-v-7d5986ec]{\n    background-color: #e8f0fe !important;\n}\ninput#phoneNumber1-5_phone_number.input-tel__input[data-v-7d5986ec]{\n    background-color: #e8f0fe !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

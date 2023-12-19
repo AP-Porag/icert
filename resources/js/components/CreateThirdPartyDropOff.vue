@@ -176,7 +176,7 @@
                                             <input
                                                 autofocus
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_address_line_one.$model"
                                                 ref="billing_address_line_one"
@@ -195,7 +195,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="form_data.billing_address_line_two"
                                                 :readonly="isReadonly"
@@ -214,7 +214,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_city.$model"
                                                 :readonly="isReadonly"
@@ -231,7 +231,7 @@
                                                 Province/State
                                                 <span class="error">*</span>
                                             </label>
-                                            <select class="form-select" aria-label="Default select example"
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
                                                     v-model.trim="v$.form_data.billing_province.$model"
                                                     :readonly="isReadonly"
                                             >
@@ -253,7 +253,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_postal.$model"
                                                 :readonly="isReadonly"
@@ -271,7 +271,7 @@
                                                     Country
                                                     <span class="error">*</span>
                                                 </label>
-                                                <select class="form-select" aria-label="Default select example"
+                                                <select class="form-select mb-text-only" aria-label="Default select example"
                                                         v-model.trim="v$.form_data.billing_country.$model"
                                                         :readonly="isReadonly"
                                                 >
@@ -291,10 +291,12 @@
                                                 </label>
                                                 <VuePhoneNumberInput
                                                     id="phoneNumber1"
+                                                    class="mb-text-only"
                                                     v-model.trim="v$.form_data.billing_phone.$model"
                                                     :readonly="isReadonly"
                                                     default-country-code="CA"
                                                     :only-countries="countries_phone"
+                                                    style="background-color: #e8f0fe !important;"
                                                 />
                                                 <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error_two">
                                                     Phone is required
@@ -630,7 +632,7 @@
                             <div class="card-body">
                                 <p class="font-size-18 mb-3 text-center">Check only the product offerings available at this drop off center</p>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="margin-left: 40px;">
                                         <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;font-weight: bold;">Select All</span></label>
                                     </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
@@ -1137,8 +1139,8 @@ export default {
                                 showCloseButton: false,
                                 showCancelButton: true,
                                 focusConfirm: false,
-                                confirmButtonText: `Edit`,
-                                cancelButtonText: `Cancel`,
+                                confirmButtonText: `Yes`,
+                                cancelButtonText: `No`,
                             }).then((result)=>{
                                 if (result.isConfirmed){
                                     window.location.assign(`/admin/thirds/${res.data.data.id}/edit`);
@@ -1362,5 +1364,11 @@ export default {
 .font_big_text{
     font-size: 17px;
     font-weight: 100;
+}
+.mb-text-only{
+    background-color: #e8f0fe !important;
+}
+input#phoneNumber1-5_phone_number.input-tel__input{
+    background-color: #e8f0fe !important;
 }
 </style>

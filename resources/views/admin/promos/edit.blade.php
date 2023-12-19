@@ -33,10 +33,11 @@
                                 <div class="card shipping_address_card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="mb-3 col-md-6">
+                                            <div class="mb-3 col-md-6 input-icon">
                                                 <label class="form-label">Base Value <span class="error">*</span></label>
                                                 <input type="number" id="base_value" name="value" class="form-control" required="" placeholder="Base Value"
                                                        value="{{$item->value, old('value') }}">
+                                                <i>$</i>
                                                 @error('value')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror

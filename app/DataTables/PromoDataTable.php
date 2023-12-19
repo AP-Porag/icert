@@ -52,6 +52,10 @@ class PromoDataTable extends DataTable
                 $badge = $item->status == Promo::STATUS_ACTIVE ? "bg-success" : "bg-danger";
                 return '<span class="badge ' . $badge . '">' . Str::upper($item->status) . '</span>';
             })
+            ->editColumn('value',function ($item){
+               return '$ '.$item->value;
+
+            })
             ->rawColumns([
                 'action',
                 'status',

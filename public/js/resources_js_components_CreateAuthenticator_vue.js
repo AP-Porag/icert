@@ -64,7 +64,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 break;
               }
               Swal.fire({
-                title: "Are the selected product offerings applicable for The Third Party Authenticator: <br> ".concat(_this.form_data.name),
+                title: "Are the selected product offerings applicable for the third party authenticator: <br> ".concat(_this.form_data.name),
                 showDenyButton: true,
                 showCancelButton: true,
                 confirmButtonText: "Yes",
@@ -147,8 +147,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     showCloseButton: false,
                     showCancelButton: true,
                     focusConfirm: false,
-                    confirmButtonText: "Edit",
-                    cancelButtonText: "Cancel"
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No"
                   }).then(function (result) {
                     if (result.isConfirmed) {
                       window.location.assign("/admin/authenticators/".concat(res.data.data.id, "/edit"));
@@ -402,7 +402,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
+    staticClass: "form-label w-100 text-capitalize font_big_text"
   }, [_vm._v("\n                                                Name\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -414,11 +414,12 @@ var render = function render() {
       }
     }],
     ref: "name",
-    staticClass: "form-control",
+    staticClass: "form-control md-readonly",
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: ""
+      placeholder: "",
+      readonly: "readonly"
     },
     domProps: {
       value: _vm.v$.form_data.name.$model
@@ -447,7 +448,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize text-center"
+    staticClass: "form-label w-100 text-capitalize text-center font_big_text"
   }, [_vm._v("\n                                                Status (select one)\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("div", {
@@ -455,7 +456,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
   }, [_c("label", {
-    staticClass: "form-check-label",
+    staticClass: "form-check-label font_big_text",
     attrs: {
       "for": "inlineRadio1"
     }
@@ -489,7 +490,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
   }, [_c("label", {
-    staticClass: "form-check-label",
+    staticClass: "form-check-label font_big_text",
     attrs: {
       "for": "inlineRadio2"
     }
@@ -522,7 +523,7 @@ var render = function render() {
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-check form-check-inline check_right_margin"
   }, [_c("label", {
-    staticClass: "form-check-label",
+    staticClass: "form-check-label font_big_text",
     attrs: {
       "for": "inlineRadio3"
     }
@@ -565,8 +566,12 @@ var render = function render() {
   }, [_vm._v("Check only the products that can be certified by this 3rd party authenticator")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-12"
+    staticClass: "col-md-12",
+    staticStyle: {
+      "margin-left": "40px"
+    }
   }, [_c("label", {
+    staticClass: "font_big_text",
     staticStyle: {
       "margin-top": "6px",
       "margin-bottom": "15px"
@@ -587,7 +592,8 @@ var render = function render() {
     }
   }), _c("span", {
     staticStyle: {
-      "margin-bottom": "10px"
+      "margin-bottom": "10px",
+      "font-weight": "bold"
     }
   }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {
@@ -596,7 +602,7 @@ var render = function render() {
     }, [_c("div", {
       staticClass: "mb-3 d-flex justify-content-start w-100"
     }, [_c("label", {
-      staticClass: "form-label text-capitalize",
+      staticClass: "form-label text-capitalize font_big_text",
       staticStyle: {
         "margin-top": "6px",
         "margin-left": "15px",
@@ -670,7 +676,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-10c34f88]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-10c34f88]{\n    margin-right: 100px;\n}\n.error[data-v-10c34f88]{\n    text-transform: capitalize;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-10c34f88]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-10c34f88]{\n    margin-right: 100px;\n}\n.error[data-v-10c34f88]{\n    text-transform: capitalize;\n}\n.font_big_text[data-v-10c34f88]{\n    font-size: 17px;\n    font-weight: 100;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

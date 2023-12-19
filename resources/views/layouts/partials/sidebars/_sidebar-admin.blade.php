@@ -47,7 +47,7 @@
                             <a href="{{ route('admin.thirds.index') }}"
                                class="{{ request()->routeIs('admin.third-party-drop-off.index') ? 'active' : '' }}">
 {{--                                Name of Third Party Drop Off Center--}}
-                                Name of TPDOC
+                                Third Party Drop Off Center
                             </a>
                         </li>
 
@@ -62,7 +62,7 @@
                         <li class="{{ request()->is('admin/promos*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.promos.index') }}"
                                class="{{ request()->routeIs('admin.promos.index') ? 'active' : '' }}">
-                                Promo Code Name
+                                Promo Codes
                             </a>
                         </li>
 

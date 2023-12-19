@@ -70,10 +70,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 denyButtonText: "No",
                 icon: "question"
               }).then(function (result) {
+                console.log(result);
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                   // Submit form
-                  axios.put("/admin/authenticators/".concat(_this.third_party.id), _this.form_data).then(function (res) {
+                  axios.put("/admin/authenticators/".concat(_this.item.id), _this.form_data).then(function (res) {
+                    console.log(res);
                     Swal.fire("Saved!", "", "success");
                     // window.location.reload()
                     window.location.href = "/admin/authenticators";
@@ -85,10 +87,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }
                   });
                   // Swal.fire("Saved!", "", "success");
+                } else if (result.isDismissed) {
+                  window.location.href = "/admin/authenticators";
+                } else if (result.isDenied) {
+                  console.log(result.isDenied);
+                  // Swal.fire("Changes are not saved", "", "info");
                 }
-                // else if (result.isDenied) {
-                //     Swal.fire("Changes are not saved", "", "info");
-                // }
               });
               _context.next = 5;
               break;
@@ -267,62 +271,6 @@ var render = function render() {
       }
     }])
   }, [_vm._v(" "), _c("tab-content", {
-    attrs: {
-      title: "General Info",
-      icon: "ti-user",
-      "before-change": _vm.checkFirstStep
-    }
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Name\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.name.$model,
-      expression: "v$.form_data.name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    ref: "name",
-    staticClass: "form-control",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "",
-      readonly: "readonly"
-    },
-    domProps: {
-      value: _vm.v$.form_data.name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Products",
       icon: "ti-dropbox"
@@ -608,7 +556,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-511ef82e]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-511ef82e]{\n    margin-right: 100px;\n}\n.error[data-v-511ef82e]{\n    text-transform: capitalize;\n}\n.font_big_text[data-v-511ef82e]{\n    font-size: 17px;\n    font-weight: 100;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.shipping_address_card[data-v-511ef82e]{\n    background: #eeeeee;\n}\n.check_right_margin[data-v-511ef82e]{\n    margin-right: 100px;\n}\n.error[data-v-511ef82e]{\n    text-transform: capitalize;\n}\n.font_big_text[data-v-511ef82e]{\n    font-size: 17px;\n    font-weight: 100;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

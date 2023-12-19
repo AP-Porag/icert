@@ -22,43 +22,43 @@
                     <wizard-button v-else @click.native="submit" class="wizard-footer-right" :style="props.fillButtonStyle">Save</wizard-button>
                 </div>
             </template>
-            <tab-content
-                title="General Info"
-                icon="ti-user"
-                :before-change="checkFirstStep"
-            >
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card shipping_address_card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Name
-                                                <span class="error">*</span>
-                                            </label>
-                                            <input
-                                                autofocus
-                                                type="text"
-                                                class="form-control"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.name.$model"
-                                                ref="name"
-                                                readonly="readonly"
-                                            />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
-                                                Name is required
-                                            </div>
-                                        </div>
-                                    </div>
+<!--            <tab-content-->
+<!--                title="General Info"-->
+<!--                icon="ti-user"-->
+<!--                :before-change="checkFirstStep"-->
+<!--            >-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-12">-->
+<!--                        <div class="card shipping_address_card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize">-->
+<!--                                                Name-->
+<!--                                                <span class="error">*</span>-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                autofocus-->
+<!--                                                type="text"-->
+<!--                                                class="form-control"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.name.$model"-->
+<!--                                                ref="name"-->
+<!--                                                readonly="readonly"-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">-->
+<!--                                                Name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </tab-content>
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </tab-content>-->
             <tab-content
                 title="Products"
                 icon="ti-dropbox"
@@ -216,13 +216,15 @@ export default {
                     icon: "question",
                 }).then((result) => {
 
+                    console.log(result)
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
 
                         // Submit form
                         axios
-                            .put(`/admin/authenticators/${this.third_party.id}`, this.form_data)
+                            .put(`/admin/authenticators/${this.item.id}`, this.form_data)
                             .then(function (res) {
+                                console.log(res)
                                 Swal.fire("Saved!", "", "success");
                                 // window.location.reload()
                                 window.location.href = "/admin/authenticators";
@@ -235,10 +237,12 @@ export default {
                                 }
                             });
                         // Swal.fire("Saved!", "", "success");
+                    }else if (result.isDismissed){
+                        window.location.href = "/admin/authenticators";
+                    }else if (result.isDenied) {
+                        console.log(result.isDenied)
+                        // Swal.fire("Changes are not saved", "", "info");
                     }
-                    // else if (result.isDenied) {
-                    //     Swal.fire("Changes are not saved", "", "info");
-                    // }
                 });
 
             }else {
@@ -356,4 +360,5 @@ export default {
     font-size: 17px;
     font-weight: 100;
 }
+
 </style>

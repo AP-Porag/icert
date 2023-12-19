@@ -56,7 +56,6 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100">
                                                 Contact Name
-                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 type="text"
@@ -74,7 +73,6 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
                                                 Email Address
-                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 type="email"
@@ -178,7 +176,7 @@
                                             <input
                                                 autofocus
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_address_line_one.$model"
                                                 ref="billing_address_line_one"
@@ -196,7 +194,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="form_data.billing_address_line_two"
                                             />
@@ -214,7 +212,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_city.$model"
                                             />
@@ -230,7 +228,7 @@
                                                 Province/State
                                                 <span class="error">*</span>
                                             </label>
-                                            <select class="form-select" aria-label="Default select example"
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
                                                     v-model.trim="v$.form_data.billing_province.$model"
                                             >
                                                 <option selected disabled>Open this select menu</option>
@@ -251,7 +249,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_postal.$model"
                                                 @input="event => v$.form_data.billing_postal.$model = event.target.value.toUpperCase()"
@@ -268,7 +266,7 @@
                                                     Country
                                                     <span class="error">*</span>
                                                 </label>
-                                                <select class="form-select" aria-label="Default select example"
+                                                <select class="form-select mb-text-only" aria-label="Default select example"
                                                         v-model.trim="v$.form_data.billing_country.$model"
                                                 >
                                                     <option selected disabled>Open this select menu</option>
@@ -290,6 +288,7 @@
                                                     v-model.trim="v$.form_data.billing_phone.$model"
                                                     default-country-code="CA"
                                                     :only-countries="countries_phone"
+                                                    class="mb-text-only"
                                                 />
                                                 <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error_two">
                                                     Phone is required
@@ -378,16 +377,17 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="mb-3 d-flex justify-content-start">
-                                            <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
+                                            <label class="form-label text-capitalize" style="display:flex;margin-top: 6px;margin-right: 15px;">
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check"
+                                                    style="margin-right: 10px;"
+                                                    placeholder=""
+                                                    v-model.trim="form_data.same_as_billing"
+                                                    @change="sameAsBillingChanged($event)"
+                                                />
                                                 Same as billing address
                                             </label>
-                                            <input
-                                                type="checkbox"
-                                                class="form-check"
-                                                placeholder=""
-                                                v-model.trim="form_data.same_as_billing"
-                                                @change="sameAsBillingChanged($event)"
-                                            />
                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                             <!--                                                Same as Billing is required-->
                                             <!--                                            </div>-->
@@ -615,7 +615,7 @@
                             <div class="card-body">
                                 <p class="font-size-18 mb-3 text-center">Check only the product offerings available at this drop off center</p>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="margin-left: 40px;">
                                         <label style="margin-top: 6px;margin-bottom: 15px;" class="font_big_text"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px; font-weight: bold;">Select All</span></label>
                                     </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
@@ -1011,7 +1011,6 @@ export default {
             if (this.checkFourthStep()){
                 // alert('Yay. Done!');
                 Swal.fire({
-                    // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
                     title: `Are the selected product offerings applicable for drop off center: <br> ${this.form_data.name}`,
                     showDenyButton: true,
                     showCancelButton: true,
@@ -1020,6 +1019,7 @@ export default {
                     icon: "question",
                 }).then((result) => {
 
+                    console.log(result)
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
 
@@ -1039,10 +1039,11 @@ export default {
                                 }
                             });
                         // Swal.fire("Saved!", "", "success");
+                    }else {
+                        if (result.isDismissed){
+                            window.location.assign("/admin/thirds");
+                        }
                     }
-                    // else if (result.isDenied) {
-                    //     Swal.fire("Changes are not saved", "", "info");
-                    // }
                 });
 
             }else {
@@ -1279,5 +1280,12 @@ export default {
 .font_big_text{
     font-size: 17px;
     font-weight: 100;
+}
+
+.mb-text-only{
+    background-color: #e8f0fe !important;
+}
+input#phoneNumber1-5_phone_number.input-tel__input{
+    background-color: #e8f0fe !important;
 }
 </style>
