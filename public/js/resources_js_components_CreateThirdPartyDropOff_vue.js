@@ -1427,7 +1427,7 @@ var render = function render() {
       }
     }],
     ref: "shipping_name",
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       autofocus: "",
       type: "text",
@@ -1462,7 +1462,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: "",
@@ -1498,7 +1498,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: "",
@@ -1534,7 +1534,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: "",
@@ -1570,7 +1570,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: "",
@@ -1608,7 +1608,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-select",
+    staticClass: "form-select mb-text-only",
     attrs: {
       "aria-label": "Default select example",
       readonly: _vm.isReadonly
@@ -1656,7 +1656,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-control",
+    staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
       placeholder: "",
@@ -1698,7 +1698,7 @@ var render = function render() {
         trim: true
       }
     }],
-    staticClass: "form-select",
+    staticClass: "form-select mb-text-only",
     attrs: {
       "aria-label": "Default select example",
       readonly: _vm.isReadonly
@@ -1737,6 +1737,7 @@ var render = function render() {
   }, [_vm._v("\n                                                    Telephone#\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
+    staticClass: "mb-text-only",
     attrs: {
       id: "phoneNumber1",
       readonly: _vm.isReadonly,
@@ -1768,11 +1769,55 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "mb-3"
+  }, [_c("label", {
+    staticClass: "form-label w-100 text-capitalize"
+  }, [_vm._v("\n                                                Drop Off Center\n                                            ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.v$.form_data.name.$model,
+      expression: "v$.form_data.name.$model",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-control md-readonly",
+    attrs: {
+      type: "text",
+      placeholder: "",
+      readonly: ""
+    },
+    domProps: {
+      value: _vm.v$.form_data.name.$model
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
+      },
+      blur: function blur($event) {
+        return _vm.$forceUpdate();
+      }
+    }
+  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+    staticClass: "error"
+  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("div", {
+    staticClass: "card shipping_address_card"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize text-center"
+    staticClass: "form-label w-100 text-capitalize text-center font_big_text"
   }, [_vm._v("\n                                                Status (select one)\n                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("div", {
@@ -1890,10 +1935,7 @@ var render = function render() {
   }, [_vm._v("Check only the product offerings available at this drop off center")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-12",
-    staticStyle: {
-      "margin-left": "40px"
-    }
+    staticClass: "col-md-12"
   }, [_c("label", {
     staticClass: "font_big_text",
     staticStyle: {
@@ -1916,8 +1958,7 @@ var render = function render() {
     }
   }), _c("span", {
     staticStyle: {
-      "margin-bottom": "10px",
-      "font-weight": "bold"
+      "margin-bottom": "10px"
     }
   }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {

@@ -407,7 +407,7 @@
                                             <input
                                                 autofocus
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="form_data.shipping_name"
                                                 :readonly="isReadonly"
@@ -426,7 +426,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_company_name.$model"
                                                 :readonly="isReadonly"
@@ -445,7 +445,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_address_line_one.$model"
                                                 :readonly="isReadonly"
@@ -463,7 +463,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="form_data.shipping_address_line_two"
                                                 :readonly="isReadonly"
@@ -482,7 +482,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_city.$model"
                                                 :readonly="isReadonly"
@@ -499,7 +499,7 @@
                                                 Province/State
                                                 <span class="error">*</span>
                                             </label>
-                                            <select class="form-select" aria-label="Default select example"
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
                                                     v-model.trim="v$.form_data.shipping_province.$model"
                                                     :readonly="isReadonly"
                                             >
@@ -520,7 +520,7 @@
                                             </label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_postal.$model"
                                                 :readonly="isReadonly"
@@ -539,7 +539,7 @@
                                                     Country
                                                     <span class="error">*</span>
                                                 </label>
-                                                <select class="form-select" aria-label="Default select example"
+                                                <select class="form-select mb-text-only" aria-label="Default select example"
                                                         v-model.trim="v$.form_data.shipping_country.$model"
                                                         :readonly="isReadonly"
                                                 >
@@ -559,6 +559,7 @@
                                                 </label>
                                                 <VuePhoneNumberInput
                                                     id="phoneNumber1"
+                                                    class="mb-text-only"
                                                     v-model.trim="v$.form_data.shipping_phone.$model"
                                                     :readonly="isReadonly"
                                                     default-country-code="CA"
@@ -586,9 +587,68 @@
                         <div class="card shipping_address_card">
                             <div class="card-body">
                                 <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-capitalize">
+                                                Drop Off Center
+                                            </label>
+                                            <input
+                                                type="text"
+                                                class="form-control md-readonly"
+                                                placeholder=""
+                                                v-model.trim="v$.form_data.name.$model"
+                                                readonly
+                                            />
+                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
+                                                Name is required
+                                            </div>
+                                        </div>
+                                    </div>
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100">-->
+<!--                                                Contact Name-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="text"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.contact_name.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
+<!--                                                contact name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize">-->
+<!--                                                Email Address-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="email"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.email.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">-->
+<!--                                                email is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card shipping_address_card">
+                            <div class="card-body">
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize text-center">
+                                            <label class="form-label w-100 text-capitalize text-center font_big_text">
                                                 Status (select one)
                                                 <span class="error">*</span>
                                             </label>
@@ -632,8 +692,8 @@
                             <div class="card-body">
                                 <p class="font-size-18 mb-3 text-center">Check only the product offerings available at this drop off center</p>
                                 <div class="row">
-                                    <div class="col-md-12" style="margin-left: 40px;">
-                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;font-weight: bold;">Select All</span></label>
+                                    <div class="col-md-12" style="">
+                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
                                     </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">

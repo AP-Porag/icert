@@ -11,7 +11,7 @@
                         <div class="col-md-12">
                             <div class="card shipping_address_card">
                                 <div class="card-body">
-                                    <input type="text" class="form-control" value="{{$item->name}}" readonly>
+                                    <input type="text" class="form-control md-readonly" value="{{$item->name}}" readonly>
                                 </div>
                             </div>
                         </div>

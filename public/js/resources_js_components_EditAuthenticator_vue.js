@@ -302,7 +302,7 @@ var render = function render() {
       }
     }],
     ref: "name",
-    staticClass: "form-control",
+    staticClass: "form-control md-readonly",
     attrs: {
       autofocus: "",
       type: "text",
@@ -473,8 +473,7 @@ var render = function render() {
     }
   }), _c("span", {
     staticStyle: {
-      "margin-bottom": "10px",
-      "font-weight": "bold"
+      "margin-bottom": "10px"
     }
   }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {

@@ -18,7 +18,7 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Name <span class="error">*</span></label>
-                                                <input type="text" name="name" class="form-control" required="" placeholder="Name"
+                                                <input type="text" readonly name="name" class="form-control md-readonly" required="" placeholder="Name"
                                                        value="{{ $item->name,old('name') }}">
                                                 @error('name')
                                                 <p class="error">{{ $message }}</p>
@@ -33,10 +33,11 @@
                                 <div class="card shipping_address_card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="mb-3 col-md-6">
+                                            <div class="mb-3 col-md-6 input-icon">
                                                 <label class="form-label">Base Value <span class="error">*</span></label>
                                                 <input type="number" name="value" class="form-control" required="" placeholder="Base Value"
                                                        value="{{$item->value, old('value') }}">
+                                                <i>$</i>
                                                 @error('value')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
@@ -81,6 +82,27 @@
                                                         Make this code have no end date
                                                     </label>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" id="customer_id_box">
+                                <div class="card shipping_address_card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="mb-3 col-md-12">
+                                                <label class="form-label">Select Customer <span class="error">*</span></label>
+                                                <select class="select2 form-control" multiple name="customers[]"
+                                                        data-placeholder="Choose ..." id="customers">
+                                                    @foreach($customers as $customer)
+                                                        <option value="{{$customer->id}}" @if($item->customers->count() > 0 ) @foreach($item->customers as $cm) @if($cm->customer_id == $customer->id) selected @endif @endforeach   @endif class="text-capitalize">{{$customer->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('customer_id')
+                                                <p class="error">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -159,6 +181,25 @@
     <style>
         .shipping_address_card{
             background: #eeeeee;
+        }
+        .input-icon {
+            position: relative;
+        }
+
+        .input-icon > i {
+            position: absolute;
+            display: block;
+            transform: translate(0, -50%);
+            top: 72%;
+            pointer-events: none;
+            width: 25px;
+            text-align: center;
+            font-style: normal;
+        }
+
+        .input-icon > input {
+            padding-left: 25px;
+            padding-right: 0;
         }
     </style>
 @endpush

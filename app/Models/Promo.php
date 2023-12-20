@@ -16,4 +16,9 @@ class Promo extends Model
     protected $fillable = [
         'name','value','number_of_items','start_date','end_date','no_end_date','status','priority','is_select_customer'
     ];
+
+    public function customers()
+    {
+        return $this->hasMany(CustomerPromo::class,'promo_id');
+    }
 }

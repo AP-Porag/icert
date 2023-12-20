@@ -109,7 +109,7 @@ class ThirdPartyDropOffDataTable extends DataTable
     {
 
         return [
-            Column::make('name', 'name')->title('Name')->searchable(true),
+            Column::make('name', 'name')->title('Name of TPDOC')->searchable(true),
             Column::make('contact_name', 'contact_name')->title('Contact Name'),
             Column::make('email', 'email')->title('Email'),
         ];

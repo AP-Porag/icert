@@ -18,7 +18,7 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Promo Code Name <span class="error">*</span></label>
-                                                <input type="text" name="name" class="form-control" required="" placeholder="Name"
+                                                <input type="text" readonly name="name" class="form-control md-readonly" required="" placeholder="Name"
                                                        value="{{ $item->name,old('name') }}">
                                                 @error('name')
                                                 <p class="error">{{ $message }}</p>

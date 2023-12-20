@@ -25,16 +25,27 @@ class PromoDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
                 $buttons = '';
-                $buttons .= '<a class="dropdown-item" href="' . route('admin.promos.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
-                $buttons .= '<a class="dropdown-item" href="' . route('admin.promos.makeSPC', $item->id) . '" title="Make SPC"><i class="mdi mdi-check-bold"></i> Make SPC </a>';
 
-                // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-                $buttons .= '<form action="' . route('admin.promos.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                if ($item->priority == Promo::PRIORITY_NORMAL) {
+                    $buttons .= '<a class="dropdown-item" href="' . route('admin.promos.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                    $buttons .= '<a class="dropdown-item" href="' . route('admin.promos.makeSPC', $item->id) . '" title="Make SPC"><i class="mdi mdi-check-bold"></i> Make SPC </a>';
+
+                    // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
+                    $buttons .= '<form action="' . route('admin.promos.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
                         ';
-
+                }else{
+                    $buttons .= '<a class="dropdown-item" href="' . route('admin.slpromos.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                    $buttons .= '<a class="dropdown-item" href="' . route('admin.slpromos.makeNPC', $item->id) . '" title="Make NPC"><i class="mdi mdi-check-bold"></i> Make NPC </a>';
+                    // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
+                    $buttons .= '<form action="' . route('admin.slpromos.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                        <input type="hidden" name="_token" value="' . csrf_token() . '">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
+                        ';
+                }
                 return '<div class="btn-group dropleft">
                 <a href="#" onclick="return false;" class="btn btn-sm btn-dark text-white dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu">
@@ -56,6 +67,10 @@ class PromoDataTable extends DataTable
                return '$ '.$item->value;
 
             })
+            ->editColumn('priority',function ($item){
+               return $item->priority == Promo::PRIORITY_SPECIAL ? 'Yes' : 'No';
+
+            })
             ->rawColumns([
                 'action',
                 'status',
@@ -70,7 +85,8 @@ class PromoDataTable extends DataTable
      */
     public function query(Promo $model): QueryBuilder
     {
-        return $model->newQuery()->where('priority',Promo::PRIORITY_NORMAL)->orderBy('id', 'DESC')->select('promos.*');
+//        return $model->newQuery()->where('priority',Promo::PRIORITY_NORMAL)->orderBy('id', 'DESC')->select('promos.*');
+        return $model->newQuery()->orderBy('id', 'DESC')->select('promos.*');
 
     }
 
@@ -104,12 +120,13 @@ class PromoDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('name', 'name')->title('Name')->searchable(true),
+            Column::make('name', 'name')->title('Promo Code Name')->searchable(true),
             Column::make('value', 'value')->title('Value')->searchable(true),
             Column::make('number_of_items', 'number_of_items')->title('Number Of Items')->searchable(true),
             Column::make('start_date', 'start_date')->title('Start Date')->searchable(true),
             Column::make('end_date', 'end_date')->title('End Date')->searchable(true),
             Column::make('status', 'status')->title('Status'),
+            Column::make('priority', 'priority')->title('SPC'),
         ];
     }
 

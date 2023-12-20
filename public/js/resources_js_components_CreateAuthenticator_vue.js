@@ -566,10 +566,7 @@ var render = function render() {
   }, [_vm._v("Check only the products that can be certified by this 3rd party authenticator")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-12",
-    staticStyle: {
-      "margin-left": "40px"
-    }
+    staticClass: "col-md-12"
   }, [_c("label", {
     staticClass: "font_big_text",
     staticStyle: {
@@ -592,8 +589,7 @@ var render = function render() {
     }
   }), _c("span", {
     staticStyle: {
-      "margin-bottom": "10px",
-      "font-weight": "bold"
+      "margin-bottom": "10px"
     }
   }, [_vm._v("Select All")])])]), _vm._v(" "), _vm._l(_vm.products, function (product, index) {
     return _c("div", {

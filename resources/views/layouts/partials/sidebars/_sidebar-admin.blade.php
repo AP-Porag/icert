@@ -54,24 +54,23 @@
                         <li class="{{ request()->is('admin/authenticators*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.authenticators.index') }}"
                                class="{{ request()->routeIs('admin.authenticators.index') ? 'active' : '' }}">
-{{--                                Third Party Authenticators--}}
-                                Name of TPA
+                                Third Party Authenticator
                             </a>
                         </li>
 
-                        <li class="{{ request()->is('admin/promos*') ? 'mm-active' : '' }}">
+                        <li class="{{ request()->is('admin/promos*') || request()->is('admin/slpromos*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.promos.index') }}"
                                class="{{ request()->routeIs('admin.promos.index') ? 'active' : '' }}">
                                 Promo Codes
                             </a>
                         </li>
 
-                        <li class="{{ request()->is('admin/slpromos*') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.slpromos.index') }}"
-                               class="{{ request()->routeIs('admin.slpromos.index') ? 'active' : '' }}">
-                                Special Promo Codes
-                            </a>
-                        </li>
+{{--                        <li class="{{ request()->is('admin/slpromos*') ? 'mm-active' : '' }}">--}}
+{{--                            <a href="{{ route('admin.slpromos.index') }}"--}}
+{{--                               class="{{ request()->routeIs('admin.slpromos.index') ? 'active' : '' }}">--}}
+{{--                                Special Promo Codes--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
 

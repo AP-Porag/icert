@@ -623,7 +623,7 @@ ul li {
     font-size: 18px;
 }
 .md-readonly{
-    background: #d2d2d2 !important;
+    background: #eeeeee !important;
     cursor: not-allowed!important;
 }
 .vue-form-wizard .wizard-nav-pills {

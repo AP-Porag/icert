@@ -104,7 +104,7 @@ class AuthenticatorDataTable extends DataTable
     {
 
         return [
-            Column::make('name', 'name')->title('Name')->searchable(true),
+            Column::make('name', 'name')->title('Name of TPA')->searchable(true),
             Column::make('status', 'status')->title('Status'),
             Column::make('products', 'products')->title('Items'),
         ];
