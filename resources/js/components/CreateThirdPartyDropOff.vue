@@ -693,7 +693,7 @@
                                 <p class="font-size-18 mb-3 text-center">Check only the product offerings available at this drop off center</p>
                                 <div class="row">
                                     <div class="col-md-12" style="">
-                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
+                                        <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px;text-decoration: underline;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
                                     </div>
                                     <div class="col-md-3" v-for="(product,index) in products" :key="product.id">
                                         <div class="mb-3 d-flex justify-content-start w-100">
@@ -1411,24 +1411,7 @@ export default {
 </script>
 
 <style scoped>
-.shipping_address_card{
-    background: #eeeeee;
-}
-.check_right_margin{
-    margin-right: 100px;
-}
-.error{
-    text-transform: capitalize;
-}
 
-.font_big_text{
-    font-size: 17px;
-    font-weight: 100;
-}
-.mb-text-only{
-    background-color: #e8f0fe !important;
-}
-input#phoneNumber1-5_phone_number.input-tel__input{
-    background-color: #e8f0fe !important;
-}
+
+
 </style>

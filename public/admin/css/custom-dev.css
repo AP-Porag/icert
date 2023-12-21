@@ -625,10 +625,57 @@ ul li {
 .md-readonly{
     background: #eeeeee !important;
     cursor: not-allowed!important;
+    border: 0;
+    padding-left: 0;
 }
 .vue-form-wizard .wizard-nav-pills {
     display: none !important;
 }
 .vue-form-wizard .wizard-header {
     display: none !important;
+}
+.mb-text-only{
+    background-color: #FFFFFF !important;
+}
+.shipping_address_card{
+    background: #eeeeee;
+}
+.check_right_margin{
+    margin-right: 100px;
+}
+.error{
+    text-transform: capitalize;
+}
+
+.font_big_text{
+    font-size: 17px;
+    font-weight: 100;
+}
+.cursor-pointer{
+    cursor: default !important;
+}
+.product_badge {
+    font-size: 15px;
+    color: black;
+    text-transform: capitalize;
+    margin-right: 10px;
+}
+.input-icon {
+    position: relative;
+}
+
+.input-icon > i {
+    position: absolute;
+    display: block;
+    transform: translate(0, -50%);
+    top: 72%;
+    pointer-events: none;
+    width: 25px;
+    text-align: center;
+    font-style: normal;
+}
+
+.input-icon > input {
+    padding-left: 25px;
+    padding-right: 0;
 }

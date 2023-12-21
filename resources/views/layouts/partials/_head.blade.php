@@ -30,7 +30,7 @@
 
 <style>
     .vertical-menu {
-        width: 255px !important;
+        width: 260px !important;
     }
 </style>
 @stack('style')

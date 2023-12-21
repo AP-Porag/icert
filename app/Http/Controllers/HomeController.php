@@ -28,11 +28,21 @@ class HomeController extends Controller
 
         //changing promo code status
         $today = date('Y-m-d');
-        $promos = Promo::whereDate('end_date', '<=', $today)->where('status','=',Promo::STATUS_ACTIVE)->get();
 
-        if ($promos){
+
+        $promos = Promo::where('end_date', '<', $today)->where('status','=',Promo::STATUS_ACTIVE)->get();
+        if ($promos->count() > 0) {
             foreach ($promos as $promo){
                 $promo->status = Promo::STATUS_EXPIRED;
+                $promo->save();
+            }
+        }
+
+        //temporary for fixing;
+        $altPromos = Promo::where('end_date', '>', $today)->where('status','=',Promo::STATUS_EXPIRED)->get();
+        if ($altPromos->count() > 0) {
+            foreach ($altPromos as $promo){
+                $promo->status = Promo::STATUS_ACTIVE;
                 $promo->save();
             }
         }

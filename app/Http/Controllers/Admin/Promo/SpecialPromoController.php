@@ -58,10 +58,17 @@ class SpecialPromoController extends Controller
             return response(['status' => 200,'message'=>'Created successfully']);
 //            return redirect()->route('admin.slpromos.index');
         } catch (\Exception $e) {
+            return response(['status' => 500,'message'=>'Created successfully']);
         }
         return back();
     }
 
+    public function show($id)
+    {
+        set_page_meta('View Special Promo Code');
+        $item = $this->promoService->get($id);
+        return view('admin.promos.special_promos.show', compact('item'));
+    }
     public function edit($id)
     {
         try {
@@ -99,7 +106,7 @@ class SpecialPromoController extends Controller
             }
 
             record_updated_flash();
-            return redirect()->route('admin.slpromos.index');
+            return redirect()->route('admin.promos.index');
         } catch (\Exception $e) {
             return back();
         }

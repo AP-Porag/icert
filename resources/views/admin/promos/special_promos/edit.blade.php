@@ -92,7 +92,7 @@
                                 <div class="card shipping_address_card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="mb-3 col-md-12">
+                                            <div class="mb-3 col-md-8">
                                                 <label class="form-label">Select Customer <span class="error">*</span></label>
                                                 <select class="select2 form-control" multiple name="customers[]"
                                                         data-placeholder="Choose ..." id="customers">
@@ -103,6 +103,9 @@
                                                 @error('customer_id')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+                                                <a class="btn btn-info waves-effect" style="margin-top: 28px;" href="{{route('admin.customers.create')}}">Add New Customer</a>
                                             </div>
                                         </div>
                                     </div>

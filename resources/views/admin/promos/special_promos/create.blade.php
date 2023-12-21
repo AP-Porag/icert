@@ -22,6 +22,7 @@
                                                 @error('name')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
+                                                <p class="error" id="error_msg_name" style="display:none;"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -40,6 +41,7 @@
                                                 @error('value')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
+                                                <p class="error" id="error_msg_value" style="display:none;"></p>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
@@ -49,6 +51,7 @@
                                                 @error('number_of_items')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
+                                                <p class="error" id="error_msg_number_of_items" style="display:none;"></p>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
@@ -58,6 +61,7 @@
                                                 @error('start_date')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
+                                                <p class="error" id="error_msg_start_date" style="display:none;"></p>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
@@ -67,6 +71,7 @@
                                                 @error('end_date')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
+                                                <p class="error" id="error_msg_end_date" style="display:none;"></p>
                                             </div>
 
                                             <div class="col-md-6">
@@ -91,7 +96,7 @@
                                 <div class="card shipping_address_card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="mb-3 col-md-12">
+                                            <div class="mb-3 col-md-8">
                                                 <label class="form-label">Select Customer <span class="error">*</span></label>
                                                 <select class="select2 form-control" multiple name="customers[]"
                                                         data-placeholder="Choose ..." id="customers">
@@ -102,6 +107,10 @@
                                                 @error('customer_id')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
+                                                <p class="error" id="error_msg_customers" style="display:none;"></p>
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+                                                <a class="btn btn-info waves-effect" style="margin-top: 28px;" href="{{route('admin.customers.create')}}">Add New Customer</a>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +129,7 @@
                                         <i class="fa fa-save"></i> Save
                                     </button>
 
-                                    <a class="btn btn-secondary waves-effect" href="{{ route('admin.slpromos.index') }}">
+                                    <a class="btn btn-secondary waves-effect" href="{{ route('admin.promos.index') }}">
                                         <i class="fa fa-times"></i> Cancel
                                     </a>
                                 </div>
@@ -149,7 +158,7 @@
                         <div class="modal-footer">
                             <button type="button" id="confirmBtn" class="btn btn-primary waves-effect" data-dismiss="modal">Yes</button>
                             <button type="button" id="closeBtn" class="btn btn-warning waves-effect" data-dismiss="modal">No</button>
-                            <a class="btn btn-secondary waves-effect" href="{{ route('admin.slpromos.index') }}">
+                            <a class="btn btn-secondary waves-effect" href="{{ route('admin.promos.index') }}">
                                 <i class="fa fa-times"></i> Cancel
                             </a>
                         </div>
@@ -215,6 +224,12 @@
         });
 
         $("#confirmBtn").click(function(e){
+            $('#error_msg_name').hide();
+            $('#error_msg_value').hide();
+            $('#error_msg_number_of_items').hide();
+            $('#error_msg_start_date').hide();
+            $('#error_msg_end_date').hide();
+            $('#error_msg_customers').hide();
             e.preventDefault();
             var data = $('#form-data').serialize();
             $.ajax({
@@ -230,9 +245,36 @@
                 success: function(response){
                     if (response.status == 200){
                         $("#myModal").modal("toggle");
-                        window.location.assign('{{ route('admin.slpromos.index') }}')
+                        window.location.assign('{{ route('admin.promos.index') }}')
                     }
                 },
+                error: function (error) {
+                    // console.log((error.responseJSON.errors));
+
+                    $.each(error.responseJSON.errors, function(key,value) {
+                        console.log(value[0] , key)
+
+                        if(key === 'name'){
+                            $('#error_msg_name').append(value[0]).show();
+                        }
+                        if(key === 'value'){
+                            $('#error_msg_value').append(value[0]).show();
+                        }
+                        if(key === 'number_of_items'){
+                            $('#error_msg_number_of_items').append(value[0]).show();
+                        }
+                        if(key === 'start_date'){
+                            $('#error_msg_start_date').append(value[0]).show();
+                        }
+                        if(key === 'end_date'){
+                            $('#error_msg_end_date').append(value[0]).show();
+                        }
+                        if(key === 'customers'){
+                            $('#error_msg_customers').append(value[0]).show();
+                        }
+                    });
+                    $("#myModal").modal("toggle");
+                }
                 // complete: function(response){
                 //     $('#create_new').html('Create New');
                 // }

@@ -56,6 +56,13 @@ class PromoController extends Controller
         return back();
     }
 
+    public function show($id)
+    {
+        set_page_meta('View Promo Code');
+        $item = $this->promoService->get($id);
+        return view('admin.promos.show', compact('item'));
+    }
+
     public function edit($id)
     {
         try {
