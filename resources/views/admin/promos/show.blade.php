@@ -71,6 +71,13 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3 offset-md-6 col-md-6">
+                                <div class="text-end">
+                                    <a class="btn btn-secondary waves-effect" href="{{route('admin.promos.index')}}">
+                                        <i class="fa fa-times"></i> Back
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

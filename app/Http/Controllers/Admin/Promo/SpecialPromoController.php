@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Promo;
 
 use App\DataTables\SpecialPromoDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdditionalCustomerRequest;
 use App\Http\Requests\PromoRequest;
 use App\Http\Requests\SpecilPromoRequest;
 use App\Models\Customer;
@@ -137,5 +138,36 @@ class SpecialPromoController extends Controller
         $promo->save();
 
         return back();
+    }
+
+    public function attachAditionalCustomer($id)
+    {
+        set_page_meta('Attach Additional');
+        $item = $this->promoService->get($id);
+        $customers = Customer::orderBy('id','ASC')->get();
+        return view('admin.promos.special_promos.additional', compact('item','customers'));
+    }
+
+    public function saveAditionalCustomer(AdditionalCustomerRequest $request)
+    {
+
+        try {
+            $data = $request->validated();
+            if ($data['promo_id']){
+                foreach ($data['customers'] as $customer){
+                    $customerPromo = CustomerPromo::create([
+                        'customer_id'=>$customer,
+                        'promo_id'=>$data['promo_id']
+                    ]);
+                }
+            }
+
+            record_created_flash();
+            return redirect()->route('admin.slpromos.show',$data['promo_id']);
+        } catch (\Exception $e) {
+            something_wrong_flash();
+            return redirect()->route('admin.slpromos.show',$data['promo_id']);
+        }
+        return redirect()->route('admin.slpromos.show',$data['promo_id']);
     }
 }

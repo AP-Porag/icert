@@ -412,10 +412,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     _self.form_data.products.push(value.product_id);
                   });
                   // return false;
+                  //                         Swal.fire({
+                  //                             title: "Drop Off Center already exists.Do you want to edit this center?",
+                  //                             icon: "question",
+                  //                             html: `<div class="exists_modal">
+                  //     <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">
+                  //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Drop Off Center</label>
+                  //         <input type="text" class="form-control" readonly disabled value="${self.form_data.name}">
+                  //     </div>
+                  //     <div class="form-groups" style="margin-bottom: 15px;">
+                  //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Contact Name</label>
+                  //         <input type="text" class="form-control" readonly disabled value="${self.form_data.contact_name}">
+                  //     </div>
+                  //     <div class="form-groups" style="margin-bottom: 15px;">
+                  //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Email Address</label>
+                  //         <input type="text" class="form-control" readonly disabled value="${self.form_data.email}">
+                  //     </div>
+                  // </div>`,
+                  //                             showCloseButton: false,
+                  //                             showCancelButton: true,
+                  //                             focusConfirm: false,
+                  //                             confirmButtonText: `Yes`,
+                  //                             cancelButtonText: `No`,
+                  //                         }).then((result)=>{
+                  //                             if (result.isConfirmed){
+                  //                                 window.location.assign(`/admin/thirds/${res.data.data.id}/edit`);
+                  //                             }else {
+                  //                                 window.location.assign(`/admin/thirds`);
+                  //                                 return false;
+                  //                             }
+                  //                         });
+
                   Swal.fire({
-                    title: "Drop Off Center already exists.Do you want to edit this center?",
+                    title: "",
                     icon: "question",
-                    html: "<div class=\"exists_modal\">\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;margin-top: 30px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Drop Off Center</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"".concat(_self.form_data.name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Contact Name</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"").concat(_self.form_data.contact_name, "\">\n        </div>\n        <div class=\"form-groups\" style=\"margin-bottom: 15px;\">\n            <label class=\"w-100 text-capitalize text-muted\" style=\"text-align: left !important;font-size: 14px;margin-bottom: 8px;\">Email Address</label>\n            <input type=\"text\" class=\"form-control\" readonly disabled value=\"").concat(_self.form_data.email, "\">\n        </div>\n    </div>"),
+                    html: "<div class=\"exists_modal\">\n                                           <h5 class=\"text-capitalize mb-exist-h-text\">Drop Off Center:</h5>\n                                           <h5 class=\"mb-exist-h-name\">".concat(_self.form_data.name, "</h5>\n                                           <h5 class=\"mb-exist-h-text\">already exists.</h5>\n                                           <hr/>\n                                           <h5 class=\"mb-exist-h-text\">Do you want to edit this center?</h5>\n                                        </div>"),
                     showCloseButton: false,
                     showCancelButton: true,
                     focusConfirm: false,
@@ -829,121 +860,9 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Drop Off Center\n                                            ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.name.$model,
-      expression: "v$.form_data.name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control md-readonly",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Contact Name\n                                            ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control md-readonly",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.contact_name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Email Address\n                                            ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.email.$model,
-      expression: "v$.form_data.email.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control md-readonly",
-    attrs: {
-      type: "email",
-      placeholder: "",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.email.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.email, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+  }, [_c("h3", {
+    staticClass: "mb-only-name"
+  }, [_vm._v(_vm._s(_vm.v$.form_data.name.$model))])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -1239,121 +1158,9 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Drop Off Center\n                                            ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.name.$model,
-      expression: "v$.form_data.name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control md-readonly",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Contact Name\n                                            ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control md-readonly",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.contact_name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Email Address\n                                            ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.email.$model,
-      expression: "v$.form_data.email.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control md-readonly",
-    attrs: {
-      type: "email",
-      placeholder: "",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.email.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.email, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                email is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+  }, [_c("h3", {
+    staticClass: "mb-only-name"
+  }, [_vm._v(_vm._s(_vm.v$.form_data.name.$model))])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -1762,49 +1569,9 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Drop Off Center\n                                            ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.name.$model,
-      expression: "v$.form_data.name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control md-readonly",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                Name is required\n                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+  }, [_c("h3", {
+    staticClass: "mb-only-name"
+  }, [_vm._v(_vm._s(_vm.v$.form_data.name.$model))])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"

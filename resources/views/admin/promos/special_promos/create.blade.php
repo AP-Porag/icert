@@ -22,7 +22,7 @@
                                                 @error('name')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
-                                                <p class="error" id="error_msg_name" style="display:none;"></p>
+                                                <p class="error" id="error_msg_name" style="display:none;"></p><br>
                                             </div>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                                 @error('value')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
-                                                <p class="error" id="error_msg_value" style="display:none;"></p>
+                                                <p class="error" id="error_msg_value" style="display:none;"></p><br>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
@@ -51,7 +51,7 @@
                                                 @error('number_of_items')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
-                                                <p class="error" id="error_msg_number_of_items" style="display:none;"></p>
+                                                <p class="error" id="error_msg_number_of_items" style="display:none;"></p><br>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
@@ -61,7 +61,7 @@
                                                 @error('start_date')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
-                                                <p class="error" id="error_msg_start_date" style="display:none;"></p>
+                                                <p class="error" id="error_msg_start_date" style="display:none;"></p><br>
                                             </div>
 
                                             <div class="mb-3 col-md-6">
@@ -71,7 +71,7 @@
                                                 @error('end_date')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
-                                                <p class="error" id="error_msg_end_date" style="display:none;"></p>
+                                                <p class="error" id="error_msg_end_date" style="display:none;"></p><br>
                                             </div>
 
                                             <div class="col-md-6">
@@ -107,7 +107,7 @@
                                                 @error('customer_id')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
-                                                <p class="error" id="error_msg_customers" style="display:none;"></p>
+                                                <p class="error" id="error_msg_customers" style="display:none;"></p><br>
                                             </div>
                                             <div class="mb-3 col-md-4">
                                                 <a class="btn btn-info waves-effect" style="margin-top: 28px;" href="{{route('admin.customers.create')}}">Add New Customer</a>

@@ -39,13 +39,13 @@ class HomeController extends Controller
         }
 
         //temporary for fixing;
-        $altPromos = Promo::where('end_date', '>', $today)->where('status','=',Promo::STATUS_EXPIRED)->get();
-        if ($altPromos->count() > 0) {
-            foreach ($altPromos as $promo){
-                $promo->status = Promo::STATUS_ACTIVE;
-                $promo->save();
-            }
-        }
+//        $altPromos = Promo::where('end_date', '>', $today)->where('status','=',Promo::STATUS_EXPIRED)->get();
+//        if ($altPromos->count() > 0) {
+//            foreach ($altPromos as $promo){
+//                $promo->status = Promo::STATUS_ACTIVE;
+//                $promo->save();
+//            }
+//        }
         return view('admin.dashboard.index');
     }
 }

@@ -65,31 +65,33 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                        <div class="card shipping_address_card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize font_big_text">
-                                                Name
-                                            </label>
-                                            <input
-                                                autofocus
-                                                type="text"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.name.$model"
-                                                ref="name"
-                                                readonly="readonly"
-                                            />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
-                                                Name is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="card shipping_address_card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-6">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize font_big_text">-->
+<!--                                                Name-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                autofocus-->
+<!--                                                type="text"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.name.$model"-->
+<!--                                                ref="name"-->
+<!--                                                readonly="readonly"-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">-->
+<!--                                                Name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                        <h3 class="mb-only-name">{{v$.form_data.name.$model}}</h3>
                     </div>
 
                     <div class="col-md-12">
@@ -279,23 +281,47 @@ export default {
                                 self.form_data.products.push(value.product_id)
                             });
                             // return false;
+//                             Swal.fire({
+//                                 title: "Third Party Authenticator already exists.Do you want to edit this?",
+//                                 icon: "question",
+//                                 html: `<div class="exists_modal">
+//         <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">
+//             <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Drop Off Center</label>
+//             <input type="text" class="form-control text-capitalize" readonly disabled value="${self.form_data.name}">
+//         </div>
+//         <div class="form-groups" style="margin-bottom: 15px;">
+//             <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Status</label>
+//             <input type="text" class="form-control text-capitalize" readonly disabled value="${self.form_data.status}">
+//         </div>
+// <!--        <div class="form-groups" style="margin-bottom: 15px;">-->
+// <!--            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Certified Products</label>-->
+// <!--            <span class="badge badge-soft-lime text-capitalize text-muted">Product one</span>-->
+// <!--        </div>-->
+//     </div>`,
+//                                 showCloseButton: false,
+//                                 showCancelButton: true,
+//                                 focusConfirm: false,
+//                                 confirmButtonText: `Yes`,
+//                                 cancelButtonText: `No`,
+//                             }).then((result)=>{
+//                                 if (result.isConfirmed){
+//                                     window.location.assign(`/admin/authenticators/${res.data.data.id}/edit`);
+//                                 }else {
+//                                     window.location.assign(`/admin/authenticators`);
+//                                     return false;
+//                                 }
+//                             });
+
                             Swal.fire({
-                                title: "Third Party Authenticator already exists.Do you want to edit this?",
+                                title: "",
                                 icon: "question",
                                 html: `<div class="exists_modal">
-        <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">
-            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Drop Off Center</label>
-            <input type="text" class="form-control text-capitalize" readonly disabled value="${self.form_data.name}">
-        </div>
-        <div class="form-groups" style="margin-bottom: 15px;">
-            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Status</label>
-            <input type="text" class="form-control text-capitalize" readonly disabled value="${self.form_data.status}">
-        </div>
-<!--        <div class="form-groups" style="margin-bottom: 15px;">-->
-<!--            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Certified Products</label>-->
-<!--            <span class="badge badge-soft-lime text-capitalize text-muted">Product one</span>-->
-<!--        </div>-->
-    </div>`,
+                                           <h5 class="text-capitalize mb-exist-h-text">Third Party Authenticator:</h5>
+                                           <h5 class="mb-exist-h-name">${self.form_data.name}</h5>
+                                           <h5 class="mb-exist-h-text">already exists.</h5>
+                                           <hr/>
+                                           <h5 class="mb-exist-h-text">Do you want to edit this Authenticator?</h5>
+                                        </div>`,
                                 showCloseButton: false,
                                 showCancelButton: true,
                                 focusConfirm: false,
@@ -303,9 +329,9 @@ export default {
                                 cancelButtonText: `No`,
                             }).then((result)=>{
                                 if (result.isConfirmed){
-                                    window.location.assign(`/admin/authenticators/${res.data.data.id}/edit`);
+                                    window.location.assign(`/admin/thirds/${res.data.data.id}/edit`);
                                 }else {
-                                    window.location.assign(`/admin/authenticators`);
+                                    window.location.assign(`/admin/thirds`);
                                     return false;
                                 }
                             });

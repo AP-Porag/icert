@@ -65,32 +65,34 @@
             >
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card shipping_address_card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Name
-                                            </label>
-                                            <input
-                                                autofocus
-                                                type="text"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.name.$model"
-                                                ref="name"
-                                                readonly="readonly"
-                                            />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
-                                                Name is required
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                        <div class="card shipping_address_card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize">-->
+<!--                                                Name-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                autofocus-->
+<!--                                                type="text"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.name.$model"-->
+<!--                                                ref="name"-->
+<!--                                                readonly="readonly"-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">-->
+<!--                                                Name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
-                                </div>
-                            </div>
-                        </div>
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                        <h3 class="mb-only-name">{{v$.form_data.name.$model}}</h3>
                     </div>
 
                     <div class="col-md-12">

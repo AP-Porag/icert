@@ -105,63 +105,64 @@
             >
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card shipping_address_card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Drop Off Center
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.name.$model"
-                                                readonly
-                                            />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
-                                                Name is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100">
-                                                Contact Name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.contact_name.$model"
-                                                readonly
-                                            />
-                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
-                                                contact name is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Email Address
-                                            </label>
-                                            <input
-                                                type="email"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.email.$model"
-                                                readonly
-                                            />
-                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">
-                                                email is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="card shipping_address_card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize">-->
+<!--                                                Drop Off Center-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="text"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.name.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">-->
+<!--                                                Name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100">-->
+<!--                                                Contact Name-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="text"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.contact_name.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
+<!--                                                contact name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize">-->
+<!--                                                Email Address-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="email"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.email.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">-->
+<!--                                                email is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <h3 class="mb-only-name">{{v$.form_data.name.$model}}</h3>
                     </div>
                     <div class="col-md-12">
                         <div class="card shipping_address_card">
@@ -317,63 +318,64 @@
             >
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card shipping_address_card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Drop Off Center
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.name.$model"
-                                                readonly
-                                            />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
-                                                Name is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100">
-                                                Contact Name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.contact_name.$model"
-                                                readonly
-                                            />
-                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
-                                                contact name is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Email Address
-                                            </label>
-                                            <input
-                                                type="email"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.email.$model"
-                                                readonly
-                                            />
-                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">
-                                                email is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="card shipping_address_card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize">-->
+<!--                                                Drop Off Center-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="text"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.name.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">-->
+<!--                                                Name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100">-->
+<!--                                                Contact Name-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="text"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.contact_name.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
+<!--                                                contact name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize">-->
+<!--                                                Email Address-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="email"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.email.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">-->
+<!--                                                email is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <h3 class="mb-only-name">{{v$.form_data.name.$model}}</h3>
                     </div>
 
                     <div class="col-md-12">
@@ -584,26 +586,26 @@
             >
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card shipping_address_card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Drop Off Center
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="form-control md-readonly"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.name.$model"
-                                                readonly
-                                            />
-                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
-                                                Name is required
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                        <div class="card shipping_address_card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-4">-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label class="form-label w-100 text-capitalize">-->
+<!--                                                Drop Off Center-->
+<!--                                            </label>-->
+<!--                                            <input-->
+<!--                                                type="text"-->
+<!--                                                class="form-control md-readonly"-->
+<!--                                                placeholder=""-->
+<!--                                                v-model.trim="v$.form_data.name.$model"-->
+<!--                                                readonly-->
+<!--                                            />-->
+<!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">-->
+<!--                                                Name is required-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 <!--                                    <div class="col-md-4">-->
 <!--                                        <div class="mb-3">-->
 <!--                                            <label class="form-label w-100">-->
@@ -638,9 +640,10 @@
 <!--                                            </div>-->
 <!--                                        </div>-->
 <!--                                    </div>-->
-                                </div>
-                            </div>
-                        </div>
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <h3 class="mb-only-name">{{v$.form_data.name.$model}}</h3>
                     </div>
                     <div class="col-md-12">
                         <div class="card shipping_address_card">
@@ -1179,23 +1182,47 @@ export default {
                                 self.form_data.products.push(value.product_id)
                             });
                             // return false;
+    //                         Swal.fire({
+    //                             title: "Drop Off Center already exists.Do you want to edit this center?",
+    //                             icon: "question",
+    //                             html: `<div class="exists_modal">
+    //     <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">
+    //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Drop Off Center</label>
+    //         <input type="text" class="form-control" readonly disabled value="${self.form_data.name}">
+    //     </div>
+    //     <div class="form-groups" style="margin-bottom: 15px;">
+    //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Contact Name</label>
+    //         <input type="text" class="form-control" readonly disabled value="${self.form_data.contact_name}">
+    //     </div>
+    //     <div class="form-groups" style="margin-bottom: 15px;">
+    //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Email Address</label>
+    //         <input type="text" class="form-control" readonly disabled value="${self.form_data.email}">
+    //     </div>
+    // </div>`,
+    //                             showCloseButton: false,
+    //                             showCancelButton: true,
+    //                             focusConfirm: false,
+    //                             confirmButtonText: `Yes`,
+    //                             cancelButtonText: `No`,
+    //                         }).then((result)=>{
+    //                             if (result.isConfirmed){
+    //                                 window.location.assign(`/admin/thirds/${res.data.data.id}/edit`);
+    //                             }else {
+    //                                 window.location.assign(`/admin/thirds`);
+    //                                 return false;
+    //                             }
+    //                         });
+
                             Swal.fire({
-                                title: "Drop Off Center already exists.Do you want to edit this center?",
+                                title: "",
                                 icon: "question",
                                 html: `<div class="exists_modal">
-        <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">
-            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Drop Off Center</label>
-            <input type="text" class="form-control" readonly disabled value="${self.form_data.name}">
-        </div>
-        <div class="form-groups" style="margin-bottom: 15px;">
-            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Contact Name</label>
-            <input type="text" class="form-control" readonly disabled value="${self.form_data.contact_name}">
-        </div>
-        <div class="form-groups" style="margin-bottom: 15px;">
-            <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Email Address</label>
-            <input type="text" class="form-control" readonly disabled value="${self.form_data.email}">
-        </div>
-    </div>`,
+                                           <h5 class="text-capitalize mb-exist-h-text">Drop Off Center:</h5>
+                                           <h5 class="mb-exist-h-name">${self.form_data.name}</h5>
+                                           <h5 class="mb-exist-h-text">already exists.</h5>
+                                           <hr/>
+                                           <h5 class="mb-exist-h-text">Do you want to edit this center?</h5>
+                                        </div>`,
                                 showCloseButton: false,
                                 showCancelButton: true,
                                 focusConfirm: false,

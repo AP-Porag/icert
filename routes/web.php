@@ -75,6 +75,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     Route::resource('slpromos', SpecialPromoController::class);
     Route::get('/slpromos/makeNPC/${id}',[SpecialPromoController::class,'makeNPC'] )->name('slpromos.makeNPC');
+    Route::get('/slpromos/attach/aditional/customer/${id}',[SpecialPromoController::class,'attachAditionalCustomer'] )->name('slpromos.attachAditionalCustomer');
+    Route::post('/slpromos/save/aditional/customer',[SpecialPromoController::class,'saveAditionalCustomer'] )->name('slpromos.saveAditionalCustomer');
 
     //customers
     Route::resource('customers', CustomerController::class);

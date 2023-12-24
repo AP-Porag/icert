@@ -679,3 +679,19 @@ ul li {
     padding-left: 25px;
     padding-right: 0;
 }
+.wizard-progress-bar{
+    display: none;
+}
+.mb-only-name{
+    margin-bottom: 30px;
+    font-size: 21px;
+}
+.mb-exist-h-text{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.mb-exist-h-name{
+    font-size: 21px;
+    margin-bottom: 25px;
+}

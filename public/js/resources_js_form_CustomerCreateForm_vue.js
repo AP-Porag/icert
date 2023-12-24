@@ -99,9 +99,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       name: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
-      contact_name: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
-      },
+      // contact_name: {
+      //     required,
+      // },
       email: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required,
         email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email
@@ -164,7 +164,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                Name is required\n            ")]) : _vm._e()]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Name is required\n                ")]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "mb-3 col-md-6"
   }, [_vm._m(1), _vm._v(" "), _c("input", {
     directives: [{
@@ -196,14 +196,16 @@ var render = function render() {
     }
   }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                Email is required\n            ")]) : _vm._e()]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Email is required\n                ")]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "mb-3 col-md-6"
-  }, [_vm._m(2), _vm._v(" "), _c("input", {
+  }, [_c("label", {
+    staticClass: "form-label"
+  }, [_vm._v("Contact Name")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.contact_name,
+      expression: "form_data.contact_name",
       modifiers: {
         trim: true
       }
@@ -215,22 +217,20 @@ var render = function render() {
       placeholder: "Contact Name"
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.contact_name
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "contact_name", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                Contact name is required\n            ")]) : _vm._e()]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "mb-3 col-md-6"
-  }, [_vm._m(3), _vm._v(" "), _c("VuePhoneNumberInput", {
+  }, [_vm._m(2), _vm._v(" "), _c("VuePhoneNumberInput", {
     attrs: {
       id: "phone",
       name: "phone",
@@ -246,7 +246,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _vm.v$.form_data.phone.required.$invalid && _vm.show_error ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                Telephone is required\n            ")]) : _vm._e()], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Telephone is required\n                ")]) : _vm._e()], 1)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "mb-3 offset-md-6 col-md-6"
@@ -259,14 +259,14 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa fa-save"
-  }), _vm._v(" Save\n                ")]), _vm._v(" "), _c("button", {
+  }), _vm._v(" Save\n                    ")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-secondary waves-effect",
     on: {
       click: _vm.cancelCreate
     }
   }, [_c("i", {
     staticClass: "fa fa-times"
-  }), _vm._v(" Cancel\n                ")])])])])]);
+  }), _vm._v(" Cancel\n                    ")])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -282,14 +282,6 @@ var staticRenderFns = [function () {
   return _c("label", {
     staticClass: "form-label"
   }, [_vm._v("Email "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    staticClass: "form-label"
-  }, [_vm._v("Contact Name "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {

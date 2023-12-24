@@ -7,7 +7,9 @@
                 <div class="card-body">
                     <h4 class="card-title mb-3">{{get_page_meta('title', true)}}</h4>
 
-                    <form action="#" method="POST">
+                    <form action="{{route('admin.slpromos.saveAditionalCustomer')}}" method="POST">
+                        @method('post')
+                        @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card shipping_address_card">
@@ -87,15 +89,43 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3 offset-md-6 col-md-6">
-                                <div class="text-end">
-                                    <a href="{{route('admin.slpromos.attachAditionalCustomer',$item->id)}}" class="btn btn-primary waves-effect waves-lightml-2 me-2">
-                                        <i class="fa fa-user-friends"></i> Attach another customer to this SPC
-                                    </a>
+                            <div class="col-md-12">
+                                <div class="card shipping_address_card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="mb-3 col-md-8">
+                                                <label class="form-label">Select Customer <span class="error">*</span></label>
+                                                <input type="text" readonly name="promo_id" class="form-control" hidden="hidden" value="{{$item->id}}">
+                                                <select class="select2 form-control" multiple name="customers[]"
+                                                        data-placeholder="Choose ..." id="customers">
+                                                    @foreach($customers as $customer)
+                                                        <option value="{{$customer->id}}" class="text-capitalize">{{$customer->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('customer_id')
+                                                <p class="error">{{ $message }}</p>
+                                                @enderror
+                                                <p class="error" id="error_msg_customers" style="display:none;"></p><br>
+                                            </div>
+                                            <div class="mb-3 col-md-4">
+                                                <a class="btn btn-info waves-effect" style="margin-top: 28px;" href="{{route('admin.customers.create')}}">Add New Customer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                    <a class="btn btn-secondary waves-effect" href="{{route('admin.promos.index')}}">
-                                        <i class="fa fa-times"></i> Back
-                                    </a>
+                            <div class="col-md-12">
+                                <div class="mb-3 offset-md-6 col-md-6">
+                                    <div class="text-end">
+                                        <button class="btn btn-primary waves-effect waves-lightml-2 me-2">
+                                            <i class="fa fa-save"></i> Save
+                                        </button>
+
+                                        <a class="btn btn-secondary waves-effect" href="{{route('admin.promos.index')}}">
+                                            <i class="fa fa-times"></i> Back
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

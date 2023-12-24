@@ -18,11 +18,11 @@
             </div>
 
             <div class="mb-3 col-md-6">
-                <label class="form-label">Contact Name <span class="error">*</span></label>
-                <input type="text" name="contact_name" class="form-control" placeholder="Contact Name" v-model.trim="v$.form_data.contact_name.$model">
-                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">
-                    Contact name is required
-                </div>
+                <label class="form-label">Contact Name</label>
+                <input type="text" name="contact_name" class="form-control" placeholder="Contact Name" v-model.trim="form_data.contact_name">
+<!--                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error">-->
+<!--                    Contact name is required-->
+<!--                </div>-->
             </div>
 
             <div class="mb-3 col-md-6">
@@ -124,9 +124,9 @@ export default {
             name: {
                 required,
             },
-            contact_name: {
-                required,
-            },
+            // contact_name: {
+            //     required,
+            // },
             email: {
                 required,
                 email
