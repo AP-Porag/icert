@@ -319,6 +319,9 @@
         .show-div{
             display: block;
         }
+        .input-icon > i {
+            top: 56% !important;
+        }
     </style>
 @endpush
 
