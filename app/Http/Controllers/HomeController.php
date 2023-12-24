@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,10 +28,11 @@ class HomeController extends Controller
         set_page_meta('Dashboard');
 
         //changing promo code status
-        $today = date('Y-m-d');
 
-
-        $promos = Promo::where('end_date', '<', $today)->where('status','=',Promo::STATUS_ACTIVE)->get();
+        $promos = Promo::whereDate('end_date', '<', now())->where('status','=',Promo::STATUS_ACTIVE)->get();
+//        $promos = Promo::where(function ($query) use ($today){
+//            $query->where('end_date', '<=', $today);
+//        })->get();
         if ($promos->count() > 0) {
             foreach ($promos as $promo){
                 $promo->status = Promo::STATUS_EXPIRED;
@@ -38,14 +40,15 @@ class HomeController extends Controller
             }
         }
 
+//        return $promos;
         //temporary for fixing;
-//        $altPromos = Promo::where('end_date', '>', $today)->where('status','=',Promo::STATUS_EXPIRED)->get();
-//        if ($altPromos->count() > 0) {
-//            foreach ($altPromos as $promo){
-//                $promo->status = Promo::STATUS_ACTIVE;
-//                $promo->save();
-//            }
-//        }
+        $altPromos = Promo::whereDate('end_date', '>', now())->where('status','=',Promo::STATUS_EXPIRED)->get();
+        if ($altPromos->count() > 0) {
+            foreach ($altPromos as $promo){
+                $promo->status = Promo::STATUS_ACTIVE;
+                $promo->save();
+            }
+        }
         return view('admin.dashboard.index');
     }
 }
