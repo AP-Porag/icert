@@ -175,26 +175,6 @@
         .show-div{
             display: block;
         }
-
-        .input-icon {
-            position: relative;
-        }
-
-        .input-icon > i {
-            position: absolute;
-            display: block;
-            transform: translate(0, -50%);
-            top: 72%;
-            pointer-events: none;
-            width: 25px;
-            text-align: center;
-            font-style: normal;
-        }
-
-        .input-icon > input {
-            padding-left: 25px;
-            padding-right: 0;
-        }
     </style>
 @endpush
 

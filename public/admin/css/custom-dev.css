@@ -668,7 +668,7 @@ ul li {
     position: absolute;
     display: block;
     transform: translate(0, -50%);
-    top: 72%;
+    top: 57%;
     pointer-events: none;
     width: 25px;
     text-align: center;
