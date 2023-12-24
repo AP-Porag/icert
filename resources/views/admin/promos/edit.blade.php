@@ -121,14 +121,14 @@
         startDate.flatpickr({
             enableTime: false,
             minDate: "today",
-            dateFormat:'d-m-Y',
+            dateFormat:'Y-m-d',
             onChange: function (selectedDates, dateStr, instance) {
                 startDate = selectedDates;
                 console.log(startDate)
                 endDate.flatpickr({
                     enableTime: false,
                     minDate: new Date(selectedDates),
-                    dateFormat:'d-m-Y',
+                    dateFormat:'Y-m-d',
                 });
             },
         });
@@ -136,7 +136,7 @@
         endDate.flatpickr({
             enableTime: false,
             minDate: "today",
-            dateFormat:'d-m-Y',
+            dateFormat:'Y-m-d',
             onChange: function(selectedDates, dateStr, instance) {
                 $("#no_end_date").addClass("disable_checkbox");
             },
@@ -145,7 +145,7 @@
         $("#no_end_date").change(function() {
             if(this.checked) {
                 $("#end_date").addClass("disable_checkbox");
-                $("#end_date").val("31-12-2099");
+                $("#end_date").val("2099-12-31");
                 console.log('checked')
             }else {
                 console.log('unchecked')
