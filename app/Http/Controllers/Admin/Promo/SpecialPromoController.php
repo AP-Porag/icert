@@ -59,7 +59,7 @@ class SpecialPromoController extends Controller
             return response(['status' => 200,'message'=>'Created successfully']);
 //            return redirect()->route('admin.slpromos.index');
         } catch (\Exception $e) {
-            return response(['status' => 500,'message'=>'Created successfully']);
+            return response(['status' => 500,'message'=>'Server Error!']);
         }
         return back();
     }

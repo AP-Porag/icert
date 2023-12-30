@@ -56,6 +56,7 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100">
                                                 Contact Name
+                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 type="text"
@@ -73,6 +74,7 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
                                                 Email Address
+                                                <span class="error">*</span>
                                             </label>
                                             <input
                                                 type="email"
@@ -1251,7 +1253,8 @@ export default {
             self.form_data.billing_city = self.third_party.billing_city
             self.form_data.billing_postal = self.third_party.billing_postal
             self.form_data.billing_phone = self.third_party.billing_phone
-            self.form_data.same_as_billing = self.third_party.same_as_billing == 0 ? false: true
+            // self.form_data.same_as_billing = self.third_party.same_as_billing == 0 ? false: true
+            self.form_data.same_as_billing = false
             self.form_data.shipping_name = self.third_party.shipping_name
             self.form_data.shipping_company_name = self.third_party.shipping_company_name
             self.form_data.shipping_address_line_one = self.third_party.shipping_address_line_one

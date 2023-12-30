@@ -63,7 +63,12 @@ class PromoDataTable extends DataTable
                 return custom_date($item->start_date,'d-m-Y');
             })
             ->editColumn('end_date',function ($item){
-                return custom_date($item->end_date,'d-m-Y');
+
+                if ($item->no_end_date){
+                    return 'No End Date';
+                }else{
+                    return custom_date($item->end_date,'d-m-Y');
+                }
             })
             ->editColumn('status',function ($item){
                 $badge = $item->status == Promo::STATUS_ACTIVE ? "bg-success" : "bg-danger";

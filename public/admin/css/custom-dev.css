@@ -628,12 +628,15 @@ ul li {
     border: 0;
     padding-left: 0;
 }
-.vue-form-wizard .wizard-nav-pills {
-    display: none !important;
-}
-.vue-form-wizard .wizard-header {
-    display: none !important;
-}
+/*.vue-form-wizard .wizard-nav-pills {*/
+/*    display: none !important;*/
+/*}*/
+/*.vue-form-wizard .wizard-header {*/
+/*    display: none !important;*/
+/*}*/
+/*.wizard-progress-bar{*/
+/*    display: none;*/
+/*}*/
 .mb-text-only{
     background-color: #FFFFFF !important;
 }
@@ -678,9 +681,6 @@ ul li {
 .input-icon > input {
     padding-left: 25px;
     padding-right: 0;
-}
-.wizard-progress-bar{
-    display: none;
 }
 .mb-only-name{
     margin-bottom: 30px;

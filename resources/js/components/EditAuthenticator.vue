@@ -348,7 +348,20 @@ export default {
 }
 </script>
 
-<style scoped>
-
-
+<style>
+.vue-form-wizard .wizard-nav .wizard-navigation .wizard-nav-pills {
+    display: none !important;
+}
+.vue-form-wizard .wizard-nav .wizard-navigation .wizard-header {
+    display: none !important;
+}
+.vue-form-wizard.md .wizard-icon-circle{
+    display: none !important;
+}
+.stepTitle .active{
+    display: none !important;
+}
+.wizard-progress-bar{
+    display: none !important;
+}
 </style>

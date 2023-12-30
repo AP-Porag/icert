@@ -182,9 +182,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     cancelButtonText: "No"
                   }).then(function (result) {
                     if (result.isConfirmed) {
-                      window.location.assign("/admin/thirds/".concat(res.data.data.id, "/edit"));
+                      window.location.assign("/admin/authenticators/".concat(res.data.data.id, "/edit"));
                     } else {
-                      window.location.assign("/admin/thirds");
+                      window.location.assign("/admin/authenticators");
                       return false;
                     }
                   });

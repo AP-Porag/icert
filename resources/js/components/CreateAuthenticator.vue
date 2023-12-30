@@ -329,9 +329,9 @@ export default {
                                 cancelButtonText: `No`,
                             }).then((result)=>{
                                 if (result.isConfirmed){
-                                    window.location.assign(`/admin/thirds/${res.data.data.id}/edit`);
+                                    window.location.assign(`/admin/authenticators/${res.data.data.id}/edit`);
                                 }else {
-                                    window.location.assign(`/admin/thirds`);
+                                    window.location.assign(`/admin/authenticators`);
                                     return false;
                                 }
                             });

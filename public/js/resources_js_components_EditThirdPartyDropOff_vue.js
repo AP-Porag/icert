@@ -472,7 +472,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     self.form_data.billing_city = self.third_party.billing_city;
     self.form_data.billing_postal = self.third_party.billing_postal;
     self.form_data.billing_phone = self.third_party.billing_phone;
-    self.form_data.same_as_billing = self.third_party.same_as_billing == 0 ? false : true;
+    // self.form_data.same_as_billing = self.third_party.same_as_billing == 0 ? false: true
+    self.form_data.same_as_billing = false;
     self.form_data.shipping_name = self.third_party.shipping_name;
     self.form_data.shipping_company_name = self.third_party.shipping_company_name;
     self.form_data.shipping_address_line_one = self.third_party.shipping_address_line_one;
@@ -686,7 +687,9 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Contact Name\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Contact Name\n                                                "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -721,7 +724,9 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Email Address\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Email Address\n                                                "), _c("span", {
+    staticClass: "error"
+  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",

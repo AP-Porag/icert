@@ -17,10 +17,10 @@ class Promo extends Model
         'name','value','number_of_items','start_date','end_date','no_end_date','status','priority','is_select_customer'
     ];
 
-//    protected $dates = [
-//        'start_date',
-//        'end_date',
-//    ];
+    protected $dates = [
+        'start_date',
+        'end_date',
+    ];
 
     public function customers()
     {
