@@ -83,7 +83,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     checkFormSubmit: function checkFormSubmit() {
       this.v$.$touch();
-      if (this.v$.form_data.name.$invalid || this.v$.form_data.email.$invalid || this.v$.form_data.contact_name.$invalid || this.v$.form_data.phone.$invalid) {
+      if (this.v$.form_data.name.$invalid || this.v$.form_data.email.$invalid ||
+      // this.v$.form_data.contact_name.$invalid ||
+      this.v$.form_data.phone.$invalid) {
         this.show_error = true;
         return false;
       } else {

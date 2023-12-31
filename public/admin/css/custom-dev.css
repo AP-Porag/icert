@@ -637,6 +637,19 @@ ul li {
 /*.wizard-progress-bar{*/
 /*    display: none;*/
 /*}*/
+
+.vue-form-wizard.md .wizard-icon-circle {
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 18px !important;
+}
+
+.vue-form-wizard.md .wizard-nav-pills>li.active>a .wizard-icon {
+    font-size: 18px !important;
+}
+.stepTitle {
+    font-size: 16px !important;
+}
 .mb-text-only{
     background-color: #FFFFFF !important;
 }

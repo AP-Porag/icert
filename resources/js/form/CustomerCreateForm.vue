@@ -105,7 +105,7 @@ export default {
             this.v$.$touch()
             if (this.v$.form_data.name.$invalid ||
                 this.v$.form_data.email.$invalid ||
-                this.v$.form_data.contact_name.$invalid ||
+                // this.v$.form_data.contact_name.$invalid ||
                 this.v$.form_data.phone.$invalid
             ) {
                 this.show_error = true;
