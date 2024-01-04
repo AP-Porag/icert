@@ -27,6 +27,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   components: {
     VuePhoneNumberInput: (vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0___default())
   },
+  props: ['propFromBlade'],
   setup: function setup() {
     return {
       v$: (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_1__.useVuelidate)()
@@ -44,22 +45,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  // mounted() {
+  //     console.log(this.propFromBlade);
+  // },
   methods: {
     submitForm: function submitForm(e) {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var self;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               e.preventDefault();
               if (!_this.checkFormSubmit()) {
-                _context.next = 5;
+                _context.next = 6;
                 break;
               }
+              self = _this;
               axios.post("/admin/customers", _this.form_data).then(function (res) {
                 Swal.fire("Saved!", "", "success").then(function (result) {
                   if (result.isConfirmed) {
-                    window.location.href = "/admin/customers";
+                    // window.location.href = "/admin/customers";
+                    window.location.href = "/" + self.propFromBlade;
                   }
                 });
               })["catch"](function (err) {
@@ -69,11 +76,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   self.showSomethingWrong();
                 }
               });
-              _context.next = 6;
+              _context.next = 7;
               break;
-            case 5:
-              return _context.abrupt("return");
             case 6:
+              return _context.abrupt("return");
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -93,7 +100,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     cancelCreate: function cancelCreate(e) {
       e.preventDefault();
-      window.location.href = "/admin/customers";
+      // window.location.href = "/admin/customers";
+      window.location.href = "/" + this.propFromBlade;
     }
   },
   validations: {

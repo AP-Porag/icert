@@ -17,7 +17,7 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Name <span class="error">*</span></label>
-                                                <input type="text" name="name" class="form-control" required="" placeholder="Name"
+                                                <input type="text" name="name" id="promo_name" class="form-control" required="" placeholder="Name"
                                                        value="{{ old('name') }}">
                                                 @error('name')
                                                 <p class="error">{{ $message }}</p>
@@ -110,7 +110,7 @@
                                                 <p class="error" id="error_msg_customers" style="display:none;"></p><br>
                                             </div>
                                             <div class="mb-3 col-md-4">
-                                                <a class="btn btn-info waves-effect" style="margin-top: 28px;" href="{{route('admin.customers.create')}}">Add New Customer</a>
+                                                <a class="btn btn-info waves-effect" id="add_new_customer_button" style="margin-top: 28px;" href="{{route('admin.customers.create')}}">Add New Customer</a>
                                             </div>
                                         </div>
                                     </div>
@@ -280,6 +280,24 @@
                 // }
             });
         });
+
+        $(document).ready(function(){
+            $("#add_new_customer_button").addClass("disable-click");
+            $('#promo_name').on('keyup',function(e) {
+                if (e.which === 32) {
+                    $('#error_msg_name').append('No spaces are allowed!').show();
+                }else {
+                    $('#error_msg_name').append().hide();
+                    if($(this).val().length >= 5) {
+                        $("#add_new_customer_button").removeClass("disable-click");
+                    } else{
+                        $("#add_new_customer_button").addClass("disable-click");
+                    }
+                }
+
+            });
+        });
+
     </script>
 @endpush
 
@@ -321,6 +339,11 @@
         }
         .input-icon > i {
             top: 56% !important;
+        }
+        .disable-click{
+            pointer-events:none;
+            background: #cfcfcf;
+            border: 1px solid #cfcfcf;
         }
     </style>
 @endpush

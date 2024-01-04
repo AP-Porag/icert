@@ -18,7 +18,7 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Name <span class="error">*</span></label>
-                                                <input type="text" readonly name="name" class="form-control md-readonly" required="" placeholder="Name"
+                                                <input type="text" readonly name="name" id="promo_name" class="form-control md-readonly" required="" placeholder="Name"
                                                        value="{{ $item->name,old('name') }}">
                                                 @error('name')
                                                 <p class="error">{{ $message }}</p>
@@ -105,7 +105,7 @@
                                                 @enderror
                                             </div>
                                             <div class="mb-3 col-md-4">
-                                                <a class="btn btn-info waves-effect" style="margin-top: 28px;" href="{{route('admin.customers.create')}}">Add New Customer</a>
+                                                <a class="btn btn-info waves-effect" id="add_new_customer_button" style="margin-top: 28px;" href="{{route('admin.customers.create')}}">Add New Customer</a>
                                             </div>
                                         </div>
                                     </div>
@@ -175,6 +175,28 @@
                 $("#end_date").val("");
             }
         });
+
+        $(document).ready(function(){
+            if($('#promo_name').val().length >= 5) {
+                $("#add_new_customer_button").removeClass("disable-click");
+            } else{
+                $("#add_new_customer_button").addClass("disable-click");
+            }
+            // $("#add_new_customer_button").addClass("disable-click");
+            $('#promo_name').on('keyup',function(e) {
+                if (e.which === 32) {
+                    $('#error_msg_name').append('No spaces are allowed!').show();
+                }else {
+                    $('#error_msg_name').append('').hide();
+                    if($(this).val().length >= 5) {
+                        $("#add_new_customer_button").removeClass("disable-click");
+                    } else{
+                        $("#add_new_customer_button").addClass("disable-click");
+                    }
+                }
+
+            });
+        });
     </script>
 @endpush
 
@@ -184,6 +206,11 @@
     <style>
         .shipping_address_card{
             background: #eeeeee;
+        }
+        .disable-click{
+            pointer-events:none;
+            background: #cfcfcf;
+            border: 1px solid #cfcfcf;
         }
     </style>
 @endpush

@@ -64,6 +64,7 @@ export default {
     components: {
         VuePhoneNumberInput,
     },
+    props: ['propFromBlade'],
     setup: () => ({ v$: useVuelidate() }),
     data(){
         return{
@@ -77,16 +78,22 @@ export default {
             },
         }
     },
+    // mounted() {
+    //     console.log(this.propFromBlade);
+    // },
     methods:{
         async submitForm(e){
             e.preventDefault();
             if (this.checkFormSubmit()){
+
+                let self = this;
                 axios
                     .post("/admin/customers", this.form_data)
                     .then(function (res) {
                         Swal.fire("Saved!", "", "success").then((result)=>{
                             if (result.isConfirmed) {
-                                window.location.href = "/admin/customers";
+                                // window.location.href = "/admin/customers";
+                                window.location.href = "/"+self.propFromBlade;
                             }
                         });
                     })
@@ -116,7 +123,8 @@ export default {
         },
         cancelCreate(e){
             e.preventDefault();
-            window.location.href = "/admin/customers";
+            // window.location.href = "/admin/customers";
+            window.location.href = "/"+this.propFromBlade;
         }
     },
     validations: {

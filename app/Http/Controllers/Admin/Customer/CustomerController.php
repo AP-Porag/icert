@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
 use App\Services\CustomerService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class CustomerController extends Controller
 {
@@ -27,7 +28,11 @@ class CustomerController extends Controller
     {
         set_page_meta('Create Customer');
 
-        return view('admin.customers.create');
+        // Get the URL of the previous request
+        $previousUrl = URL::previous();
+        $partOfPreviousUrl = substr($previousUrl, strpos($previousUrl, "admin"));
+
+        return view('admin.customers.create',compact('partOfPreviousUrl'));
     }
 
     public function store(CustomerRequest $request)

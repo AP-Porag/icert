@@ -18,11 +18,12 @@
                                         <div class="row">
                                             <div class="mb-3 col-md-6">
                                                 <label class="form-label">Promo Code Name <span class="error">*</span></label>
-                                                <input type="text" readonly name="name" class="form-control md-readonly" required="" placeholder="Name"
+                                                <input type="text" readonly id="promo_name" name="name" class="form-control md-readonly" required="" placeholder="Name"
                                                        value="{{ $item->name,old('name') }}">
                                                 @error('name')
                                                 <p class="error">{{ $message }}</p>
                                                 @enderror
+                                                <p class="error" id="error_msg_name" style="display:none;"></p><br>
                                             </div>
                                         </div>
                                     </div>
@@ -179,6 +180,17 @@
                 $("#end_date").removeClass("disable_checkbox");
             }
 
+        });
+
+        $(document).ready(function(){
+            $('#promo_name').on('keyup',function(e) {
+                if (e.which === 32) {
+                    $('#error_msg_name').append('No spaces are allowed!').show();
+                }else {
+                    $('#error_msg_name').append().hide();
+                }
+
+            });
         });
     </script>
 @endpush
