@@ -29,12 +29,12 @@
                             </a>
                         </li>
 
-                        <li class="{{ request()->is('admin/customers*') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.customers.index') }}"
-                               class="{{ request()->routeIs('admin.customers.index') ? 'active' : '' }}">
-                                Customers
-                            </a>
-                        </li>
+{{--                        <li class="{{ request()->is('admin/customers*') ? 'mm-active' : '' }}">--}}
+{{--                            <a href="{{ route('admin.customers.index') }}"--}}
+{{--                               class="{{ request()->routeIs('admin.customers.index') ? 'active' : '' }}">--}}
+{{--                                Customers--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="{{ request()->is('admin/products*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.products.index') }}"

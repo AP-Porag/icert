@@ -24,7 +24,7 @@ class CustomerRequest extends FormRequest
         return [
             'name'=>'required',
             'email'=>['required','email'],
-            'contact_name'=>'required',
+            'contact_name'=>'nullable',
             'phone'=>'required'
         ];
     }
