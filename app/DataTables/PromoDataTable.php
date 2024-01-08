@@ -113,7 +113,7 @@ class PromoDataTable extends DataTable
             //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
-            ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
+            ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Actions']);
 //             ->buttons([
 //                        Button::make('excel'),
 //                        Button::make('csv'),

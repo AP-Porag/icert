@@ -31,7 +31,7 @@ class UserDataTable extends DataTable
                     $buttons .= '<form action="' . route('admin.users.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
-                        <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>
+                        <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Suspend</button></form>
                         ';
                 }
 
@@ -96,7 +96,7 @@ class UserDataTable extends DataTable
                     //->dom('Bfrtip')
                     ->orderBy(1)
                     ->selectStyleSingle()
-                    ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Action']);
+                    ->addAction(['width' => '55px', 'class' => 'text-center', 'printable' => false, 'exportable' => false, 'title' => 'Actions']);
 //             ->buttons([
 //                        Button::make('excel'),
 //                        Button::make('csv'),
@@ -117,8 +117,8 @@ class UserDataTable extends DataTable
         return [
 //            Column::computed('DT_RowIndex', 'SL#'),
 //            Column::make('avatar', 'avatar')->title('Avatar'),
+            Column::make('first_name', 'first_name')->title('Name (First & Last)'),
             Column::make('username', 'username')->title('Username'),
-            Column::make('first_name', 'first_name')->title('Name'),
             Column::make('email', 'email')->title('Email'),
 //            Column::make('user_type', 'user_type')->title('User From'),
             Column::make('status', 'status')->title('Status'),
