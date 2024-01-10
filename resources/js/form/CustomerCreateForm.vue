@@ -75,12 +75,15 @@ export default {
                 email:'',
                 contact_name:'',
                 phone:'',
+                page: '',
             },
         }
     },
-    // mounted() {
-    //     console.log(this.propFromBlade);
-    // },
+    mounted() {
+        this.form_data.page = this.propFromBlade
+        console.log(this.propFromBlade);
+        console.log(this.form_data.page);
+    },
     methods:{
         async submitForm(e){
             e.preventDefault();

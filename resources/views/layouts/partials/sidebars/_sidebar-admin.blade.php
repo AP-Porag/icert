@@ -57,12 +57,14 @@
                                 Promo Codes
                             </a>
                         </li>
+                        @can('All Users')
                         <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.users.index') }}"
                                class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
                                 Users
                             </a>
                         </li>
+                        @endcan
 
 {{--                        <li class="{{ request()->is('admin/slpromos*') ? 'mm-active' : '' }}">--}}
 {{--                            <a href="{{ route('admin.slpromos.index') }}"--}}
@@ -129,47 +131,61 @@
                     </a>
                 </li>
 
+                @can('All Entries')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/entry.png')}}" alt=""><span> Entry </span>
                     </a>
                 </li>
+                @endcan
 
+                @can('All Receiving')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/receiving.png')}}" alt=""><span> Receiving </span>
                     </a>
                 </li>
+                @endcan
 
+                @can('All Gradings')
                 <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.roles.index') }}" class="waves-effect {{ request()->routeIs('admin.roles*') ? 'active' : '' }}">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/grading.png')}}" alt=""><span> Grading </span>
                     </a>
                 </li>
+                @endcan
 
+                @can('All Labels')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/labels.png')}}" alt=""><span> Labels </span>
                     </a>
                 </li>
+                @endcan
 
+                @can('All Completion')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/completion.png')}}" alt=""><span> Completion </span>
                     </a>
                 </li>
+                @endcan
 
+                @can('All Shipping')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/shipping.png')}}" alt=""><span> Shipping </span>
                     </a>
                 </li>
+                @endcan
 
+                @can('All Views')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/view.png')}}" alt=""><span> View </span>
                     </a>
                 </li>
+                @endcan
 
                 <li class="{{ request()->is('admin/about*') ? 'mm-active' : '' }}">
                     <a href="{{route('admin.about.index')}}" class="waves-effect {{ request()->is('admin/about*') ? 'mm-active' : '' }}">

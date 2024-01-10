@@ -41,13 +41,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: '',
         email: '',
         contact_name: '',
-        phone: ''
+        phone: '',
+        page: ''
       }
     };
   },
-  // mounted() {
-  //     console.log(this.propFromBlade);
-  // },
+  mounted: function mounted() {
+    this.form_data.page = this.propFromBlade;
+    console.log(this.propFromBlade);
+    console.log(this.form_data.page);
+  },
   methods: {
     submitForm: function submitForm(e) {
       var _this = this;

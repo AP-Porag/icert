@@ -47,7 +47,7 @@ class RoleDataTable extends DataTable
      */
     public function query(Role $model): QueryBuilder
     {
-        return $model->newQuery()->orderBy('id', 'DESC')->select('roles.*');
+        return $model->newQuery()->where('name','!=','Super Admin')->orderBy('id', 'DESC')->select('roles.*');
 
     }
 
