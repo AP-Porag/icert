@@ -24,6 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $rules =  [
+            'userId' => ['required', Rule::unique('users')->ignore($this->user)],
             'first_name' => ['required'],
             'last_name'  => ['nullable'],
             'username'  => ['nullable'],
@@ -36,13 +37,13 @@ class UserRequest extends FormRequest
             'role' => ['required'],
 //            'department' => ['required_if:user_type,employee'],
             'password'   => [
-                'required', 'string','max:18', 'confirmed', Password::min(8)
+                'nullable', 'string','max:18', 'confirmed', Password::min(8)
                     ->mixedCase()
                     ->letters()
                     ->numbers()
                     ->symbols()
             ],
-            'password_confirmation' => ['required', Password::min(8)],
+            'password_confirmation' => ['nullable', Password::min(8)],
         ];
 
         if ($this->user) {
@@ -61,7 +62,10 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'role.required'=>'User Grading is required'
+            'role.required'=>'User Grading is required',
+            'first_name.required'=>'First name and last name is required',
+            'username.required'=>'First name is required',
+            'userId.required'=>'User ID is required',
         ];
     }
 }

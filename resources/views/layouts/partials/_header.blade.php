@@ -188,7 +188,7 @@
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 {{--                    <img class="rounded-circle header-profile-user" src="" alt="Avatar">--}}
 {{--                    <img class="rounded-circle header-profile-user" src="{{ auth()->user()->avatar_url }}" alt="Avatar">--}}
-                    <p class="font-size-18" style="margin-top: 14px;">{{auth()->user()->username}} <i class="fa fa-caret-down" style="margin-left: 13px;"></i></p>
+                    <p class="font-size-18" style="margin-top: 14px;">{{auth()->user()->userId == null ? auth()->user()->username : auth()->user()->userId}} <i class="fa fa-caret-down" style="margin-left: 13px;"></i></p>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->

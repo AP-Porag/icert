@@ -40,6 +40,7 @@ class UsersController extends Controller
         $data = $request->validated();
 
         try {
+
             if (Auth::user()->user_type != User::USER_TYPE_ADMIN){
                 $data['user_type'] = Auth::user()->user_type;
             }else{
@@ -48,6 +49,7 @@ class UsersController extends Controller
             }
             $user = $this->userService->storeOrUpdate($data, null);
             $user->assignRole([$request->input('role')]);
+
 
             record_created_flash();
             return redirect()->route('admin.users.index');

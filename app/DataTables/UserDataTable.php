@@ -117,6 +117,7 @@ class UserDataTable extends DataTable
         return [
 //            Column::computed('DT_RowIndex', 'SL#'),
 //            Column::make('avatar', 'avatar')->title('Avatar'),
+            Column::make('userId', 'userId')->title('User ID'),
             Column::make('first_name', 'first_name')->title('Name (First & Last)'),
             Column::make('username', 'username')->title('Username'),
             Column::make('email', 'email')->title('Email'),
