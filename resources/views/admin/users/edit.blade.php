@@ -346,4 +346,16 @@
 @push('script')
     <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
 @endpush
-
+@push('style')
+    <style>
+        .relative-container {
+            position: relative;
+        }
+        .centered-element {
+            width: 94%;
+            position: absolute;
+            top: 33%;
+            transform: translateY(-33%);
+        }
+    </style>
+@endpush
