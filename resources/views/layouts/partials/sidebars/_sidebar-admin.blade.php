@@ -57,7 +57,7 @@
                                 Promo Codes
                             </a>
                         </li>
-                        @can('All Users')
+                        @can('User')
                         <li class="{{ request()->is('admin/users*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.users.index') }}"
                                class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
@@ -131,7 +131,7 @@
                     </a>
                 </li>
 
-                @can('All Entries')
+                @can('Entry')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/entry.png')}}" alt=""><span> Entry </span>
@@ -139,7 +139,7 @@
                 </li>
                 @endcan
 
-                @can('All Receiving')
+                @can('Receiving')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/receiving.png')}}" alt=""><span> Receiving </span>
@@ -147,15 +147,23 @@
                 </li>
                 @endcan
 
-                @can('All Gradings')
-                <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('admin.roles.index') }}" class="waves-effect {{ request()->routeIs('admin.roles*') ? 'active' : '' }}">
-                        <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/grading.png')}}" alt=""><span> Grading </span>
-                    </a>
-                </li>
+{{--                @can('Grading')--}}
+{{--                    <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">--}}
+{{--                        <a href="{{ route('admin.roles.index') }}" class="waves-effect {{ request()->routeIs('admin.roles*') ? 'active' : '' }}">--}}
+{{--                            <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/grading.png')}}" alt=""><span> Roles </span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                @endcan--}}
+
+                @can('Grading')
+                    <li class="{{ request()->is('admin/roles*') ? 'mm-active' : '' }}">
+                        <a href="#" class="waves-effect">
+                            <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/grading.png')}}" alt=""><span> Grading </span>
+                        </a>
+                    </li>
                 @endcan
 
-                @can('All Labels')
+                @can('Label')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/labels.png')}}" alt=""><span> Labels </span>
@@ -163,7 +171,7 @@
                 </li>
                 @endcan
 
-                @can('All Completion')
+                @can('Completion')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/completion.png')}}" alt=""><span> Completion </span>
@@ -171,7 +179,7 @@
                 </li>
                 @endcan
 
-                @can('All Shipping')
+                @can('Shipping')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/shipping.png')}}" alt=""><span> Shipping </span>
@@ -179,7 +187,7 @@
                 </li>
                 @endcan
 
-                @can('All Views')
+                @can('Views')
                 <li>
                     <a href="#" class="waves-effect">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/view.png')}}" alt=""><span> View </span>

@@ -270,9 +270,9 @@
 
                                         <p class="font-size-18 mb-3 text-center">Check only the program sections that are available to this user.</p>
                                         <div class="row">
-                                            {{--                                            <div class="col-md-12" style="">--}}
-                                            {{--                                                <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px; text-decoration: underline;"><input type="checkbox" :checked="isAllSelected" @click="selectAllCats" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>--}}
-                                            {{--                                            </div>--}}
+                                            <div class="col-md-12" style="">
+                                                <label class="font_big_text" style="margin-top: 6px;margin-bottom: 15px; text-decoration: underline;"><input id="selectAll" type="checkbox" style="margin-left: 15px; margin-right: 5px;"><span style="margin-bottom: 10px;">Select All</span></label>
+                                            </div>
 
                                             @foreach($roles as $role)
                                                 <div class="col-md-3">
@@ -281,9 +281,10 @@
                                                             <input
                                                                 type="checkbox"
                                                                 name="role[]"
-                                                                class="form-check mr-3"
+                                                                class="form-check mr-3 checkbox"
                                                                 style="margin-right: 5px;"
-                                                                {{ $user->getRoleNames()->contains($role->name) ? 'checked': '' }}
+                                                                {{-- {{ $user->getRoleNames()->contains($role->name) ? 'checked': '' }}--}}
+                                                                {{ $user->hasPermissionTo($role->name) ? 'checked': '' }}
                                                                 value="{{ $role->name }}" {{ old('role')==$role->id ? 'selected' : '' }}
                                                                                                                     />
                                                                                                                     {{$role->name}}
@@ -344,7 +345,31 @@
 @endsection
 
 @push('script')
-    <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>
+{{--    <script src="{{ asset('/admin/js/passwordCheck.js') }}"></script>--}}
+    <script>
+        $(document).ready(function(){
+            // Check if all checkboxes with class "checkbox" are checked
+            var allChecked = $(".checkbox:checked").length === $(".checkbox").length;
+
+            // Update the "Select All" checkbox based on the state of individual checkboxes
+            $("#selectAll").prop('checked', allChecked);
+
+            // Click event for the "Select All" button
+            $("#selectAll").click(function(){
+                // Toggle the checked property of all checkboxes with class "checkbox"
+                $(".checkbox").prop('checked', $(this).prop('checked'));
+            });
+
+            // Click event for individual checkboxes
+            $(".checkbox").click(function(){
+                // Check if all checkboxes with class "checkbox" are checked
+                var allChecked = $(".checkbox:checked").length === $(".checkbox").length;
+
+                // Update the "Select All" checkbox based on the state of individual checkboxes
+                $("#selectAll").prop('checked', allChecked);
+            });
+        });
+    </script>
 @endpush
 @push('style')
     <style>

@@ -10,6 +10,7 @@ use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
@@ -31,7 +32,8 @@ class UsersController extends Controller
     public function create()
     {
         set_page_meta('Create User');
-        $roles = Role::all();
+//        $roles = Role::all();
+        $roles = Permission::whereIn('id', [4, 6,8,10,12,14,16])->get();
         return view('admin.users.create',compact('roles'));
     }
 
@@ -48,7 +50,8 @@ class UsersController extends Controller
                 $data['user_type'] = $user_type;
             }
             $user = $this->userService->storeOrUpdate($data, null);
-            $user->assignRole([$request->input('role')]);
+//            $user->assignRole([$request->input('role')]);
+            $user->givePermissionTo([$request->input('role')]);
 
 
             record_created_flash();
@@ -63,7 +66,8 @@ class UsersController extends Controller
         try {
             set_page_meta('Edit User');
             $user = $this->userService->get($id);
-            $roles = Role::select('id', 'name')->get();
+//            $roles = Role::select('id', 'name')->get();
+            $roles = Permission::whereIn('id', [4, 6,8,10,12,14,16])->get();
             return view('admin.users.edit', compact('user','roles'));
         } catch (\Exception $e) {
             log_error($e);
@@ -79,7 +83,8 @@ class UsersController extends Controller
             $this->userService->storeOrUpdate($data, $id);
 
             $user = User::find($id);
-            $user->syncRoles([$request->input('role')]);
+//            $user->syncRoles([$request->input('role')]);
+            $user->syncPermissions([$request->input('role')]);
 
             record_updated_flash();
             return redirect()->route('admin.users.index');

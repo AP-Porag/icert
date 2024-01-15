@@ -13,59 +13,86 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
+//        $permissions = [
+//            'Dashboard' => [
+//                'Dashboard Cards',
+//                'Dashboard Charts',
+//                'Dashboard Pie Charts',
+//            ],
+//            'User' => [
+//                'All Users',
+//                'Create User',
+//                'Edit User',
+//                'Delete User',
+//            ],
+//            'Entry' => [
+//                'All Entries',
+//                'Create Entry',
+//                'Edit Entry',
+//                'Delete Entry',
+//            ],
+//            'Grading' => [
+//                'All Gradings',
+//                'Create Grading',
+//                'Edit Grading',
+//                'Delete Grading',
+//            ],
+//            'Receiving' => [
+//                'All Receiving',
+//                'Create Receiving',
+//                'Edit Receiving',
+//                'Delete Receiving',
+//            ],
+//            'Labels' => [
+//                'All Labels',
+//                'Create Labels',
+//                'Edit Labels',
+//                'Delete Labels',
+//            ],
+//            'Completion' => [
+//                'All Completion',
+//                'Create Completion',
+//                'Edit Completion',
+//                'Delete Completion',
+//            ],
+//            'Shipping' => [
+//                'All Shipping',
+//                'Create Shipping',
+//                'Edit Shipping',
+//                'Delete Shipping',
+//            ],
+//            'View' => [
+//                'All Views',
+//                'Create View',
+//                'Edit View',
+//                'Delete View',
+//            ],
+//        ];
+
         $permissions = [
-            'Dashboard' => [
-                'Dashboard Cards',
-                'Dashboard Charts',
-                'Dashboard Pie Charts',
+            'All User' => [
+                'User',
             ],
-            'User' => [
-                'All Users',
-                'Create User',
-                'Edit User',
-                'Delete User',
+            'All Entries' => [
+                'Entry',
             ],
-            'Entry' => [
-                'All Entries',
-                'Create Entry',
-                'Edit Entry',
-                'Delete Entry',
+            'All Receivings' => [
+                'Receiving',
             ],
-            'Grading' => [
-                'All Gradings',
-                'Create Grading',
-                'Edit Grading',
-                'Delete Grading',
+            'All Gradings' => [
+                'Grading',
             ],
-            'Receiving' => [
-                'All Receiving',
-                'Create Receiving',
-                'Edit Receiving',
-                'Delete Receiving',
+            'All Label' => [
+                'Labels',
             ],
-            'Labels' => [
-                'All Labels',
-                'Create Labels',
-                'Edit Labels',
-                'Delete Labels',
+            'All Completions' => [
+                'Completion',
             ],
-            'Completion' => [
-                'All Completion',
-                'Create Completion',
-                'Edit Completion',
-                'Delete Completion',
+            'All Shippings' => [
+                'Shipping',
             ],
-            'Shipping' => [
-                'All Shipping',
-                'Create Shipping',
-                'Edit Shipping',
-                'Delete Shipping',
-            ],
-            'View' => [
-                'All Views',
-                'Create View',
-                'Edit View',
-                'Delete View',
+            'All Views' => [
+                'View',
             ],
         ];
 
