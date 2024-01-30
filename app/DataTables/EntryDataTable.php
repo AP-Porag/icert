@@ -90,7 +90,6 @@ class EntryDataTable extends DataTable
             Column::make('name', 'name')->title('Name')->searchable(true),
             Column::make('email', 'email')->title('Email'),
             Column::make('contact_name', 'contact_name')->title('Contact Name'),
-            Column::make('phone', 'phone')->title('Telephone'),
         ];
     }
 

@@ -415,9 +415,6 @@
                                                 :readonly="isReadonly"
                                                 ref="shipping_name"
                                             />
-                                            <!--                                            <div class="error" v-if="v$.form_data.shipping_name.required.$invalid && show_error">-->
-                                            <!--                                                Name for shipping is required-->
-                                            <!--                                            </div>-->
                                         </div>
                                     </div>
 
