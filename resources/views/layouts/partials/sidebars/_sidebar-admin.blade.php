@@ -132,8 +132,8 @@
                 </li>
 
                 @can('Entry')
-                <li>
-                    <a href="#" class="waves-effect">
+                <li class="{{ request()->is('admin/entries*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.entries.index') }}" class="waves-effect {{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/entry.png')}}" alt=""><span> Entry </span>
                     </a>
                 </li>

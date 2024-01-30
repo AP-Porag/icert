@@ -42,6 +42,10 @@ Vue.component("customer-edit-form", () =>
     import("./form/CustomerEditForm.vue")
 );
 
+Vue.component("create-entry", () =>
+    import("./components/CreateEntry.vue")
+);
+
 // Global mixin
 Vue.mixin({
     methods: {

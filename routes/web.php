@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\About\AboutController;
 use App\Http\Controllers\Admin\Customer\CustomerController;
+use App\Http\Controllers\Admin\Entry\EntryController;
 use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\Profile\UserProfileController;
 use App\Http\Controllers\Admin\Promo\PromoController;
@@ -77,6 +78,9 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('/slpromos/makeNPC/${id}',[SpecialPromoController::class,'makeNPC'] )->name('slpromos.makeNPC');
     Route::get('/slpromos/attach/aditional/customer/${id}',[SpecialPromoController::class,'attachAditionalCustomer'] )->name('slpromos.attachAditionalCustomer');
     Route::post('/slpromos/save/aditional/customer',[SpecialPromoController::class,'saveAditionalCustomer'] )->name('slpromos.saveAditionalCustomer');
+
+    //products
+    Route::resource('entries', EntryController::class);
 
     //customers
     Route::resource('customers', CustomerController::class);
