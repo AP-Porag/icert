@@ -80,217 +80,6 @@
                 </div>
             </tab-content>
             <tab-content
-                title="Address"
-                icon="ti-infinite"
-                :before-change="dummyStep"
-            >
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card shipping_address_card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label w-100 text-capitalize">
-                                                                        Customer Name
-                                                                    </label>
-                                                                    <input
-                                                                        type="text"
-                                                                        class="form-control md-readonly"
-                                                                        placeholder=""
-                                                                        v-model.trim="v$.form_data.name.$model"
-                                                                        readonly
-                                                                    />
-                                                                    <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
-                                                                        Name is required
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                    <div class="col-md-4">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label w-100">
-                                                                        Contact Name
-                                                                    </label>
-                                                                    <input
-                                                                        type="text"
-                                                                        class="form-control"
-                                                                        placeholder=""
-                                                                        v-model.trim="v$.form_data.contact_name.$model"
-                                                                    />
-                                                                    <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
-                                                                        contact name is required
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                    <div class="col-md-4">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label w-100 text-capitalize">
-                                                                        Email Address
-                                                                    </label>
-                                                                    <input
-                                                                        type="email"
-                                                                        class="form-control"
-                                                                        placeholder=""
-                                                                        v-model.trim="v$.form_data.email.$model"
-                                                                    />
-                                                                    <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">
-                                                                        email is required
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                </div>
-                            </div>
-                        </div>
-<!--                        <h3 class="mb-only-name">{{v$.form_data.name.$model}}</h3>-->
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card shipping_address_card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Address Line one
-                                                <span class="error">*</span>
-                                            </label>
-                                            <input
-                                                autofocus
-                                                type="text"
-                                                class="form-control mb-text-only"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.billing_address_line_one.$model"
-                                                ref="billing_address_line_one"
-                                                :readonly="isReadonly"
-                                            />
-                                            <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error_two">
-                                                One Address Line is required
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Address Line two
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="form-control mb-text-only"
-                                                placeholder=""
-                                                v-model.trim="form_data.billing_address_line_two"
-                                                :readonly="isReadonly"
-                                            />
-                                            <!--                                            <div class="error" v-if="v$.form_data.billing_address_line_two.required.$invalid && show_error">-->
-                                            <!--                                                Second address Line two is required-->
-                                            <!--                                            </div>-->
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                City
-                                                <span class="error">*</span>
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="form-control mb-text-only"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.billing_city.$model"
-                                                :readonly="isReadonly"
-                                            />
-                                            <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error_two">
-                                                City is required
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                Province/State
-                                                <span class="error">*</span>
-                                            </label>
-                                            <select class="form-select mb-text-only" aria-label="Default select example"
-                                                    v-model.trim="v$.form_data.billing_province.$model"
-                                                    :readonly="isReadonly"
-                                            >
-                                                <option selected disabled>Open this select menu</option>
-                                                <option v-for="(province,index) in provinces" :value="province.name.toLowerCase()" :key="province.id">{{province.name}}</option>
-                                            </select>
-                                            <div class="error" v-if="v$.form_data.billing_province.required.$invalid && show_error_two">
-                                                Province is required
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-3">
-                                        <div class="mb-3">
-                                            <label class="form-label w-100 text-capitalize">
-                                                postal/Zip code
-                                                <span class="error">*</span>
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="form-control mb-text-only"
-                                                placeholder=""
-                                                v-model.trim="v$.form_data.billing_postal.$model"
-                                                :readonly="isReadonly"
-                                                @input="event => v$.form_data.billing_postal.$model = event.target.value.toUpperCase()"
-                                            />
-                                            <div class="error" v-if="v$.form_data.billing_postal.required.$invalid && show_error_two">
-                                                Postal is required
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100 text-capitalize">
-                                                    Country
-                                                    <span class="error">*</span>
-                                                </label>
-                                                <select class="form-select mb-text-only" aria-label="Default select example"
-                                                        v-model.trim="v$.form_data.billing_country.$model"
-                                                        :readonly="isReadonly"
-                                                >
-                                                    <option selected disabled>Open this select menu</option>
-                                                    <option v-for="(country,index) in countries" :value="country.name.toLowerCase()" :key="country.id">{{country.name}}</option>
-                                                </select>
-                                                <div class="error" v-if="v$.form_data.billing_country.required.$invalid && show_error_two">
-                                                    Country is required
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100 text-capitalize">
-                                                    Telephone#
-                                                    <span class="error">*</span>
-                                                </label>
-                                                <VuePhoneNumberInput
-                                                    id="phoneNumber1"
-                                                    class="mb-text-only"
-                                                    v-model.trim="v$.form_data.billing_phone.$model"
-                                                    :readonly="isReadonly"
-                                                    default-country-code="CA"
-                                                    :only-countries="countries_phone"
-                                                    style="background-color: #e8f0fe !important;"
-                                                />
-                                                <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error_two">
-                                                    Phone is required
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </tab-content>
-            <tab-content
                 title="Billing Address"
                 icon="ti-infinite"
                 :before-change="dummyStep"
@@ -904,9 +693,22 @@
                                                 :readonly="isReadonly"
                                                 @change="sameAsBillingChanged($event)"
                                             />
-                                            <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
-                                            <!--                                                Same as Billing is required-->
-                                            <!--                                            </div>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
+                                            <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
+                                                COD
+                                            </label>
+                                            <input
+                                                type="checkbox"
+                                                class="form-check"
+                                                placeholder=""
+                                                v-model.trim="form_data.same_as_billing"
+                                                :readonly="isReadonly"
+                                                @change="sameAsBillingChanged($event)"
+                                            />
                                         </div>
                                     </div>
 

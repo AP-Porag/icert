@@ -17,6 +17,23 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('contact_name')->nullable();
             $table->string('phone')->nullable();
+            $table->string('billing_address_line_one')->nullable();
+            $table->string('billing_address_line_two')->nullable();
+            $table->string('billing_country')->nullable();
+            $table->string('billing_province')->nullable();
+            $table->string('billing_city')->nullable();
+            $table->string('billing_postal')->nullable();
+            $table->string('billing_phone')->nullable();
+            $table->string('same_as_billing')->nullable();
+            $table->string('shipping_name')->nullable();
+            $table->string('shipping_company_name')->nullable();
+            $table->string('shipping_address_line_one')->nullable();
+            $table->string('shipping_address_line_two')->nullable();
+            $table->string('shipping_country')->nullable();
+            $table->string('shipping_province')->nullable();
+            $table->string('shipping_city')->nullable();
+            $table->string('shipping_postal')->nullable();
+            $table->string('shipping_phone')->nullable();
             $table->timestamps();
         });
     }

@@ -939,414 +939,6 @@ var render = function render() {
     staticClass: "error"
   }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
-      title: "Address",
-      icon: "ti-infinite",
-      "before-change": _vm.dummyStep
-    }
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                                        Customer Name\n                                                                    ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.name.$model,
-      expression: "v$.form_data.name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control md-readonly",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                                        Name is required\n                                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                                        Contact Name\n                                                                    ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      placeholder: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.contact_name.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                                        contact name is required\n                                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                                        Email Address\n                                                                    ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.email.$model,
-      expression: "v$.form_data.email.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "email",
-      placeholder: ""
-    },
-    domProps: {
-      value: _vm.v$.form_data.email.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.email, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.email.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                                        email is required\n                                                                    ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "card shipping_address_card"
-  }, [_c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-6"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Address Line one\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_address_line_one.$model,
-      expression: "v$.form_data.billing_address_line_one.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    ref: "billing_address_line_one",
-    staticClass: "form-control mb-text-only",
-    attrs: {
-      autofocus: "",
-      type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
-    },
-    domProps: {
-      value: _vm.v$.form_data.billing_address_line_one.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.billing_address_line_one, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.billing_address_line_one.required.$invalid && _vm.show_error_two ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                One Address Line is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Address Line two\n                                            ")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.form_data.billing_address_line_two,
-      expression: "form_data.billing_address_line_two",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control mb-text-only",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
-    },
-    domProps: {
-      value: _vm.form_data.billing_address_line_two
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_data, "billing_address_line_two", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                City\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_city.$model,
-      expression: "v$.form_data.billing_city.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control mb-text-only",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
-    },
-    domProps: {
-      value: _vm.v$.form_data.billing_city.$model
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.billing_city, "$model", $event.target.value.trim());
-      },
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.billing_city.required.$invalid && _vm.show_error_two ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                City is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Province/State\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_province.$model,
-      expression: "v$.form_data.billing_province.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-select mb-text-only",
-    attrs: {
-      "aria-label": "Default select example",
-      readonly: _vm.isReadonly
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.v$.form_data.billing_province, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      selected: "",
-      disabled: ""
-    }
-  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.provinces, function (province, index) {
-    return _c("option", {
-      key: province.id,
-      domProps: {
-        value: province.name.toLowerCase()
-      }
-    }, [_vm._v(_vm._s(province.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.billing_province.required.$invalid && _vm.show_error_two ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                Province is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                postal/Zip code\n                                                "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_postal.$model,
-      expression: "v$.form_data.billing_postal.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-control mb-text-only",
-    attrs: {
-      type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
-    },
-    domProps: {
-      value: _vm.v$.form_data.billing_postal.$model
-    },
-    on: {
-      input: [function ($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.billing_postal, "$model", $event.target.value.trim());
-      }, function (event) {
-        return _vm.v$.form_data.billing_postal.$model = event.target.value.toUpperCase();
-      }],
-      blur: function blur($event) {
-        return _vm.$forceUpdate();
-      }
-    }
-  }), _vm._v(" "), _vm.v$.form_data.billing_postal.required.$invalid && _vm.show_error_two ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                Postal is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-3"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                    Country\n                                                    "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_country.$model,
-      expression: "v$.form_data.billing_country.$model",
-      modifiers: {
-        trim: true
-      }
-    }],
-    staticClass: "form-select mb-text-only",
-    attrs: {
-      "aria-label": "Default select example",
-      readonly: _vm.isReadonly
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.v$.form_data.billing_country, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      selected: "",
-      disabled: ""
-    }
-  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.countries, function (country, index) {
-    return _c("option", {
-      key: country.id,
-      domProps: {
-        value: country.name.toLowerCase()
-      }
-    }, [_vm._v(_vm._s(country.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.billing_country.required.$invalid && _vm.show_error_two ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                    Country is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "mb-3"
-  }, [_c("label", {
-    staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                    Telephone#\n                                                    "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
-    staticClass: "mb-text-only",
-    staticStyle: {
-      "background-color": "#e8f0fe !important"
-    },
-    attrs: {
-      id: "phoneNumber1",
-      readonly: _vm.isReadonly,
-      "default-country-code": "CA",
-      "only-countries": _vm.countries_phone
-    },
-    model: {
-      value: _vm.v$.form_data.billing_phone.$model,
-      callback: function callback($$v) {
-        _vm.$set(_vm.v$.form_data.billing_phone, "$model", typeof $$v === "string" ? $$v.trim() : $$v);
-      },
-      expression: "v$.form_data.billing_phone.$model"
-    }
-  }), _vm._v(" "), _vm.v$.form_data.billing_phone.required.$invalid && _vm.show_error_two ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                    Phone is required\n                                                ")]) : _vm._e()], 1)])])])])])])])]), _vm._v(" "), _c("tab-content", {
-    attrs: {
       title: "Billing Address",
       icon: "ti-infinite",
       "before-change": _vm.dummyStep
@@ -2203,6 +1795,58 @@ var render = function render() {
       "margin-right": "15px"
     }
   }, [_vm._v("\n                                                Pay on pickup\n                                            ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.same_as_billing,
+      expression: "form_data.same_as_billing",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-check",
+    attrs: {
+      type: "checkbox",
+      placeholder: "",
+      readonly: _vm.isReadonly
+    },
+    domProps: {
+      checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
+    },
+    on: {
+      change: [function ($event) {
+        var $$a = _vm.form_data.same_as_billing,
+          $$el = $event.target,
+          $$c = $$el.checked ? true : false;
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && _vm.$set(_vm.form_data, "same_as_billing", $$a.concat([$$v]));
+          } else {
+            $$i > -1 && _vm.$set(_vm.form_data, "same_as_billing", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.$set(_vm.form_data, "same_as_billing", $$c);
+        }
+      }, function ($event) {
+        return _vm.sameAsBillingChanged($event);
+      }]
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-3"
+  }, [_c("div", {
+    staticClass: "mb-3 d-flex justify-content-start",
+    staticStyle: {
+      "margin-top": "25px"
+    }
+  }, [_c("label", {
+    staticClass: "form-label text-capitalize",
+    staticStyle: {
+      "margin-top": "6px",
+      "margin-right": "15px"
+    }
+  }, [_vm._v("\n                                                COD\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
