@@ -164,26 +164,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label class="form-label w-100 text-capitalize">
-                                    Telephone#
-                                    <span class="error">*</span>
-                                </label>
-                                <VuePhoneNumberInput
-                                    id="phoneNumber1"
-                                    class="mb-text-only"
-                                    v-model.trim="v$.form_data.billing_phone.$model"
-                                    :readonly="isReadonly"
-                                    default-country-code="CA"
-                                    :only-countries="only_phone"
-                                    style="background-color: #e8f0fe !important;"
-                                />
-                                <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error_two">
-                                    Phone is required
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="col-md-4">-->
+<!--                            <div class="mb-3">-->
+<!--                                <label class="form-label w-100 text-capitalize">-->
+<!--                                    Telephone#-->
+<!--                                    <span class="error">*</span>-->
+<!--                                </label>-->
+<!--                                <VuePhoneNumberInput-->
+<!--                                    id="phoneNumber1"-->
+<!--                                    class="mb-text-only"-->
+<!--                                    v-model.trim="v$.form_data.billing_phone.$model"-->
+<!--                                    :readonly="isReadonly"-->
+<!--                                    default-country-code="CA"-->
+<!--                                    :only-countries="only_phone"-->
+<!--                                    style="background-color: #e8f0fe !important;"-->
+<!--                                />-->
+<!--                                <div class="error" v-if="v$.form_data.billing_phone.required.$invalid && show_error_two">-->
+<!--                                    Phone is required-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -853,9 +853,9 @@ export default {
             billing_postal:{
                 required,
             },
-            billing_phone:{
-                required,
-            },
+            // billing_phone:{
+            //     required,
+            // },
             // same_as_billing:{},
             // shipping_name:{},
             shipping_company_name:{

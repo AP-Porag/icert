@@ -15,19 +15,19 @@
                 </li>
 
                 <li
-                    class="{{ request()->is('admin/users*') || request()->is('admin/customers*') || request()->is('admin/products*') || request()->is('admin/thirds*') || request()->is('admin/authenticators*') || request()->is('admin/promos*') || request()->is('admin/slpromos*')? 'mm-active' : '' }}">
+                    class="{{ request()->is('admin/users*') || request()->is('admin/products*') || request()->is('admin/thirds*') || request()->is('admin/authenticators*') || request()->is('admin/promos*') || request()->is('admin/slpromos*')? 'mm-active' : '' }}">
                     <a href="javascript: void(0);"
                        class="has-arrow waves-effect {{ request()->is('admin/users*') ? 'mm-active' : '' }}">
                         <i class="fas fa-users"></i>
                         <span>Administration</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li class="{{ request()->is('admin/customers*') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.customers.index') }}"
-                               class="{{ request()->routeIs('admin.customers.index') ? 'active' : '' }}">
-                                Customers
-                            </a>
-                        </li>
+{{--                        <li class="{{ request()->is('admin/customers*') ? 'mm-active' : '' }}">--}}
+{{--                            <a href="{{ route('admin.customers.index') }}"--}}
+{{--                               class="{{ request()->routeIs('admin.customers.index') ? 'active' : '' }}">--}}
+{{--                                Customers--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="{{ request()->is('admin/products*') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.products.index') }}"
@@ -130,6 +130,14 @@
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/change_user.png')}}" alt=""><span> Change User </span>
                     </a>
                 </li>
+
+                @can('Customer')
+                    <li class="{{ request()->is('admin/customers*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('admin.customers.index') }}" class="waves-effect {{ request()->routeIs('admin.customers.index') ? 'active' : '' }}">
+                            <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/customer.png')}}" alt=""><span> Customers </span>
+                        </a>
+                    </li>
+                @endcan
 
                 @can('Entry')
                 <li class="{{ request()->is('admin/entries*') ? 'mm-active' : '' }}">

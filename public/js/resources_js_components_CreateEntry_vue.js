@@ -319,7 +319,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         shipping_phone: '',
         status: 'active',
         products: [],
-        itemType: ''
+        itemType: '',
+        //next
+        grading_location: '',
+        promo_code: '',
+        payment_made: '',
+        pay_on_pickup: '',
+        cod: '',
+        shipping_method: '',
+        pickup_location: '',
+        show_pickup_location: '',
+        third_party_drop_center: '',
+        use_customer_account: '',
+        crossover_item_type: '',
+        authenticator_name: '',
+        authenticator_name_two: '',
+        authenticator_name_three: '',
+        authenticator_name_four: '',
+        minimum_grade: ''
       }
     };
   },
@@ -929,11 +946,11 @@ var render = function render() {
       }
     },
     model: {
-      value: _vm.form_data.email,
+      value: _vm.form_data.grading_location,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "email", $$v);
+        _vm.$set(_vm.form_data, "grading_location", $$v);
       },
-      expression: "form_data.email"
+      expression: "form_data.grading_location"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -1723,11 +1740,11 @@ var render = function render() {
       }
     },
     model: {
-      value: _vm.form_data.name,
+      value: _vm.form_data.promo_code,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
+        _vm.$set(_vm.form_data, "promo_code", $$v);
       },
-      expression: "form_data.name"
+      expression: "form_data.promo_code"
     }
   })], 1)]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
@@ -1746,8 +1763,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.same_as_billing,
-      expression: "form_data.same_as_billing",
+      value: _vm.form_data.payment_made,
+      expression: "form_data.payment_made",
       modifiers: {
         trim: true
       }
@@ -1759,27 +1776,25 @@ var render = function render() {
       readonly: _vm.isReadonly
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
+      checked: Array.isArray(_vm.form_data.payment_made) ? _vm._i(_vm.form_data.payment_made, null) > -1 : _vm.form_data.payment_made
     },
     on: {
-      change: [function ($event) {
-        var $$a = _vm.form_data.same_as_billing,
+      change: function change($event) {
+        var $$a = _vm.form_data.payment_made,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "same_as_billing", $$a.concat([$$v]));
+            $$i < 0 && _vm.$set(_vm.form_data, "payment_made", $$a.concat([$$v]));
           } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "same_as_billing", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            $$i > -1 && _vm.$set(_vm.form_data, "payment_made", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
           }
         } else {
-          _vm.$set(_vm.form_data, "same_as_billing", $$c);
+          _vm.$set(_vm.form_data, "payment_made", $$c);
         }
-      }, function ($event) {
-        return _vm.sameAsBillingChanged($event);
-      }]
+      }
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
@@ -1798,8 +1813,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.same_as_billing,
-      expression: "form_data.same_as_billing",
+      value: _vm.form_data.pay_on_pickup,
+      expression: "form_data.pay_on_pickup",
       modifiers: {
         trim: true
       }
@@ -1811,27 +1826,25 @@ var render = function render() {
       readonly: _vm.isReadonly
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
+      checked: Array.isArray(_vm.form_data.pay_on_pickup) ? _vm._i(_vm.form_data.pay_on_pickup, null) > -1 : _vm.form_data.pay_on_pickup
     },
     on: {
-      change: [function ($event) {
-        var $$a = _vm.form_data.same_as_billing,
+      change: function change($event) {
+        var $$a = _vm.form_data.pay_on_pickup,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "same_as_billing", $$a.concat([$$v]));
+            $$i < 0 && _vm.$set(_vm.form_data, "pay_on_pickup", $$a.concat([$$v]));
           } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "same_as_billing", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            $$i > -1 && _vm.$set(_vm.form_data, "pay_on_pickup", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
           }
         } else {
-          _vm.$set(_vm.form_data, "same_as_billing", $$c);
+          _vm.$set(_vm.form_data, "pay_on_pickup", $$c);
         }
-      }, function ($event) {
-        return _vm.sameAsBillingChanged($event);
-      }]
+      }
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
@@ -1850,8 +1863,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.same_as_billing,
-      expression: "form_data.same_as_billing",
+      value: _vm.form_data.cod,
+      expression: "form_data.cod",
       modifiers: {
         trim: true
       }
@@ -1863,27 +1876,25 @@ var render = function render() {
       readonly: _vm.isReadonly
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
+      checked: Array.isArray(_vm.form_data.cod) ? _vm._i(_vm.form_data.cod, null) > -1 : _vm.form_data.cod
     },
     on: {
-      change: [function ($event) {
-        var $$a = _vm.form_data.same_as_billing,
+      change: function change($event) {
+        var $$a = _vm.form_data.cod,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "same_as_billing", $$a.concat([$$v]));
+            $$i < 0 && _vm.$set(_vm.form_data, "cod", $$a.concat([$$v]));
           } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "same_as_billing", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            $$i > -1 && _vm.$set(_vm.form_data, "cod", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
           }
         } else {
-          _vm.$set(_vm.form_data, "same_as_billing", $$c);
+          _vm.$set(_vm.form_data, "cod", $$c);
         }
-      }, function ($event) {
-        return _vm.sameAsBillingChanged($event);
-      }]
+      }
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
@@ -1957,11 +1968,11 @@ var render = function render() {
       }
     },
     model: {
-      value: _vm.form_data.email,
+      value: _vm.form_data.shipping_method,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "email", $$v);
+        _vm.$set(_vm.form_data, "shipping_method", $$v);
       },
-      expression: "form_data.email"
+      expression: "form_data.shipping_method"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -1983,11 +1994,11 @@ var render = function render() {
       }
     },
     model: {
-      value: _vm.form_data.email,
+      value: _vm.form_data.pickup_location,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "email", $$v);
+        _vm.$set(_vm.form_data, "pickup_location", $$v);
       },
-      expression: "form_data.email"
+      expression: "form_data.pickup_location"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -2009,11 +2020,11 @@ var render = function render() {
       }
     },
     model: {
-      value: _vm.form_data.email,
+      value: _vm.form_data.show_pickup_location,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "email", $$v);
+        _vm.$set(_vm.form_data, "show_pickup_location", $$v);
       },
-      expression: "form_data.email"
+      expression: "form_data.show_pickup_location"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -2035,11 +2046,11 @@ var render = function render() {
       }
     },
     model: {
-      value: _vm.form_data.email,
+      value: _vm.form_data.third_party_drop_center,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "email", $$v);
+        _vm.$set(_vm.form_data, "third_party_drop_center", $$v);
       },
-      expression: "form_data.email"
+      expression: "form_data.third_party_drop_center"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -2064,8 +2075,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.same_as_billing,
-      expression: "form_data.same_as_billing",
+      value: _vm.form_data.use_customer_account,
+      expression: "form_data.use_customer_account",
       modifiers: {
         trim: true
       }
@@ -2077,27 +2088,25 @@ var render = function render() {
       readonly: _vm.isReadonly
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
+      checked: Array.isArray(_vm.form_data.use_customer_account) ? _vm._i(_vm.form_data.use_customer_account, null) > -1 : _vm.form_data.use_customer_account
     },
     on: {
-      change: [function ($event) {
-        var $$a = _vm.form_data.same_as_billing,
+      change: function change($event) {
+        var $$a = _vm.form_data.use_customer_account,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "same_as_billing", $$a.concat([$$v]));
+            $$i < 0 && _vm.$set(_vm.form_data, "use_customer_account", $$a.concat([$$v]));
           } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "same_as_billing", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            $$i > -1 && _vm.$set(_vm.form_data, "use_customer_account", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
           }
         } else {
-          _vm.$set(_vm.form_data, "same_as_billing", $$c);
+          _vm.$set(_vm.form_data, "use_customer_account", $$c);
         }
-      }, function ($event) {
-        return _vm.sameAsBillingChanged($event);
-      }]
+      }
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
@@ -2196,11 +2205,11 @@ var render = function render() {
       }
     },
     model: {
-      value: _vm.form_data.itemType,
+      value: _vm.form_data.crossover_item_type,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "itemType", $$v);
+        _vm.$set(_vm.form_data, "crossover_item_type", $$v);
       },
-      expression: "form_data.itemType"
+      expression: "form_data.crossover_item_type"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -2469,11 +2478,11 @@ var render = function render() {
       options: _vm.authenticators
     },
     model: {
-      value: _vm.form_data.name,
+      value: _vm.form_data.authenticator_name,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
+        _vm.$set(_vm.form_data, "authenticator_name", $$v);
       },
-      expression: "form_data.name"
+      expression: "form_data.authenticator_name"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -2816,11 +2825,11 @@ var render = function render() {
       options: _vm.authenticators
     },
     model: {
-      value: _vm.form_data.name,
+      value: _vm.form_data.authenticator_name_two,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
+        _vm.$set(_vm.form_data, "authenticator_name_two", $$v);
       },
-      expression: "form_data.name"
+      expression: "form_data.authenticator_name_two"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -3163,11 +3172,11 @@ var render = function render() {
       options: _vm.authenticators
     },
     model: {
-      value: _vm.form_data.name,
+      value: _vm.form_data.authenticator_name_three,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
+        _vm.$set(_vm.form_data, "authenticator_name_three", $$v);
       },
-      expression: "form_data.name"
+      expression: "form_data.authenticator_name_three"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -3632,11 +3641,11 @@ var render = function render() {
       options: _vm.authenticators
     },
     model: {
-      value: _vm.form_data.name,
+      value: _vm.form_data.authenticator_name_four,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
+        _vm.$set(_vm.form_data, "authenticator_name_four", $$v);
       },
-      expression: "form_data.name"
+      expression: "form_data.authenticator_name_four"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
@@ -3731,11 +3740,11 @@ var render = function render() {
       options: _vm.minimumGrades
     },
     model: {
-      value: _vm.form_data.name,
+      value: _vm.form_data.minimum_grade,
       callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
+        _vm.$set(_vm.form_data, "minimum_grade", $$v);
       },
-      expression: "form_data.name"
+      expression: "form_data.minimum_grade"
     }
   }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"

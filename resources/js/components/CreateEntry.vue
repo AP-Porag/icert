@@ -67,7 +67,15 @@
                                                 Select the grading location for this order
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.email" :options="gradingLocations" @change="customerNameChangeEvent($event)" />
+
+<!--                                            <select class="form-select mb-text-only" aria-label="Default select example"-->
+<!--                                                    v-model="form_data.grading_location"-->
+<!--                                            >-->
+<!--                                                <option selected disabled>Open this select menu</option>-->
+<!--                                                <option v-for="(locations,index) in gradingLocations" :value="locations.name.toLowerCase()" :key="locations.id">{{locations.name}}</option>-->
+<!--                                            </select>-->
+
+                                            <Select2 v-model="form_data.grading_location" :options="gradingLocations" @change="customerNameChangeEvent($event)" />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -657,7 +665,7 @@
                                             <label class="form-label w-100 text-capitalize">
                                                 Promo code
                                             </label>
-                                            <Select2 v-model="form_data.name" :options="promoCodes" @change="customerNameChangeEvent($event)" />
+                                            <Select2 v-model="form_data.promo_code" :options="promoCodes" @change="customerNameChangeEvent($event)" />
                                         </div>
                                     </div>
 
@@ -670,9 +678,8 @@
                                                 type="checkbox"
                                                 class="form-check"
                                                 placeholder=""
-                                                v-model.trim="form_data.same_as_billing"
+                                                v-model.trim="form_data.payment_made"
                                                 :readonly="isReadonly"
-                                                @change="sameAsBillingChanged($event)"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                             <!--                                                Same as Billing is required-->
@@ -689,9 +696,8 @@
                                                 type="checkbox"
                                                 class="form-check"
                                                 placeholder=""
-                                                v-model.trim="form_data.same_as_billing"
+                                                v-model.trim="form_data.pay_on_pickup"
                                                 :readonly="isReadonly"
-                                                @change="sameAsBillingChanged($event)"
                                             />
                                         </div>
                                     </div>
@@ -705,9 +711,8 @@
                                                 type="checkbox"
                                                 class="form-check"
                                                 placeholder=""
-                                                v-model.trim="form_data.same_as_billing"
+                                                v-model.trim="form_data.cod"
                                                 :readonly="isReadonly"
-                                                @change="sameAsBillingChanged($event)"
                                             />
                                         </div>
                                     </div>
@@ -752,7 +757,7 @@
                                                 Shipping Method
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.email" :options="shippingMethods" @change="shippingMethodsChangeEvent($event)" />
+                                            <Select2 v-model="form_data.shipping_method" :options="shippingMethods" @change="shippingMethodsChangeEvent($event)" />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -765,7 +770,7 @@
                                                 Pickup location
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.email" :options="pickUpLocations" @change="customerNameChangeEvent($event)" />
+                                            <Select2 v-model="form_data.pickup_location" :options="pickUpLocations" @change="customerNameChangeEvent($event)" />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -778,7 +783,7 @@
                                                 Pickup Location
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.email" :options="pickUpLocations" @change="customerNameChangeEvent($event)" />
+                                            <Select2 v-model="form_data.show_pickup_location" :options="pickUpLocations" @change="customerNameChangeEvent($event)" />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -791,7 +796,7 @@
                                                 Third party drop off center
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.email" :options="thirdParties" @change="customerNameChangeEvent($event)" />
+                                            <Select2 v-model="form_data.third_party_drop_center" :options="thirdParties" @change="customerNameChangeEvent($event)" />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -809,9 +814,8 @@
                                                         type="checkbox"
                                                         class="form-check"
                                                         placeholder=""
-                                                        v-model.trim="form_data.same_as_billing"
+                                                        v-model.trim="form_data.use_customer_account"
                                                         :readonly="isReadonly"
-                                                        @change="sameAsBillingChanged($event)"
                                                     />
                                                 </div>
                                             </div>
@@ -878,7 +882,7 @@
                                                 Crossover Item Type
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.itemType" :options="crossoverItemTypes" @change="itemTypeChangeEvent($event)" />
+                                            <Select2 v-model="form_data.crossover_item_type" :options="crossoverItemTypes" @change="itemTypeChangeEvent($event)" />
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -1021,7 +1025,7 @@
                                                             <!--                                                v-model.trim="v$.form_data.name.$model"-->
                                                             <!--                                                ref="name"-->
                                                             <!--                                            />-->
-                                                            <Select2 v-model="form_data.name" :options="authenticators" />
+                                                            <Select2 v-model="form_data.authenticator_name" :options="authenticators" />
                                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                                 Customer name is required
                                                             </div>
@@ -1204,7 +1208,7 @@
                                                             <!--                                                v-model.trim="v$.form_data.name.$model"-->
                                                             <!--                                                ref="name"-->
                                                             <!--                                            />-->
-                                                            <Select2 v-model="form_data.name" :options="authenticators" />
+                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />
                                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                                 Customer name is required
                                                             </div>
@@ -1379,7 +1383,7 @@
                                                                 Authenticator Name
                                                                 <span class="error">*</span>
                                                             </label>
-                                                            <Select2 v-model="form_data.name" :options="authenticators" />
+                                                            <Select2 v-model="form_data.authenticator_name_three" :options="authenticators" />
                                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                                 Customer name is required
                                                             </div>
@@ -1623,7 +1627,7 @@
                                                                 Authenticator Name
                                                                 <span class="error">*</span>
                                                             </label>
-                                                            <Select2 v-model="form_data.name" :options="authenticators" />
+                                                            <Select2 v-model="form_data.authenticator_name_four" :options="authenticators" />
                                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                                 Customer name is required
                                                             </div>
@@ -1676,7 +1680,7 @@
                                                         Minimum Grade
                                                         <span class="error">*</span>
                                                     </label>
-                                                    <Select2 v-model="form_data.name" :options="minimumGrades" />
+                                                    <Select2 v-model="form_data.minimum_grade" :options="minimumGrades" />
                                                     <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                         Customer name is required
                                                     </div>
@@ -2074,6 +2078,24 @@ export default {
                 status:'active',
                 products:[],
                 itemType:'',
+
+                //next
+                grading_location:'',
+                promo_code:'',
+                payment_made:'',
+                pay_on_pickup:'',
+                cod:'',
+                shipping_method:'',
+                pickup_location:'',
+                show_pickup_location:'',
+                third_party_drop_center:'',
+                use_customer_account:'',
+                crossover_item_type:'',
+                authenticator_name:'',
+                authenticator_name_two:'',
+                authenticator_name_three:'',
+                authenticator_name_four:'',
+                minimum_grade:'',
             },
 
         }

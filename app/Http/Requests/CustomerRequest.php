@@ -32,7 +32,7 @@ class CustomerRequest extends FormRequest
                 'billing_province'=>'required',
                 'billing_city'=>'required',
                 'billing_postal'=>'required',
-                'billing_phone'=>'required',
+                'billing_phone'=>'nullable',
                 'same_as_billing'=>'nullable',
                 'shipping_name'=>'nullable',
                 'shipping_company_name'=>'required',
