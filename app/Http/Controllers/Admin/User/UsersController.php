@@ -33,7 +33,7 @@ class UsersController extends Controller
     {
         set_page_meta('Create User');
 //        $roles = Role::all();
-        $roles = Permission::whereIn('id', [4, 6,8,10,12,14,16])->get();
+        $roles = Permission::whereIn('id', [4, 6,8,10,12,14,16,18])->get();
         return view('admin.users.create',compact('roles'));
     }
 
