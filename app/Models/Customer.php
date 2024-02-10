@@ -9,11 +9,15 @@ class Customer extends Model
 {
     use HasFactory;
 
+    public const CUSTOMER_FOR_ICERT    = 'icert';
+    public const CUSTOMER_FOR_KSA    = 'ksa';
+
     protected $fillable =[
         'name',
         'email',
         'contact_name',
         'phone',
+        'customer_for',
         'billing_address_line_one',
         'billing_address_line_two',
         'billing_country',

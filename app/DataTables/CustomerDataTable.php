@@ -3,7 +3,9 @@
 namespace App\DataTables;
 
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -52,7 +54,13 @@ class CustomerDataTable extends DataTable
      */
     public function query(Customer $model): QueryBuilder
     {
-        return $model->newQuery()->orderBy('id', 'DESC')->select('customers.*');
+        if (Auth::user()->user_type == User::USER_TYPE_ICERT){
+            return $model->newQuery()->where('customer_for',Customer::CUSTOMER_FOR_ICERT)->orderBy('id', 'DESC')->select('customers.*');
+        }elseif (Auth::user()->user_type == User::USER_TYPE_KSA){
+            return $model->newQuery()->where('customer_for',Customer::CUSTOMER_FOR_KSA)->orderBy('id', 'DESC')->select('customers.*');
+        }else{
+            return $model->newQuery()->orderBy('id', 'DESC')->select('customers.*');
+        }
 
     }
 

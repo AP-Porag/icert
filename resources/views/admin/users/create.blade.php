@@ -75,7 +75,7 @@
 {{--                                        @enderror--}}
 {{--                                    </div>--}}
 
-                                    <div class="mb-3 col-md-12">
+                                    <div class="mb-3 col-md-6">
                                         <label class="form-label mb-2 w-100">Status <span class="error">*</span></label>
                                         <div class="form-check form-check-inline">
                                             <input type="radio" id="status_yes" value="{{ \App\Utils\GlobalConstant::STATUS_ACTIVE }}"
@@ -88,6 +88,16 @@
                                             <label class="custom-control-label" for="status_no">Suspend</label>
                                         </div>
                                     </div>
+
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label mb-2 w-100">User Type <span class="error">*</span></label>
+                                        <select class="form-select" name="user_type">
+                                            <option selected disabled>Select user type</option>
+                                            <option value="{{\App\Models\User::USER_TYPE_ICERT}}">iCert</option>
+                                            <option value="{{\App\Models\User::USER_TYPE_KSA}}">KSA</option>
+                                        </select>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-md-6 relative-container">

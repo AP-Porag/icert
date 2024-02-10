@@ -43,12 +43,12 @@ class UsersController extends Controller
 
         try {
 
-            if (Auth::user()->user_type != User::USER_TYPE_ADMIN){
-                $data['user_type'] = Auth::user()->user_type;
-            }else{
-                $user_type = $data['user_type'];
-                $data['user_type'] = $user_type;
-            }
+//            if (Auth::user()->user_type != User::USER_TYPE_ADMIN){
+//                $data['user_type'] = Auth::user()->user_type;
+//            }else{
+//                $user_type = $data['user_type'];
+//                $data['user_type'] = $user_type;
+//            }
             $user = $this->userService->storeOrUpdate($data, null);
 //            $user->assignRole([$request->input('role')]);
             $user->givePermissionTo([$request->input('role')]);

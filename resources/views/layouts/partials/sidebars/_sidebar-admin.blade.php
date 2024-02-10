@@ -134,7 +134,7 @@
                 @can('Customer')
                     <li class="{{ request()->is('admin/customers*') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.customers.index') }}" class="waves-effect {{ request()->routeIs('admin.customers.index') ? 'active' : '' }}">
-                            <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/customer.png')}}" alt=""><span> Customers </span>
+                            <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/customer.png')}}" alt=""><span> Customer Name (If Different) </span>
                         </a>
                     </li>
                 @endcan

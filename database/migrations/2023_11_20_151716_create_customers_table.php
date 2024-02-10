@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('contact_name')->nullable();
             $table->string('phone')->nullable();
+            $table->string('customer_for')->nullable();
             $table->string('billing_address_line_one')->nullable();
             $table->string('billing_address_line_two')->nullable();
             $table->string('billing_country')->nullable();
