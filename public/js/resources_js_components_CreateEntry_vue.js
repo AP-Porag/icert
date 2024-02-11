@@ -14,8 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-phone-number-input */ "./node_modules/vue-phone-number-input/dist/vue-phone-number-input.common.js");
 /* harmony import */ var vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.mjs");
-/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.mjs");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.mjs");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -23,6 +22,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+// import {isReadonly} from "vue";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateEntry",
@@ -277,12 +277,111 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         "name": "WA"
       }],
       isAllSelected: false,
-      customers: ['customer - 1', 'customer - 2', 'customer - 3', 'customer - 4', 'customer - 5'],
-      promoCodes: ['promo - 1', 'promo - 2', 'promo - 3', 'promo - 4', 'promo - 5'],
-      shippingMethods: ['Delivery', 'Pickup', 'Show Pickup', 'Return to Third Party', 'Canada Post', 'DHL', 'FedEx', 'Purolator', 'UPS'],
-      pickUpLocations: ['KSA', 'KSA Booth', 'KSA West', 'iCert', 'iCert Booth'],
-      thirdParties: ['Third party - 1', 'Third party - 2', 'Third party - 3', 'Third party - 4', 'Third party - 5'],
-      gradingLocations: ['KSA', 'KSA Show', 'KSA West', 'iCert', 'iCert Show'],
+      customers: [{
+        "id": 1,
+        "name": "Customer 1"
+      }, {
+        "id": 2,
+        "name": "Customer 2"
+      }, {
+        "id": 3,
+        "name": "Customer 3"
+      }, {
+        "id": 4,
+        "name": "Customer 4"
+      }, {
+        "id": 5,
+        "name": "Customer 5"
+      }],
+      promoCodes: [{
+        'id': 1,
+        'name': 'promo - 1'
+      }, {
+        'id': 2,
+        'name': 'promo - 2'
+      }, {
+        'id': 3,
+        'name': 'promo - 3'
+      }, {
+        'id': 4,
+        'name': 'promo - 1'
+      }, {
+        'id': 5,
+        'name': 'promo - 1'
+      }],
+      shippingMethods: [{
+        'id': 1,
+        'name': 'Delivery'
+      }, {
+        'id': 2,
+        'name': 'Pickup'
+      }, {
+        'id': 3,
+        'name': 'Show Pickup'
+      }, {
+        'id': 4,
+        'name': 'Return to Third Party'
+      }, {
+        'id': 5,
+        'name': 'Canada Post'
+      }, {
+        'id': 6,
+        'name': 'DHL'
+      }, {
+        'id': 7,
+        'name': 'FedEx'
+      }, {
+        'id': 8,
+        'name': 'Purolator'
+      }, {
+        'id': 9,
+        'name': 'UPS'
+      }],
+      pickUpLocations: [{
+        'id': 1,
+        'name': 'KSA'
+      }, {
+        'id': 2,
+        'name': 'KSA Booth'
+      }, {
+        'id': 3,
+        'name': 'KSA West'
+      }, {
+        'id': 4,
+        'name': 'iCert'
+      }, {
+        'id': 5,
+        'name': 'iCert Booth'
+      }],
+      thirdParties: [{
+        'id': 1,
+        'name': 'Third party - 1'
+      }, {
+        'id': 2,
+        'name': 'Third party - 2'
+      }, {
+        'id': 3,
+        'name': 'Third party - 3'
+      }, {
+        'id': 4,
+        'name': 'Third party - 4'
+      }],
+      gradingLocations: [{
+        'id': 1,
+        'name': 'KSA'
+      }, {
+        'id': 2,
+        'name': 'KSA Show'
+      }, {
+        'id': 3,
+        'name': 'KSA West'
+      }, {
+        'id': 4,
+        'name': 'iCert'
+      }, {
+        'id': 5,
+        'name': 'iCert Show'
+      }],
       showPickupLocationBox: false,
       showShowPickupLocationBox: false,
       showThirdPartyBox: false,
@@ -292,14 +391,113 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       showItemTypeCombinedServiceBox: false,
       showItemTypeReholderBox: false,
       showItemTypeCrossoverBox: false,
-      itemTypes: ['Card', 'Auto Authentication', 'Combined Service', 'Reholder', 'Crossover'],
-      crossoverItemTypes: ['Card'],
-      authenticators: ['Auth - 1', 'Auth - 2', 'Auth - 3', 'Auth - 4', 'Auth - 5'],
-      minimumGrades: ['0', '1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10', '10 (P)'],
+      itemTypes: [{
+        'id': 1,
+        'name': 'Card'
+      }, {
+        'id': 2,
+        'name': 'Auto Authentication'
+      }, {
+        'id': 3,
+        'name': 'Combined Service'
+      }, {
+        'id': 4,
+        'name': 'Reholder'
+      }, {
+        'id': 5,
+        'name': 'Crossover'
+      }],
+      crossoverItemTypes: [{
+        'id': 1,
+        'name': 'Card'
+      }],
+      authenticators: [{
+        'id': 1,
+        'name': 'Auth 1'
+      }, {
+        'id': 2,
+        'name': 'Auth 2'
+      }, {
+        'id': 3,
+        'name': 'Auth 3'
+      }, {
+        'id': 4,
+        'name': 'Auth 4'
+      }, {
+        'id': 5,
+        'name': 'Auth 5'
+      }],
+      minimumGrades: [{
+        'id': 1,
+        'name': '0'
+      }, {
+        'id': 2,
+        'name': '1'
+      }, {
+        'id': 3,
+        'name': '1.5'
+      }, {
+        'id': 4,
+        'name': '2'
+      }, {
+        'id': 5,
+        'name': '2.5'
+      }, {
+        'id': 6,
+        'name': '3'
+      }, {
+        'id': 7,
+        'name': '3.5'
+      }, {
+        'id': 8,
+        'name': '4'
+      }, {
+        'id': 9,
+        'name': '4.5'
+      }, {
+        'id': 10,
+        'name': '5'
+      }, {
+        'id': 11,
+        'name': '5.5'
+      }, {
+        'id': 12,
+        'name': '6'
+      }, {
+        'id': 13,
+        'name': '6.5'
+      }, {
+        'id': 14,
+        'name': '7'
+      }, {
+        'id': 15,
+        'name': '7.5'
+      }, {
+        'id': 16,
+        'name': '8'
+      }, {
+        'id': 17,
+        'name': '8.5'
+      }, {
+        'id': 18,
+        'name': '9'
+      }, {
+        'id': 19,
+        'name': '9.5'
+      }, {
+        'id': 20,
+        'name': '10'
+      }, {
+        'id': 21,
+        'name': '10 (P)'
+      }],
       form_data: {
+        customer: '',
         name: '',
+        customerId: '',
         email: '',
         contact_name: '',
+        item_qty: 1,
         billing_address_line_one: '',
         billing_address_line_two: '',
         billing_country: '',
@@ -341,7 +539,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    isReadonly: vue__WEBPACK_IMPORTED_MODULE_2__.isReadonly,
     submit: function submit() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -622,8 +819,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.isAllSelected = true;
       }
     },
-    customerNameChangeEvent: function customerNameChangeEvent(value) {
-      console.log(value);
+    customerNameChangeEvent: function customerNameChangeEvent() {
+      console.log(this.form_data.customer);
+      this.form_data.name = this.form_data.customer.name;
+      this.form_data.customerId = this.form_data.customer.id;
     },
     customerNameSelectEvent: function customerNameSelectEvent(_ref) {
       var id = _ref.id,
@@ -633,37 +832,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: text
       });
     },
-    itemTypeChangeEvent: function itemTypeChangeEvent(value) {
-      console.log(value);
-      if (value == 'Card') {
+    itemTypeChangeEvent: function itemTypeChangeEvent() {
+      if (this.form_data.itemType == 'Card') {
         this.showItemTypeCardBox = true;
         this.showItemTypeAutoAthenticationBox = false;
         this.showItemTypeCombinedServiceBox = false;
         this.showItemTypeReholderBox = false;
         this.showItemTypeCrossoverBox = false;
       }
-      if (value == 'Auto Authentication') {
+      if (this.form_data.itemType == 'Auto Authentication') {
         this.showItemTypeCardBox = false;
         this.showItemTypeAutoAthenticationBox = true;
         this.showItemTypeCombinedServiceBox = false;
         this.showItemTypeReholderBox = false;
         this.showItemTypeCrossoverBox = false;
       }
-      if (value == 'Combined Service') {
+      if (this.form_data.itemType == 'Combined Service') {
         this.showItemTypeCardBox = false;
         this.showItemTypeAutoAthenticationBox = false;
         this.showItemTypeCombinedServiceBox = true;
         this.showItemTypeReholderBox = false;
         this.showItemTypeCrossoverBox = false;
       }
-      if (value == 'Reholder') {
+      if (this.form_data.itemType == 'Reholder') {
         this.showItemTypeCardBox = false;
         this.showItemTypeAutoAthenticationBox = false;
         this.showItemTypeCombinedServiceBox = false;
         this.showItemTypeReholderBox = true;
         this.showItemTypeCrossoverBox = false;
       }
-      if (value == 'Crossover') {
+      if (this.form_data.itemType == 'Crossover') {
         this.showItemTypeCardBox = false;
         this.showItemTypeAutoAthenticationBox = false;
         this.showItemTypeCombinedServiceBox = false;
@@ -671,56 +869,57 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.showItemTypeCrossoverBox = true;
       }
     },
-    shippingMethodsChangeEvent: function shippingMethodsChangeEvent(value) {
-      if (value == 'Pickup') {
+    shippingMethodsChangeEvent: function shippingMethodsChangeEvent() {
+      console.log(this.form_data.shipping_method);
+      if (this.form_data.shipping_method == 'Pickup') {
         this.showPickupLocationBox = true;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
         this.showUPSBox = false;
       }
-      if (value == 'Show Pickup') {
+      if (this.form_data.shipping_method == 'Show Pickup') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = true;
         this.showThirdPartyBox = false;
         this.showUPSBox = false;
       }
-      if (value == 'Return to Third Party') {
+      if (this.form_data.shipping_method == 'Return to Third Party') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = true;
         this.showUPSBox = false;
       }
-      if (value == 'UPS') {
+      if (this.form_data.shipping_method == 'UPS') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
         this.showUPSBox = true;
       }
-      if (value == 'Delivery') {
+      if (this.form_data.shipping_method == 'Delivery') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
         this.showUPSBox = false;
       }
-      if (value == 'Canada Post') {
+      if (this.form_data.shipping_method == 'Canada Post') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
         this.showUPSBox = false;
       }
-      if (value == 'DHL') {
+      if (this.form_data.shipping_method == 'DHL') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
         this.showUPSBox = false;
       }
-      if (value == 'FedEx') {
+      if (this.form_data.shipping_method == 'FedEx') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
         this.showUPSBox = false;
       }
-      if (value == 'Purolator') {
+      if (this.form_data.shipping_method == 'Purolator') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
@@ -734,63 +933,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   validations: {
     form_data: {
       name: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       contact_name: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       email: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-        email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.email
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required,
+        email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.email
       },
       billing_address_line_one: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       // billing_address_line_two:{},
       billing_country: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       billing_province: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       billing_city: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       billing_postal: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       billing_phone: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       // same_as_billing:{},
       // shipping_name:{},
       shipping_company_name: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       shipping_address_line_one: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       // shipping_address_line_two:{},
       shipping_country: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       shipping_province: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       shipping_city: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       shipping_postal: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       shipping_phone: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       status: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       products: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       }
     }
   }
@@ -893,26 +1092,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                Customer Name\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.customer,
+      expression: "form_data.customer",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.customers,
-      placeholder: "Select customer..."
+      "aria-label": "Default select example"
     },
     on: {
-      change: function change($event) {
-        return _vm.customerNameChangeEvent($event);
-      }
-    },
-    model: {
-      value: _vm.form_data.name,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "name", $$v);
-      },
-      expression: "form_data.name"
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "customer", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }, _vm.customerNameChangeEvent]
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.customers, function (customer, index) {
+    return _c("option", {
+      key: customer.id,
+      domProps: {
+        value: customer
+      }
+    }, [_vm._v(_vm._s(customer.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
+  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Grading Location",
       icon: "ti-location",
@@ -936,25 +1155,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                Select the grading location for this order\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.grading_location.toLowerCase(),
+      expression: "form_data.grading_location.toLowerCase()",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.gradingLocations
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
-        return _vm.customerNameChangeEvent($event);
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data.grading_location, "toLowerCase()", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
-    },
-    model: {
-      value: _vm.form_data.grading_location,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "grading_location", $$v);
-      },
-      expression: "form_data.grading_location"
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.gradingLocations, function (location, index) {
+    return _c("option", {
+      key: location.id,
+      domProps: {
+        value: location.id
+      }
+    }, [_vm._v(_vm._s(location.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)])])])])])])]), _vm._v(" "), _c("tab-content", {
+  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Billing Address",
       icon: "ti-infinite",
@@ -997,8 +1237,7 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.billing_address_line_one.$model
@@ -1033,8 +1272,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.form_data.billing_address_line_two
@@ -1069,8 +1307,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.billing_city.$model
@@ -1106,8 +1343,7 @@ var render = function render() {
     }],
     staticClass: "form-select mb-text-only",
     attrs: {
-      "aria-label": "Default select example",
-      readonly: _vm.isReadonly
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
@@ -1155,8 +1391,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.billing_postal.$model
@@ -1196,8 +1431,7 @@ var render = function render() {
     }],
     staticClass: "form-select mb-text-only",
     attrs: {
-      "aria-label": "Default select example",
-      readonly: _vm.isReadonly
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
@@ -1239,7 +1473,6 @@ var render = function render() {
     },
     attrs: {
       id: "phoneNumber1",
-      readonly: _vm.isReadonly,
       "default-country-code": "CA",
       "only-countries": _vm.countries_phone
     },
@@ -1295,8 +1528,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
@@ -1342,8 +1574,7 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.form_data.shipping_name
@@ -1376,8 +1607,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.shipping_company_name.$model
@@ -1412,8 +1642,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.shipping_address_line_one.$model
@@ -1448,8 +1677,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.form_data.shipping_address_line_two
@@ -1484,8 +1712,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.shipping_city.$model
@@ -1521,8 +1748,7 @@ var render = function render() {
     }],
     staticClass: "form-select mb-text-only",
     attrs: {
-      "aria-label": "Default select example",
-      readonly: _vm.isReadonly
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
@@ -1570,8 +1796,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.shipping_postal.$model
@@ -1611,8 +1836,7 @@ var render = function render() {
     }],
     staticClass: "form-select mb-text-only",
     attrs: {
-      "aria-label": "Default select example",
-      readonly: _vm.isReadonly
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
@@ -1651,7 +1875,6 @@ var render = function render() {
     staticClass: "mb-text-only",
     attrs: {
       id: "phoneNumber1",
-      readonly: _vm.isReadonly,
       "default-country-code": "CA",
       "only-countries": _vm.countries_phone
     },
@@ -1707,8 +1930,7 @@ var render = function render() {
     attrs: {
       autofocus: "",
       type: "date",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.billing_address_line_one.$model
@@ -1730,23 +1952,44 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Promo code\n                                            ")]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("\n                                                Promo code\n                                            ")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.promo_code,
+      expression: "form_data.promo_code",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.promoCodes
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
-        return _vm.customerNameChangeEvent($event);
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "promo_code", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
-    },
-    model: {
-      value: _vm.form_data.promo_code,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "promo_code", $$v);
-      },
-      expression: "form_data.promo_code"
     }
-  })], 1)]), _vm._v(" "), _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.promoCodes, function (promo, index) {
+    return _c("option", {
+      key: promo.id,
+      domProps: {
+        value: promo.id
+      }
+    }, [_vm._v(_vm._s(promo.name))]);
+  })], 2)])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
   }, [_c("div", {
     staticClass: "mb-3 d-flex justify-content-start",
@@ -1772,8 +2015,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.payment_made) ? _vm._i(_vm.form_data.payment_made, null) > -1 : _vm.form_data.payment_made
@@ -1822,8 +2064,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.pay_on_pickup) ? _vm._i(_vm.form_data.pay_on_pickup, null) > -1 : _vm.form_data.pay_on_pickup
@@ -1872,8 +2113,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.cod) ? _vm._i(_vm.form_data.cod, null) > -1 : _vm.form_data.cod
@@ -1917,8 +2157,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.billing_city.$model
@@ -1958,25 +2197,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                Shipping Method\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.shipping_method,
+      expression: "form_data.shipping_method",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.shippingMethods
+      "aria-label": "Default select example"
     },
     on: {
-      change: function change($event) {
-        return _vm.shippingMethodsChangeEvent($event);
-      }
-    },
-    model: {
-      value: _vm.form_data.shipping_method,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "shipping_method", $$v);
-      },
-      expression: "form_data.shipping_method"
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "shipping_method", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }, _vm.shippingMethodsChangeEvent]
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.shippingMethods, function (shipping, index) {
+    return _c("option", {
+      key: shipping.id,
+      domProps: {
+        value: shipping.name
+      }
+    }, [_vm._v(_vm._s(shipping.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)]), _vm._v(" "), _vm.showPickupLocationBox ? _c("div", {
+  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _vm.showPickupLocationBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -1984,25 +2244,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                Pickup location\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.pickup_location.toLowerCase(),
+      expression: "form_data.pickup_location.toLowerCase()",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.pickUpLocations
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
-        return _vm.customerNameChangeEvent($event);
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data.pickup_location, "toLowerCase()", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
-    },
-    model: {
-      value: _vm.form_data.pickup_location,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "pickup_location", $$v);
-      },
-      expression: "form_data.pickup_location"
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.pickUpLocations, function (pickup, index) {
+    return _c("option", {
+      key: pickup.id,
+      domProps: {
+        value: pickup.name
+      }
+    }, [_vm._v(_vm._s(pickup.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)]) : _vm._e(), _vm._v(" "), _vm.showShowPickupLocationBox ? _c("div", {
+  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showShowPickupLocationBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -2010,25 +2291,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                Pickup Location\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.show_pickup_location,
+      expression: "form_data.show_pickup_location",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.pickUpLocations
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
-        return _vm.customerNameChangeEvent($event);
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "show_pickup_location", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
-    },
-    model: {
-      value: _vm.form_data.show_pickup_location,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "show_pickup_location", $$v);
-      },
-      expression: "form_data.show_pickup_location"
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.pickUpLocations, function (showPickup, index) {
+    return _c("option", {
+      key: showPickup.id,
+      domProps: {
+        value: showPickup.name
+      }
+    }, [_vm._v(_vm._s(showPickup.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)]) : _vm._e(), _vm._v(" "), _vm.showThirdPartyBox ? _c("div", {
+  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showThirdPartyBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -2036,25 +2338,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                Third party drop off center\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.third_party_drop_center,
+      expression: "form_data.third_party_drop_center",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.thirdParties
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
-        return _vm.customerNameChangeEvent($event);
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "third_party_drop_center", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
-    },
-    model: {
-      value: _vm.form_data.third_party_drop_center,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "third_party_drop_center", $$v);
-      },
-      expression: "form_data.third_party_drop_center"
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.thirdParties, function (third, index) {
+    return _c("option", {
+      key: third.id,
+      domProps: {
+        value: third.id
+      }
+    }, [_vm._v(_vm._s(third.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)]) : _vm._e(), _vm._v(" "), _vm.showUPSBox ? _c("div", {
+  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showUPSBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "row"
@@ -2084,8 +2407,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.use_customer_account) ? _vm._i(_vm.form_data.use_customer_account, null) > -1 : _vm.form_data.use_customer_account
@@ -2129,8 +2451,7 @@ var render = function render() {
     staticClass: "form-control mb-text-only",
     attrs: {
       type: "text",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       value: _vm.v$.form_data.billing_city.$model
@@ -2169,25 +2490,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                Select the item type to be entered\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.itemType,
+      expression: "form_data.itemType",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.itemTypes
+      "aria-label": "Default select example"
     },
     on: {
-      change: function change($event) {
-        return _vm.itemTypeChangeEvent($event);
-      }
-    },
-    model: {
-      value: _vm.form_data.itemType,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "itemType", $$v);
-      },
-      expression: "form_data.itemType"
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "itemType", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }, _vm.itemTypeChangeEvent]
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.itemTypes, function (type, index) {
+    return _c("option", {
+      key: type.id,
+      domProps: {
+        value: type.name
+      }
+    }, [_vm._v(_vm._s(type.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)]), _vm._v(" "), _vm.showItemTypeCrossoverBox ? _c("div", {
+  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _vm.showItemTypeCrossoverBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -2195,25 +2537,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                Crossover Item Type\n                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
+      value: _vm.form_data.crossover_item_type.toLowerCase(),
+      expression: "form_data.crossover_item_type.toLowerCase()",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
     attrs: {
-      options: _vm.crossoverItemTypes
+      "aria-label": "Default select example"
     },
     on: {
       change: function change($event) {
-        return _vm.itemTypeChangeEvent($event);
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data.crossover_item_type, "toLowerCase()", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
-    },
-    model: {
-      value: _vm.form_data.crossover_item_type,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "crossover_item_type", $$v);
-      },
-      expression: "form_data.crossover_item_type"
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.crossoverItemTypes, function (coType, index) {
+    return _c("option", {
+      key: coType.id,
+      domProps: {
+        value: coType.name
+      }
+    }, [_vm._v(_vm._s(coType.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()], 1)]) : _vm._e()])])])]), _vm._v(" "), _vm.showItemTypeCardBox ? _c("div", {
+  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]) : _vm._e()])])])]), _vm._v(" "), _vm.showItemTypeCardBox ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -2231,8 +2594,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.item_qty,
+      expression: "form_data.item_qty",
       modifiers: {
         trim: true
       }
@@ -2244,12 +2607,12 @@ var render = function render() {
       readonly: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.item_qty
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "item_qty", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
@@ -2439,8 +2802,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
@@ -2473,20 +2835,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                                Authenticator Name\n                                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
-    attrs: {
-      options: _vm.authenticators
-    },
-    model: {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
       value: _vm.form_data.authenticator_name,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "authenticator_name", $$v);
-      },
-      expression: "form_data.authenticator_name"
+      expression: "form_data.authenticator_name",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
+    attrs: {
+      "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "authenticator_name", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.authenticators, function (authenticator, index) {
+    return _c("option", {
+      key: authenticator.id,
+      domProps: {
+        value: authenticator.id
+      }
+    }, [_vm._v(_vm._s(authenticator.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -2578,8 +2966,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.item_qty,
+      expression: "form_data.item_qty",
       modifiers: {
         trim: true
       }
@@ -2591,12 +2979,12 @@ var render = function render() {
       readonly: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.item_qty
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "item_qty", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
@@ -2786,8 +3174,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
@@ -2820,20 +3207,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                                Authenticator Name\n                                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
-    attrs: {
-      options: _vm.authenticators
-    },
-    model: {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
       value: _vm.form_data.authenticator_name_two,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "authenticator_name_two", $$v);
-      },
-      expression: "form_data.authenticator_name_two"
+      expression: "form_data.authenticator_name_two",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
+    attrs: {
+      "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "authenticator_name_two", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.authenticators, function (authenticator, index) {
+    return _c("option", {
+      key: authenticator.id,
+      domProps: {
+        value: authenticator.id
+      }
+    }, [_vm._v(_vm._s(authenticator.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -2925,8 +3338,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.item_qty,
+      expression: "form_data.item_qty",
       modifiers: {
         trim: true
       }
@@ -2938,12 +3351,12 @@ var render = function render() {
       readonly: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.item_qty
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "item_qty", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
@@ -3133,8 +3546,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
@@ -3167,20 +3579,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                                Authenticator Name\n                                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
-    attrs: {
-      options: _vm.authenticators
-    },
-    model: {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
       value: _vm.form_data.authenticator_name_three,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "authenticator_name_three", $$v);
-      },
-      expression: "form_data.authenticator_name_three"
+      expression: "form_data.authenticator_name_three",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
+    attrs: {
+      "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "authenticator_name_three", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.authenticators, function (authenticator, index) {
+    return _c("option", {
+      key: authenticator.id,
+      domProps: {
+        value: authenticator.id
+      }
+    }, [_vm._v(_vm._s(authenticator.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -3272,8 +3710,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.item_qty,
+      expression: "form_data.item_qty",
       modifiers: {
         trim: true
       }
@@ -3285,12 +3723,12 @@ var render = function render() {
       readonly: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.item_qty
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "item_qty", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
@@ -3394,8 +3832,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.item_qty,
+      expression: "form_data.item_qty",
       modifiers: {
         trim: true
       }
@@ -3407,12 +3845,12 @@ var render = function render() {
       readonly: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.item_qty
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "item_qty", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
@@ -3602,8 +4040,7 @@ var render = function render() {
     staticClass: "form-check",
     attrs: {
       type: "checkbox",
-      placeholder: "",
-      readonly: _vm.isReadonly
+      placeholder: ""
     },
     domProps: {
       checked: Array.isArray(_vm.form_data.same_as_billing) ? _vm._i(_vm.form_data.same_as_billing, null) > -1 : _vm.form_data.same_as_billing
@@ -3636,20 +4073,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                                Authenticator Name\n                                                                "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
-    attrs: {
-      options: _vm.authenticators
-    },
-    model: {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
       value: _vm.form_data.authenticator_name_four,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "authenticator_name_four", $$v);
-      },
-      expression: "form_data.authenticator_name_four"
+      expression: "form_data.authenticator_name_four",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
+    attrs: {
+      "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "authenticator_name_four", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.authenticators, function (authenticator, index) {
+    return _c("option", {
+      key: authenticator.id,
+      domProps: {
+        value: authenticator.id
+      }
+    }, [_vm._v(_vm._s(authenticator.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()], 1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -3735,20 +4198,46 @@ var render = function render() {
     staticClass: "form-label w-100 text-capitalize"
   }, [_vm._v("\n                                                        Minimum Grade\n                                                        "), _c("span", {
     staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("Select2", {
-    attrs: {
-      options: _vm.minimumGrades
-    },
-    model: {
+  }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model.trim",
       value: _vm.form_data.minimum_grade,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form_data, "minimum_grade", $$v);
-      },
-      expression: "form_data.minimum_grade"
+      expression: "form_data.minimum_grade",
+      modifiers: {
+        trim: true
+      }
+    }],
+    staticClass: "form-select mb-text-only",
+    attrs: {
+      "aria-label": "Default select example"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_data, "minimum_grade", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
     }
-  }), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }, [_c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.minimumGrades, function (grade, index) {
+    return _c("option", {
+      key: grade.id,
+      domProps: {
+        value: grade.id
+      }
+    }, [_vm._v(_vm._s(grade.name))]);
+  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        Customer name is required\n                                                    ")]) : _vm._e()], 1)])])])])])])]) : _vm._e()])])], 1)], 1)]);
+  }, [_vm._v("\n                                                        Customer name is required\n                                                    ")]) : _vm._e()])])])])])])])]) : _vm._e()])])], 1)], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

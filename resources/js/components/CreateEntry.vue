@@ -39,7 +39,14 @@
                                                 Customer Name
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.name" :options="customers" placeholder="Select customer..." @change="customerNameChangeEvent($event)" />
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.customer"
+                                                    @change="customerNameChangeEvent"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(customer,index) in customers" :value="customer" :key="customer.id">{{customer.name}}</option>
+                                            </select>
+<!--                                            <Select2 v-model="form_data.name" :options="customers" placeholder="Select customer..." @change="customerNameChangeEvent($event)" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -67,15 +74,14 @@
                                                 Select the grading location for this order
                                                 <span class="error">*</span>
                                             </label>
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.grading_location.toLowerCase()"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(location,index) in gradingLocations" :value="location.id" :key="location.id">{{location.name}}</option>
+                                            </select>
 
-<!--                                            <select class="form-select mb-text-only" aria-label="Default select example"-->
-<!--                                                    v-model="form_data.grading_location"-->
-<!--                                            >-->
-<!--                                                <option selected disabled>Open this select menu</option>-->
-<!--                                                <option v-for="(locations,index) in gradingLocations" :value="locations.name.toLowerCase()" :key="locations.id">{{locations.name}}</option>-->
-<!--                                            </select>-->
-
-                                            <Select2 v-model="form_data.grading_location" :options="gradingLocations" @change="customerNameChangeEvent($event)" />
+<!--                                            <Select2 v-model="form_data.grading_location" :options="gradingLocations" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -170,7 +176,6 @@
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_address_line_one.$model"
                                                 ref="billing_address_line_one"
-                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error_two">
                                                 One Address Line is required
@@ -188,7 +193,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="form_data.billing_address_line_two"
-                                                :readonly="isReadonly"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.billing_address_line_two.required.$invalid && show_error">-->
                                             <!--                                                Second address Line two is required-->
@@ -207,7 +211,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_city.$model"
-                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error_two">
                                                 City is required
@@ -223,7 +226,6 @@
                                             </label>
                                             <select class="form-select mb-text-only" aria-label="Default select example"
                                                     v-model.trim="v$.form_data.billing_province.$model"
-                                                    :readonly="isReadonly"
                                             >
                                                 <option selected disabled>Open this select menu</option>
                                                 <option v-for="(province,index) in provinces" :value="province.name.toLowerCase()" :key="province.id">{{province.name}}</option>
@@ -246,7 +248,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_postal.$model"
-                                                :readonly="isReadonly"
                                                 @input="event => v$.form_data.billing_postal.$model = event.target.value.toUpperCase()"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_postal.required.$invalid && show_error_two">
@@ -263,7 +264,6 @@
                                                 </label>
                                                 <select class="form-select mb-text-only" aria-label="Default select example"
                                                         v-model.trim="v$.form_data.billing_country.$model"
-                                                        :readonly="isReadonly"
                                                 >
                                                     <option selected disabled>Open this select menu</option>
                                                     <option v-for="(country,index) in countries" :value="country.name.toLowerCase()" :key="country.id">{{country.name}}</option>
@@ -283,7 +283,6 @@
                                                     id="phoneNumber1"
                                                     class="mb-text-only"
                                                     v-model.trim="v$.form_data.billing_phone.$model"
-                                                    :readonly="isReadonly"
                                                     default-country-code="CA"
                                                     :only-countries="countries_phone"
                                                     style="background-color: #e8f0fe !important;"
@@ -381,7 +380,6 @@
                                                 class="form-check"
                                                 placeholder=""
                                                 v-model.trim="form_data.same_as_billing"
-                                                :readonly="isReadonly"
                                                 @change="sameAsBillingChanged($event)"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
@@ -401,7 +399,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="form_data.shipping_name"
-                                                :readonly="isReadonly"
                                                 ref="shipping_name"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.shipping_name.required.$invalid && show_error">-->
@@ -420,7 +417,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_company_name.$model"
-                                                :readonly="isReadonly"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.shipping_company_name.required.$invalid && show_error">-->
                                             <!--                                                Company name is required-->
@@ -439,7 +435,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_address_line_one.$model"
-                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.shipping_address_line_one.required.$invalid && show_error_three">
                                                 One Address is required for shipping
@@ -457,7 +452,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="form_data.shipping_address_line_two"
-                                                :readonly="isReadonly"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.shipping_address_line_two.required.$invalid && show_error">-->
                                             <!--                                                Second shipping address required-->
@@ -476,7 +470,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_city.$model"
-                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.shipping_city.required.$invalid && show_error_three">
                                                 city is required
@@ -492,7 +485,6 @@
                                             </label>
                                             <select class="form-select mb-text-only" aria-label="Default select example"
                                                     v-model.trim="v$.form_data.shipping_province.$model"
-                                                    :readonly="isReadonly"
                                             >
                                                 <option selected disabled>Open this select menu</option>
                                                 <option v-for="(province,index) in provinces" :value="province.name.toLowerCase()" :key="province.id">{{province.name}}</option>
@@ -514,7 +506,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.shipping_postal.$model"
-                                                :readonly="isReadonly"
                                                 @input="event => v$.form_data.shipping_postal.$model = event.target.value.toUpperCase()"
                                             />
                                             <div class="error" v-if="v$.form_data.shipping_postal.required.$invalid && show_error_three">
@@ -532,7 +523,6 @@
                                                 </label>
                                                 <select class="form-select mb-text-only" aria-label="Default select example"
                                                         v-model.trim="v$.form_data.shipping_country.$model"
-                                                        :readonly="isReadonly"
                                                 >
                                                     <option selected disabled>Open this select menu</option>
                                                     <option v-for="(country,index) in countries" :value="country.name.toLowerCase()" :key="country.id">{{country.name}}</option>
@@ -552,7 +542,6 @@
                                                     id="phoneNumber1"
                                                     class="mb-text-only"
                                                     v-model.trim="v$.form_data.shipping_phone.$model"
-                                                    :readonly="isReadonly"
                                                     default-country-code="CA"
                                                     :only-countries="countries_phone"
                                                 />
@@ -652,7 +641,6 @@
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_address_line_one.$model"
                                                 ref="billing_address_line_one"
-                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error_two">
                                                 One Address Line is required
@@ -665,7 +653,13 @@
                                             <label class="form-label w-100 text-capitalize">
                                                 Promo code
                                             </label>
-                                            <Select2 v-model="form_data.promo_code" :options="promoCodes" @change="customerNameChangeEvent($event)" />
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.promo_code"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(promo,index) in promoCodes" :value="promo.id" :key="promo.id">{{promo.name}}</option>
+                                            </select>
+<!--                                            <Select2 v-model="form_data.promo_code" :options="promoCodes" />-->
                                         </div>
                                     </div>
 
@@ -679,7 +673,6 @@
                                                 class="form-check"
                                                 placeholder=""
                                                 v-model.trim="form_data.payment_made"
-                                                :readonly="isReadonly"
                                             />
                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                             <!--                                                Same as Billing is required-->
@@ -697,7 +690,6 @@
                                                 class="form-check"
                                                 placeholder=""
                                                 v-model.trim="form_data.pay_on_pickup"
-                                                :readonly="isReadonly"
                                             />
                                         </div>
                                     </div>
@@ -712,7 +704,6 @@
                                                 class="form-check"
                                                 placeholder=""
                                                 v-model.trim="form_data.cod"
-                                                :readonly="isReadonly"
                                             />
                                         </div>
                                     </div>
@@ -728,7 +719,6 @@
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_city.$model"
-                                                :readonly="isReadonly"
                                             />
                                             <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error_two">
                                                 City is required
@@ -757,7 +747,14 @@
                                                 Shipping Method
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.shipping_method" :options="shippingMethods" @change="shippingMethodsChangeEvent($event)" />
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.shipping_method"
+                                                    @change="shippingMethodsChangeEvent"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(shipping,index) in shippingMethods" :value="shipping.name" :key="shipping.id">{{shipping.name}}</option>
+                                            </select>
+<!--                                            <Select2 v-model="form_data.shipping_method" :options="shippingMethods" @change="shippingMethodsChangeEvent($event)" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -770,7 +767,13 @@
                                                 Pickup location
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.pickup_location" :options="pickUpLocations" @change="customerNameChangeEvent($event)" />
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.pickup_location.toLowerCase()"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(pickup,index) in pickUpLocations" :value="pickup.name" :key="pickup.id">{{pickup.name}}</option>
+                                            </select>
+<!--                                            <Select2 v-model="form_data.pickup_location" :options="pickUpLocations" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -783,7 +786,13 @@
                                                 Pickup Location
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.show_pickup_location" :options="pickUpLocations" @change="customerNameChangeEvent($event)" />
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.show_pickup_location"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(showPickup,index) in pickUpLocations" :value="showPickup.name" :key="showPickup.id">{{showPickup.name}}</option>
+                                            </select>
+<!--                                            <Select2 v-model="form_data.show_pickup_location" :options="pickUpLocations" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -796,7 +805,13 @@
                                                 Third party drop off center
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.third_party_drop_center" :options="thirdParties" @change="customerNameChangeEvent($event)" />
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.third_party_drop_center"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(third,index) in thirdParties" :value="third.id" :key="third.id">{{third.name}}</option>
+                                            </select>
+<!--                                            <Select2 v-model="form_data.third_party_drop_center" :options="thirdParties" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -815,7 +830,6 @@
                                                         class="form-check"
                                                         placeholder=""
                                                         v-model.trim="form_data.use_customer_account"
-                                                        :readonly="isReadonly"
                                                     />
                                                 </div>
                                             </div>
@@ -831,7 +845,6 @@
                                                         class="form-control mb-text-only"
                                                         placeholder=""
                                                         v-model.trim="v$.form_data.billing_city.$model"
-                                                        :readonly="isReadonly"
                                                     />
                                                     <div class="error" v-if="v$.form_data.billing_city.required.$invalid && show_error_two">
                                                         City is required
@@ -861,15 +874,14 @@
                                                 Select the item type to be entered
                                                 <span class="error">*</span>
                                             </label>
-                                            <!--                                            <input-->
-                                            <!--                                                autofocus-->
-                                            <!--                                                type="text"-->
-                                            <!--                                                class="form-control"-->
-                                            <!--                                                placeholder=""-->
-                                            <!--                                                v-model.trim="v$.form_data.name.$model"-->
-                                            <!--                                                ref="name"-->
-                                            <!--                                            />-->
-                                            <Select2 v-model="form_data.itemType" :options="itemTypes" @change="itemTypeChangeEvent($event)" />
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.itemType"
+                                                    @change="itemTypeChangeEvent"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(type,index) in itemTypes" :value="type.name" :key="type.id">{{type.name}}</option>
+                                            </select>
+<!--                                            <Select2 v-model="form_data.itemType" :options="itemTypes" @change="itemTypeChangeEvent($event)" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -882,7 +894,13 @@
                                                 Crossover Item Type
                                                 <span class="error">*</span>
                                             </label>
-                                            <Select2 v-model="form_data.crossover_item_type" :options="crossoverItemTypes" @change="itemTypeChangeEvent($event)" />
+                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                    v-model.trim="form_data.crossover_item_type.toLowerCase()"
+                                            >
+                                                <option selected disabled>Open this select menu</option>
+                                                <option v-for="(coType,index) in crossoverItemTypes" :value="coType.name" :key="coType.id">{{coType.name}}</option>
+                                            </select>
+<!--                                            <Select2 v-model="form_data.crossover_item_type" :options="crossoverItemTypes" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -908,7 +926,7 @@
                                                 type="text"
                                                 class="form-control"
                                                 placeholder=""
-                                                v-model.trim="v$.form_data.contact_name.$model"
+                                                v-model.trim="form_data.item_qty"
                                                 readonly
                                             />
                                             <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
@@ -1003,7 +1021,6 @@
                                                                 class="form-check"
                                                                 placeholder=""
                                                                 v-model.trim="form_data.same_as_billing"
-                                                                :readonly="isReadonly"
                                                                 @change="sameAsBillingChanged($event)"
                                                             />
                                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
@@ -1017,15 +1034,13 @@
                                                                 Authenticator Name
                                                                 <span class="error">*</span>
                                                             </label>
-                                                            <!--                                            <input-->
-                                                            <!--                                                autofocus-->
-                                                            <!--                                                type="text"-->
-                                                            <!--                                                class="form-control"-->
-                                                            <!--                                                placeholder=""-->
-                                                            <!--                                                v-model.trim="v$.form_data.name.$model"-->
-                                                            <!--                                                ref="name"-->
-                                                            <!--                                            />-->
-                                                            <Select2 v-model="form_data.authenticator_name" :options="authenticators" />
+                                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                                    v-model.trim="form_data.authenticator_name"
+                                                            >
+                                                                <option selected disabled>Open this select menu</option>
+                                                                <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>
+                                                            </select>
+<!--                                                            <Select2 v-model="form_data.authenticator_name" :options="authenticators" />-->
                                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                                 Customer name is required
                                                             </div>
@@ -1091,7 +1106,7 @@
                                                 type="text"
                                                 class="form-control"
                                                 placeholder=""
-                                                v-model.trim="v$.form_data.contact_name.$model"
+                                                v-model.trim="form_data.item_qty"
                                                 readonly
                                             />
                                             <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
@@ -1186,7 +1201,6 @@
                                                                 class="form-check"
                                                                 placeholder=""
                                                                 v-model.trim="form_data.same_as_billing"
-                                                                :readonly="isReadonly"
                                                                 @change="sameAsBillingChanged($event)"
                                                             />
                                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
@@ -1200,15 +1214,13 @@
                                                                 Authenticator Name
                                                                 <span class="error">*</span>
                                                             </label>
-                                                            <!--                                            <input-->
-                                                            <!--                                                autofocus-->
-                                                            <!--                                                type="text"-->
-                                                            <!--                                                class="form-control"-->
-                                                            <!--                                                placeholder=""-->
-                                                            <!--                                                v-model.trim="v$.form_data.name.$model"-->
-                                                            <!--                                                ref="name"-->
-                                                            <!--                                            />-->
-                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />
+                                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                                    v-model.trim="form_data.authenticator_name_two"
+                                                            >
+                                                                <option selected disabled>Open this select menu</option>
+                                                                <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>
+                                                            </select>
+<!--                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />-->
                                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                                 Customer name is required
                                                             </div>
@@ -1274,7 +1286,7 @@
                                                 type="text"
                                                 class="form-control"
                                                 placeholder=""
-                                                v-model.trim="v$.form_data.contact_name.$model"
+                                                v-model.trim="form_data.item_qty"
                                                 readonly
                                             />
                                             <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
@@ -1369,7 +1381,6 @@
                                                                 class="form-check"
                                                                 placeholder=""
                                                                 v-model.trim="form_data.same_as_billing"
-                                                                :readonly="isReadonly"
                                                                 @change="sameAsBillingChanged($event)"
                                                             />
                                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
@@ -1383,7 +1394,13 @@
                                                                 Authenticator Name
                                                                 <span class="error">*</span>
                                                             </label>
-                                                            <Select2 v-model="form_data.authenticator_name_three" :options="authenticators" />
+                                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                                    v-model.trim="form_data.authenticator_name_three"
+                                                            >
+                                                                <option selected disabled>Open this select menu</option>
+                                                                <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>
+                                                            </select>
+<!--                                                            <Select2 v-model="form_data.authenticator_name_three" :options="authenticators" />-->
                                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                                 Customer name is required
                                                             </div>
@@ -1449,7 +1466,7 @@
                                                 type="text"
                                                 class="form-control"
                                                 placeholder=""
-                                                v-model.trim="v$.form_data.contact_name.$model"
+                                                v-model.trim="form_data.item_qty"
                                                 readonly
                                             />
                                             <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
@@ -1518,7 +1535,7 @@
                                                 type="text"
                                                 class="form-control"
                                                 placeholder=""
-                                                v-model.trim="v$.form_data.contact_name.$model"
+                                                v-model.trim="form_data.item_qty"
                                                 readonly
                                             />
                                             <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">
@@ -1613,7 +1630,6 @@
                                                                 class="form-check"
                                                                 placeholder=""
                                                                 v-model.trim="form_data.same_as_billing"
-                                                                :readonly="isReadonly"
                                                                 @change="sameAsBillingChanged($event)"
                                                             />
                                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
@@ -1627,7 +1643,13 @@
                                                                 Authenticator Name
                                                                 <span class="error">*</span>
                                                             </label>
-                                                            <Select2 v-model="form_data.authenticator_name_four" :options="authenticators" />
+                                                            <select class="form-select mb-text-only" aria-label="Default select example"
+                                                                    v-model.trim="form_data.authenticator_name_four"
+                                                            >
+                                                                <option selected disabled>Open this select menu</option>
+                                                                <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>
+                                                            </select>
+<!--                                                            <Select2 v-model="form_data.authenticator_name_four" :options="authenticators" />-->
                                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                                 Customer name is required
                                                             </div>
@@ -1680,7 +1702,13 @@
                                                         Minimum Grade
                                                         <span class="error">*</span>
                                                     </label>
-                                                    <Select2 v-model="form_data.minimum_grade" :options="minimumGrades" />
+                                                    <select class="form-select mb-text-only" aria-label="Default select example"
+                                                            v-model.trim="form_data.minimum_grade"
+                                                    >
+                                                        <option selected disabled>Open this select menu</option>
+                                                        <option v-for="(grade,index) in minimumGrades" :value="grade.id" :key="grade.id">{{grade.name}}</option>
+                                                    </select>
+<!--                                                    <Select2 v-model="form_data.minimum_grade" :options="minimumGrades" />-->
                                                     <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                         Customer name is required
                                                     </div>
@@ -1703,7 +1731,7 @@
 import VuePhoneNumberInput from 'vue-phone-number-input';
 import { useVuelidate } from '@vuelidate/core'
 import { required,email } from '@vuelidate/validators'
-import {isReadonly} from "vue";
+// import {isReadonly} from "vue";
 
 
 export default {
@@ -2033,12 +2061,150 @@ export default {
                 }
             ],
             isAllSelected: false,
-            customers: ['customer - 1', 'customer - 2', 'customer - 3','customer - 4','customer - 5'],
-            promoCodes: ['promo - 1', 'promo - 2', 'promo - 3','promo - 4','promo - 5'],
-            shippingMethods: ['Delivery', 'Pickup', 'Show Pickup','Return to Third Party','Canada Post','DHL','FedEx','Purolator','UPS'],
-            pickUpLocations: ['KSA', 'KSA Booth', 'KSA West','iCert','iCert Booth',],
-            thirdParties: ['Third party - 1', 'Third party - 2', 'Third party - 3','Third party - 4','Third party - 5',],
-            gradingLocations: ['KSA', 'KSA Show', 'KSA West','iCert','iCert Show'],
+            customers: [
+                {
+                    "id":1,
+                    "name":"Customer 1"
+                },
+                {
+                    "id":2,
+                    "name":"Customer 2"
+                },
+                {
+                    "id":3,
+                    "name":"Customer 3"
+                },
+                {
+                    "id":4,
+                    "name":"Customer 4"
+                },
+                {
+                    "id":5,
+                    "name":"Customer 5"
+                },
+            ],
+            promoCodes: [
+                {
+                    'id':1,
+                    'name':'promo - 1',
+                },
+                {
+                    'id':2,
+                    'name':'promo - 2',
+                },
+                {
+                    'id':3,
+                    'name':'promo - 3',
+                },
+                {
+                    'id':4,
+                    'name':'promo - 1',
+                },
+                {
+                    'id':5,
+                    'name':'promo - 1',
+                },
+            ],
+            shippingMethods: [
+                {
+                    'id':1,
+                    'name':'Delivery',
+                },
+                {
+                    'id':2,
+                    'name':'Pickup',
+                },
+                {
+                    'id':3,
+                    'name':'Show Pickup',
+                },
+                {
+                    'id':4,
+                    'name':'Return to Third Party',
+                },
+                {
+                    'id':5,
+                    'name':'Canada Post',
+                },
+                {
+                    'id':6,
+                    'name':'DHL',
+                },
+                {
+                    'id':7,
+                    'name':'FedEx',
+                },
+                {
+                    'id':8,
+                    'name':'Purolator',
+                },
+                {
+                    'id':9,
+                    'name':'UPS',
+                },
+            ],
+            pickUpLocations: [
+                {
+                    'id':1,
+                    'name':'KSA',
+                },
+                {
+                    'id':2,
+                    'name':'KSA Booth',
+                },
+                {
+                    'id':3,
+                    'name':'KSA West',
+                },
+                {
+                    'id':4,
+                    'name':'iCert',
+                },
+                {
+                    'id':5,
+                    'name':'iCert Booth',
+                },
+            ],
+            thirdParties: [
+                {
+                    'id':1,
+                    'name':'Third party - 1',
+                },
+                {
+                    'id':2,
+                    'name':'Third party - 2',
+                },
+                {
+                    'id':3,
+                    'name':'Third party - 3',
+                },
+                {
+                    'id':4,
+                    'name':'Third party - 4',
+                },
+            ],
+            gradingLocations: [
+                {
+                    'id':1,
+                    'name':'KSA',
+                },
+                {
+                    'id':2,
+                    'name':'KSA Show',
+                },
+                {
+                    'id':3,
+                    'name':'KSA West',
+                },
+                {
+                    'id':4,
+                    'name':'iCert',
+                },
+                {
+                    'id':5,
+                    'name':'iCert Show',
+                },
+            ],
             showPickupLocationBox:false,
             showShowPickupLocationBox:false,
             showThirdPartyBox:false,
@@ -2050,14 +2216,149 @@ export default {
             showItemTypeReholderBox:false,
             showItemTypeCrossoverBox:false,
 
-            itemTypes:['Card','Auto Authentication','Combined Service','Reholder','Crossover'],
-            crossoverItemTypes:['Card'],
-            authenticators:['Auth - 1','Auth - 2','Auth - 3','Auth - 4','Auth - 5'],
-            minimumGrades:['0','1','1.5','2','2.5','3','3.5','4','4.5','5','5.5','6','6.5','7','7.5','8','8.5','9','9.5','10','10 (P)',],
+            itemTypes:[
+                {
+                    'id':1,
+                    'name':'Card',
+                },
+                {
+                    'id':2,
+                    'name':'Auto Authentication',
+                },
+                {
+                    'id':3,
+                    'name':'Combined Service',
+                },
+                {
+                    'id':4,
+                    'name':'Reholder',
+                },
+                {
+                    'id':5,
+                    'name':'Crossover',
+                },
+            ],
+            crossoverItemTypes:[
+                {
+                    'id':1,
+                    'name':'Card'
+                }
+            ],
+            authenticators:[
+                {
+                    'id':1,
+                    'name':'Auth 1'
+                },
+                {
+                    'id':2,
+                    'name':'Auth 2'
+                },
+                {
+                    'id':3,
+                    'name':'Auth 3'
+                },
+                {
+                    'id':4,
+                    'name':'Auth 4'
+                },
+                {
+                    'id':5,
+                    'name':'Auth 5'
+                },
+            ],
+            minimumGrades:[
+                {
+                    'id':1,
+                    'name':'0'
+                },
+                {
+                    'id':2,
+                    'name':'1'
+                },
+                {
+                    'id':3,
+                    'name':'1.5'
+                },
+                {
+                    'id':4,
+                    'name':'2'
+                },
+                {
+                    'id':5,
+                    'name':'2.5'
+                },
+                {
+                    'id':6,
+                    'name':'3'
+                },
+                {
+                    'id':7,
+                    'name':'3.5'
+                },
+                {
+                    'id':8,
+                    'name':'4'
+                },
+                {
+                    'id':9,
+                    'name':'4.5'
+                },
+                {
+                    'id':10,
+                    'name':'5'
+                },
+                {
+                    'id':11,
+                    'name':'5.5'
+                },
+                {
+                    'id':12,
+                    'name':'6'
+                },
+                {
+                    'id':13,
+                    'name':'6.5'
+                },
+                {
+                    'id':14,
+                    'name':'7'
+                },
+                {
+                    'id':15,
+                    'name':'7.5'
+                },
+                {
+                    'id':16,
+                    'name':'8'
+                },
+                {
+                    'id':17,
+                    'name':'8.5'
+                },
+                {
+                    'id':18,
+                    'name':'9'
+                },
+                {
+                    'id':19,
+                    'name':'9.5'
+                },
+                {
+                    'id':20,
+                    'name':'10'
+                },
+                {
+                    'id':21,
+                    'name':'10 (P)'
+                },
+            ],
             form_data:{
+                customer: '',
                 name: '',
+                customerId: '',
                 email:'',
                 contact_name:'',
+                item_qty:1,
                 billing_address_line_one:'',
                 billing_address_line_two:'',
                 billing_country:'',
@@ -2101,7 +2402,6 @@ export default {
         }
     },
     methods:{
-        isReadonly,
         async submit(){
             if (this.dummyStep()){
                 Swal.fire({
@@ -2380,43 +2680,44 @@ export default {
                 this.isAllSelected = true
             }
         },
-        customerNameChangeEvent(value){
-            console.log(value)
+        customerNameChangeEvent(){
+            console.log(this.form_data.customer)
+            this.form_data.name = this.form_data.customer.name
+            this.form_data.customerId = this.form_data.customer.id
         },
         customerNameSelectEvent({id, text}){
             console.log({id, text})
         },
-        itemTypeChangeEvent(value){
-            console.log(value)
-            if (value == 'Card'){
+        itemTypeChangeEvent(){
+            if (this.form_data.itemType == 'Card'){
                 this.showItemTypeCardBox=true;
                 this.showItemTypeAutoAthenticationBox=false;
                 this.showItemTypeCombinedServiceBox=false;
                 this.showItemTypeReholderBox=false;
                 this.showItemTypeCrossoverBox=false;
             }
-            if (value == 'Auto Authentication'){
+            if (this.form_data.itemType == 'Auto Authentication'){
                 this.showItemTypeCardBox=false;
                 this.showItemTypeAutoAthenticationBox=true;
                 this.showItemTypeCombinedServiceBox=false;
                 this.showItemTypeReholderBox=false;
                 this.showItemTypeCrossoverBox=false;
             }
-            if (value == 'Combined Service'){
+            if (this.form_data.itemType == 'Combined Service'){
                 this.showItemTypeCardBox=false;
                 this.showItemTypeAutoAthenticationBox=false;
                 this.showItemTypeCombinedServiceBox=true;
                 this.showItemTypeReholderBox=false;
                 this.showItemTypeCrossoverBox=false;
             }
-            if (value == 'Reholder'){
+            if (this.form_data.itemType == 'Reholder'){
                 this.showItemTypeCardBox=false;
                 this.showItemTypeAutoAthenticationBox=false;
                 this.showItemTypeCombinedServiceBox=false;
                 this.showItemTypeReholderBox=true;
                 this.showItemTypeCrossoverBox=false;
             }
-            if (value == 'Crossover'){
+            if (this.form_data.itemType == 'Crossover'){
                 this.showItemTypeCardBox=false;
                 this.showItemTypeAutoAthenticationBox=false;
                 this.showItemTypeCombinedServiceBox=false;
@@ -2424,56 +2725,57 @@ export default {
                 this.showItemTypeCrossoverBox=true;
             }
         },
-        shippingMethodsChangeEvent(value){
-            if (value == 'Pickup'){
+        shippingMethodsChangeEvent(){
+            console.log(this.form_data.shipping_method)
+            if (this.form_data.shipping_method == 'Pickup'){
                 this.showPickupLocationBox=true;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
                 this.showUPSBox=false;
             }
-            if (value == 'Show Pickup'){
+            if (this.form_data.shipping_method == 'Show Pickup'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=true;
                 this.showThirdPartyBox=false;
                 this.showUPSBox=false;
             }
-            if (value == 'Return to Third Party'){
+            if (this.form_data.shipping_method == 'Return to Third Party'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=true;
                 this.showUPSBox=false;
             }
-            if (value == 'UPS'){
+            if (this.form_data.shipping_method == 'UPS'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
                 this.showUPSBox=true;
             }
-            if (value == 'Delivery'){
+            if (this.form_data.shipping_method == 'Delivery'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
                 this.showUPSBox=false;
             }
-            if (value == 'Canada Post'){
+            if (this.form_data.shipping_method == 'Canada Post'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
                 this.showUPSBox=false;
             }
-            if (value == 'DHL'){
+            if (this.form_data.shipping_method == 'DHL'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
                 this.showUPSBox=false;
             }
-            if (value == 'FedEx'){
+            if (this.form_data.shipping_method == 'FedEx'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
                 this.showUPSBox=false;
             }
-            if (value == 'Purolator'){
+            if (this.form_data.shipping_method == 'Purolator'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
