@@ -875,7 +875,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                Drop Off Center Name (if different)\n                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                Customer Name (if different)\n                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",

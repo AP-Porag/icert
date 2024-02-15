@@ -215,7 +215,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label w-100 text-capitalize">
-                                Drop Off Center Name (if different)
+                                Customer Name (if different)
                             </label>
                             <input
                                 autofocus
