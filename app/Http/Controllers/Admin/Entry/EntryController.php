@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin\Entry;
 
 use App\DataTables\EntryDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Promo;
+use App\Models\ThirdParty;
 use App\Services\EntryService;
 use Illuminate\Http\Request;
 
@@ -27,7 +30,12 @@ class EntryController extends Controller
     {
         set_page_meta('Create Entry');
         $products = Product::orderBy('id','ASC')->get();
-        return view('admin.entry.create',compact('products'));
+        $allCustomers = Customer::orderBy('id','DESC')->select('id','name')->get();
+        $allPromos = Promo::orderBy('id','DESC')->select('id','name')->get();
+        $allThirdParties = ThirdParty::orderBy('id','DESC')->select('id','name')->get();
+
+//        return $allThirdParties;
+        return view('admin.entry.create',compact('products','allCustomers','allPromos','allThirdParties'));
     }
 
     public function store(Request $request)
@@ -134,5 +142,16 @@ class EntryController extends Controller
             $data = ['status'=>300,'message'=>'Not Exist','data'=>$thirdParty];
             return response()->json($data);
         }
+    }
+
+    public function getCustomerInfo($id)
+    {
+        $customer = Customer::find($id);
+        $data = [
+            'status'=>200,
+            'message'=>'Successfully fetched',
+            'data'=>$customer
+        ];
+        return response()->json($data);
     }
 }

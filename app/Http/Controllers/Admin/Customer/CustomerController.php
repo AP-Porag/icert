@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Customer;
 use App\DataTables\CustomerDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
+use App\Models\Customer;
 use App\Services\CustomerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;

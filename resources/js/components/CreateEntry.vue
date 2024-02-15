@@ -75,7 +75,7 @@
                                                 <span class="error">*</span>
                                             </label>
                                             <select class="form-select mb-text-only" aria-label="Default select example"
-                                                    v-model.trim="form_data.grading_location.toLowerCase()"
+                                                    v-model.trim="form_data.grading_location"
                                             >
                                                 <option selected disabled>Open this select menu</option>
                                                 <option v-for="(location,index) in gradingLocations" :value="location.id" :key="location.id">{{location.name}}</option>
@@ -391,7 +391,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
-                                                Drop Off Center Name (if different)
+                                                Customer Name (if different)
                                             </label>
                                             <input
                                                 autofocus
@@ -656,14 +656,15 @@
                                             <select class="form-select mb-text-only" aria-label="Default select example"
                                                     v-model.trim="form_data.promo_code"
                                             >
-                                                <option selected disabled>Open this select menu</option>
-                                                <option v-for="(promo,index) in promoCodes" :value="promo.id" :key="promo.id">{{promo.name}}</option>
+                                                <option selected disabled v-if="promos.length > 0">Open this select menu</option>
+                                                <option selected disabled v-else>There is no promo code</option>
+                                                <option v-for="(promo,index) in promos" :value="promo.id" :key="promo.id">{{promo.name}}</option>
                                             </select>
 <!--                                            <Select2 v-model="form_data.promo_code" :options="promoCodes" />-->
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
                                             <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
                                                 Payment Made
@@ -680,8 +681,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
-                                        <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
+                                    <div class="col-md-2">
+                                        <div class="mb-3 d-flex justify-content-end" style="margin-top: 25px;">
                                             <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
                                                 Pay on pickup
                                             </label>
@@ -694,8 +695,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
-                                        <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
+                                    <div class="col-md-2">
+                                        <div class="mb-3 d-flex justify-content-end" style="margin-top: 25px;">
                                             <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
                                                 COD
                                             </label>
@@ -768,7 +769,7 @@
                                                 <span class="error">*</span>
                                             </label>
                                             <select class="form-select mb-text-only" aria-label="Default select example"
-                                                    v-model.trim="form_data.pickup_location.toLowerCase()"
+                                                    v-model.trim="form_data.pickup_location"
                                             >
                                                 <option selected disabled>Open this select menu</option>
                                                 <option v-for="(pickup,index) in pickUpLocations" :value="pickup.name" :key="pickup.id">{{pickup.name}}</option>
@@ -808,10 +809,10 @@
                                             <select class="form-select mb-text-only" aria-label="Default select example"
                                                     v-model.trim="form_data.third_party_drop_center"
                                             >
-                                                <option selected disabled>Open this select menu</option>
-                                                <option v-for="(third,index) in thirdParties" :value="third.id" :key="third.id">{{third.name}}</option>
+                                                <option selected disabled v-if="parties.length > 0">Open this select menu</option>
+                                                <option selected disabled v-else>There is no third party</option>
+                                                <option v-for="(third,index) in parties" :value="third.id" :key="third.id">{{third.name}}</option>
                                             </select>
-<!--                                            <Select2 v-model="form_data.third_party_drop_center" :options="thirdParties" />-->
                                             <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">
                                                 Customer name is required
                                             </div>
@@ -895,7 +896,7 @@
                                                 <span class="error">*</span>
                                             </label>
                                             <select class="form-select mb-text-only" aria-label="Default select example"
-                                                    v-model.trim="form_data.crossover_item_type.toLowerCase()"
+                                                    v-model.trim="form_data.crossover_item_type"
                                             >
                                                 <option selected disabled>Open this select menu</option>
                                                 <option v-for="(coType,index) in crossoverItemTypes" :value="coType.name" :key="coType.id">{{coType.name}}</option>
@@ -1736,7 +1737,7 @@ import { required,email } from '@vuelidate/validators'
 
 export default {
     name: "CreateEntry",
-    props: ["products"],
+    props: ["customers","promos","parties"],
     components: {
         VuePhoneNumberInput,
     },
@@ -2061,50 +2062,50 @@ export default {
                 }
             ],
             isAllSelected: false,
-            customers: [
-                {
-                    "id":1,
-                    "name":"Customer 1"
-                },
-                {
-                    "id":2,
-                    "name":"Customer 2"
-                },
-                {
-                    "id":3,
-                    "name":"Customer 3"
-                },
-                {
-                    "id":4,
-                    "name":"Customer 4"
-                },
-                {
-                    "id":5,
-                    "name":"Customer 5"
-                },
-            ],
-            promoCodes: [
-                {
-                    'id':1,
-                    'name':'promo - 1',
-                },
-                {
-                    'id':2,
-                    'name':'promo - 2',
-                },
-                {
-                    'id':3,
-                    'name':'promo - 3',
-                },
-                {
-                    'id':4,
-                    'name':'promo - 1',
-                },
-                {
-                    'id':5,
-                    'name':'promo - 1',
-                },
-            ],
+            // customers: [
+            //     {
+            //         "id":1,
+            //         "name":"Customer 1"
+            //     },
+            //     {
+            //         "id":2,
+            //         "name":"Customer 2"
+            //     },
+            //     {
+            //         "id":3,
+            //         "name":"Customer 3"
+            //     },
+            //     {
+            //         "id":4,
+            //         "name":"Customer 4"
+            //     },
+            //     {
+            //         "id":5,
+            //         "name":"Customer 5"
+            //     },
+            // ],
+            // promoCodes: [
+            //     {
+            //         'id':1,
+            //         'name':'promo - 1',
+            //     },
+            //     {
+            //         'id':2,
+            //         'name':'promo - 2',
+            //     },
+            //     {
+            //         'id':3,
+            //         'name':'promo - 3',
+            //     },
+            //     {
+            //         'id':4,
+            //         'name':'promo - 1',
+            //     },
+            //     {
+            //         'id':5,
+            //         'name':'promo - 1',
+            //     },
+            // ],
             shippingMethods: [
                 {
                     'id':1,
@@ -2165,24 +2166,24 @@ export default {
                     'name':'iCert Booth',
                 },
             ],
-            thirdParties: [
-                {
-                    'id':1,
-                    'name':'Third party - 1',
-                },
-                {
-                    'id':2,
-                    'name':'Third party - 2',
-                },
-                {
-                    'id':3,
-                    'name':'Third party - 3',
-                },
-                {
-                    'id':4,
-                    'name':'Third party - 4',
-                },
-            ],
+            // thirdParties: [
+            //     {
+            //         'id':1,
+            //         'name':'Third party - 1',
+            //     },
+            //     {
+            //         'id':2,
+            //         'name':'Third party - 2',
+            //     },
+            //     {
+            //         'id':3,
+            //         'name':'Third party - 3',
+            //     },
+            //     {
+            //         'id':4,
+            //         'name':'Third party - 4',
+            //     },
+            // ],
             gradingLocations: [
                 {
                     'id':1,
@@ -2680,10 +2681,43 @@ export default {
                 this.isAllSelected = true
             }
         },
-        customerNameChangeEvent(){
+        async customerNameChangeEvent(){
+            let self = this;
             console.log(this.form_data.customer)
             this.form_data.name = this.form_data.customer.name
             this.form_data.customerId = this.form_data.customer.id
+
+            console.log(this.form_data.customerId)
+            await axios
+                .get(`/admin/entries/get-customer/info/${self.form_data.customerId}`)
+                .then(function (res) {
+                    // console.log(res)
+                    self.form_data.billing_address_line_one = res.data.data.billing_address_line_one
+                    self.form_data.billing_address_line_two = res.data.data.billing_address_line_two
+                    self.form_data.billing_country = res.data.data.billing_country
+                    self.form_data.billing_province = res.data.data.billing_province
+                    self.form_data.billing_city = res.data.data.billing_city
+                    self.form_data.billing_postal = res.data.data.billing_postal
+                    self.form_data.billing_phone = res.data.data.billing_phone
+                    self.form_data.same_as_billing = res.data.data.same_as_billing == 0 ? false: true
+                    self.form_data.shipping_name = res.data.data.shipping_name
+                    self.form_data.shipping_company_name = res.data.data.shipping_company_name
+                    self.form_data.shipping_address_line_one = res.data.data.shipping_address_line_one
+                    self.form_data.shipping_address_line_two = res.data.data.shipping_address_line_two
+                    self.form_data.shipping_country = res.data.data.shipping_country
+                    self.form_data.shipping_province = res.data.data.shipping_province
+                    self.form_data.shipping_city = res.data.data.shipping_city
+                    self.form_data.shipping_postal = res.data.data.shipping_postal
+                    self.form_data.shipping_phone = res.data.data.shipping_phone
+                })
+                .catch(function (err) {
+                    try {
+                        self.showValidationError(err);
+                    } catch (e) {
+                        self.showSomethingWrong();
+                    }
+                });
+
         },
         customerNameSelectEvent({id, text}){
             console.log({id, text})

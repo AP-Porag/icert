@@ -10,7 +10,7 @@
 {{--                        <a href="{{route('admin.thirds.index')}}" class="btn btn-sm btn-warning text-capitalize" style="padding-top: 8px;">Cancel</a>--}}
                     </div>
 
-                    <create-entry :products="{{json_encode($products)}}"/>
+                    <create-entry :products="{{json_encode($products)}}" :customers="{{json_encode($allCustomers)}}" :promos="{{json_encode($allPromos)}}" :parties="{{json_encode($allThirdParties)}}"/>
                 </div>
             </div>
         </div>

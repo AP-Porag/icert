@@ -26,7 +26,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateEntry",
-  props: ["products"],
+  props: ["customers", "promos", "parties"],
   components: {
     VuePhoneNumberInput: (vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0___default())
   },
@@ -277,38 +277,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         "name": "WA"
       }],
       isAllSelected: false,
-      customers: [{
-        "id": 1,
-        "name": "Customer 1"
-      }, {
-        "id": 2,
-        "name": "Customer 2"
-      }, {
-        "id": 3,
-        "name": "Customer 3"
-      }, {
-        "id": 4,
-        "name": "Customer 4"
-      }, {
-        "id": 5,
-        "name": "Customer 5"
-      }],
-      promoCodes: [{
-        'id': 1,
-        'name': 'promo - 1'
-      }, {
-        'id': 2,
-        'name': 'promo - 2'
-      }, {
-        'id': 3,
-        'name': 'promo - 3'
-      }, {
-        'id': 4,
-        'name': 'promo - 1'
-      }, {
-        'id': 5,
-        'name': 'promo - 1'
-      }],
+      // customers: [
+      //     {
+      //         "id":1,
+      //         "name":"Customer 1"
+      //     },
+      //     {
+      //         "id":2,
+      //         "name":"Customer 2"
+      //     },
+      //     {
+      //         "id":3,
+      //         "name":"Customer 3"
+      //     },
+      //     {
+      //         "id":4,
+      //         "name":"Customer 4"
+      //     },
+      //     {
+      //         "id":5,
+      //         "name":"Customer 5"
+      //     },
+      // ],
+      // promoCodes: [
+      //     {
+      //         'id':1,
+      //         'name':'promo - 1',
+      //     },
+      //     {
+      //         'id':2,
+      //         'name':'promo - 2',
+      //     },
+      //     {
+      //         'id':3,
+      //         'name':'promo - 3',
+      //     },
+      //     {
+      //         'id':4,
+      //         'name':'promo - 1',
+      //     },
+      //     {
+      //         'id':5,
+      //         'name':'promo - 1',
+      //     },
+      // ],
       shippingMethods: [{
         'id': 1,
         'name': 'Delivery'
@@ -353,19 +365,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         'id': 5,
         'name': 'iCert Booth'
       }],
-      thirdParties: [{
-        'id': 1,
-        'name': 'Third party - 1'
-      }, {
-        'id': 2,
-        'name': 'Third party - 2'
-      }, {
-        'id': 3,
-        'name': 'Third party - 3'
-      }, {
-        'id': 4,
-        'name': 'Third party - 4'
-      }],
+      // thirdParties: [
+      //     {
+      //         'id':1,
+      //         'name':'Third party - 1',
+      //     },
+      //     {
+      //         'id':2,
+      //         'name':'Third party - 2',
+      //     },
+      //     {
+      //         'id':3,
+      //         'name':'Third party - 3',
+      //     },
+      //     {
+      //         'id':4,
+      //         'name':'Third party - 4',
+      //     },
+      // ],
       gradingLocations: [{
         'id': 1,
         'name': 'KSA'
@@ -820,9 +837,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     customerNameChangeEvent: function customerNameChangeEvent() {
-      console.log(this.form_data.customer);
-      this.form_data.name = this.form_data.customer.name;
-      this.form_data.customerId = this.form_data.customer.id;
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var self;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              self = _this3;
+              console.log(_this3.form_data.customer);
+              _this3.form_data.name = _this3.form_data.customer.name;
+              _this3.form_data.customerId = _this3.form_data.customer.id;
+              console.log(_this3.form_data.customerId);
+              _context3.next = 7;
+              return axios.get("/admin/entries/get-customer/info/".concat(self.form_data.customerId)).then(function (res) {
+                // console.log(res)
+                self.form_data.billing_address_line_one = res.data.data.billing_address_line_one;
+                self.form_data.billing_address_line_two = res.data.data.billing_address_line_two;
+                self.form_data.billing_country = res.data.data.billing_country;
+                self.form_data.billing_province = res.data.data.billing_province;
+                self.form_data.billing_city = res.data.data.billing_city;
+                self.form_data.billing_postal = res.data.data.billing_postal;
+                self.form_data.billing_phone = res.data.data.billing_phone;
+                self.form_data.same_as_billing = res.data.data.same_as_billing == 0 ? false : true;
+                self.form_data.shipping_name = res.data.data.shipping_name;
+                self.form_data.shipping_company_name = res.data.data.shipping_company_name;
+                self.form_data.shipping_address_line_one = res.data.data.shipping_address_line_one;
+                self.form_data.shipping_address_line_two = res.data.data.shipping_address_line_two;
+                self.form_data.shipping_country = res.data.data.shipping_country;
+                self.form_data.shipping_province = res.data.data.shipping_province;
+                self.form_data.shipping_city = res.data.data.shipping_city;
+                self.form_data.shipping_postal = res.data.data.shipping_postal;
+                self.form_data.shipping_phone = res.data.data.shipping_phone;
+              })["catch"](function (err) {
+                try {
+                  self.showValidationError(err);
+                } catch (e) {
+                  self.showSomethingWrong();
+                }
+              });
+            case 7:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3);
+      }))();
     },
     customerNameSelectEvent: function customerNameSelectEvent(_ref) {
       var id = _ref.id,
@@ -1159,8 +1217,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.grading_location.toLowerCase(),
-      expression: "form_data.grading_location.toLowerCase()",
+      value: _vm.form_data.grading_location,
+      expression: "form_data.grading_location",
       modifiers: {
         trim: true
       }
@@ -1177,7 +1235,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data.grading_location, "toLowerCase()", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.form_data, "grading_location", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -1559,7 +1617,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Drop Off Center Name (if different)\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                Customer Name (if different)\n                                            ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1977,12 +2035,17 @@ var render = function render() {
         _vm.$set(_vm.form_data, "promo_code", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }, [_c("option", {
+  }, [_vm.promos.length > 0 ? _c("option", {
     attrs: {
       selected: "",
       disabled: ""
     }
-  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.promoCodes, function (promo, index) {
+  }, [_vm._v("Open this select menu")]) : _c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("There is no promo code")]), _vm._v(" "), _vm._l(_vm.promos, function (promo, index) {
     return _c("option", {
       key: promo.id,
       domProps: {
@@ -1990,7 +2053,7 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(promo.name))]);
   })], 2)])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
+    staticClass: "col-md-2"
   }, [_c("div", {
     staticClass: "mb-3 d-flex justify-content-start",
     staticStyle: {
@@ -2039,9 +2102,9 @@ var render = function render() {
       }
     }
   })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
+    staticClass: "col-md-2"
   }, [_c("div", {
-    staticClass: "mb-3 d-flex justify-content-start",
+    staticClass: "mb-3 d-flex justify-content-end",
     staticStyle: {
       "margin-top": "25px"
     }
@@ -2088,9 +2151,9 @@ var render = function render() {
       }
     }
   })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
+    staticClass: "col-md-2"
   }, [_c("div", {
-    staticClass: "mb-3 d-flex justify-content-start",
+    staticClass: "mb-3 d-flex justify-content-end",
     staticStyle: {
       "margin-top": "25px"
     }
@@ -2248,8 +2311,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.pickup_location.toLowerCase(),
-      expression: "form_data.pickup_location.toLowerCase()",
+      value: _vm.form_data.pickup_location,
+      expression: "form_data.pickup_location",
       modifiers: {
         trim: true
       }
@@ -2266,7 +2329,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data.pickup_location, "toLowerCase()", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.form_data, "pickup_location", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -2363,12 +2426,17 @@ var render = function render() {
         _vm.$set(_vm.form_data, "third_party_drop_center", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }, [_c("option", {
+  }, [_vm.parties.length > 0 ? _c("option", {
     attrs: {
       selected: "",
       disabled: ""
     }
-  }, [_vm._v("Open this select menu")]), _vm._v(" "), _vm._l(_vm.thirdParties, function (third, index) {
+  }, [_vm._v("Open this select menu")]) : _c("option", {
+    attrs: {
+      selected: "",
+      disabled: ""
+    }
+  }, [_vm._v("There is no third party")]), _vm._v(" "), _vm._l(_vm.parties, function (third, index) {
     return _c("option", {
       key: third.id,
       domProps: {
@@ -2541,8 +2609,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.crossover_item_type.toLowerCase(),
-      expression: "form_data.crossover_item_type.toLowerCase()",
+      value: _vm.form_data.crossover_item_type,
+      expression: "form_data.crossover_item_type",
       modifiers: {
         trim: true
       }
@@ -2559,7 +2627,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data.crossover_item_type, "toLowerCase()", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.form_data, "crossover_item_type", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {

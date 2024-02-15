@@ -81,7 +81,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
     //products
     Route::resource('entries', EntryController::class);
-
+    Route::get('/entries/get-customer/info/{id}',[EntryController::class,'getCustomerInfo'] )->name('entries.getCustomerInfo');
     //customers
     Route::resource('customers', CustomerController::class);
 
