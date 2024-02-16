@@ -25,9 +25,10 @@ class EntryDataTable extends DataTable
             ->addColumn('action', function ($item) {
                 $buttons = '';
 //                $buttons .= '<a class="dropdown-item" href="' . route('admin.customers.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.entries.show', $item->id) . '" title="View"><i class="mdi mdi-eye-circle"></i> View </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
-                $buttons .= '<form action="' . route('admin.customers.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
+                $buttons .= '<form action="' . route('admin.entries.destroy', $item->id) . '"  id="delete-form-' . $item->id . '" method="post" style="">
                         <input type="hidden" name="_token" value="' . csrf_token() . '">
                         <input type="hidden" name="_method" value="DELETE">
                         <button class="dropdown-item text-danger" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="mdi mdi-trash-can-outline"></i> Delete</button></form>

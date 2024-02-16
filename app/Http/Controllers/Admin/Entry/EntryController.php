@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Entry;
 use App\DataTables\EntryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Entry;
 use App\Models\Product;
 use App\Models\Promo;
 use App\Models\ThirdParty;
@@ -105,6 +106,14 @@ class EntryController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        set_page_meta('Show Entry');
+        $item = Entry::find($id);
+
+        return view('admin.entry.show',compact('item'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -114,14 +123,14 @@ class EntryController extends Controller
     public function destroy($id)
     {
         try {
-            $orderOfThisThirdParty = Order::where('third_party_id',$id)->count();
-
-            if ($orderOfThisThirdParty > 0){
-                something_wrong_flash("There is some order with this Third Party, So not possible to delete this!");
-            }else{
-                $this->thirdPartyDropOffService->delete($id);
-                record_deleted_flash();
-            }
+//            $orderOfThisThirdParty = Order::where('third_party_id',$id)->count();
+//
+//            if ($orderOfThisThirdParty > 0){
+//                something_wrong_flash("There is some order with this Third Party, So not possible to delete this!");
+//            }else{
+//                $this->thirdPartyDropOffService->delete($id);
+//                record_deleted_flash();
+//            }
 
             return back();
         } catch (\Exception $e) {
