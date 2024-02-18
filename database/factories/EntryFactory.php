@@ -23,7 +23,7 @@ class EntryFactory extends Factory
             }
 
 
-        $sku = ['ic-202301','ic-202302','ic-202303','ic-202304','ic-202305','ic-202306','ic-202307','ic-202308','ic-202309','ic-202310'];
+        $sku = ['ic202301','ic202302','ic202303','ic202304','ic202305','ic202306','ic202307','ic202308','ic202309','ic202310'];
         return [
             'entrySKU'=>fake()->randomElement($sku),
             'name'=>fake()->name,

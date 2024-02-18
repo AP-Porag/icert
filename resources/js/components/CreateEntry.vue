@@ -2789,31 +2789,31 @@ export default {
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
-                this.showUPSBox=false;
+                this.showUPSBox=true;
             }
             if (this.form_data.shipping_method == 'Canada Post'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
-                this.showUPSBox=false;
+                this.showUPSBox=true;
             }
             if (this.form_data.shipping_method == 'DHL'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
-                this.showUPSBox=false;
+                this.showUPSBox=true;
             }
             if (this.form_data.shipping_method == 'FedEx'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
-                this.showUPSBox=false;
+                this.showUPSBox=true;
             }
             if (this.form_data.shipping_method == 'Purolator'){
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
-                this.showUPSBox=false;
+                this.showUPSBox=true;
             }
         },
         dummyStep(){
