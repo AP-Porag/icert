@@ -253,7 +253,7 @@
                                                                                 <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
                                                                             </div>
                                                                             <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
-                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                            <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                                         </form>
                                                                     </div>
                                                                 </div>
@@ -317,6 +317,18 @@
                 $('#quantity-warning-text').hide();
                 $(this).attr("type","submit");
             }
+        });
+
+        $('#cancel_btn').on('click', function () {
+            $('#quantity-warning-text').hide();
+            $('#submit_btn').attr("type","submit");
+            // if(!$('#quantity-input-box').val()){
+            //     $(this).attr("type","button");
+            //     $('#quantity-warning-text').show();
+            // }else {
+            //     $('#quantity-warning-text').hide();
+            //     $(this).attr("type","submit");
+            // }
         });
     </script>
 @endpush
