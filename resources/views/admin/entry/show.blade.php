@@ -6,8 +6,726 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-3">Order Number : {{$item->entrySKU}}</h4>
-                        <a href="{{route('admin.entries.index')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Back to the list</a>
+                        <h4 class="card-title mb-3 text-capitalize">Order Details</h4>
+                        <div class="">
+                            <a href="{{route('admin.entries.index')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Back to the list</a>
+                            <button type="button" class="btn btn-primary text-capitalize" data-bs-toggle="modal" data-bs-target="#addNewItemModal">
+                                Add new item
+                            </button>
+                            <div class="modal fade" id="addNewItemModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        {{--                                                                    <div class="modal-header">--}}
+                                        {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
+                                        {{--                                                                        </h5>--}}
+                                        {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                                        {{--                                                                    </div>--}}
+                                        <div class="modal-body mt-3 text-center">
+                                            <div class="question-icon-box">
+                                                <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
+                                            </div>
+                                            <span class="question-text" style="font-size: 24px;">
+                                                                            How much additional pieces of <br>
+                                                                            this item do you want to add?
+                                                                        </span>
+                                        </div>
+                                        <div class="mb-4 text-center">
+                                            <form action="">
+                                                <div class="form-group mb-3">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="card shipping_address_card">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100 text-capitalize">
+                                                                                    Select the item type to be entered
+                                                                                    <span class="error">*</span>
+                                                                                </label>
+                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                    <option selected disabled>Open this select menu</option>
+                                                                                    <option>name</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6" v-if="showItemTypeCrossoverBox">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100 text-capitalize">
+                                                                                    Crossover Item Type
+                                                                                    <span class="error">*</span>
+                                                                                </label>
+                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                    <option selected disabled>Open this select menu</option>
+                                                                                    <option>Crosover Item Type</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--item type card-->
+                                                        <div class="col-md-12" v-if="showItemTypeCardBox">
+                                                            <div class="card shipping_address_card">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-1">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Qty
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                    value="1"
+                                                                                    readonly
+                                                                                />
+                                                                                <div class="error">
+                                                                                    contact name is required
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-9">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #1   (Year,Manufacturer,Set,Other)
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #2
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #3
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Serial Number   (Only if printed directly on item)
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
+                                                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
+                                                                                                    Autographed
+                                                                                                </label>
+                                                                                                <input
+                                                                                                    type="checkbox"
+                                                                                                    class="form-check"
+                                                                                                    placeholder=""
+                                                                                                />
+                                                                                                <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
+                                                                                                <!--                                                Same as Billing is required-->
+                                                                                                <!--                                            </div>-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label w-100 text-capitalize">
+                                                                                                    Authenticator Name
+                                                                                                    <span class="error">*</span>
+                                                                                                </label>
+                                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                                    <option selected disabled>Open this select menu</option>
+                                                                                                    <option>Authenticator name</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label w-100">
+                                                                                                    Authenticator Cert. No.
+                                                                                                    <span class="error">*</span>
+                                                                                                </label>
+                                                                                                <input
+                                                                                                    type="text"
+                                                                                                    class="form-control"
+                                                                                                    placeholder=""
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-2">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Estimated Value
+                                                                                    <span class="error">*</span>
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--item type auto authentication-->
+                                                        <div class="col-md-12" v-if="showItemTypeAutoAthenticationBox">
+                                                            <div class="card shipping_address_card">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-1">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Qty
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                    value="1"
+                                                                                    readonly
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-9">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #1   (Year,Manufacturer,Set,Other)
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #2
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #3
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Serial Number   (Only if printed directly on item)
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
+                                                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
+                                                                                                    Autographed
+                                                                                                </label>
+                                                                                                <input
+                                                                                                    type="checkbox"
+                                                                                                    class="form-check"
+                                                                                                    placeholder=""
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label w-100 text-capitalize">
+                                                                                                    Authenticator Name
+                                                                                                    <span class="error">*</span>
+                                                                                                </label>
+                                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                                    <option selected disabled>Open this select menu</option>
+                                                                                                    <option>Authenticator name</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label w-100">
+                                                                                                    Authenticator Cert. No.
+                                                                                                    <span class="error">*</span>
+                                                                                                </label>
+                                                                                                <input
+                                                                                                    type="text"
+                                                                                                    class="form-control"
+                                                                                                    placeholder=""
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-2">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Estimated Value
+                                                                                    <span class="error">*</span>
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--item type combined service-->
+                                                        <div class="col-md-12" v-if="showItemTypeCombinedServiceBox">
+                                                            <div class="card shipping_address_card">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-1">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Qty
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                    value="1"
+                                                                                    readonly
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-9">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #1   (Year,Manufacturer,Set,Other)
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #2
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #3
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Serial Number   (Only if printed directly on item)
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
+                                                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
+                                                                                                    Autographed
+                                                                                                </label>
+                                                                                                <input
+                                                                                                    type="checkbox"
+                                                                                                    class="form-check"
+                                                                                                    placeholder=""
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label w-100 text-capitalize">
+                                                                                                    Authenticator Name
+                                                                                                    <span class="error">*</span>
+                                                                                                </label>
+                                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                                    <option selected disabled>Open this select menu</option>
+                                                                                                    <option>Authenticator name</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label w-100">
+                                                                                                    Authenticator Cert. No.
+                                                                                                    <span class="error">*</span>
+                                                                                                </label>
+                                                                                                <input
+                                                                                                    type="text"
+                                                                                                    class="form-control"
+                                                                                                    placeholder=""
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-2">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Estimated Value
+                                                                                    <span class="error">*</span>
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--item type reholder-->
+                                                        <div class="col-md-12" v-if="showItemTypeReholderBox">
+                                                            <div class="card shipping_address_card">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-1">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Qty
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                    readonly
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-9">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Certification Number
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-2">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Estimated Value
+                                                                                    <span class="error">*</span>
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!--item type crossover-->
+                                                        <div class="col-md-12" v-if="showItemTypeCrossoverBox">
+                                                            <div class="card shipping_address_card">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-1">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label w-100">
+                                                                                    Qty
+                                                                                </label>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    class="form-control"
+                                                                                    placeholder=""
+                                                                                    readonly
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-9">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #1   (Year,Manufacturer,Set,Other)
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #2
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Description #3
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Serial Number   (Only if printed directly on item)
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
+                                                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
+                                                                                                    Autographed
+                                                                                                </label>
+                                                                                                <input
+                                                                                                    type="checkbox"
+                                                                                                    class="form-check"
+                                                                                                    placeholder=""
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label w-100 text-capitalize">
+                                                                                                    Authenticator Name
+                                                                                                    <span class="error">*</span>
+                                                                                                </label>
+                                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                                    <option selected disabled>Open this select menu</option>
+                                                                                                    <option>Authenticator name</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label w-100">
+                                                                                                    Authenticator Cert. No.
+                                                                                                    <span class="error">*</span>
+                                                                                                </label>
+                                                                                                <input
+                                                                                                    type="text"
+                                                                                                    class="form-control"
+                                                                                                    placeholder=""
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-2">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100">
+                                                                                            Estimated Value
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder=""
+                                                                                        />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="mb-3">
+                                                                                        <label class="form-label w-100 text-capitalize">
+                                                                                            Minimum Grade
+                                                                                            <span class="error">*</span>
+                                                                                        </label>
+                                                                                        <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                            <option selected disabled>Open this select menu</option>
+                                                                                            <option>Authenticator name</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+{{--                                                    <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>--}}
+                                                    <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
+                                                    <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
+                                                </div>
+                                                <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                                                <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -203,14 +921,17 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="">
-                                <h5 class="card-title">Order Item</h5>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <h5 class="card-title text-capitalize">Joe's Card Shop</h5>
+                                    <h5 class="card-title text-capitalize">Order # {{$item->entrySKU}}</h5>
+                                </div>
 
                                 <div class="row">
-                                    <div class="col-md-7">
-                                        <div class="table-responsive text-center">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
                                             <table class="table table-bordered mb-0">
 
-                                                <thead>
+                                                <thead class="text-center">
                                                 <tr>
                                                     <th>Item Type</th>
                                                     <th>Sub Type</th>
@@ -224,12 +945,14 @@
                                                     <td>Card</td>
                                                     <td>N/A</td>
                                                     <td>
-                                                        <p>Description One</p>
-                                                        <p>Description two</p>
-                                                        <p>Description three</p>
+                                                        <span>Description One</span>
+                                                        <br>
+                                                        <span>Description two</span>
+                                                        <br>
+                                                        <span>Description three</span>
                                                     </td>
-                                                    <td>Yes</td>
-                                                    <td>
+                                                    <td class="text-center">Yes</td>
+                                                    <td class="text-center">
                                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                             Multiple Qty
                                                         </button>
