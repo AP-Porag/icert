@@ -65,6 +65,66 @@
             >
                 <div class="row">
                     <div class="col-md-12">
+                        <!--                        <div class="card shipping_address_card">-->
+                        <!--                            <div class="card-body">-->
+                        <!--                                <div class="row">-->
+                        <!--                                    <div class="col-md-4">-->
+                        <!--                                        <div class="mb-3">-->
+                        <!--                                            <label class="form-label w-100 text-capitalize">-->
+                        <!--                                                Drop Off Center-->
+                        <!--                                            </label>-->
+                        <!--                                            <input-->
+                        <!--                                                type="text"-->
+                        <!--                                                class="form-control md-readonly"-->
+                        <!--                                                placeholder=""-->
+                        <!--                                                v-model.trim="v$.form_data.name.$model"-->
+                        <!--                                                readonly-->
+                        <!--                                            />-->
+                        <!--                                            <div class="error" v-if="v$.form_data.name.required.$invalid && show_error_one">-->
+                        <!--                                                Name is required-->
+                        <!--                                            </div>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="col-md-4">-->
+                        <!--                                        <div class="mb-3">-->
+                        <!--                                            <label class="form-label w-100">-->
+                        <!--                                                Contact Name-->
+                        <!--                                            </label>-->
+                        <!--                                            <input-->
+                        <!--                                                type="text"-->
+                        <!--                                                class="form-control md-readonly"-->
+                        <!--                                                placeholder=""-->
+                        <!--                                                v-model.trim="v$.form_data.contact_name.$model"-->
+                        <!--                                                readonly-->
+                        <!--                                            />-->
+                        <!--                                            <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
+                        <!--                                                contact name is required-->
+                        <!--                                            </div>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="col-md-4">-->
+                        <!--                                        <div class="mb-3">-->
+                        <!--                                            <label class="form-label w-100 text-capitalize">-->
+                        <!--                                                Email Address-->
+                        <!--                                            </label>-->
+                        <!--                                            <input-->
+                        <!--                                                type="email"-->
+                        <!--                                                class="form-control md-readonly"-->
+                        <!--                                                placeholder=""-->
+                        <!--                                                v-model.trim="v$.form_data.email.$model"-->
+                        <!--                                                readonly-->
+                        <!--                                            />-->
+                        <!--                                            <div class="error" v-if="v$.form_data.email.required.$invalid && show_error_one">-->
+                        <!--                                                email is required-->
+                        <!--                                            </div>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <h3 class="mb-only-name">{{v$.form_data.name.$model}}</h3>
+                    </div>
+                    <div class="col-md-12">
                         <div class="card shipping_address_card">
                             <div class="card-body">
                                 <div class="row">
@@ -713,10 +773,9 @@
                                         <div class="mb-3">
                                             <label class="form-label w-100 text-capitalize">
                                                 Shopify order number
-                                                <span class="error">*</span>
                                             </label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 class="form-control mb-text-only"
                                                 placeholder=""
                                                 v-model.trim="v$.form_data.billing_city.$model"
@@ -1021,8 +1080,7 @@
                                                                 type="checkbox"
                                                                 class="form-check"
                                                                 placeholder=""
-                                                                v-model.trim="form_data.same_as_billing"
-                                                                @change="sameAsBillingChanged($event)"
+                                                                v-model.trim="form_data.autographed"
                                                             />
                                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                                             <!--                                                Same as Billing is required-->
@@ -1201,8 +1259,7 @@
                                                                 type="checkbox"
                                                                 class="form-check"
                                                                 placeholder=""
-                                                                v-model.trim="form_data.same_as_billing"
-                                                                @change="sameAsBillingChanged($event)"
+                                                                v-model.trim="form_data.autographed"
                                                             />
                                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                                             <!--                                                Same as Billing is required-->
@@ -1381,8 +1438,7 @@
                                                                 type="checkbox"
                                                                 class="form-check"
                                                                 placeholder=""
-                                                                v-model.trim="form_data.same_as_billing"
-                                                                @change="sameAsBillingChanged($event)"
+                                                                v-model.trim="form_data.autographed"
                                                             />
                                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                                             <!--                                                Same as Billing is required-->
@@ -1630,8 +1686,7 @@
                                                                 type="checkbox"
                                                                 class="form-check"
                                                                 placeholder=""
-                                                                v-model.trim="form_data.same_as_billing"
-                                                                @change="sameAsBillingChanged($event)"
+                                                                v-model.trim="form_data.autographed"
                                                             />
                                                             <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                                             <!--                                                Same as Billing is required-->
@@ -2368,6 +2423,7 @@ export default {
                 billing_postal:'',
                 billing_phone:'',
                 same_as_billing:false,
+                autographed:false,
                 shipping_name:'',
                 shipping_company_name:'',
                 shipping_address_line_one:'',
@@ -2418,7 +2474,7 @@ export default {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
                         Swal.fire("Saved!", "", "success");
-                        window.location.href = "/admin/entries";
+                        window.location.href = `/admin/entries/10`;
                         // Submit form
                         // axios
                         //     .post("/admin/entries", this.form_data)
@@ -2699,7 +2755,7 @@ export default {
                     self.form_data.billing_city = res.data.data.billing_city
                     self.form_data.billing_postal = res.data.data.billing_postal
                     self.form_data.billing_phone = res.data.data.billing_phone
-                    self.form_data.same_as_billing = res.data.data.same_as_billing == 0 ? false: true
+                    // self.form_data.same_as_billing = res.data.data.same_as_billing == 0 ? false: true
                     self.form_data.shipping_name = res.data.data.shipping_name
                     self.form_data.shipping_company_name = res.data.data.shipping_company_name
                     self.form_data.shipping_address_line_one = res.data.data.shipping_address_line_one
@@ -2789,7 +2845,7 @@ export default {
                 this.showPickupLocationBox=false;
                 this.showShowPickupLocationBox=false;
                 this.showThirdPartyBox=false;
-                this.showUPSBox=true;
+                this.showUPSBox=false;
             }
             if (this.form_data.shipping_method == 'Canada Post'){
                 this.showPickupLocationBox=false;
@@ -2890,6 +2946,16 @@ export default {
 
 <style scoped>
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
 
 </style>
