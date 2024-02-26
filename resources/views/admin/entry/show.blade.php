@@ -8,28 +8,19 @@
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title mb-3 text-capitalize">Order Details</h4>
                         <div class="">
-                            <a href="{{route('admin.entries.index')}}" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;">Back to the list</a>
-                            <button type="button" class="btn btn-primary text-capitalize" data-bs-toggle="modal" data-bs-target="#addNewItemModal">
+                            <button type="button" class="btn btn-sm btn-primary text-capitalize" style="padding-top: 8px;" data-bs-toggle="modal" data-bs-target="#addNewItemModal">
                                 Add new item
                             </button>
                             <div class="modal fade" id="addNewItemModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        {{--                                                                    <div class="modal-header">--}}
-                                        {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
-                                        {{--                                                                        </h5>--}}
-                                        {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-                                        {{--                                                                    </div>--}}
-                                        <div class="modal-body mt-3 text-center">
-                                            <div class="question-icon-box">
-                                                <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
-                                            </div>
-                                            <span class="question-text" style="font-size: 24px;">
-                                                                            How much additional pieces of <br>
-                                                                            this item do you want to add?
-                                                                        </span>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Add New Item
+                                            </h5>
+{{--                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                                         </div>
-                                        <div class="mb-4 text-center">
+                                        <div class="modal-body">
+                                            <div class="mb-4">
                                             <form action="">
                                                 <div class="form-group mb-3">
                                                     <div class="row">
@@ -43,14 +34,18 @@
                                                                                     Select the item type to be entered
                                                                                     <span class="error">*</span>
                                                                                 </label>
-                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                <select class="form-select mb-text-only" id="itemSelect" aria-label="Default select example">
                                                                                     <option selected disabled>Open this select menu</option>
-                                                                                    <option>name</option>
+                                                                                    <option value="card">Card</option>
+                                                                                    <option value="auto_authentication">Auto Authentication</option>
+                                                                                    <option value="combined_service">Combined Service</option>
+                                                                                    <option value="reholder">Reholder</option>
+                                                                                    <option value="crossover">Crossover</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-md-6" v-if="showItemTypeCrossoverBox">
+                                                                        <div class="col-md-6 hidden-box" id="showItemTypeCrossoverBoxOne">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label w-100 text-capitalize">
                                                                                     Crossover Item Type
@@ -69,7 +64,7 @@
                                                         </div>
 
                                                         <!--item type card-->
-                                                        <div class="col-md-12" v-if="showItemTypeCardBox">
+                                                        <div class="col-md-12 hidden-box" id="showItemTypeCardBox">
                                                             <div class="card shipping_address_card">
                                                                 <div class="card-body">
                                                                     <div class="row">
@@ -85,9 +80,6 @@
                                                                                     value="1"
                                                                                     readonly
                                                                                 />
-                                                                                <div class="error">
-                                                                                    contact name is required
-                                                                                </div>
                                                                             </div>
                                                                         </div>
 
@@ -217,7 +209,7 @@
                                                         </div>
 
                                                         <!--item type auto authentication-->
-                                                        <div class="col-md-12" v-if="showItemTypeAutoAthenticationBox">
+                                                        <div class="col-md-12 hidden-box" id="showItemTypeAutoAthenticationBox">
                                                             <div class="card shipping_address_card">
                                                                 <div class="card-body">
                                                                     <div class="row">
@@ -359,7 +351,7 @@
                                                         </div>
 
                                                         <!--item type combined service-->
-                                                        <div class="col-md-12" v-if="showItemTypeCombinedServiceBox">
+                                                        <div class="col-md-12 hidden-box" id="showItemTypeCombinedServiceBox">
                                                             <div class="card shipping_address_card">
                                                                 <div class="card-body">
                                                                     <div class="row">
@@ -501,7 +493,7 @@
                                                         </div>
 
                                                         <!--item type reholder-->
-                                                        <div class="col-md-12" v-if="showItemTypeReholderBox">
+                                                        <div class="col-md-12 hidden-box" id="showItemTypeReholderBox">
                                                             <div class="card shipping_address_card">
                                                                 <div class="card-body">
                                                                     <div class="row">
@@ -558,7 +550,7 @@
                                                         </div>
 
                                                         <!--item type crossover-->
-                                                        <div class="col-md-12" v-if="showItemTypeCrossoverBox">
+                                                        <div class="col-md-12 hidden-box" id="showItemTypeCrossoverBoxTwo">
                                                             <div class="card shipping_address_card">
                                                                 <div class="card-body">
                                                                     <div class="row">
@@ -716,15 +708,21 @@
                                                     <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
                                                     <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
                                                 </div>
-                                                <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
-                                                <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <div class="w-100 d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                                                    <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                </div>
                                             </form>
+                                        </div>
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->
                                 </div>
                                 <!-- /.modal-dialog -->
                             </div>
+
+                            <a href="{{route('admin.entries.index')}}" class="btn btn-sm btn-secondary text-capitalize" style="padding-top: 8px;">Back to the list</a>
+
                         </div>
                     </div>
                 </div>
@@ -952,43 +950,94 @@
                                                         <span>Description three</span>
                                                     </td>
                                                     <td class="text-center">Yes</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                            Multiple Qty
-                                                        </button>
-                                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-{{--                                                                    <div class="modal-header">--}}
-{{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
-{{--                                                                        </h5>--}}
-{{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-{{--                                                                    </div>--}}
-                                                                    <div class="modal-body mt-3">
-                                                                        <div class="question-icon-box">
-                                                                            <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
-                                                                        </div>
-                                                                        <span class="question-text" style="font-size: 24px;">
+                                                    <td class="">
+                                                        <div class="d-flex justify-content-center">
+                                                            <div class="" style="margin-right: 15px;">
+                                                                <button type="button" class="btn text-primary btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                                    <i class="fa fa-angle-double-up"></i>
+                                                                </button>
+                                                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            {{--                                                                    <div class="modal-header">--}}
+                                                                            {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
+                                                                            {{--                                                                        </h5>--}}
+                                                                            {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                                                                            {{--                                                                    </div>--}}
+                                                                            <div class="modal-body mt-3 text-center">
+                                                                                <div class="question-icon-box">
+                                                                                    <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
+                                                                                </div>
+                                                                                <span class="question-text" style="font-size: 24px;">
                                                                             How much additional pieces of <br>
                                                                             this item do you want to add?
                                                                         </span>
-                                                                    </div>
-                                                                    <div class="mb-4">
-                                                                        <form action="">
-                                                                            <div class="form-group mb-3">
-                                                                                <input type="number" id="quantity-input-box" class="form-control" name="item_qty" style="width: 33%;margin: 0 auto;">
-                                                                                <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
-                                                                                <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
-                                                                                <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
                                                                             </div>
-                                                                            <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
-                                                                            <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                                        </form>
+                                                                            <div class="mb-4 text-center">
+                                                                                <form action="">
+                                                                                    <div class="form-group mb-3">
+                                                                                        <input type="number" id="quantity-input-box" class="form-control" name="item_qty" style="width: 33%;margin: 0 auto;">
+                                                                                        <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
+                                                                                        <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
+                                                                                        <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
+                                                                                    </div>
+                                                                                    <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                                                                                    <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
                                                                     </div>
+                                                                    <!-- /.modal-dialog -->
                                                                 </div>
-                                                                <!-- /.modal-content -->
                                                             </div>
-                                                            <!-- /.modal-dialog -->
+
+                                                            <div class="" style="margin-right: 15px;">
+                                                                <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">
+                                                                    <i class="fa fa-edit" style="padding-top: 6px;padding-bottom: 6px;"></i>
+                                                                </button>
+                                                                <div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            {{--                                                                    <div class="modal-header">--}}
+                                                                            {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
+                                                                            {{--                                                                        </h5>--}}
+                                                                            {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                                                                            {{--                                                                    </div>--}}
+                                                                            <div class="modal-body mt-3 text-center">
+                                                                                <div class="question-icon-box">
+                                                                                    <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
+                                                                                </div>
+                                                                                <span class="question-text" style="font-size: 24px;">
+                                                                            How much additional pieces of <br>
+                                                                            this item do you want to add?
+                                                                        </span>
+                                                                            </div>
+                                                                            <div class="mb-4 text-center">
+                                                                                <form action="">
+                                                                                    <div class="form-group mb-3">
+                                                                                        <input type="number" id="quantity-input-box" class="form-control" name="item_qty" style="width: 33%;margin: 0 auto;">
+                                                                                        <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
+                                                                                        <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
+                                                                                        <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
+                                                                                    </div>
+                                                                                    <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                                                                                    <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="">
+                                                                <form action="{{route('admin.entries.destroy', $item->id)}}"  id="delete-form-' . $item->id . '" method="post" style="">
+                                                                    <input type="hidden" name="_token" value="' . csrf_token() . '">
+                                                                    <input type="hidden" name="_method" value="DELETE">
+                                                                    <button class="btn text-danger btn-secondary" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="fa fa-archive"></i></button></form>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1009,6 +1058,9 @@
 
 @push('style')
 <style>
+    .hidden-box{
+        display: none;
+    }
     .question-icon-box {
         border: 1px solid #3d7cb1;
         width: 54px;
@@ -1033,6 +1085,9 @@
     #quantity-warning-text{
         display: none;
     }
+    //.table-bordered td, .table-bordered th {
+    //    border: 0;
+    //}
 </style>
 @endpush
 
@@ -1058,6 +1113,53 @@
             //     $('#quantity-warning-text').hide();
             //     $(this).attr("type","submit");
             // }
+        });
+
+        $('#itemSelect').on('change', function() {
+            let value = this.value;
+            if(value == 'card'){
+                $('#showItemTypeCardBox').show();
+                $('#showItemTypeAutoAthenticationBox').hide();
+                $('#showItemTypeCombinedServiceBox').hide();
+                $('#showItemTypeReholderBox').hide();
+                $('#showItemTypeCrossoverBoxTwo').hide();
+                $('#showItemTypeCrossoverBoxOne').hide();
+            }
+
+            if(value == 'auto_authentication'){
+                $('#showItemTypeCardBox').hide();
+                $('#showItemTypeAutoAthenticationBox').show();
+                $('#showItemTypeCombinedServiceBox').hide();
+                $('#showItemTypeReholderBox').hide();
+                $('#showItemTypeCrossoverBoxTwo').hide();
+                $('#showItemTypeCrossoverBoxOne').hide();
+            }
+
+            if(value == 'combined_service'){
+                $('#showItemTypeCardBox').hide();
+                $('#showItemTypeAutoAthenticationBox').hide();
+                $('#showItemTypeCombinedServiceBox').show();
+                $('#showItemTypeReholderBox').hide();
+                $('#showItemTypeCrossoverBoxTwo').hide();
+                $('#showItemTypeCrossoverBoxOne').hide();
+            }
+
+            if(value == 'reholder'){
+                $('#showItemTypeCardBox').hide();
+                $('#showItemTypeAutoAthenticationBox').hide();
+                $('#showItemTypeCombinedServiceBox').hide();
+                $('#showItemTypeReholderBox').show();
+                $('#showItemTypeCrossoverBoxTwo').hide();
+                $('#showItemTypeCrossoverBoxOne').hide();
+            }
+            if(value == 'crossover'){
+                $('#showItemTypeCardBox').hide();
+                $('#showItemTypeAutoAthenticationBox').hide();
+                $('#showItemTypeCombinedServiceBox').hide();
+                $('#showItemTypeReholderBox').hide();
+                $('#showItemTypeCrossoverBoxTwo').show();
+                $('#showItemTypeCrossoverBoxOne').show();
+            }
         });
     </script>
 @endpush
