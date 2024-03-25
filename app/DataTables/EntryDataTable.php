@@ -24,7 +24,7 @@ class EntryDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
                 $buttons = '';
-//                $buttons .= '<a class="dropdown-item" href="' . route('admin.customers.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Edit </a>';
+                $buttons .= '<a class="dropdown-item" href="' . route('admin.customers.edit', $item->id) . '" title="Edit"><i class="mdi mdi-square-edit-outline"></i> Continue Order </a>';
                 $buttons .= '<a class="dropdown-item" href="' . route('admin.entries.show', $item->id) . '" title="View"><i class="mdi mdi-eye-circle"></i> View </a>';
 
                 // TO-DO: need to chnage the super admin ID to 1, while Super admin ID will 1
@@ -89,9 +89,10 @@ class EntryDataTable extends DataTable
 
         return [
             Column::make('entrySKU', 'entrySKU')->title('ID')->searchable(true),
-            Column::make('name', 'name')->title('Name')->searchable(true),
-            Column::make('qty', 'qty')->title('Order Quantity'),
-//            Column::make('contact_name', 'contact_name')->title('Contact Name'),
+            Column::make('name', 'name')->title('Name')->searchable(false),
+//            Column::make('qty', 'qty')->title('Order Quantity'),
+            Column::make('email', 'email')->title('Email'),
+            Column::make('contact_name', 'contact_name')->title('Contact Name'),
         ];
     }
 

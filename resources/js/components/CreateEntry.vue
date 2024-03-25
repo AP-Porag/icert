@@ -699,10 +699,10 @@
                                                 type="date"
                                                 class="form-control mb-text-only"
                                                 placeholder=""
-                                                v-model.trim="v$.form_data.billing_address_line_one.$model"
+                                                v-model.trim="v$.form_data.submission_date.$model"
                                                 ref="billing_address_line_one"
                                             />
-                                            <div class="error" v-if="v$.form_data.billing_address_line_one.required.$invalid && show_error_two">
+                                            <div class="error" v-if="v$.form_data.submission_date.required.$invalid && show_error_two">
                                                 One Address Line is required
                                             </div>
                                         </div>
@@ -2412,7 +2412,7 @@ export default {
                 customer: '',
                 name: '',
                 customerId: '',
-                email:'',
+                // email:'',
                 contact_name:'',
                 item_qty:1,
                 billing_address_line_one:'',
@@ -2434,6 +2434,7 @@ export default {
                 shipping_postal:'',
                 shipping_phone:'',
                 status:'active',
+                submission_date:'',
                 products:[],
                 itemType:'',
 
