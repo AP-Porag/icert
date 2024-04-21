@@ -34,7 +34,7 @@
                                                                                     Select the item type to be entered
                                                                                     <span class="error">*</span>
                                                                                 </label>
-                                                                                <select class="form-select mb-text-only" id="itemSelect" aria-label="Default select example">
+                                                                                <select class="form-select mb-text-only" id="itemSelect" aria-label="Default select example" name="itemType">
                                                                                     <option selected disabled>Open this select menu</option>
                                                                                     <option value="card">Card</option>
                                                                                     <option value="auto_authentication">Auto Authentication</option>
@@ -53,7 +53,7 @@
                                                                                 </label>
                                                                                 <select class="form-select mb-text-only" aria-label="Default select example">
                                                                                     <option selected disabled>Open this select menu</option>
-                                                                                    <option>Crosover Item Type</option>
+                                                                                    <option>Crossover Item Type</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -705,8 +705,8 @@
                                                         </div>
                                                     </div>
 {{--                                                    <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>--}}
-                                                    <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
-                                                    <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
+                                                    <input type="number" hidden="" class="form-control" name="entry_id" value="{{$entry->id}}" style="width: 33%;margin: 0 auto;">
+{{--                                                    <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">--}}
                                                 </div>
                                                 <div class="w-100 d-flex justify-content-end">
                                                     <button type="submit" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
@@ -920,8 +920,8 @@
                         <div class="card-body">
                             <div class="">
                                 <div class="d-flex justify-content-between mb-4">
-                                    <h5 class="card-title text-capitalize">Joe's Card Shop</h5>
-                                    <h5 class="card-title text-capitalize">Order # {{$item->entrySKU}}</h5>
+                                    <h5 class="card-title text-capitalize">{{$entry->customer_name}}</h5>
+                                    <h5 class="card-title text-capitalize">Order # {{$entry->entrySKU}}</h5>
                                 </div>
 
                                 <div class="row">
@@ -939,108 +939,195 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>Card</td>
-                                                    <td>N/A</td>
-                                                    <td>
-                                                        <span>Description One</span>
-                                                        <br>
-                                                        <span>Description two</span>
-                                                        <br>
-                                                        <span>Description three</span>
-                                                    </td>
-                                                    <td class="text-center">Yes</td>
-                                                    <td class="">
-                                                        <div class="d-flex justify-content-center">
-                                                            <div class="" style="margin-right: 15px;">
-                                                                <button type="button" class="btn text-primary btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                                                    <i class="fa fa-angle-double-up"></i>
-                                                                </button>
-                                                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                            {{--                                                                    <div class="modal-header">--}}
-                                                                            {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
-                                                                            {{--                                                                        </h5>--}}
-                                                                            {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-                                                                            {{--                                                                    </div>--}}
-                                                                            <div class="modal-body mt-3 text-center">
-                                                                                <div class="question-icon-box">
-                                                                                    <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
-                                                                                </div>
-                                                                                <span class="question-text" style="font-size: 24px;">
+
+                                                @if($items->count() > 0)
+                                                    @foreach($items as $item)
+                                                        <tr>
+                                                            <td class="text-capitalize">{{$item->itemType}}</td>
+                                                            <td>{{$item->itemType == 'Crossover' ? $item->crossover_item_type: 'N/A'}}</td>
+
+                                                            @if($item->itemType == 'Card')
+                                                                <td>
+                                                                    <span>{{$item->card_description_one}}</span>
+                                                                    <br>
+                                                                    <span>{{$item->card_description_two}}</span>
+                                                                    <br>
+                                                                    <span>{{$item->card_description_three}}</span>
+                                                                </td>
+                                                                <td class="text-center">{{$item->card_autographed == 1 ? 'Yes' : 'No'}}</td>
+                                                            @endif
+
+
+                                                            @if($item->itemType == 'Auto Authentication')
+                                                                <td>
+                                                                    <span>{{$item->auto_authentication_description_one}}</span>
+                                                                    <br>
+                                                                    <span>{{$item->auto_authentication_description_two}}</span>
+                                                                    <br>
+                                                                    <span>{{$item->auto_authentication_description_three}}</span>
+                                                                </td>
+                                                                <td class="text-center">{{$item->auto_authentication_autographed == 1 ? 'Yes' : 'No'}}</td>
+                                                            @endif
+
+
+                                                            @if($item->itemType == 'Combined Service')
+                                                                <td>
+                                                                    <span>{{$item->combined_service_description_one}}</span>
+                                                                    <br>
+                                                                    <span>{{$item->combined_service_description_two}}</span>
+                                                                    <br>
+                                                                    <span>{{$item->combined_service_description_three}}</span>
+                                                                </td>
+                                                                <td class="text-center">{{$item->combined_service_autographed == 1 ? 'Yes' : 'No'}}</td>
+                                                            @endif
+
+                                                            @if($item->itemType == 'Reholder')
+                                                                <td>
+                                                                    <span>N/A</span>
+                                                                    <br>
+                                                                    <span>N/A</span>
+                                                                    <br>
+                                                                    <span>N/A</span>
+                                                                </td>
+                                                                <td class="text-center">N/A</td>
+                                                            @endif
+
+                                                            @if($item->itemType == 'Crossover')
+                                                                <td>
+                                                                    <span>{{$item->crossover_description_one}}</span>
+                                                                    <br>
+                                                                    <span>{{$item->crossover_description_two}}</span>
+                                                                    <br>
+                                                                    <span>{{$item->crossover_description_three}}</span>
+                                                                </td>
+                                                                <td class="text-center">{{$item->crossover_autographed == 1 ? 'Yes' : 'No'}}</td>
+                                                            @endif
+                                                            <td class="">
+                                                                <div class="d-flex justify-content-center">
+                                                                    <div class="" style="margin-right: 15px;">
+                                                                        <button type="button" class="btn text-primary btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                                            <i class="fa fa-angle-double-up"></i>
+                                                                        </button>
+                                                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    {{--                                                                    <div class="modal-header">--}}
+                                                                                    {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
+                                                                                    {{--                                                                        </h5>--}}
+                                                                                    {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                                                                                    {{--                                                                    </div>--}}
+                                                                                    <div class="modal-body mt-3 text-center">
+                                                                                        <div class="question-icon-box">
+                                                                                            <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
+                                                                                        </div>
+                                                                                        <span class="question-text" style="font-size: 24px;">
                                                                             How much additional pieces of <br>
                                                                             this item do you want to add?
                                                                         </span>
-                                                                            </div>
-                                                                            <div class="mb-4 text-center">
-                                                                                <form action="">
-                                                                                    <div class="form-group mb-3">
-                                                                                        <input type="number" id="quantity-input-box" class="form-control" name="item_qty" style="width: 33%;margin: 0 auto;">
-                                                                                        <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
-                                                                                        <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
-                                                                                        <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
                                                                                     </div>
-                                                                                    <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
-                                                                                    <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- /.modal-content -->
-                                                                    </div>
-                                                                    <!-- /.modal-dialog -->
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="" style="margin-right: 15px;">
-                                                                <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">
-                                                                    <i class="fa fa-edit" style="padding-top: 6px;padding-bottom: 6px;"></i>
-                                                                </button>
-                                                                <div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                            {{--                                                                    <div class="modal-header">--}}
-                                                                            {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
-                                                                            {{--                                                                        </h5>--}}
-                                                                            {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-                                                                            {{--                                                                    </div>--}}
-                                                                            <div class="modal-body mt-3 text-center">
-                                                                                <div class="question-icon-box">
-                                                                                    <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
+                                                                                    <div class="mb-4 text-center">
+                                                                                        <form action="{{route('admin.entries.addAdditional.pieces')}}" method="POST">
+                                                                                            @method('POST')
+                                                                                            @csrf
+                                                                                            <div class="form-group mb-3">
+                                                                                                <input type="number" id="quantity-input-box" class="form-control" name="pieces" style="width: 33%;margin: 0 auto;">
+                                                                                                <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
+                                                                                                <input type="number" hidden="" class="form-control" name="item_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
+{{--                                                                                                <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">--}}
+                                                                                            </div>
+                                                                                            <button type="submit" id="extra_submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                                                                                            <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                                        </form>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <span class="question-text" style="font-size: 24px;">
+                                                                                <!-- /.modal-content -->
+                                                                            </div>
+                                                                            <!-- /.modal-dialog -->
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="" style="margin-right: 15px;">
+                                                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">
+                                                                            <i class="fa fa-edit" style="padding-top: 6px;padding-bottom: 6px;"></i>
+                                                                        </button>
+                                                                        <div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    {{--                                                                    <div class="modal-header">--}}
+                                                                                    {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
+                                                                                    {{--                                                                        </h5>--}}
+                                                                                    {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                                                                                    {{--                                                                    </div>--}}
+                                                                                    <div class="modal-body mt-3 text-center">
+                                                                                        <div class="question-icon-box">
+                                                                                            <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
+                                                                                        </div>
+                                                                                        <span class="question-text" style="font-size: 24px;">
                                                                             How much additional pieces of <br>
                                                                             this item do you want to add?
                                                                         </span>
-                                                                            </div>
-                                                                            <div class="mb-4 text-center">
-                                                                                <form action="">
-                                                                                    <div class="form-group mb-3">
-                                                                                        <input type="number" id="quantity-input-box" class="form-control" name="item_qty" style="width: 33%;margin: 0 auto;">
-                                                                                        <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
-                                                                                        <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
-                                                                                        <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">
                                                                                     </div>
-                                                                                    <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
-                                                                                    <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                                                </form>
+                                                                                    <div class="mb-4 text-center">
+                                                                                        <form action="">
+                                                                                            <div class="form-group mb-3">
+                                                                                                <input type="number" id="quantity-input-box" class="form-control" name="item_qty" style="width: 33%;margin: 0 auto;">
+                                                                                                <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
+                                                                                                <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
+{{--                                                                                                <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">--}}
+                                                                                            </div>
+                                                                                            <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                                                                                            <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- /.modal-content -->
                                                                             </div>
+                                                                            <!-- /.modal-dialog -->
                                                                         </div>
-                                                                        <!-- /.modal-content -->
                                                                     </div>
-                                                                    <!-- /.modal-dialog -->
-                                                                </div>
-                                                            </div>
 
-                                                            <div class="">
-                                                                <form action="{{route('admin.entries.destroy', $item->id)}}"  id="delete-form-' . $item->id . '" method="post" style="">
-                                                                    <input type="hidden" name="_token" value="' . csrf_token() . '">
-                                                                    <input type="hidden" name="_method" value="DELETE">
-                                                                    <button class="btn text-danger btn-secondary" onclick="return makeDeleteRequest(event, ' . $item->id . ')"  type="submit" title="Delete"><i class="fa fa-archive"></i></button></form>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                                    <div class="">
+                                                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdropDelete">
+                                                                            <i class="fa fa-archive" style="padding-top: 6px;padding-bottom: 6px;"></i>
+                                                                        </button>
+                                                                        <div class="modal fade" id="staticBackdropDelete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-body mt-3 text-center">
+                                                                                        <div class="question-icon-box">
+                                                                                            <i class="fa fa-exclamation" style="color: darkorange;font-size: 32px;"></i>
+                                                                                        </div>
+                                                                                        <span class="question-text" style="font-size: 24px;">
+                                                                            Are you sure ? <br>
+                                                                            <span style="font-size: 14px;">You won't be able to revert this!</span>
+                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="mb-4 text-center">
+                                                                                        <form action="{{route('admin.entries.entry.item.destroy')}}" method="POST">
+                                                                                            @method('post')
+                                                                                            @csrf
+                                                                                            <div class="form-group mb-3">
+                                                                                                <input type="number" hidden="" class="form-control" name="item_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
+                                                                                            </div>
+                                                                                            <button type="submit" id="" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                                                                                            <button type="button" id="" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- /.modal-content -->
+                                                                            </div>
+                                                                            <!-- /.modal-dialog -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+{{--                                                @else--}}
+{{--                                                    <tr width="100">--}}
+{{--                                                        <td class="text-capitalize text-center text-warning">No item found with this entry</td>--}}
+{{--                                                    </tr>--}}
+                                                @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1062,7 +1149,7 @@
         display: none;
     }
     .question-icon-box {
-        border: 1px solid #3d7cb1;
+        border: 1px solid darkorange;
         width: 54px;
         /* height: 50px; */
         margin: 0 auto;
@@ -1093,7 +1180,8 @@
 
 @push('script')
     <script>
-        $('#submit_btn').on('click', function () {
+        $('#extra_submit_btn').on('click', function () {
+            console.log('clicked')
             if(!$('#quantity-input-box').val()){
                 $(this).attr("type","button");
                 $('#quantity-warning-text').show();

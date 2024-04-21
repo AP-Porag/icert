@@ -79,9 +79,11 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('/slpromos/attach/aditional/customer/${id}',[SpecialPromoController::class,'attachAditionalCustomer'] )->name('slpromos.attachAditionalCustomer');
     Route::post('/slpromos/save/aditional/customer',[SpecialPromoController::class,'saveAditionalCustomer'] )->name('slpromos.saveAditionalCustomer');
 
-    //products
+    //entries
     Route::resource('entries', EntryController::class);
     Route::get('/entries/get-customer/info/{id}',[EntryController::class,'getCustomerInfo'] )->name('entries.getCustomerInfo');
+    Route::post('/entries/add-additional/pieces',[EntryController::class,'addAdditionalPieces'] )->name('entries.addAdditional.pieces');
+    Route::post('/entries/entry/item/destroy',[EntryController::class,'itemDestroy'] )->name('entries.entry.item.destroy');
     //customers
     Route::resource('customers', CustomerController::class);
 

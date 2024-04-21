@@ -41,8 +41,14 @@ class EntryDataTable extends DataTable
                 </div>
                 </div>';
             })
+            ->editColumn('email', function ($item) {
+                return $item->customer->email;
+            })
+            ->editColumn('contact_name', function ($item) {
+                return $item->customer->contact_name;
+            })
             ->rawColumns([
-                'action',
+                'action','email','contact_name'
             ])
             ->setRowId('id');
 
@@ -89,7 +95,7 @@ class EntryDataTable extends DataTable
 
         return [
             Column::make('entrySKU', 'entrySKU')->title('ID')->searchable(true),
-            Column::make('name', 'name')->title('Name')->searchable(false),
+            Column::make('customer_name', 'customer_name')->title('Name')->searchable(false),
 //            Column::make('qty', 'qty')->title('Order Quantity'),
             Column::make('email', 'email')->title('Email'),
             Column::make('contact_name', 'contact_name')->title('Contact Name'),

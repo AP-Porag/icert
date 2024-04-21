@@ -41,4 +41,9 @@ class Customer extends Model
     {
         return $this->hasMany(CustomerPromo::class,'customer_id');
     }
+
+    public function entry()
+    {
+        return  $this->hasMany(Entry::class,'customer_id');
+    }
 }

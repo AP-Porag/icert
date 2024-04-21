@@ -6,6 +6,7 @@ use App\DataTables\EntryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Entry;
+use App\Models\EntryItems;
 use App\Models\Product;
 use App\Models\Promo;
 use App\Models\ThirdParty;
@@ -43,20 +44,104 @@ class EntryController extends Controller
     {
 
         try {
-            $data = $request->all();
-//            dd($data);
-            $thirdParty = $this->entryService->storeOrUpdate($data, null);
 
-            if ($thirdParty){
+            $entryData = $request->all();
+            $data = [
+                "customer_id"=>$entryData['customerId'],
+                'entrySKU'=>'ic20023645',
+                'customer_name'=>$entryData['name'],
+                'item_qty'=>$entryData['item_qty'],
+                'billing_address_line_one'=>$entryData['billing_address_line_one'],
+                'billing_address_line_two'=>$entryData['billing_address_line_two'],
+                'billing_country'=>$entryData['billing_country'],
+                'billing_province'=>$entryData['billing_province'],
+                'billing_city'=>$entryData['billing_city'],
+                'billing_postal'=>$entryData['billing_postal'],
+                'billing_phone'=>$entryData['billing_phone'],
+                'same_as_billing'=>$entryData['same_as_billing'],
+                'autographed'=>$entryData['autographed'],
+                'shipping_name'=>$entryData['shipping_name'],
+                'shipping_company_name'=>$entryData['shipping_company_name'],
+                'shipping_address_line_one'=>$entryData['shipping_address_line_one'],
+                'shipping_address_line_two'=>$entryData['shipping_address_line_two'],
+                'shipping_country'=>$entryData['shipping_country'],
+                'shipping_province'=>$entryData['shipping_province'],
+                'shipping_city'=>$entryData['shipping_city'],
+                'shipping_postal'=>$entryData['shipping_postal'],
+                'shipping_phone'=>$entryData['shipping_postal'],
+                'submission_date'=>$entryData['submission_date'],
+                'grading_location'=>$entryData['grading_location'],
+                'promo_code'=>$entryData['promo_code'],
+                'payment_made'=>$entryData['payment_made'],
+                'pay_on_pickup'=>$entryData['pay_on_pickup'],
+                'cod'=>$entryData['cod'],
+                'shopify_order_number'=>$entryData['shopify_order_number'],
+                'shipping_method'=>$entryData['shipping_method'],
+                'pickup_location'=>$entryData['pickup_location'],
+                'show_pickup_location'=>$entryData['show_pickup_location'],
+                'third_party_drop_center'=>$entryData['third_party_drop_center'],
+                'use_customer_account'=>$entryData['use_customer_account'],
+                'customer_account_number'=>$entryData['customer_account_number'],
+            ];
 
-                foreach ($data['products'] as $product){
-                    $thirdPartyProduct = ThirdPartyProduct::create([
-                        "third_party_id"=>$thirdParty->id,
-                        "product_id"=>$product,
-                    ]);
-                }
+            $entry = $this->entryService->storeOrUpdate($data, null);
+
+            $entryData = [
+                'entry_id'=>$entry->id,
+                'itemType'=>$entryData['itemType'],
+                //item type card
+                'card_description_one'=>$entryData['card_description_one'],
+                'card_description_two'=>$entryData['card_description_two'],
+                'card_description_three'=>$entryData['card_description_three'],
+                'card_serial_number'=>$entryData['card_serial_number'],
+                'card_autographed'=>$entryData['card_autographed'],
+                'card_authenticator_name'=>$entryData['card_authenticator_name'],
+                'card_authenticator_cert_no'=>$entryData['card_authenticator_cert_no'],
+                'card_estimated_value'=>$entryData['card_estimated_value'],
+
+                //item type auto authentication
+                'auto_authentication_description_one'=>$entryData['auto_authentication_description_one'],
+                'auto_authentication_description_two'=>$entryData['auto_authentication_description_two'],
+                'auto_authentication_description_three'=>$entryData['auto_authentication_description_three'],
+                'auto_authentication_serial_number'=>$entryData['auto_authentication_serial_number'],
+                'auto_authentication_autographed'=>$entryData['auto_authentication_autographed'],
+                'auto_authentication_authenticator_name'=>$entryData['auto_authentication_authenticator_name'],
+                'auto_authentication_authenticator_cert_no'=>$entryData['auto_authentication_authenticator_cert_no'],
+                'auto_authentication_estimated_value'=>$entryData['auto_authentication_estimated_value'],
+                //item type combined service
+                'combined_service_description_one'=>$entryData['combined_service_description_one'],
+                'combined_service_description_two'=>$entryData['combined_service_description_two'],
+                'combined_service_description_three'=>$entryData['combined_service_description_three'],
+                'combined_service_serial_number'=>$entryData['combined_service_serial_number'],
+                'combined_service_autographed'=>$entryData['combined_service_autographed'],
+                'combined_service_authenticator_name'=>$entryData['combined_service_authenticator_name'],
+                'combined_service_authenticator_cert_no'=>$entryData['combined_service_authenticator_cert_no'],
+                'combined_service_estimated_value'=>$entryData['combined_service_estimated_value'],
+
+                //item type combined service
+                'reholder_certification_number'=>$entryData['reholder_certification_number'],
+                'reholder_estimated_value'=>$entryData['reholder_estimated_value'],
+
+                //item type crossover
+                'crossover_description_one'=>$entryData['crossover_description_one'],
+                'crossover_description_two'=>$entryData['crossover_description_two'],
+                'crossover_description_three'=>$entryData['crossover_description_three'],
+                'crossover_serial_number'=>$entryData['crossover_serial_number'],
+                'crossover_autographed'=>$entryData['crossover_autographed'],
+                'crossover_authenticator_name'=>$entryData['crossover_authenticator_name'],
+                'crossover_authenticator_cert_no'=>$entryData['crossover_authenticator_cert_no'],
+                'crossover_estimated_value'=>$entryData['crossover_estimated_value'],
+                'crossover_item_type'=>$entryData['crossover_item_type'],
+                'crossover_minimum_grade'=>$entryData['crossover_minimum_grade'],
+                'pieces'=>0,
+            ];
+
+            if ($entry){
+                $item = EntryItems::create($entryData);
             }
-            record_created_flash();
+            $response = ['status'=>200,'message'=>'Success','data'=>$entry];
+            return response()->json($response);
+//            record_created_flash();
         } catch (\Exception $e) {
         }
         return back();
@@ -109,9 +194,11 @@ class EntryController extends Controller
     public function show($id)
     {
         set_page_meta('Show Entry');
-        $item = Entry::find($id);
+        $items = EntryItems::where('entry_id',$id)->get();
 
-        return view('admin.entry.show',compact('item'));
+        $entry = Entry::find($id);
+//        return $item;
+        return view('admin.entry.show',compact('items','entry'));
     }
 
     /**
@@ -162,5 +249,23 @@ class EntryController extends Controller
             'data'=>$customer
         ];
         return response()->json($data);
+    }
+
+    public function addAdditionalPieces(Request $request)
+    {
+        $data = $request->all();
+
+
+        $item = EntryItems::find($request->item_id);
+        $item->pieces = $item->pieces + $request->pieces;
+        $item->save();
+
+        return redirect()->back();
+    }
+    public function itemDestroy(Request $request)
+    {
+        $item = EntryItems::find($request->item_id)->delete();
+
+        return redirect()->back();
     }
 }

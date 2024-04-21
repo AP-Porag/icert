@@ -41,6 +41,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       show_error_two: false,
       show_error_three: false,
       show_error_four: false,
+      show_error_five: false,
+      show_error_six: false,
+      show_error_seven: false,
+      show_error_eight: false,
+      show_error_nine: false,
+      show_error_ten: false,
+      show_error_eleven: false,
+      show_error_twelve: false,
+      show_error_thirteen: false,
+      show_error_fourteen: false,
+      show_error_fifteen: false,
+      show_error_sixteen: false,
       isReadonly: false,
       step_count: 4,
       completed_step_count: '',
@@ -512,7 +524,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         customer: '',
         name: '',
         customerId: '',
-        email: '',
+        // email:'',
         contact_name: '',
         item_qty: 1,
         billing_address_line_one: '',
@@ -534,6 +546,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         shipping_postal: '',
         shipping_phone: '',
         status: 'active',
+        submission_date: '',
         products: [],
         itemType: '',
         //next
@@ -542,17 +555,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         payment_made: '',
         pay_on_pickup: '',
         cod: '',
+        shopify_order_number: '',
         shipping_method: '',
         pickup_location: '',
         show_pickup_location: '',
         third_party_drop_center: '',
         use_customer_account: '',
+        customer_account_number: '',
         crossover_item_type: '',
         authenticator_name: '',
         authenticator_name_two: '',
         authenticator_name_three: '',
         authenticator_name_four: '',
-        minimum_grade: ''
+        crossover_minimum_grade: '',
+        //item type card
+        card_description_one: '',
+        card_description_two: '',
+        card_description_three: '',
+        card_serial_number: '',
+        card_autographed: '',
+        card_authenticator_name: '',
+        card_authenticator_cert_no: '',
+        card_estimated_value: '',
+        //item type auto authentication
+        auto_authentication_description_one: '',
+        auto_authentication_description_two: '',
+        auto_authentication_description_three: '',
+        auto_authentication_serial_number: '',
+        auto_authentication_autographed: '',
+        auto_authentication_authenticator_name: '',
+        auto_authentication_authenticator_cert_no: '',
+        auto_authentication_estimated_value: '',
+        //item type combined service
+        combined_service_description_one: '',
+        combined_service_description_two: '',
+        combined_service_description_three: '',
+        combined_service_serial_number: '',
+        combined_service_autographed: '',
+        combined_service_authenticator_name: '',
+        combined_service_authenticator_cert_no: '',
+        combined_service_estimated_value: '',
+        //item type combined service
+        reholder_certification_number: '',
+        reholder_estimated_value: '',
+        //item type crossover
+        crossover_description_one: '',
+        crossover_description_two: '',
+        crossover_description_three: '',
+        crossover_serial_number: '',
+        crossover_autographed: '',
+        crossover_authenticator_name: '',
+        crossover_authenticator_cert_no: '',
+        crossover_estimated_value: ''
       }
     };
   },
@@ -563,7 +617,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              if (!_this.dummyStep()) {
+              if (!_this.checkSeventhStep()) {
                 _context.next = 4;
                 break;
               }
@@ -579,23 +633,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log(result);
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                  Swal.fire("Saved!", "", "success");
-                  window.location.href = "/admin/entries/10";
+                  // Swal.fire("Saved!", "", "success");
+                  // window.location.href = `/admin/entries/10`;
                   // Submit form
-                  // axios
-                  //     .post("/admin/entries", this.form_data)
-                  //     .then(function (res) {
-                  //         Swal.fire("Saved!", "", "success");
-                  //         // window.location.reload()
-                  //         window.location.href = "/admin/thirds";
-                  //     })
-                  //     .catch(function (err) {
-                  //         try {
-                  //             self.showValidationError(err);
-                  //         } catch (e) {
-                  //             self.showSomethingWrong();
-                  //         }
-                  //     });
+
+                  axios.post("/admin/entries", _this.form_data).then(function (response) {
+                    console.log(response);
+                    Swal.fire("Saved!", "", "success").then(function (result) {
+                      if (result.isConfirmed) {
+                        if (response.status == 200) {
+                          window.location.href = "/admin/entries/".concat(response.data.data.id);
+                        }
+                      }
+                    });
+
+                    // window.location.reload()
+                    // window.location.href = "/admin/thirds";
+                  })["catch"](function (err) {
+                    try {
+                      self.showValidationError(err);
+                    } catch (e) {
+                      self.showSomethingWrong();
+                    }
+                  });
                   // Swal.fire("Saved!", "", "success");
                 } else if (result.isDismissed) {
                   window.location.href = "/admin/entries";
@@ -618,123 +678,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     checkFirstStep: function checkFirstStep() {
       var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var self, data;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               _this2.v$.$touch();
-              if (!(_this2.v$.form_data.name.$invalid || _this2.v$.form_data.contact_name.$invalid || _this2.v$.form_data.email.$invalid)) {
-                _context2.next = 6;
+              if (!_this2.v$.form_data.name.$invalid) {
+                _context2.next = 4;
                 break;
               }
               _this2.show_error_one = true;
               return _context2.abrupt("return", false);
-            case 6:
-              self = _this2;
-              data = {
-                name: self.form_data.name,
-                contact_name: self.form_data.contact_name,
-                email: self.form_data.email
-              };
-              _context2.next = 10;
-              return axios.post("/admin/thirds/find/if/exists", data).then(function (res) {
-                console.log(res.data.data);
-                //check if exists
-                if (res.data.status == 200) {
-                  //if already exists
-                  console.log('mil ache');
-                  self.isReadonly = true;
-                  self.form_data.name = res.data.data.name;
-                  self.form_data.email = res.data.data.email;
-                  self.form_data.contact_name = res.data.data.contact_name;
-                  self.form_data.billing_address_line_one = res.data.data.billing_address_line_one;
-                  self.form_data.billing_address_line_two = res.data.data.billing_address_line_two;
-                  self.form_data.billing_country = res.data.data.billing_country;
-                  self.form_data.billing_province = res.data.data.billing_province;
-                  self.form_data.billing_city = res.data.data.billing_city;
-                  self.form_data.billing_postal = res.data.data.billing_postal;
-                  self.form_data.billing_phone = res.data.data.billing_phone;
-                  self.form_data.same_as_billing = res.data.data.same_as_billing == 0 ? false : true;
-                  self.form_data.shipping_name = res.data.data.shipping_name;
-                  self.form_data.shipping_company_name = res.data.data.shipping_company_name;
-                  self.form_data.shipping_address_line_one = res.data.data.shipping_address_line_one;
-                  self.form_data.shipping_address_line_two = res.data.data.shipping_address_line_two;
-                  self.form_data.shipping_country = res.data.data.shipping_country;
-                  self.form_data.shipping_province = res.data.data.shipping_province;
-                  self.form_data.shipping_city = res.data.data.shipping_city;
-                  self.form_data.shipping_postal = res.data.data.shipping_postal;
-                  self.form_data.shipping_phone = res.data.data.shipping_phone;
-                  self.form_data.status = res.data.data.status;
-                  res.data.data.products.forEach(function (value, index) {
-                    self.form_data.products.push(value.product_id);
-                  });
-                  // return false;
-                  //                         Swal.fire({
-                  //                             title: "Drop Off Center already exists.Do you want to edit this center?",
-                  //                             icon: "question",
-                  //                             html: `<div class="exists_modal">
-                  //     <div class="form-groups" style="margin-bottom: 15px;margin-top: 30px;">
-                  //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Drop Off Center</label>
-                  //         <input type="text" class="form-control" readonly disabled value="${self.form_data.name}">
-                  //     </div>
-                  //     <div class="form-groups" style="margin-bottom: 15px;">
-                  //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Contact Name</label>
-                  //         <input type="text" class="form-control" readonly disabled value="${self.form_data.contact_name}">
-                  //     </div>
-                  //     <div class="form-groups" style="margin-bottom: 15px;">
-                  //         <label class="w-100 text-capitalize text-muted" style="text-align: left !important;font-size: 14px;margin-bottom: 8px;">Email Address</label>
-                  //         <input type="text" class="form-control" readonly disabled value="${self.form_data.email}">
-                  //     </div>
-                  // </div>`,
-                  //                             showCloseButton: false,
-                  //                             showCancelButton: true,
-                  //                             focusConfirm: false,
-                  //                             confirmButtonText: `Yes`,
-                  //                             cancelButtonText: `No`,
-                  //                         }).then((result)=>{
-                  //                             if (result.isConfirmed){
-                  //                                 window.location.assign(`/admin/thirds/${res.data.data.id}/edit`);
-                  //                             }else {
-                  //                                 window.location.assign(`/admin/thirds`);
-                  //                                 return false;
-                  //                             }
-                  //                         });
-
-                  Swal.fire({
-                    title: "",
-                    icon: "question",
-                    html: "<div class=\"exists_modal\">\n                                           <h5 class=\"text-capitalize mb-exist-h-text\">Drop Off Center:</h5>\n                                           <h5 class=\"mb-exist-h-name\">".concat(self.form_data.name, "</h5>\n                                           <h5 class=\"mb-exist-h-text\">already exists.</h5>\n                                           <hr/>\n                                           <h5 class=\"mb-exist-h-text\">Do you want to edit this center?</h5>\n                                        </div>"),
-                    showCloseButton: false,
-                    showCancelButton: true,
-                    focusConfirm: false,
-                    confirmButtonText: "Yes",
-                    cancelButtonText: "No"
-                  }).then(function (result) {
-                    if (result.isConfirmed) {
-                      window.location.assign("/admin/thirds/".concat(res.data.data.id, "/edit"));
-                    } else {
-                      window.location.assign("/admin/thirds");
-                      return false;
-                    }
-                  });
-                  return false;
-                } else {
-                  //if not exist
-                  console.log('mil nai');
-                  self.completed_step_count = 1;
-                  self.form_wizard_subtitle = 'Awesome start lets Continue 😀';
-                  return true;
-                }
-              })["catch"](function (err) {
-                try {
-                  self.showValidationError(err);
-                } catch (e) {
-                  self.showSomethingWrong();
-                }
-              });
-            case 10:
+            case 4:
+              _this2.completed_step_count = 1;
+              _this2.form_wizard_subtitle = 'Please Continue to next';
               return _context2.abrupt("return", true);
-            case 11:
+            case 7:
             case "end":
               return _context2.stop();
           }
@@ -743,7 +701,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     checkSecondStep: function checkSecondStep() {
       this.v$.$touch();
-      if (this.v$.form_data.billing_address_line_one.$invalid || this.v$.form_data.billing_country.$invalid || this.v$.form_data.billing_province.$invalid || this.v$.form_data.billing_city.$invalid || this.v$.form_data.billing_postal.$invalid || this.v$.form_data.billing_phone.$invalid) {
+      if (this.v$.form_data.grading_location.$invalid) {
         this.show_error_two = true;
         return false;
       }
@@ -753,18 +711,142 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     checkThirdStep: function checkThirdStep() {
       this.v$.$touch();
-      if (this.v$.form_data.shipping_address_line_one.$invalid || this.v$.form_data.shipping_country.$invalid || this.v$.form_data.shipping_province.$invalid || this.v$.form_data.shipping_city.$invalid || this.v$.form_data.shipping_postal.$invalid || this.v$.form_data.shipping_phone.$invalid) {
+      if (this.v$.form_data.billing_address_line_one.$invalid || this.v$.form_data.billing_country.$invalid || this.v$.form_data.billing_province.$invalid || this.v$.form_data.billing_city.$invalid || this.v$.form_data.billing_postal.$invalid || this.v$.form_data.billing_phone.$invalid) {
         this.show_error_three = true;
+        return false;
+      }
+      this.completed_step_count = 3;
+      this.form_wizard_subtitle = 'Almost Done';
+      return true;
+    },
+    checkFourthStep: function checkFourthStep() {
+      this.v$.$touch();
+      if (this.v$.form_data.shipping_address_line_one.$invalid || this.v$.form_data.shipping_country.$invalid || this.v$.form_data.shipping_province.$invalid || this.v$.form_data.shipping_city.$invalid || this.v$.form_data.shipping_postal.$invalid || this.v$.form_data.shipping_phone.$invalid) {
+        this.show_error_four = true;
         return false;
       }
       this.completed_step_count = 4;
       this.form_wizard_subtitle = 'Almost Done';
       return true;
     },
-    checkFourthStep: function checkFourthStep() {
+    checkFifthStep: function checkFifthStep() {
       this.v$.$touch();
-      if (this.v$.form_data.status.$invalid || this.v$.form_data.products.$invalid) {
-        this.show_error_four = true;
+      if (this.v$.form_data.submission_date.$invalid) {
+        this.show_error_five = true;
+        return false;
+      } else {
+        return true;
+      }
+    },
+    checkSixthStep: function checkSixthStep() {
+      this.v$.$touch();
+      if (this.v$.form_data.shipping_method.$invalid) {
+        this.show_error_six = true;
+        return false;
+      } else if (this.v$.form_data.pickup_location.$invalid) {
+        this.show_error_seven = true;
+        return false;
+      } else if (this.v$.form_data.show_pickup_location.$invalid) {
+        this.show_error_eight = true;
+        return false;
+      } else if (this.v$.form_data.third_party_drop_center.$invalid) {
+        this.show_error_nine = true;
+        return false;
+      } else if (this.v$.form_data.customer_account_number.$invalid) {
+        this.show_error_ten = true;
+        return false;
+      } else {
+        return true;
+      }
+    },
+    checkSeventhStep: function checkSeventhStep() {
+      this.v$.$touch();
+      if (this.v$.form_data.itemType.$invalid) {
+        this.show_error_eleven = true;
+        return false;
+      } else if (this.v$.form_data.card_description_one.$invalid) {
+        this.show_error_twelve = true;
+        return false;
+      } else if (this.v$.form_data.card_description_two.$invalid) {
+        this.show_error_twelve = true;
+        return false;
+      } else if (this.v$.form_data.card_description_three.$invalid) {
+        this.show_error_twelve = true;
+        return false;
+      } else if (this.v$.form_data.card_authenticator_name.$invalid) {
+        this.show_error_twelve = true;
+        return false;
+      } else if (this.v$.form_data.card_authenticator_cert_no.$invalid) {
+        this.show_error_twelve = true;
+        return false;
+      } else if (this.v$.form_data.card_estimated_value.$invalid) {
+        this.show_error_twelve = true;
+        return false;
+      } else if (this.v$.form_data.auto_authentication_description_one.$invalid) {
+        this.show_error_thirteen = true;
+        return false;
+      } else if (this.v$.form_data.auto_authentication_description_two.$invalid) {
+        this.show_error_thirteen = true;
+        return false;
+      } else if (this.v$.form_data.auto_authentication_description_three.$invalid) {
+        this.show_error_thirteen = true;
+        return false;
+      } else if (this.v$.form_data.auto_authentication_authenticator_name.$invalid) {
+        this.show_error_thirteen = true;
+        return false;
+      } else if (this.v$.form_data.auto_authentication_authenticator_cert_no.$invalid) {
+        this.show_error_thirteen = true;
+        return false;
+      } else if (this.v$.form_data.auto_authentication_estimated_value.$invalid) {
+        this.show_error_thirteen = true;
+        return false;
+      } else if (this.v$.form_data.combined_service_description_one.$invalid) {
+        this.show_error_fourteen = true;
+        return false;
+      } else if (this.v$.form_data.combined_service_description_two.$invalid) {
+        this.show_error_fourteen = true;
+        return false;
+      } else if (this.v$.form_data.combined_service_description_three.$invalid) {
+        this.show_error_fourteen = true;
+        return false;
+      } else if (this.v$.form_data.combined_service_authenticator_name.$invalid) {
+        this.show_error_fourteen = true;
+        return false;
+      } else if (this.v$.form_data.combined_service_authenticator_cert_no.$invalid) {
+        this.show_error_fourteen = true;
+        return false;
+      } else if (this.v$.form_data.combined_service_estimated_value.$invalid) {
+        this.show_error_fourteen = true;
+        return false;
+      } else if (this.v$.form_data.reholder_certification_number.$invalid) {
+        this.show_error_fifteen = true;
+        return false;
+      } else if (this.v$.form_data.reholder_estimated_value.$invalid) {
+        this.show_error_fifteen = true;
+        return false;
+      } else if (this.v$.form_data.crossover_description_one.$invalid) {
+        this.show_error_sixteen = true;
+        return false;
+      } else if (this.v$.form_data.crossover_description_two.$invalid) {
+        this.show_error_sixteen = true;
+        return false;
+      } else if (this.v$.form_data.crossover_description_three.$invalid) {
+        this.show_error_sixteen = true;
+        return false;
+      } else if (this.v$.form_data.crossover_authenticator_name.$invalid) {
+        this.show_error_sixteen = true;
+        return false;
+      } else if (this.v$.form_data.crossover_authenticator_cert_no.$invalid) {
+        this.show_error_sixteen = true;
+        return false;
+      } else if (this.v$.form_data.crossover_estimated_value.$invalid) {
+        this.show_error_sixteen = true;
+        return false;
+      } else if (this.v$.form_data.crossover_minimum_grade.$invalid) {
+        this.show_error_sixteen = true;
+        return false;
+      } else if (this.v$.form_data.crossover_item_type.$invalid) {
+        this.show_error_sixteen = true;
         return false;
       } else {
         return true;
@@ -964,24 +1046,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
+        this.form_data.customer_account_number = '';
         this.showUPSBox = true;
       }
       if (this.form_data.shipping_method == 'DHL') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
+        this.form_data.customer_account_number = '';
         this.showUPSBox = true;
       }
       if (this.form_data.shipping_method == 'FedEx') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
+        this.form_data.customer_account_number = '';
         this.showUPSBox = true;
       }
       if (this.form_data.shipping_method == 'Purolator') {
         this.showPickupLocationBox = false;
         this.showShowPickupLocationBox = false;
         this.showThirdPartyBox = false;
+        this.form_data.customer_account_number = '';
         this.showUPSBox = true;
       }
     },
@@ -992,6 +1078,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   validations: {
     form_data: {
       name: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      grading_location: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
       },
       contact_name: {
@@ -1049,6 +1138,211 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       products: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      submission_date: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      shipping_method: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      pickup_location: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showPickupLocationBox; // return true if this field is required
+        })
+      },
+
+      show_pickup_location: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showShowPickupLocationBox; // return true if this field is required
+        })
+      },
+
+      third_party_drop_center: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showThirdPartyBox; // return true if this field is required
+        })
+      },
+
+      customer_account_number: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showUPSBox; // return true if this field is required
+        })
+      },
+
+      itemType: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.required
+      },
+      //item type card
+      card_description_one: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCardBox; // return true if this field is required
+        })
+      },
+
+      card_description_two: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCardBox; // return true if this field is required
+        })
+      },
+
+      card_description_three: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCardBox; // return true if this field is required
+        })
+      },
+
+      card_authenticator_name: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCardBox; // return true if this field is required
+        })
+      },
+
+      card_authenticator_cert_no: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCardBox; // return true if this field is required
+        })
+      },
+
+      card_estimated_value: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCardBox; // return true if this field is required
+        })
+      },
+
+      //item type auto athentication
+      auto_authentication_description_one: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeAutoAthenticationBox; // return true if this field is required
+        })
+      },
+
+      auto_authentication_description_two: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeAutoAthenticationBox; // return true if this field is required
+        })
+      },
+
+      auto_authentication_description_three: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeAutoAthenticationBox; // return true if this field is required
+        })
+      },
+
+      auto_authentication_authenticator_name: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeAutoAthenticationBox; // return true if this field is required
+        })
+      },
+
+      auto_authentication_authenticator_cert_no: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeAutoAthenticationBox; // return true if this field is required
+        })
+      },
+
+      auto_authentication_estimated_value: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeAutoAthenticationBox; // return true if this field is required
+        })
+      },
+
+      //item type combined service
+      combined_service_description_one: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCombinedServiceBox; // return true if this field is required
+        })
+      },
+
+      combined_service_description_two: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCombinedServiceBox; // return true if this field is required
+        })
+      },
+
+      combined_service_description_three: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCombinedServiceBox; // return true if this field is required
+        })
+      },
+
+      combined_service_authenticator_name: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCombinedServiceBox; // return true if this field is required
+        })
+      },
+
+      combined_service_authenticator_cert_no: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCombinedServiceBox; // return true if this field is required
+        })
+      },
+
+      combined_service_estimated_value: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCombinedServiceBox; // return true if this field is required
+        })
+      },
+
+      //item type reholder
+      reholder_certification_number: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeReholderBox; // return true if this field is required
+        })
+      },
+
+      reholder_estimated_value: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeReholderBox; // return true if this field is required
+        })
+      },
+
+      //item type crossover
+      crossover_description_one: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCrossoverBox; // return true if this field is required
+        })
+      },
+
+      crossover_description_two: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCrossoverBox; // return true if this field is required
+        })
+      },
+
+      crossover_description_three: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCrossoverBox; // return true if this field is required
+        })
+      },
+
+      crossover_authenticator_name: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCrossoverBox; // return true if this field is required
+        })
+      },
+
+      crossover_authenticator_cert_no: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCrossoverBox; // return true if this field is required
+        })
+      },
+
+      crossover_estimated_value: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCrossoverBox; // return true if this field is required
+        })
+      },
+
+      crossover_minimum_grade: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCrossoverBox; // return true if this field is required
+        })
+      },
+
+      crossover_item_type: {
+        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
+          return this.showItemTypeCrossoverBox; // return true if this field is required
+        })
       }
     }
   }
@@ -1131,7 +1425,7 @@ var render = function render() {
     attrs: {
       title: "Customer Info",
       icon: "ti-user",
-      "before-change": _vm.dummyStep
+      "before-change": _vm.checkFirstStep
     }
   }, [_c("div", {
     staticClass: "row"
@@ -1149,7 +1443,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Customer Name\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Customer Name\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -1190,11 +1484,11 @@ var render = function render() {
     }, [_vm._v(_vm._s(customer.name))]);
   })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
+  }, [_vm._v("\n                                                    Customer name is required\n                                                ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Grading Location",
-      icon: "ti-location",
-      "before-change": _vm.dummyStep
+      icon: "ti-map-alt",
+      "before-change": _vm.checkSecondStep
     }
   }, [_c("div", {
     staticClass: "row"
@@ -1216,14 +1510,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Select the grading location for this order\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Select the grading location for this order\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.grading_location,
-      expression: "form_data.grading_location",
+      value: _vm.v$.form_data.grading_location.$model,
+      expression: "v$.form_data.grading_location.$model",
       modifiers: {
         trim: true
       }
@@ -1240,7 +1534,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data, "grading_location", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.v$.form_data.grading_location, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -1255,13 +1549,13 @@ var render = function render() {
         value: location.id
       }
     }, [_vm._v(_vm._s(location.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.grading_location.required.$invalid && _vm.show_error_two ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
+  }, [_vm._v("\n                                                    Grading location is required\n                                                ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Billing Address",
       icon: "ti-infinite",
-      "before-change": _vm.dummyStep
+      "before-change": _vm.checkThirdStep
     }
   }, [_c("div", {
     staticClass: "row"
@@ -1283,7 +1577,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Address Line one\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Address Line one\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
@@ -1314,15 +1608,15 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_address_line_one.required.$invalid && _vm.show_error_two ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_address_line_one.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                One Address Line is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    One Address Line is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Address Line two\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Address Line two\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1355,7 +1649,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                City\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    City\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
@@ -1384,15 +1678,15 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_city.required.$invalid && _vm.show_error_two ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_city.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                City is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    City is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Province/State\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Province/State\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -1431,15 +1725,15 @@ var render = function render() {
         value: province.name.toLowerCase()
       }
     }, [_vm._v(_vm._s(province.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.billing_province.required.$invalid && _vm.show_error_two ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.billing_province.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Province is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    Province is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                postal/Zip code\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    postal/Zip code\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
@@ -1470,9 +1764,9 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_postal.required.$invalid && _vm.show_error_two ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_postal.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Postal is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    Postal is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-3"
@@ -1480,7 +1774,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                    Country\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Country\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -1519,15 +1813,15 @@ var render = function render() {
         value: country.name.toLowerCase()
       }
     }, [_vm._v(_vm._s(country.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.billing_country.required.$invalid && _vm.show_error_two ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.billing_country.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                    Country is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                        Country is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                    Telephone#\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Telephone#\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
     staticClass: "mb-text-only",
@@ -1546,13 +1840,13 @@ var render = function render() {
       },
       expression: "v$.form_data.billing_phone.$model"
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_phone.required.$invalid && _vm.show_error_two ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.billing_phone.required.$invalid && _vm.show_error_three ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                    Phone is required\n                                                ")]) : _vm._e()], 1)])])])])])])])]), _vm._v(" "), _c("tab-content", {
+  }, [_vm._v("\n                                                        Phone is required\n                                                    ")]) : _vm._e()], 1)])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Shipping Address",
-      icon: "ti-map-alt",
-      "before-change": _vm.dummyStep
+      icon: "ti-infinite",
+      "before-change": _vm.checkFourthStep
     }
   }, [_c("div", {
     staticClass: "row"
@@ -1578,7 +1872,7 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                Same as billing address\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Same as billing address\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1622,7 +1916,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Customer Name (if different)\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Customer Name (if different)\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1657,7 +1951,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Contact Name (if different)\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Contact Name (if different)\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1690,7 +1984,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Address Line one\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Address Line one\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
@@ -1719,15 +2013,15 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_address_line_one.required.$invalid && _vm.show_error_three ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.shipping_address_line_one.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                One Address is required for shipping\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    One Address is required for shipping\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Address Line two\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Address Line two\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -1760,7 +2054,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                City\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    City\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
@@ -1789,15 +2083,15 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_city.required.$invalid && _vm.show_error_three ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.shipping_city.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                city is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    city is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Province/State\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Province/State\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -1836,15 +2130,15 @@ var render = function render() {
         value: province.name.toLowerCase()
       }
     }, [_vm._v(_vm._s(province.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.shipping_province.required.$invalid && _vm.show_error_three ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.shipping_province.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Province is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    Province is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                postal/Zip code\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    postal/Zip code\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
@@ -1875,9 +2169,9 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_postal.required.$invalid && _vm.show_error_three ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.shipping_postal.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Postal is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    Postal is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-3"
@@ -1885,7 +2179,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                    Country\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Country\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -1924,15 +2218,15 @@ var render = function render() {
         value: country.name.toLowerCase()
       }
     }, [_vm._v(_vm._s(country.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.shipping_country.required.$invalid && _vm.show_error_three ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.shipping_country.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                    Country is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                        Country is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                    Telephone#\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Telephone#\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("VuePhoneNumberInput", {
     staticClass: "mb-text-only",
@@ -1948,13 +2242,13 @@ var render = function render() {
       },
       expression: "v$.form_data.shipping_phone.$model"
     }
-  }), _vm._v(" "), _vm.v$.form_data.shipping_phone.required.$invalid && _vm.show_error_three ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.shipping_phone.required.$invalid && _vm.show_error_four ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                    Phone is required\n                                                ")]) : _vm._e()], 1)])])])])])])])]), _vm._v(" "), _c("tab-content", {
+  }, [_vm._v("\n                                                        Phone is required\n                                                    ")]) : _vm._e()], 1)])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Extra Fields",
-      icon: "ti-infinite",
-      "before-change": _vm.dummyStep
+      icon: "ti-server",
+      "before-change": _vm.checkFifthStep
     }
   }, [_c("div", {
     staticClass: "row"
@@ -1976,14 +2270,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Submission date\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Submission date\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_address_line_one.$model,
-      expression: "v$.form_data.billing_address_line_one.$model",
+      value: _vm.v$.form_data.submission_date.$model,
+      expression: "v$.form_data.submission_date.$model",
       modifiers: {
         trim: true
       }
@@ -1996,26 +2290,26 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.billing_address_line_one.$model
+      value: _vm.v$.form_data.submission_date.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.billing_address_line_one, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.submission_date, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_address_line_one.required.$invalid && _vm.show_error_two ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.submission_date.required.$invalid && _vm.show_error_five ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                One Address Line is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                    Submission date is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Promo code\n                                            ")]), _vm._v(" "), _c("select", {
+  }, [_vm._v("\n                                                    Promo code\n                                                ")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -2070,7 +2364,7 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                Payment Made\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Payment Made\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -2119,7 +2413,7 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                Pay on pickup\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Pay on pickup\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -2168,7 +2462,7 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                COD\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    COD\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -2210,12 +2504,12 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Shopify order number\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Shopify order number\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_city.$model,
-      expression: "v$.form_data.billing_city.$model",
+      value: _vm.form_data.shopify_order_number,
+      expression: "form_data.shopify_order_number",
       modifiers: {
         trim: true
       }
@@ -2226,24 +2520,22 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.billing_city.$model
+      value: _vm.form_data.shopify_order_number
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.billing_city, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "shopify_order_number", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_city.required.$invalid && _vm.show_error_two ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                City is required\n                                            ")]) : _vm._e()])])])])])])])]), _vm._v(" "), _c("tab-content", {
+  })])])])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Shipping Method",
-      icon: "ti-location",
-      "before-change": _vm.dummyStep
+      icon: "ti-credit-card",
+      "before-change": _vm.checkSixthStep
     }
   }, [_c("div", {
     staticClass: "row"
@@ -2261,7 +2553,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Shipping Method\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Shipping Method\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -2300,15 +2592,15 @@ var render = function render() {
         value: shipping.name
       }
     }, [_vm._v(_vm._s(shipping.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.shipping_method.required.$invalid && _vm.show_error_six ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _vm.showPickupLocationBox ? _c("div", {
+  }, [_vm._v("\n                                                    Shipping method is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _vm.showPickupLocationBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Pickup location\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Pickup location\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -2347,15 +2639,15 @@ var render = function render() {
         value: pickup.name
       }
     }, [_vm._v(_vm._s(pickup.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.pickup_location.required.$invalid && _vm.show_error_seven ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showShowPickupLocationBox ? _c("div", {
+  }, [_vm._v("\n                                                    Pickup location is required\n                                                ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showShowPickupLocationBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Pickup Location\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Pickup Location\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -2394,15 +2686,15 @@ var render = function render() {
         value: showPickup.name
       }
     }, [_vm._v(_vm._s(showPickup.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.show_pickup_location.required.$invalid && _vm.show_error_eight ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showThirdPartyBox ? _c("div", {
+  }, [_vm._v("\n                                                    Pickup location is required\n                                                ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showThirdPartyBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Third party drop off center\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Third party drop off center\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -2446,9 +2738,9 @@ var render = function render() {
         value: third.id
       }
     }, [_vm._v(_vm._s(third.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.third_party_drop_center.required.$invalid && _vm.show_error_nine ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showUPSBox ? _c("div", {
+  }, [_vm._v("\n                                                    Third party drop off center is required\n                                                ")]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.showUPSBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "row"
@@ -2465,7 +2757,7 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                        Use Customer Account\n                                                    ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Use Customer Account\n                                                        ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -2507,41 +2799,41 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                        Customer Account number\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Customer Account number\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.billing_city.$model,
-      expression: "v$.form_data.billing_city.$model",
+      value: _vm.v$.form_data.customer_account_number.$model,
+      expression: "v$.form_data.customer_account_number.$model",
       modifiers: {
         trim: true
       }
     }],
     staticClass: "form-control mb-text-only",
     attrs: {
-      type: "text",
+      type: "number",
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.billing_city.$model
+      value: _vm.v$.form_data.customer_account_number.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.billing_city, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.customer_account_number, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.billing_city.required.$invalid && _vm.show_error_two ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.customer_account_number.required.$invalid && _vm.show_error_ten ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        City is required\n                                                    ")]) : _vm._e()])])])]) : _vm._e()])])])])])]), _vm._v(" "), _c("tab-content", {
+  }, [_vm._v("\n                                                            Customer account number is required\n                                                        ")]) : _vm._e()])])])]) : _vm._e()])])])])])]), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Item Type",
-      icon: "ti-location"
+      icon: "ti-gift"
     }
   }, [_c("div", {
     staticClass: "row"
@@ -2559,7 +2851,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Select the item type to be entered\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Select the item type to be entered\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
@@ -2598,22 +2890,22 @@ var render = function render() {
         value: type.name
       }
     }, [_vm._v(_vm._s(type.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.itemType.required.$invalid && _vm.show_error_eleven ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _vm.showItemTypeCrossoverBox ? _c("div", {
+  }, [_vm._v("\n                                                    Item type is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _vm.showItemTypeCrossoverBox ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                Crossover Item Type\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Crossover Item Type\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.crossover_item_type,
-      expression: "form_data.crossover_item_type",
+      value: _vm.v$.form_data.crossover_item_type.$model,
+      expression: "v$.form_data.crossover_item_type.$model",
       modifiers: {
         trim: true
       }
@@ -2630,7 +2922,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data, "crossover_item_type", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.v$.form_data.crossover_item_type, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -2645,9 +2937,9 @@ var render = function render() {
         value: coType.name
       }
     }, [_vm._v(_vm._s(coType.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.crossover_item_type.required.$invalid && _vm.show_error_sixteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                Customer name is required\n                                            ")]) : _vm._e()])]) : _vm._e()])])])]), _vm._v(" "), _vm.showItemTypeCardBox ? _c("div", {
+  }, [_vm._v("\n                                                    Crossover item type is required\n                                                ")]) : _vm._e()])]) : _vm._e()])])])]), _vm._v(" "), _vm.showItemTypeCardBox ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -2661,7 +2953,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Qty\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -2689,9 +2981,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-9"
   }, [_c("div", {
     staticClass: "row"
@@ -2701,14 +2991,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #1   (Year,Manufacturer,Set,Other)\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #1   (Year,Manufacturer,Set,Other)\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.card_description_one.$model,
+      expression: "v$.form_data.card_description_one.$model",
       modifiers: {
         trim: true
       }
@@ -2719,33 +3009,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.card_description_one.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.card_description_one, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.card_description_one.required.$invalid && _vm.show_error_twelve ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description one is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #2\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #2\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.card_description_two.$model,
+      expression: "v$.form_data.card_description_two.$model",
       modifiers: {
         trim: true
       }
@@ -2756,33 +3046,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.card_description_two.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.card_description_two, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.card_description_two.required.$invalid && _vm.show_error_twelve ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description two is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #3\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #3\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.card_description_three.$model,
+      expression: "v$.form_data.card_description_three.$model",
       modifiers: {
         trim: true
       }
@@ -2793,33 +3083,31 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.card_description_three.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.card_description_three, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.card_description_three.required.$invalid && _vm.show_error_twelve ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description three is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Serial Number   (Only if printed directly on item)\n                                                        "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Serial Number   (Only if printed directly on item)\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.card_serial_number,
+      expression: "form_data.card_serial_number",
       modifiers: {
         trim: true
       }
@@ -2830,20 +3118,18 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.card_serial_number
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "card_serial_number", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "row"
@@ -2860,12 +3146,12 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                                Autographed\n                                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                                    Autographed\n                                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.autographed,
-      expression: "form_data.autographed",
+      value: _vm.form_data.card_autographed,
+      expression: "form_data.card_autographed",
       modifiers: {
         trim: true
       }
@@ -2876,23 +3162,23 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.autographed) ? _vm._i(_vm.form_data.autographed, null) > -1 : _vm.form_data.autographed
+      checked: Array.isArray(_vm.form_data.card_autographed) ? _vm._i(_vm.form_data.card_autographed, null) > -1 : _vm.form_data.card_autographed
     },
     on: {
       change: function change($event) {
-        var $$a = _vm.form_data.autographed,
+        var $$a = _vm.form_data.card_autographed,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "autographed", $$a.concat([$$v]));
+            $$i < 0 && _vm.$set(_vm.form_data, "card_autographed", $$a.concat([$$v]));
           } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "autographed", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            $$i > -1 && _vm.$set(_vm.form_data, "card_autographed", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
           }
         } else {
-          _vm.$set(_vm.form_data, "autographed", $$c);
+          _vm.$set(_vm.form_data, "card_autographed", $$c);
         }
       }
     }
@@ -2902,14 +3188,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                                Authenticator Name\n                                                                "), _c("span", {
+  }, [_vm._v("\n                                                                    Authenticator Name\n                                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.authenticator_name,
-      expression: "form_data.authenticator_name",
+      value: _vm.v$.form_data.card_authenticator_name.$model,
+      expression: "v$.form_data.card_authenticator_name.$model",
       modifiers: {
         trim: true
       }
@@ -2926,7 +3212,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data, "authenticator_name", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.v$.form_data.card_authenticator_name, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -2941,22 +3227,22 @@ var render = function render() {
         value: authenticator.id
       }
     }, [_vm._v(_vm._s(authenticator.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.card_authenticator_name.required.$invalid && _vm.show_error_twelve ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Authenticator name is required\n                                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                                Authenticator Cert. No.\n                                                                "), _c("span", {
+  }, [_vm._v("\n                                                                    Authenticator Cert. No.\n                                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.card_authenticator_cert_no.$model,
+      expression: "v$.form_data.card_authenticator_cert_no.$model",
       modifiers: {
         trim: true
       }
@@ -2967,33 +3253,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.card_authenticator_cert_no.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.card_authenticator_cert_no, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.card_authenticator_cert_no.required.$invalid && _vm.show_error_twelve ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                contact name is required\n                                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Authenticator cert no. is required\n                                                                ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-2"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Estimated Value\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Estimated Value\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.card_estimated_value.$model,
+      expression: "v$.form_data.card_estimated_value.$model",
       modifiers: {
         trim: true
       }
@@ -3004,20 +3290,20 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.card_estimated_value.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.card_estimated_value, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.card_estimated_value.required.$invalid && _vm.show_error_twelve ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), _vm.showItemTypeAutoAthenticationBox ? _c("div", {
+  }, [_vm._v("\n                                                    Estimated value is required\n                                                ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), _vm.showItemTypeAutoAthenticationBox ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -3031,7 +3317,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Qty\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -3059,9 +3345,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-9"
   }, [_c("div", {
     staticClass: "row"
@@ -3071,14 +3355,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #1   (Year,Manufacturer,Set,Other)\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #1   (Year,Manufacturer,Set,Other)\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.auto_authentication_description_one.$model,
+      expression: "v$.form_data.auto_authentication_description_one.$model",
       modifiers: {
         trim: true
       }
@@ -3089,33 +3373,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.auto_authentication_description_one.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.auto_authentication_description_one, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.auto_authentication_description_one.required.$invalid && _vm.show_error_thirteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description one is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #2\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #2\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.auto_authentication_description_two.$model,
+      expression: "v$.form_data.auto_authentication_description_two.$model",
       modifiers: {
         trim: true
       }
@@ -3126,33 +3410,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.auto_authentication_description_two.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.auto_authentication_description_two, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.auto_authentication_description_two.required.$invalid && _vm.show_error_thirteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description two is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #3\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #3\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.auto_authentication_description_three.$model,
+      expression: "v$.form_data.auto_authentication_description_three.$model",
       modifiers: {
         trim: true
       }
@@ -3163,33 +3447,31 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.auto_authentication_description_three.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.auto_authentication_description_three, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.auto_authentication_description_three.required.$invalid && _vm.show_error_thirteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description three is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Serial Number   (Only if printed directly on item)\n                                                        "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Serial Number   (Only if printed directly on item)\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.auto_authentication_serial_number,
+      expression: "form_data.auto_authentication_serial_number",
       modifiers: {
         trim: true
       }
@@ -3200,20 +3482,18 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.auto_authentication_serial_number
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "auto_authentication_serial_number", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "row"
@@ -3230,12 +3510,12 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                                Autographed\n                                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                                    Autographed\n                                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.autographed,
-      expression: "form_data.autographed",
+      value: _vm.form_data.auto_authentication_autographed,
+      expression: "form_data.auto_authentication_autographed",
       modifiers: {
         trim: true
       }
@@ -3246,23 +3526,23 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.autographed) ? _vm._i(_vm.form_data.autographed, null) > -1 : _vm.form_data.autographed
+      checked: Array.isArray(_vm.form_data.auto_authentication_autographed) ? _vm._i(_vm.form_data.auto_authentication_autographed, null) > -1 : _vm.form_data.auto_authentication_autographed
     },
     on: {
       change: function change($event) {
-        var $$a = _vm.form_data.autographed,
+        var $$a = _vm.form_data.auto_authentication_autographed,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "autographed", $$a.concat([$$v]));
+            $$i < 0 && _vm.$set(_vm.form_data, "auto_authentication_autographed", $$a.concat([$$v]));
           } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "autographed", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            $$i > -1 && _vm.$set(_vm.form_data, "auto_authentication_autographed", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
           }
         } else {
-          _vm.$set(_vm.form_data, "autographed", $$c);
+          _vm.$set(_vm.form_data, "auto_authentication_autographed", $$c);
         }
       }
     }
@@ -3272,14 +3552,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                                Authenticator Name\n                                                                "), _c("span", {
+  }, [_vm._v("\n                                                                    Authenticator Name\n                                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.authenticator_name_two,
-      expression: "form_data.authenticator_name_two",
+      value: _vm.v$.form_data.auto_authentication_authenticator_name.$model,
+      expression: "v$.form_data.auto_authentication_authenticator_name.$model",
       modifiers: {
         trim: true
       }
@@ -3296,7 +3576,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data, "authenticator_name_two", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.v$.form_data.auto_authentication_authenticator_name, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -3311,22 +3591,22 @@ var render = function render() {
         value: authenticator.id
       }
     }, [_vm._v(_vm._s(authenticator.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.auto_authentication_authenticator_name.required.$invalid && _vm.show_error_thirteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Authenticator name is required\n                                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                                Authenticator Cert. No.\n                                                                "), _c("span", {
+  }, [_vm._v("\n                                                                    Authenticator Cert. No.\n                                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.auto_authentication_authenticator_cert_no.$model,
+      expression: "v$.form_data.auto_authentication_authenticator_cert_no.$model",
       modifiers: {
         trim: true
       }
@@ -3337,33 +3617,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.auto_authentication_authenticator_cert_no.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.auto_authentication_authenticator_cert_no, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.auto_authentication_authenticator_cert_no.required.$invalid && _vm.show_error_thirteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                contact name is required\n                                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Authenticator cert. no. is required\n                                                                ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-2"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Estimated Value\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Estimated Value\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.auto_authentication_estimated_value.$model,
+      expression: "v$.form_data.auto_authentication_estimated_value.$model",
       modifiers: {
         trim: true
       }
@@ -3374,20 +3654,20 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.auto_authentication_estimated_value.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.auto_authentication_estimated_value, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.auto_authentication_estimated_value.required.$invalid && _vm.show_error_thirteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), _vm.showItemTypeCombinedServiceBox ? _c("div", {
+  }, [_vm._v("\n                                                    Estimated value is required\n                                                ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), _vm.showItemTypeCombinedServiceBox ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -3401,7 +3681,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Qty\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -3429,9 +3709,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-9"
   }, [_c("div", {
     staticClass: "row"
@@ -3441,14 +3719,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #1   (Year,Manufacturer,Set,Other)\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #1   (Year,Manufacturer,Set,Other)\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.combined_service_description_one.$model,
+      expression: "v$.form_data.combined_service_description_one.$model",
       modifiers: {
         trim: true
       }
@@ -3459,33 +3737,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.combined_service_description_one.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.combined_service_description_one, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.combined_service_description_one.required.$invalid && _vm.show_error_fourteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description one is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #2\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #2\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.combined_service_description_two.$model,
+      expression: "v$.form_data.combined_service_description_two.$model",
       modifiers: {
         trim: true
       }
@@ -3496,33 +3774,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.combined_service_description_two.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.combined_service_description_two, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.combined_service_description_two.required.$invalid && _vm.show_error_fourteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description two is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #3\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #3\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.combined_service_description_three.$model,
+      expression: "v$.form_data.combined_service_description_three.$model",
       modifiers: {
         trim: true
       }
@@ -3533,33 +3811,31 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.combined_service_description_three.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.combined_service_description_three, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.combined_service_description_three.required.$invalid && _vm.show_error_fourteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description three is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Serial Number   (Only if printed directly on item)\n                                                        "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Serial Number   (Only if printed directly on item)\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.combined_service_serial_number,
+      expression: "form_data.combined_service_serial_number",
       modifiers: {
         trim: true
       }
@@ -3570,20 +3846,18 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.combined_service_serial_number
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "combined_service_serial_number", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "row"
@@ -3600,12 +3874,12 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                                Autographed\n                                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                                    Autographed\n                                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.autographed,
-      expression: "form_data.autographed",
+      value: _vm.form_data.combined_service_autographed,
+      expression: "form_data.combined_service_autographed",
       modifiers: {
         trim: true
       }
@@ -3616,23 +3890,23 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.autographed) ? _vm._i(_vm.form_data.autographed, null) > -1 : _vm.form_data.autographed
+      checked: Array.isArray(_vm.form_data.combined_service_autographed) ? _vm._i(_vm.form_data.combined_service_autographed, null) > -1 : _vm.form_data.combined_service_autographed
     },
     on: {
       change: function change($event) {
-        var $$a = _vm.form_data.autographed,
+        var $$a = _vm.form_data.combined_service_autographed,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "autographed", $$a.concat([$$v]));
+            $$i < 0 && _vm.$set(_vm.form_data, "combined_service_autographed", $$a.concat([$$v]));
           } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "autographed", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            $$i > -1 && _vm.$set(_vm.form_data, "combined_service_autographed", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
           }
         } else {
-          _vm.$set(_vm.form_data, "autographed", $$c);
+          _vm.$set(_vm.form_data, "combined_service_autographed", $$c);
         }
       }
     }
@@ -3642,14 +3916,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                                Authenticator Name\n                                                                "), _c("span", {
+  }, [_vm._v("\n                                                                    Authenticator Name\n                                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.authenticator_name_three,
-      expression: "form_data.authenticator_name_three",
+      value: _vm.v$.form_data.combined_service_authenticator_name.$model,
+      expression: "v$.form_data.combined_service_authenticator_name.$model",
       modifiers: {
         trim: true
       }
@@ -3666,7 +3940,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data, "authenticator_name_three", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.v$.form_data.combined_service_authenticator_name, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -3681,22 +3955,22 @@ var render = function render() {
         value: authenticator.id
       }
     }, [_vm._v(_vm._s(authenticator.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.combined_service_authenticator_name.required.$invalid && _vm.show_error_fourteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Authenticator Name is required\n                                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                                Authenticator Cert. No.\n                                                                "), _c("span", {
+  }, [_vm._v("\n                                                                    Authenticator Cert. No.\n                                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.combined_service_authenticator_cert_no.$model,
+      expression: "v$.form_data.combined_service_authenticator_cert_no.$model",
       modifiers: {
         trim: true
       }
@@ -3707,33 +3981,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.combined_service_authenticator_cert_no.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.combined_service_authenticator_cert_no, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.combined_service_authenticator_cert_no.required.$invalid && _vm.show_error_fourteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                contact name is required\n                                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Authenticator cert. no. is required\n                                                                ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-2"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Estimated Value\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Estimated Value\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.combined_service_estimated_value.$model,
+      expression: "v$.form_data.combined_service_estimated_value.$model",
       modifiers: {
         trim: true
       }
@@ -3744,20 +4018,20 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.combined_service_estimated_value.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.combined_service_estimated_value, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.combined_service_estimated_value.required.$invalid && _vm.show_error_fourteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), _vm.showItemTypeReholderBox ? _c("div", {
+  }, [_vm._v("\n                                                    Estimated value is required\n                                                ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), _vm.showItemTypeReholderBox ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -3771,7 +4045,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Qty\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -3799,9 +4073,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-9"
   }, [_c("div", {
     staticClass: "row"
@@ -3811,14 +4083,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Certification Number\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Certification Number\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.reholder_certification_number.$model,
+      expression: "v$.form_data.reholder_certification_number.$model",
       modifiers: {
         trim: true
       }
@@ -3829,33 +4101,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.reholder_certification_number.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.reholder_certification_number, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.reholder_certification_number.required.$invalid && _vm.show_error_fifteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Certification number is required\n                                                        ")]) : _vm._e()])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-2"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Estimated Value\n                                                "), _c("span", {
+  }, [_vm._v("\n                                                    Estimated Value\n                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.reholder_estimated_value.$model,
+      expression: "v$.form_data.reholder_estimated_value.$model",
       modifiers: {
         trim: true
       }
@@ -3866,20 +4138,20 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.reholder_estimated_value.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.reholder_estimated_value, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.reholder_estimated_value.required.$invalid && _vm.show_error_fifteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), _vm.showItemTypeCrossoverBox ? _c("div", {
+  }, [_vm._v("\n                                                    Estimated value is required\n                                                ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), _vm.showItemTypeCrossoverBox ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "card shipping_address_card"
@@ -3893,7 +4165,7 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                Qty\n                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -3921,9 +4193,7 @@ var render = function render() {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                contact name is required\n                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-9"
   }, [_c("div", {
     staticClass: "row"
@@ -3933,14 +4203,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #1   (Year,Manufacturer,Set,Other)\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #1   (Year,Manufacturer,Set,Other)\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.crossover_description_one.$model,
+      expression: "v$.form_data.crossover_description_one.$model",
       modifiers: {
         trim: true
       }
@@ -3951,33 +4221,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.crossover_description_one.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.crossover_description_one, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.crossover_description_one.required.$invalid && _vm.show_error_sixteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description one is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #2\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #2\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.crossover_description_two.$model,
+      expression: "v$.form_data.crossover_description_two.$model",
       modifiers: {
         trim: true
       }
@@ -3988,33 +4258,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.crossover_description_two.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.crossover_description_two, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.crossover_description_two.required.$invalid && _vm.show_error_sixteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description two is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Description #3\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Description #3\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.crossover_description_three.$model,
+      expression: "v$.form_data.crossover_description_three.$model",
       modifiers: {
         trim: true
       }
@@ -4025,33 +4295,31 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.crossover_description_three.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.crossover_description_three, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.crossover_description_three.required.$invalid && _vm.show_error_sixteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Description three is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Serial Number   (Only if printed directly on item)\n                                                        "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Serial Number   (Only if printed directly on item)\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.form_data.crossover_serial_number,
+      expression: "form_data.crossover_serial_number",
       modifiers: {
         trim: true
       }
@@ -4062,20 +4330,18 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.form_data.crossover_serial_number
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "crossover_serial_number", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "row"
@@ -4092,12 +4358,12 @@ var render = function render() {
       "margin-top": "6px",
       "margin-right": "15px"
     }
-  }, [_vm._v("\n                                                                Autographed\n                                                            ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                                    Autographed\n                                                                ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.autographed,
-      expression: "form_data.autographed",
+      value: _vm.form_data.crossover_autographed,
+      expression: "form_data.crossover_autographed",
       modifiers: {
         trim: true
       }
@@ -4108,23 +4374,23 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.autographed) ? _vm._i(_vm.form_data.autographed, null) > -1 : _vm.form_data.autographed
+      checked: Array.isArray(_vm.form_data.crossover_autographed) ? _vm._i(_vm.form_data.crossover_autographed, null) > -1 : _vm.form_data.crossover_autographed
     },
     on: {
       change: function change($event) {
-        var $$a = _vm.form_data.autographed,
+        var $$a = _vm.form_data.crossover_autographed,
           $$el = $event.target,
           $$c = $$el.checked ? true : false;
         if (Array.isArray($$a)) {
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "autographed", $$a.concat([$$v]));
+            $$i < 0 && _vm.$set(_vm.form_data, "crossover_autographed", $$a.concat([$$v]));
           } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "autographed", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            $$i > -1 && _vm.$set(_vm.form_data, "crossover_autographed", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
           }
         } else {
-          _vm.$set(_vm.form_data, "autographed", $$c);
+          _vm.$set(_vm.form_data, "crossover_autographed", $$c);
         }
       }
     }
@@ -4134,14 +4400,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                                Authenticator Name\n                                                                "), _c("span", {
+  }, [_vm._v("\n                                                                    Authenticator Name\n                                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.authenticator_name_four,
-      expression: "form_data.authenticator_name_four",
+      value: _vm.v$.form_data.crossover_authenticator_name.$model,
+      expression: "v$.form_data.crossover_authenticator_name.$model",
       modifiers: {
         trim: true
       }
@@ -4158,7 +4424,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data, "authenticator_name_four", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.v$.form_data.crossover_authenticator_name, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -4173,22 +4439,22 @@ var render = function render() {
         value: authenticator.id
       }
     }, [_vm._v(_vm._s(authenticator.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.crossover_authenticator_name.required.$invalid && _vm.show_error_sixteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                Customer name is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Authenticator Name is required\n                                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                                Authenticator Cert. No.\n                                                                "), _c("span", {
+  }, [_vm._v("\n                                                                    Authenticator Cert. No.\n                                                                    "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.crossover_authenticator_cert_no.$model,
+      expression: "v$.form_data.crossover_authenticator_cert_no.$model",
       modifiers: {
         trim: true
       }
@@ -4199,20 +4465,20 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.crossover_authenticator_cert_no.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.crossover_authenticator_cert_no, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.crossover_authenticator_cert_no.required.$invalid && _vm.show_error_sixteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                                contact name is required\n                                                            ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Authenticator cert. no. is required\n                                                                ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-2"
   }, [_c("div", {
     staticClass: "row"
@@ -4222,14 +4488,14 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                        Estimated Value\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Estimated Value\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.contact_name.$model,
-      expression: "v$.form_data.contact_name.$model",
+      value: _vm.v$.form_data.crossover_estimated_value.$model,
+      expression: "v$.form_data.crossover_estimated_value.$model",
       modifiers: {
         trim: true
       }
@@ -4240,33 +4506,33 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.contact_name.$model
+      value: _vm.v$.form_data.crossover_estimated_value.$model
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.contact_name, "$model", $event.target.value.trim());
+        _vm.$set(_vm.v$.form_data.crossover_estimated_value, "$model", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.contact_name.required.$invalid && _vm.show_error_one ? _c("div", {
+  }), _vm._v(" "), _vm.v$.form_data.crossover_estimated_value.required.$invalid && _vm.show_error_sixteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        contact name is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Estimated value is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                        Minimum Grade\n                                                        "), _c("span", {
+  }, [_vm._v("\n                                                            Minimum Grade\n                                                            "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.form_data.minimum_grade,
-      expression: "form_data.minimum_grade",
+      value: _vm.v$.form_data.crossover_minimum_grade.$model,
+      expression: "v$.form_data.crossover_minimum_grade.$model",
       modifiers: {
         trim: true
       }
@@ -4283,7 +4549,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.$set(_vm.form_data, "minimum_grade", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        _vm.$set(_vm.v$.form_data.crossover_minimum_grade, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -4298,9 +4564,9 @@ var render = function render() {
         value: grade.id
       }
     }, [_vm._v(_vm._s(grade.name))]);
-  })], 2), _vm._v(" "), _vm.v$.form_data.name.required.$invalid && _vm.show_error_one ? _c("div", {
+  })], 2), _vm._v(" "), _vm.v$.form_data.crossover_minimum_grade.required.$invalid && _vm.show_error_sixteen ? _c("div", {
     staticClass: "error"
-  }, [_vm._v("\n                                                        Customer name is required\n                                                    ")]) : _vm._e()])])])])])])])]) : _vm._e()])])], 1)], 1)]);
+  }, [_vm._v("\n                                                            Minimum grade is required\n                                                        ")]) : _vm._e()])])])])])])])]) : _vm._e()])])], 1)], 1)]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
