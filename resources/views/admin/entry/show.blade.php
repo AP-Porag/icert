@@ -21,7 +21,9 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-4">
-                                            <form action="">
+                                            <form action="{{route('admin.entries.add.new.item')}}" method="POST">
+                                                @method('post')
+                                                @csrf
                                                 <div class="form-group mb-3">
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -36,11 +38,11 @@
                                                                                 </label>
                                                                                 <select class="form-select mb-text-only" id="itemSelect" aria-label="Default select example" name="itemType">
                                                                                     <option selected disabled>Open this select menu</option>
-                                                                                    <option value="card">Card</option>
-                                                                                    <option value="auto_authentication">Auto Authentication</option>
-                                                                                    <option value="combined_service">Combined Service</option>
-                                                                                    <option value="reholder">Reholder</option>
-                                                                                    <option value="crossover">Crossover</option>
+                                                                                    <option value="Card">Card</option>
+                                                                                    <option value="Auto Authentication">Auto Authentication</option>
+                                                                                    <option value="Combined Service">Combined Service</option>
+                                                                                    <option value="Reholder">Reholder</option>
+                                                                                    <option value="Crossover">Crossover</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -51,7 +53,7 @@
                                                                                     Crossover Item Type
                                                                                     <span class="error">*</span>
                                                                                 </label>
-                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                <select class="form-select mb-text-only" aria-label="Default select example" name="crossover_item_type" id="crossover_item_type">
                                                                                     <option selected disabled>Open this select menu</option>
                                                                                     <option>Crossover Item Type</option>
                                                                                 </select>
@@ -63,6 +65,11 @@
                                                             </div>
                                                         </div>
 
+                                                        <div class="col-md-12" id="warning_text_box">
+                                                            <div class="alert alert-danger">
+                                                                <strong>(*)</strong> Sign indicates required.
+                                                            </div>
+                                                        </div>
                                                         <!--item type card-->
                                                         <div class="col-md-12 hidden-box" id="showItemTypeCardBox">
                                                             <div class="card shipping_address_card">
@@ -95,6 +102,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="card_description_one"
+                                                                                            id="card_description_one"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -109,6 +118,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="card_description_two"
+                                                                                            id="card_description_two"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -123,6 +134,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="card_description_three"
+                                                                                            id="card_description_three"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -131,12 +144,13 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Serial Number   (Only if printed directly on item)
-                                                                                            <span class="error">*</span>
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="card_serial_number"
+                                                                                            id="card_serial_number"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -152,6 +166,8 @@
                                                                                                     type="checkbox"
                                                                                                     class="form-check"
                                                                                                     placeholder=""
+                                                                                                    name="card_autographed"
+                                                                                                    id="card_autographed"
                                                                                                 />
                                                                                                 <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
                                                                                                 <!--                                                Same as Billing is required-->
@@ -164,7 +180,7 @@
                                                                                                     Authenticator Name
                                                                                                     <span class="error">*</span>
                                                                                                 </label>
-                                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                                <select class="form-select mb-text-only" aria-label="Default select example" name="card_authenticator_name" id="card_authenticator_name">
                                                                                                     <option selected disabled>Open this select menu</option>
                                                                                                     <option>Authenticator name</option>
                                                                                                 </select>
@@ -180,6 +196,8 @@
                                                                                                     type="text"
                                                                                                     class="form-control"
                                                                                                     placeholder=""
+                                                                                                    name="card_authenticator_cert_no"
+                                                                                                    id="card_authenticator_cert_no"
                                                                                                 />
                                                                                             </div>
                                                                                         </div>
@@ -198,6 +216,8 @@
                                                                                     type="text"
                                                                                     class="form-control"
                                                                                     placeholder=""
+                                                                                    id="card_estimated_value"
+                                                                                    name="card_estimated_value"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -240,6 +260,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="auto_authentication_description_one"
+                                                                                            id="auto_authentication_description_one"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -254,6 +276,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="auto_authentication_description_two"
+                                                                                            id="auto_authentication_description_two"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -268,6 +292,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="auto_authentication_description_three"
+                                                                                            id="auto_authentication_description_three"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -276,12 +302,13 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Serial Number   (Only if printed directly on item)
-                                                                                            <span class="error">*</span>
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="auto_authentication_serial_number"
+                                                                                            id="auto_authentication_serial_number"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -297,6 +324,8 @@
                                                                                                     type="checkbox"
                                                                                                     class="form-check"
                                                                                                     placeholder=""
+                                                                                                    name="auto_authentication_autographed"
+                                                                                                    id="auto_authentication_autographed"
                                                                                                 />
                                                                                             </div>
                                                                                         </div>
@@ -306,7 +335,7 @@
                                                                                                     Authenticator Name
                                                                                                     <span class="error">*</span>
                                                                                                 </label>
-                                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                                <select class="form-select mb-text-only" aria-label="Default select example" name="auto_authentication_authenticator_name" id="auto_authentication_authenticator_name">
                                                                                                     <option selected disabled>Open this select menu</option>
                                                                                                     <option>Authenticator name</option>
                                                                                                 </select>
@@ -319,9 +348,11 @@
                                                                                                     <span class="error">*</span>
                                                                                                 </label>
                                                                                                 <input
-                                                                                                    type="text"
+                                                                                                    type="number"
                                                                                                     class="form-control"
                                                                                                     placeholder=""
+                                                                                                    name="auto_authentication_authenticator_cert_no"
+                                                                                                    id="auto_authentication_authenticator_cert_no"
                                                                                                 />
                                                                                             </div>
                                                                                         </div>
@@ -337,9 +368,11 @@
                                                                                     <span class="error">*</span>
                                                                                 </label>
                                                                                 <input
-                                                                                    type="text"
+                                                                                    type="number"
                                                                                     class="form-control"
                                                                                     placeholder=""
+                                                                                    name="auto_authentication_estimated_value"
+                                                                                    id="auto_authentication_estimated_value"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -382,6 +415,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="combined_service_description_one"
+                                                                                            id="combined_service_description_one"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -396,6 +431,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="combined_service_description_two"
+                                                                                            id="combined_service_description_two"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -410,6 +447,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="combined_service_description_three"
+                                                                                            id="combined_service_description_three"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -418,7 +457,6 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Serial Number   (Only if printed directly on item)
-                                                                                            <span class="error">*</span>
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -439,6 +477,8 @@
                                                                                                     type="checkbox"
                                                                                                     class="form-check"
                                                                                                     placeholder=""
+                                                                                                    name="combined_service_autographed"
+                                                                                                    id="combined_service_autographed"
                                                                                                 />
                                                                                             </div>
                                                                                         </div>
@@ -448,7 +488,7 @@
                                                                                                     Authenticator Name
                                                                                                     <span class="error">*</span>
                                                                                                 </label>
-                                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                                <select class="form-select mb-text-only" aria-label="Default select example" name="combined_service_authenticator_name" id="combined_service_authenticator_name">
                                                                                                     <option selected disabled>Open this select menu</option>
                                                                                                     <option>Authenticator name</option>
                                                                                                 </select>
@@ -464,6 +504,8 @@
                                                                                                     type="text"
                                                                                                     class="form-control"
                                                                                                     placeholder=""
+                                                                                                    name="combined_service_authenticator_cert_no"
+                                                                                                    id="combined_service_authenticator_cert_no"
                                                                                                 />
                                                                                             </div>
                                                                                         </div>
@@ -482,6 +524,8 @@
                                                                                     type="text"
                                                                                     class="form-control"
                                                                                     placeholder=""
+                                                                                    name="combined_service_estimated_value"
+                                                                                    id="combined_service_estimated_value"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -507,6 +551,7 @@
                                                                                     class="form-control"
                                                                                     placeholder=""
                                                                                     readonly
+                                                                                    value="1"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -523,6 +568,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="reholder_certification_number"
+                                                                                            id="reholder_certification_number"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -539,6 +586,8 @@
                                                                                     type="text"
                                                                                     class="form-control"
                                                                                     placeholder=""
+                                                                                    name="reholder_estimated_value"
+                                                                                    id="reholder_estimated_value"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -580,6 +629,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="crossover_description_one"
+                                                                                            id="crossover_description_one"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -594,6 +645,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="crossover_description_two"
+                                                                                            id="crossover_description_two"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -608,6 +661,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="crossover_description_three"
+                                                                                            id="crossover_description_three"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -616,12 +671,13 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Serial Number   (Only if printed directly on item)
-                                                                                            <span class="error">*</span>
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="crossover_serial_number"
+                                                                                            id="crossover_serial_number"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -637,6 +693,8 @@
                                                                                                     type="checkbox"
                                                                                                     class="form-check"
                                                                                                     placeholder=""
+                                                                                                    name="crossover_autographed"
+                                                                                                    id="crossover_autographed"
                                                                                                 />
                                                                                             </div>
                                                                                         </div>
@@ -646,7 +704,7 @@
                                                                                                     Authenticator Name
                                                                                                     <span class="error">*</span>
                                                                                                 </label>
-                                                                                                <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                                <select class="form-select mb-text-only" aria-label="Default select example" name="crossover_authenticator_name"id="crossover_authenticator_name">
                                                                                                     <option selected disabled>Open this select menu</option>
                                                                                                     <option>Authenticator name</option>
                                                                                                 </select>
@@ -662,6 +720,8 @@
                                                                                                     type="text"
                                                                                                     class="form-control"
                                                                                                     placeholder=""
+                                                                                                    name="crossover_authenticator_cert_no"
+                                                                                                    id="crossover_authenticator_cert_no"
                                                                                                 />
                                                                                             </div>
                                                                                         </div>
@@ -682,6 +742,8 @@
                                                                                             type="text"
                                                                                             class="form-control"
                                                                                             placeholder=""
+                                                                                            name="crossover_estimated_value"
+                                                                                            id="crossover_estimated_value"
                                                                                         />
                                                                                     </div>
                                                                                 </div>
@@ -691,7 +753,7 @@
                                                                                             Minimum Grade
                                                                                             <span class="error">*</span>
                                                                                         </label>
-                                                                                        <select class="form-select mb-text-only" aria-label="Default select example">
+                                                                                        <select class="form-select mb-text-only" aria-label="Default select example" name="crossover_minimum_grade" id="crossover_minimum_grade">
                                                                                             <option selected disabled>Open this select menu</option>
                                                                                             <option>Authenticator name</option>
                                                                                         </select>
@@ -709,7 +771,7 @@
 {{--                                                    <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">--}}
                                                 </div>
                                                 <div class="w-100 d-flex justify-content-end">
-                                                    <button type="submit" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                                                    <button type="submit" id="add_item_submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
                                                     <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                 </div>
                                             </form>
@@ -1172,6 +1234,12 @@
     #quantity-warning-text{
         display: none;
     }
+    #warning_text_box{
+        display: none;
+    }
+    .waring-text{
+        display: none;
+    }
     //.table-bordered td, .table-bordered th {
     //    border: 0;
     //}
@@ -1180,6 +1248,14 @@
 
 @push('script')
     <script>
+
+        let notSelected = true;
+        let showItemTypeCardBox = false;
+        let showItemTypeAutoAthenticationBox= false;
+        let showItemTypeCombinedServiceBox= false;
+        let showItemTypeReholderBox= false;
+        let showItemTypeCrossoverBoxTwo= false;
+        let showItemTypeCrossoverBoxOne= false;
         $('#extra_submit_btn').on('click', function () {
             console.log('clicked')
             if(!$('#quantity-input-box').val()){
@@ -1189,6 +1265,79 @@
                 $('#quantity-warning-text').hide();
                 $(this).attr("type","submit");
             }
+        });
+
+        $('#add_item_submit_btn').on('click', function (e) {
+            // e.preventDefault();
+            console.log('clicked add item')
+
+            if(notSelected){
+                if (showItemTypeCardBox){
+                    console.log('showItemTypeCardBox  '+showItemTypeCardBox)
+
+                    if(!$('#card_description_one').val() || !$('#card_description_two').val() || !$('#card_description_three').val() || !$('#card_authenticator_name').val() || !$('#card_authenticator_cert_no').val() || !$('#card_estimated_value').val()){
+                        $(this).attr("type","button");
+                        $('#warning_text_box').show();
+                    }else {
+                        $('#warning_text_box').hide();
+                        $(this).attr("type","submit");
+                    }
+
+                }
+                if(showItemTypeAutoAthenticationBox){
+                    console.log('showItemTypeAutoAthenticationBox  '+showItemTypeAutoAthenticationBox)
+
+                    if(!$('#auto_authentication_description_one').val() || !$('#auto_authentication_description_two').val() || !$('#auto_authentication_description_three').val() || !$('#auto_authentication_authenticator_name').val() || !$('#auto_authentication_authenticator_cert_no').val() || !$('#auto_authentication_estimated_value').val()){
+                        $(this).attr("type","button");
+                        $('#warning_text_box').show();
+                    }else {
+                        $('#warning_text_box').hide();
+                        $(this).attr("type","submit");
+                    }
+                }
+                if(showItemTypeCombinedServiceBox){
+                    console.log('showItemTypeCombinedServiceBox  '+showItemTypeCombinedServiceBox)
+
+                    if(!$('#combined_service_description_one').val() || !$('#combined_service_description_two').val() || !$('#combined_service_description_three').val() || !$('#combined_service_authenticator_name').val() || !$('#combined_service_authenticator_cert_no').val() || !$('#combined_service_estimated_value').val()){
+                        $(this).attr("type","button");
+                        $('#warning_text_box').show();
+                    }else {
+                        $('#warning_text_box').hide();
+                        $(this).attr("type","submit");
+                    }
+                }
+                if(showItemTypeReholderBox){
+                    console.log('showItemTypeReholderBox  '+showItemTypeReholderBox)
+
+                    if(!$('#reholder_certification_number').val() || !$('#reholder_estimated_value').val() ){
+                        $(this).attr("type","button");
+                        $('#warning_text_box').show();
+                    }else {
+                        $('#warning_text_box').hide();
+                        $(this).attr("type","submit");
+                    }
+                }
+                if(showItemTypeCrossoverBoxOne || showItemTypeCrossoverBoxTwo){
+                    console.log('showItemTypeCrossoverBoxOne  '+showItemTypeCrossoverBoxOne)
+
+                    if(!$('#crossover_description_one').val() || !$('#crossover_description_two').val() || !$('#crossover_description_three').val() || !$('#crossover_item_type').val() || !$('#crossover_minimum_grade').val() || !$('#crossover_autographed').val() || !$('#crossover_authenticator_name').val() || !$('#crossover_estimated_value').val() || !$('#crossover_authenticator_cert_no').val() ){
+                        $(this).attr("type","button");
+                        $('#warning_text_box').show();
+                    }else {
+                        $('#warning_text_box').hide();
+                        $(this).attr("type","submit");
+                    }
+                }
+            } else {
+                $(this).attr("type","button");
+            }
+            // if(!$('#quantity-input-box').val()){
+            //     $(this).attr("type","button");
+            //     $('#quantity-warning-text').show();
+            // }else {
+            //     $('#quantity-warning-text').hide();
+            //     $(this).attr("type","submit");
+            // }
         });
 
         $('#cancel_btn').on('click', function () {
@@ -1205,49 +1354,84 @@
 
         $('#itemSelect').on('change', function() {
             let value = this.value;
-            if(value == 'card'){
+            if(value == 'Card'){
                 $('#showItemTypeCardBox').show();
+                showItemTypeCardBox = true;
                 $('#showItemTypeAutoAthenticationBox').hide();
                 $('#showItemTypeCombinedServiceBox').hide();
                 $('#showItemTypeReholderBox').hide();
                 $('#showItemTypeCrossoverBoxTwo').hide();
                 $('#showItemTypeCrossoverBoxOne').hide();
+                showItemTypeAutoAthenticationBox= false;
+                showItemTypeCombinedServiceBox= false;
+                showItemTypeReholderBox= false;
+                showItemTypeCrossoverBoxTwo= false;
+                showItemTypeCrossoverBoxOne= false;
             }
 
-            if(value == 'auto_authentication'){
+            if(value == 'Auto Authentication'){
                 $('#showItemTypeCardBox').hide();
                 $('#showItemTypeAutoAthenticationBox').show();
+                showItemTypeAutoAthenticationBox = true;
                 $('#showItemTypeCombinedServiceBox').hide();
                 $('#showItemTypeReholderBox').hide();
                 $('#showItemTypeCrossoverBoxTwo').hide();
                 $('#showItemTypeCrossoverBoxOne').hide();
+                showItemTypeCardBox = false;
+                showItemTypeCombinedServiceBox= false;
+                showItemTypeReholderBox= false;
+                showItemTypeCrossoverBoxTwo= false;
+                showItemTypeCrossoverBoxOne= false;
             }
 
-            if(value == 'combined_service'){
+            if(value == 'Combined Service'){
                 $('#showItemTypeCardBox').hide();
                 $('#showItemTypeAutoAthenticationBox').hide();
                 $('#showItemTypeCombinedServiceBox').show();
+                showItemTypeCombinedServiceBox = true;
                 $('#showItemTypeReholderBox').hide();
                 $('#showItemTypeCrossoverBoxTwo').hide();
                 $('#showItemTypeCrossoverBoxOne').hide();
+                showItemTypeCardBox = false;
+                showItemTypeAutoAthenticationBox= false;
+                showItemTypeReholderBox= false;
+                showItemTypeCrossoverBoxTwo= false;
+                showItemTypeCrossoverBoxOne= false;
             }
 
-            if(value == 'reholder'){
+            if(value == 'Reholder'){
                 $('#showItemTypeCardBox').hide();
                 $('#showItemTypeAutoAthenticationBox').hide();
                 $('#showItemTypeCombinedServiceBox').hide();
                 $('#showItemTypeReholderBox').show();
+                showItemTypeReholderBox = true;
                 $('#showItemTypeCrossoverBoxTwo').hide();
                 $('#showItemTypeCrossoverBoxOne').hide();
+                showItemTypeCardBox = false;
+                showItemTypeAutoAthenticationBox= false;
+                showItemTypeCombinedServiceBox= false;
+                showItemTypeCrossoverBoxTwo= false;
+                showItemTypeCrossoverBoxOne= false;
             }
-            if(value == 'crossover'){
+            if(value == 'Crossover'){
                 $('#showItemTypeCardBox').hide();
                 $('#showItemTypeAutoAthenticationBox').hide();
                 $('#showItemTypeCombinedServiceBox').hide();
                 $('#showItemTypeReholderBox').hide();
                 $('#showItemTypeCrossoverBoxTwo').show();
                 $('#showItemTypeCrossoverBoxOne').show();
+                showItemTypeCrossoverBoxOne =true;
+                showItemTypeCrossoverBoxTwo =true;
+                showItemTypeCardBox = false;
+                showItemTypeAutoAthenticationBox= false;
+                showItemTypeCombinedServiceBox= false;
+                showItemTypeReholderBox= false;
             }
         });
+
+        $('.form-check').on('change', function(){
+            this.value = this.checked ? 1 : 0;
+            // alert(this.value);
+        }).change();
     </script>
 @endpush

@@ -84,6 +84,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('/entries/get-customer/info/{id}',[EntryController::class,'getCustomerInfo'] )->name('entries.getCustomerInfo');
     Route::post('/entries/add-additional/pieces',[EntryController::class,'addAdditionalPieces'] )->name('entries.addAdditional.pieces');
     Route::post('/entries/entry/item/destroy',[EntryController::class,'itemDestroy'] )->name('entries.entry.item.destroy');
+    Route::post('/entries/add/new/item',[EntryController::class,'newItemAdd'] )->name('entries.add.new.item');
     //customers
     Route::resource('customers', CustomerController::class);
 

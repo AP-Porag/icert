@@ -262,6 +262,17 @@ class EntryController extends Controller
 
         return redirect()->back();
     }
+    public function newItemAdd(Request $request)
+    {
+
+        $data = $request->all();
+        if ($request->itemType){
+            $item = EntryItems::create($data);
+        }else{
+            return redirect()->back();
+        }
+        return redirect()->back();
+    }
     public function itemDestroy(Request $request)
     {
         $item = EntryItems::find($request->item_id)->delete();
