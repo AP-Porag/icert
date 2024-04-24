@@ -46,6 +46,10 @@ Vue.component("create-entry", () =>
     import("./components/CreateEntry.vue")
 );
 
+Vue.component("entry-entry", () =>
+    import("./components/EditEntry.vue")
+);
+
 // Global mixin
 Vue.mixin({
     methods: {

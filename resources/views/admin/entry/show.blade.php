@@ -1067,10 +1067,10 @@
                                                             <td class="">
                                                                 <div class="d-flex justify-content-center">
                                                                     <div class="" style="margin-right: 15px;">
-                                                                        <button type="button" class="btn text-primary btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                                        <button type="button" class="btn text-primary btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop-{{$item->id}}">
                                                                             <i class="fa fa-angle-double-up"></i>
                                                                         </button>
-                                                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
+                                                                        <div class="modal fade" id="staticBackdrop-{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
                                                                             <div class="modal-dialog">
                                                                                 <div class="modal-content">
                                                                                     {{--                                                                    <div class="modal-header">--}}
@@ -1094,7 +1094,7 @@
                                                                                             <div class="form-group mb-3">
                                                                                                 <input type="number" id="quantity-input-box" class="form-control" name="pieces" style="width: 33%;margin: 0 auto;">
                                                                                                 <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
-                                                                                                <input type="number" hidden="" class="form-control" name="item_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
+                                                                                                <input type="number" hidden=""  class="form-control" name="item_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
 {{--                                                                                                <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">--}}
                                                                                             </div>
                                                                                             <button type="submit" id="extra_submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
@@ -1108,45 +1108,45 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="" style="margin-right: 15px;">
-                                                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">
-                                                                            <i class="fa fa-edit" style="padding-top: 6px;padding-bottom: 6px;"></i>
-                                                                        </button>
-                                                                        <div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">
-                                                                            <div class="modal-dialog">
-                                                                                <div class="modal-content">
-                                                                                    {{--                                                                    <div class="modal-header">--}}
-                                                                                    {{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
-                                                                                    {{--                                                                        </h5>--}}
-                                                                                    {{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
-                                                                                    {{--                                                                    </div>--}}
-                                                                                    <div class="modal-body mt-3 text-center">
-                                                                                        <div class="question-icon-box">
-                                                                                            <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>
-                                                                                        </div>
-                                                                                        <span class="question-text" style="font-size: 24px;">
-                                                                            How much additional pieces of <br>
-                                                                            this item do you want to add?
-                                                                        </span>
-                                                                                    </div>
-                                                                                    <div class="mb-4 text-center">
-                                                                                        <form action="">
-                                                                                            <div class="form-group mb-3">
-                                                                                                <input type="number" id="quantity-input-box" class="form-control" name="item_qty" style="width: 33%;margin: 0 auto;">
-                                                                                                <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>
-                                                                                                <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">
+{{--                                                                    <div class="" style="margin-right: 15px;">--}}
+{{--                                                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdropEdit">--}}
+{{--                                                                            <i class="fa fa-edit" style="padding-top: 6px;padding-bottom: 6px;"></i>--}}
+{{--                                                                        </button>--}}
+{{--                                                                        <div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: none;" aria-hidden="true">--}}
+{{--                                                                            <div class="modal-dialog">--}}
+{{--                                                                                <div class="modal-content">--}}
+{{--                                                                                    --}}{{--                                                                    <div class="modal-header">--}}
+{{--                                                                                    --}}{{--                                                                        <h5 class="modal-title" id="staticBackdropLabel">Multiple Qty--}}
+{{--                                                                                    --}}{{--                                                                        </h5>--}}
+{{--                                                                                    --}}{{--                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+{{--                                                                                    --}}{{--                                                                    </div>--}}
+{{--                                                                                    <div class="modal-body mt-3 text-center">--}}
+{{--                                                                                        <div class="question-icon-box">--}}
+{{--                                                                                            <i class="fa fa-question" style="color: #3d7cb1;font-size: 32px;"></i>--}}
+{{--                                                                                        </div>--}}
+{{--                                                                                        <span class="question-text" style="font-size: 24px;">--}}
+{{--                                                                            How much additional pieces of <br>--}}
+{{--                                                                            this item do you want to add?--}}
+{{--                                                                        </span>--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                    <div class="mb-4 text-center">--}}
+{{--                                                                                        <form action="">--}}
+{{--                                                                                            <div class="form-group mb-3">--}}
+{{--                                                                                                <input type="number" id="quantity-input-box" class="form-control" name="item_qty" style="width: 33%;margin: 0 auto;">--}}
+{{--                                                                                                <p class="quantity-warning-text text-danger" id="quantity-warning-text">Quantity is required</p>--}}
+{{--                                                                                                <input type="number" hidden="" class="form-control" name="entry_id" value="{{$item->id}}" style="width: 33%;margin: 0 auto;">--}}
 {{--                                                                                                <input type="number" hidden="" class="form-control" name="item_name" value="Card" style="width: 33%;margin: 0 auto;">--}}
-                                                                                            </div>
-                                                                                            <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
-                                                                                            <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- /.modal-content -->
-                                                                            </div>
-                                                                            <!-- /.modal-dialog -->
-                                                                        </div>
-                                                                    </div>
+{{--                                                                                            </div>--}}
+{{--                                                                                            <button type="submit" id="submit_btn" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>--}}
+{{--                                                                                            <button type="button" id="cancel_btn" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>--}}
+{{--                                                                                        </form>--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                </div>--}}
+{{--                                                                                <!-- /.modal-content -->--}}
+{{--                                                                            </div>--}}
+{{--                                                                            <!-- /.modal-dialog -->--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </div>--}}
 
                                                                     <div class="">
                                                                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdropDelete">
@@ -1240,9 +1240,54 @@
     .waring-text{
         display: none;
     }
-    //.table-bordered td, .table-bordered th {
-    //    border: 0;
-    //}
+
+
+
+     table {
+         width: 100%;
+
+         /* border-collapse: collapse; */
+         border-spacing: 0;
+         border: 2px solid black;
+     }
+
+    /* To display the block as level element */
+    table tbody,
+    table thead {
+        display: block;
+    }
+
+    thead{
+        background: cornflowerblue;
+        color:white;
+    }
+    thead tr th {
+        height: 40px;
+    }
+
+    table tbody {
+
+        /* Set the height of table body */
+        height: 300px;
+
+        /* Set vertical scroll */
+        overflow-y: auto;
+
+        /* Hide the horizontal scroll */
+        overflow-x: hidden;
+    }
+
+
+
+    tbody td,
+    thead th {
+        width: 240px;
+        border-right: 2px solid black;
+    }
+
+    td {
+        text-align: center;
+    }
 </style>
 @endpush
 

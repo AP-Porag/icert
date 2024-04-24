@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Entry;
 
 use App\DataTables\EntryDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Authenticator;
 use App\Models\Customer;
 use App\Models\Entry;
 use App\Models\EntryItems;
@@ -35,9 +36,10 @@ class EntryController extends Controller
         $allCustomers = Customer::orderBy('id','DESC')->select('id','name')->get();
         $allPromos = Promo::orderBy('id','DESC')->select('id','name')->get();
         $allThirdParties = ThirdParty::orderBy('id','DESC')->select('id','name')->get();
+        $allAuthenticators = Authenticator::orderBy('id','DESC')->select('id','name')->get();
 
 //        return $allThirdParties;
-        return view('admin.entry.create',compact('products','allCustomers','allPromos','allThirdParties'));
+        return view('admin.entry.create',compact('products','allCustomers','allPromos','allThirdParties','allAuthenticators'));
     }
 
     public function store(Request $request)
@@ -149,12 +151,18 @@ class EntryController extends Controller
 
     public function edit($id)
     {
+        set_page_meta('Edit Entry');
+        $item = $this->entryService->get($id);
+        $products = Product::orderBy('id','ASC')->get();
+        $allCustomers = Customer::orderBy('id','DESC')->select('id','name')->get();
+        $allPromos = Promo::orderBy('id','DESC')->select('id','name')->get();
+        $allThirdParties = ThirdParty::orderBy('id','DESC')->select('id','name')->get();
+        $allAuthenticators = Authenticator::orderBy('id','DESC')->select('id','name')->get();
 
+//        return $allThirdParties;
+        return view('admin.entry.edit',compact('products','allCustomers','allPromos','allThirdParties','allAuthenticators'));
         try {
-            set_page_meta('Edit Entry');
-            $item = $this->entryService->get($id,['products']);
-            $products = Product::orderBy('id','ASC')->get();
-            return view('admin.entry.edit', compact('item','products'));
+
         } catch (\Exception $e) {
             log_error($e);
         }
@@ -194,7 +202,7 @@ class EntryController extends Controller
     public function show($id)
     {
         set_page_meta('Show Entry');
-        $items = EntryItems::where('entry_id',$id)->get();
+        $items = EntryItems::where('entry_id',$id)->orderBy('created_at', 'desc')->get();
 
         $entry = Entry::find($id);
 //        return $item;
@@ -210,6 +218,8 @@ class EntryController extends Controller
     public function destroy($id)
     {
         try {
+            $this->entryService->delete($id);
+            record_deleted_flash();
 //            $orderOfThisThirdParty = Order::where('third_party_id',$id)->count();
 //
 //            if ($orderOfThisThirdParty > 0){
@@ -253,12 +263,55 @@ class EntryController extends Controller
 
     public function addAdditionalPieces(Request $request)
     {
-        $data = $request->all();
+        $id = $request->item_id;
+        $pieces = $request->pieces;
 
+        $item = EntryItems::find($id);
 
-        $item = EntryItems::find($request->item_id);
-        $item->pieces = $item->pieces + $request->pieces;
-        $item->save();
+        $data = [
+            "entry_id"=> $item->entry_id,
+            "itemType"=> $item->itemType,
+            "card_description_one"=> $item->card_description_one,
+            "card_description_two"=> $item->card_description_two,
+            "card_description_three"=> $item->card_description_three,
+            "card_serial_number"=> $item->card_serial_number,
+            "card_autographed"=> $item->card_autographed,
+            "card_authenticator_name"=> $item->card_authenticator_name,
+            "card_authenticator_cert_no"=> $item->card_authenticator_cert_no,
+            "card_estimated_value"=> $item->card_estimated_value,
+            "auto_authentication_description_one"=> $item->auto_authentication_description_one,
+            "auto_authentication_description_two"=> $item->auto_authentication_description_two,
+            "auto_authentication_description_three"=> $item->auto_authentication_description_three,
+            "auto_authentication_serial_number"=> $item->auto_authentication_serial_number,
+            "auto_authentication_autographed"=> $item->auto_authentication_autographed,
+            "auto_authentication_authenticator_name"=> $item->auto_authentication_authenticator_name,
+            "auto_authentication_authenticator_cert_no"=> $item->auto_authentication_authenticator_cert_no,
+            "auto_authentication_estimated_value"=> $item->auto_authentication_estimated_value,
+            "combined_service_description_one"=> $item->combined_service_description_one,
+            "combined_service_description_two"=> $item->combined_service_description_two,
+            "combined_service_description_three"=> $item->combined_service_description_three,
+            "combined_service_serial_number"=> $item->combined_service_serial_number,
+            "combined_service_autographed"=> $item->combined_service_autographed,
+            "combined_service_authenticator_name"=> $item->combined_service_authenticator_name,
+            "combined_service_authenticator_cert_no"=> $item->combined_service_authenticator_cert_no,
+            "combined_service_estimated_value"=> $item->combined_service_estimated_value,
+            "reholder_certification_number"=> $item->reholder_certification_number,
+            "reholder_estimated_value"=> $item->reholder_estimated_value,
+            "crossover_description_one"=> $item->crossover_description_one,
+            "crossover_description_two"=> $item->crossover_description_two,
+            "crossover_description_three"=> $item->crossover_description_three,
+            "crossover_serial_number"=> $item->crossover_serial_number,
+            "crossover_autographed"=> $item->crossover_autographed,
+            "crossover_authenticator_name"=> $item->crossover_authenticator_name,
+            "crossover_authenticator_cert_no"=> $item->crossover_authenticator_cert_no,
+            "crossover_estimated_value"=> $item->crossover_estimated_value,
+            "crossover_item_type"=> $item->crossover_item_type,
+            "crossover_minimum_grade"=> $item->crossover_minimum_grade,
+            "pieces"=> $item->pieces,
+        ];
+        for ($x = 1; $x <= $pieces; $x++) {
+            $newItem = EntryItems::create($data);
+        }
 
         return redirect()->back();
     }

@@ -10,7 +10,7 @@
 {{--                        <a href="{{route('admin.thirds.index')}}" class="btn btn-sm btn-warning text-capitalize" style="padding-top: 8px;">Cancel</a>--}}
                     </div>
 
-                    <edit-third-party-drop-off :third_party="{{json_encode($item)}}" :products="{{json_encode($products)}}"/>
+                    <edit-entry :products="{{json_encode($products)}}" :customers="{{json_encode($allCustomers)}}" :promos="{{json_encode($allPromos)}}" :parties="{{json_encode($allThirdParties)}}" :authenticators="{{json_encode($allAuthenticators)}}" />
                 </div>
             </div>
         </div>
