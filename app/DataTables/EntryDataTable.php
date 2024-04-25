@@ -97,8 +97,8 @@ class EntryDataTable extends DataTable
             Column::make('entrySKU', 'entrySKU')->title('ID')->searchable(true),
             Column::make('customer_name', 'customer_name')->title('Name')->searchable(false),
 //            Column::make('qty', 'qty')->title('Order Quantity'),
-            Column::make('email', 'email')->title('Email'),
-            Column::make('contact_name', 'contact_name')->title('Contact Name'),
+            Column::make('email', 'email')->title('Email')->searchable(false),
+            Column::make('contact_name', 'contact_name')->title('Contact Name')->searchable(false),
         ];
     }
 

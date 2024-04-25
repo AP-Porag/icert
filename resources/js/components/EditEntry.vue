@@ -791,10 +791,10 @@
                         </div>
                     </div>
                 </tab-content>
+<!--                :before-change="checkSixthStep"-->
                 <tab-content
                     title="Shipping Method"
                     icon="ti-credit-card"
-                    :before-change="checkSixthStep"
                 >
                     <div class="row">
                         <div class="col-md-12">
@@ -919,865 +919,865 @@
                         </div>
                     </div>
                 </tab-content>
-                <tab-content
-                    title="Item Type"
-                    icon="ti-gift"
-                >
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card shipping_address_card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100 text-capitalize">
-                                                    Select the item type to be entered
-                                                    <span class="error">*</span>
-                                                </label>
-                                                <select class="form-select mb-text-only" aria-label="Default select example"
-                                                        v-model.trim="form_data.itemType"
-                                                        @change="itemTypeChangeEvent"
-                                                >
-                                                    <option selected disabled>Open this select menu</option>
-                                                    <option v-for="(type,index) in itemTypes" :value="type.name" :key="type.id">{{type.name}}</option>
-                                                </select>
-                                                <!--                                            <Select2 v-model="form_data.itemType" :options="itemTypes" @change="itemTypeChangeEvent($event)" />-->
-                                                <div class="error" v-if="v$.form_data.itemType.required.$invalid && show_error_eleven">
-                                                    Item type is required
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6" v-if="showItemTypeCrossoverBox">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100 text-capitalize">
-                                                    Crossover Item Type
-                                                    <span class="error">*</span>
-                                                </label>
-                                                <select class="form-select mb-text-only" aria-label="Default select example"
-                                                        v-model.trim="v$.form_data.crossover_item_type.$model"
-                                                >
-                                                    <option selected disabled>Open this select menu</option>
-                                                    <option v-for="(coType,index) in crossoverItemTypes" :value="coType.name" :key="coType.id">{{coType.name}}</option>
-                                                </select>
-                                                <!--                                            <Select2 v-model="form_data.crossover_item_type" :options="crossoverItemTypes" />-->
-                                                <div class="error" v-if="v$.form_data.crossover_item_type.required.$invalid && show_error_sixteen">
-                                                    Crossover item type is required
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--item type card-->
-                        <div class="col-md-12" v-if="showItemTypeCardBox">
-                            <div class="card shipping_address_card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Qty
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="form_data.item_qty"
-                                                    readonly
-                                                />
-<!--                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
-<!--                                                    contact name is required-->
+<!--                <tab-content-->
+<!--                    title="Item Type"-->
+<!--                    icon="ti-gift"-->
+<!--                >-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                            <div class="card shipping_address_card">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-6">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100 text-capitalize">-->
+<!--                                                    Select the item type to be entered-->
+<!--                                                    <span class="error">*</span>-->
+<!--                                                </label>-->
+<!--                                                <select class="form-select mb-text-only" aria-label="Default select example"-->
+<!--                                                        v-model.trim="form_data.itemType"-->
+<!--                                                        @change="itemTypeChangeEvent"-->
+<!--                                                >-->
+<!--                                                    <option selected disabled>Open this select menu</option>-->
+<!--                                                    <option v-for="(type,index) in itemTypes" :value="type.name" :key="type.id">{{type.name}}</option>-->
+<!--                                                </select>-->
+<!--                                                &lt;!&ndash;                                            <Select2 v-model="form_data.itemType" :options="itemTypes" @change="itemTypeChangeEvent($event)" />&ndash;&gt;-->
+<!--                                                <div class="error" v-if="v$.form_data.itemType.required.$invalid && show_error_eleven">-->
+<!--                                                    Item type is required-->
 <!--                                                </div>-->
-                                            </div>
-                                        </div>
+<!--                                            </div>-->
+<!--                                        </div>-->
 
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #1   (Year,Manufacturer,Set,Other)
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.card_description_one.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.card_description_one.required.$invalid && show_error_twelve">
-                                                            Description one is required
-                                                        </div>
-                                                    </div>
-                                                </div>
+<!--                                        <div class="col-md-6" v-if="showItemTypeCrossoverBox">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100 text-capitalize">-->
+<!--                                                    Crossover Item Type-->
+<!--                                                    <span class="error">*</span>-->
+<!--                                                </label>-->
+<!--                                                <select class="form-select mb-text-only" aria-label="Default select example"-->
+<!--                                                        v-model.trim="v$.form_data.crossover_item_type.$model"-->
+<!--                                                >-->
+<!--                                                    <option selected disabled>Open this select menu</option>-->
+<!--                                                    <option v-for="(coType,index) in crossoverItemTypes" :value="coType.name" :key="coType.id">{{coType.name}}</option>-->
+<!--                                                </select>-->
+<!--                                                &lt;!&ndash;                                            <Select2 v-model="form_data.crossover_item_type" :options="crossoverItemTypes" />&ndash;&gt;-->
+<!--                                                <div class="error" v-if="v$.form_data.crossover_item_type.required.$invalid && show_error_sixteen">-->
+<!--                                                    Crossover item type is required-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
 
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #2
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.card_description_two.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.card_description_two.required.$invalid && show_error_twelve">
-                                                            Description two is required
-                                                        </div>
-                                                    </div>
-                                                </div>
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #3
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.card_description_three.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.card_description_three.required.$invalid && show_error_twelve">
-                                                            Description three is required
-                                                        </div>
-                                                    </div>
-                                                </div>
+<!--                        &lt;!&ndash;item type card&ndash;&gt;-->
+<!--                        <div class="col-md-12" v-if="showItemTypeCardBox">-->
+<!--                            <div class="card shipping_address_card">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-1">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Qty-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="form_data.item_qty"-->
+<!--                                                    readonly-->
+<!--                                                />-->
+<!--&lt;!&ndash;                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    contact name is required&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>-->
 
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Serial Number   (Only if printed directly on item)
+<!--                                        <div class="col-md-9">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #1   (Year,Manufacturer,Set,Other)-->
 <!--                                                            <span class="error">*</span>-->
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="form_data.card_serial_number"
-                                                        />
-<!--                                                        <div class="error" v-if="v$.form_data.card_serial_number.required.$invalid && show_error_twelve">-->
-<!--                                                            Serial number is required-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.card_description_one.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.card_description_one.required.$invalid && show_error_twelve">-->
+<!--                                                            Description one is required-->
 <!--                                                        </div>-->
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
-                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
-                                                                    Autographed
-                                                                </label>
-                                                                <input
-                                                                    type="checkbox"
-                                                                    class="form-check"
-                                                                    placeholder=""
-                                                                    v-model.trim="form_data.card_autographed"
-                                                                />
-                                                                <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
-                                                                <!--                                                Same as Billing is required-->
-                                                                <!--                                            </div>-->
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label w-100 text-capitalize">
-                                                                    Authenticator Name
-                                                                    <span class="error" v-if="form_data.card_autographed">*</span>
-                                                                </label>
-                                                                <select class="form-select mb-text-only" aria-label="Default select example"
-                                                                        v-model.trim="v$.form_data.card_authenticator_name.$model"
-                                                                >
-                                                                    <option selected disabled>Open this select menu</option>
-                                                                    <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>
-                                                                </select>
-                                                                <!--                                                            <Select2 v-model="form_data.authenticator_name" :options="authenticators" />-->
-                                                                <div class="error" v-if="v$.form_data.card_authenticator_name.required.$invalid && show_error_twelve">
-                                                                    Authenticator name is required
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label w-100">
-                                                                    Authenticator Cert. No.
-                                                                    <span class="error" v-if="form_data.card_autographed">*</span>
-                                                                </label>
-                                                                <input
-                                                                    type="text"
-                                                                    class="form-control"
-                                                                    placeholder=""
-                                                                    v-model.trim="v$.form_data.card_authenticator_cert_no.$model"
-                                                                />
-                                                                <div class="error" v-if="v$.form_data.card_authenticator_cert_no.required.$invalid && show_error_twelve">
-                                                                    Authenticator cert no. is required
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Estimated Value
-                                                    <span class="error">*</span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="v$.form_data.card_estimated_value.$model"
-                                                />
-                                                <div class="error" v-if="v$.form_data.card_estimated_value.required.$invalid && show_error_twelve">
-                                                    Estimated value is required
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--item type auto authentication-->
-                        <div class="col-md-12" v-if="showItemTypeAutoAthenticationBox">
-                            <div class="card shipping_address_card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Qty
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="form_data.item_qty"
-                                                    readonly
-                                                />
-<!--                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
-<!--                                                    contact name is required-->
+<!--                                                    </div>-->
 <!--                                                </div>-->
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #1   (Year,Manufacturer,Set,Other)
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.auto_authentication_description_one.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_one.required.$invalid && show_error_thirteen">
-                                                            Description one is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #2
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.auto_authentication_description_two.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_two.required.$invalid && show_error_thirteen">
-                                                            Description two is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #3
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.auto_authentication_description_three.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_three.required.$invalid && show_error_thirteen">
-                                                            Description three is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Serial Number   (Only if printed directly on item)
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #2-->
 <!--                                                            <span class="error">*</span>-->
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="form_data.auto_authentication_serial_number"
-                                                        />
-<!--                                                        <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
-<!--                                                            contact name is required-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.card_description_two.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.card_description_two.required.$invalid && show_error_twelve">-->
+<!--                                                            Description two is required-->
 <!--                                                        </div>-->
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
-                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
-                                                                    Autographed
-                                                                </label>
-                                                                <input
-                                                                    type="checkbox"
-                                                                    class="form-check"
-                                                                    placeholder=""
-                                                                    v-model.trim="form_data.auto_authentication_autographed"
-                                                                />
-                                                                <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
-                                                                <!--                                                Same as Billing is required-->
-                                                                <!--                                            </div>-->
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label w-100 text-capitalize">
-                                                                    Authenticator Name
-                                                                    <span class="error" v-if="form_data.auto_authentication_autographed">*</span>
-                                                                </label>
-                                                                <select class="form-select mb-text-only" aria-label="Default select example"
-                                                                        v-model.trim="v$.form_data.auto_authentication_authenticator_name.$model"
-                                                                >
-                                                                    <option selected disabled>Open this select menu</option>
-                                                                    <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>
-                                                                </select>
-                                                                <!--                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />-->
-                                                                <div class="error" v-if="v$.form_data.auto_authentication_authenticator_name.required.$invalid && show_error_thirteen">
-                                                                    Authenticator name is required
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label w-100">
-                                                                    Authenticator Cert. No.
-                                                                    <span class="error" v-if="form_data.auto_authentication_autographed">*</span>
-                                                                </label>
-                                                                <input
-                                                                    type="text"
-                                                                    class="form-control"
-                                                                    placeholder=""
-                                                                    v-model.trim="v$.form_data.auto_authentication_authenticator_cert_no.$model"
-                                                                />
-                                                                <div class="error" v-if="v$.form_data.auto_authentication_authenticator_cert_no.required.$invalid && show_error_thirteen">
-                                                                    Authenticator cert. no. is required
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Estimated Value
-                                                    <span class="error">*</span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="v$.form_data.auto_authentication_estimated_value.$model"
-                                                />
-                                                <div class="error" v-if="v$.form_data.auto_authentication_estimated_value.required.$invalid && show_error_thirteen">
-                                                    Estimated value is required
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--item type combined service-->
-                        <div class="col-md-12" v-if="showItemTypeCombinedServiceBox">
-                            <div class="card shipping_address_card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Qty
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="form_data.item_qty"
-                                                    readonly
-                                                />
-<!--                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
-<!--                                                    contact name is required-->
+<!--                                                    </div>-->
 <!--                                                </div>-->
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #1   (Year,Manufacturer,Set,Other)
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.combined_service_description_one.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.combined_service_description_one.required.$invalid && show_error_fourteen">
-                                                            Description one is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #2
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.combined_service_description_two.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.combined_service_description_two.required.$invalid && show_error_fourteen">
-                                                            Description two is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #3
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.combined_service_description_three.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.combined_service_description_three.required.$invalid && show_error_fourteen">
-                                                            Description three is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Serial Number   (Only if printed directly on item)
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #3-->
 <!--                                                            <span class="error">*</span>-->
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="form_data.combined_service_serial_number"
-                                                        />
-                                                        <!--                                                        <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
-                                                        <!--                                                            contact name is required-->
-                                                        <!--                                                        </div>-->
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
-                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
-                                                                    Autographed
-                                                                </label>
-                                                                <input
-                                                                    type="checkbox"
-                                                                    class="form-check"
-                                                                    placeholder=""
-                                                                    v-model.trim="form_data.combined_service_autographed"
-                                                                />
-                                                                <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
-                                                                <!--                                                Same as Billing is required-->
-                                                                <!--                                            </div>-->
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label w-100 text-capitalize">
-                                                                    Authenticator Name
-                                                                    <span class="error" v-if="form_data.combined_service_autographed">*</span>
-                                                                </label>
-                                                                <select class="form-select mb-text-only" aria-label="Default select example"
-                                                                        v-model.trim="v$.form_data.combined_service_authenticator_name.$model"
-                                                                >
-                                                                    <option selected disabled>Open this select menu</option>
-                                                                    <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>
-                                                                </select>
-                                                                <!--                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />-->
-                                                                <div class="error" v-if="v$.form_data.combined_service_authenticator_name.required.$invalid && show_error_fourteen">
-                                                                    Authenticator Name is required
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label w-100">
-                                                                    Authenticator Cert. No.
-                                                                    <span class="error" v-if="form_data.combined_service_autographed">*</span>
-                                                                </label>
-                                                                <input
-                                                                    type="text"
-                                                                    class="form-control"
-                                                                    placeholder=""
-                                                                    v-model.trim="v$.form_data.combined_service_authenticator_cert_no.$model"
-                                                                />
-                                                                <div class="error" v-if="v$.form_data.combined_service_authenticator_cert_no.required.$invalid && show_error_fourteen">
-                                                                    Authenticator cert. no. is required
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Estimated Value
-                                                    <span class="error">*</span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="v$.form_data.combined_service_estimated_value.$model"
-                                                />
-                                                <div class="error" v-if="v$.form_data.combined_service_estimated_value.required.$invalid && show_error_fourteen">
-                                                    Estimated value is required
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--item type reholder-->
-                        <div class="col-md-12" v-if="showItemTypeReholderBox">
-                            <div class="card shipping_address_card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Qty
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="form_data.item_qty"
-                                                    readonly
-                                                />
-<!--                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
-<!--                                                    contact name is required-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.card_description_three.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.card_description_three.required.$invalid && show_error_twelve">-->
+<!--                                                            Description three is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
 <!--                                                </div>-->
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Certification Number
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.reholder_certification_number.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.reholder_certification_number.required.$invalid && show_error_fifteen">
-                                                            Certification number is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Estimated Value
-                                                    <span class="error">*</span>
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="v$.form_data.reholder_estimated_value.$model"
-                                                />
-                                                <div class="error" v-if="v$.form_data.reholder_estimated_value.required.$invalid && show_error_fifteen">
-                                                    Estimated value is required
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--item type crossover-->
-                        <div class="col-md-12" v-if="showItemTypeCrossoverBox">
-                            <div class="card shipping_address_card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="mb-3">
-                                                <label class="form-label w-100">
-                                                    Qty
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder=""
-                                                    v-model.trim="form_data.item_qty"
-                                                    readonly
-                                                />
-<!--                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
-<!--                                                    contact name is required-->
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Serial Number   (Only if printed directly on item)-->
+<!--&lt;!&ndash;                                                            <span class="error">*</span>&ndash;&gt;-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="form_data.card_serial_number"-->
+<!--                                                        />-->
+<!--&lt;!&ndash;                                                        <div class="error" v-if="v$.form_data.card_serial_number.required.$invalid && show_error_twelve">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            Serial number is required&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </div>&ndash;&gt;-->
+<!--                                                    </div>-->
 <!--                                                </div>-->
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #1   (Year,Manufacturer,Set,Other)
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.crossover_description_one.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.crossover_description_one.required.$invalid && show_error_sixteen">
-                                                            Description one is required
-                                                        </div>
-                                                    </div>
-                                                </div>
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">-->
+<!--                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">-->
+<!--                                                                    Autographed-->
+<!--                                                                </label>-->
+<!--                                                                <input-->
+<!--                                                                    type="checkbox"-->
+<!--                                                                    class="form-check"-->
+<!--                                                                    placeholder=""-->
+<!--                                                                    v-model.trim="form_data.card_autographed"-->
+<!--                                                                />-->
+<!--                                                                &lt;!&ndash;                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;                                                Same as Billing is required&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <label class="form-label w-100 text-capitalize">-->
+<!--                                                                    Authenticator Name-->
+<!--                                                                    <span class="error" v-if="form_data.card_autographed">*</span>-->
+<!--                                                                </label>-->
+<!--                                                                <select class="form-select mb-text-only" aria-label="Default select example"-->
+<!--                                                                        v-model.trim="v$.form_data.card_authenticator_name.$model"-->
+<!--                                                                >-->
+<!--                                                                    <option selected disabled>Open this select menu</option>-->
+<!--                                                                    <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>-->
+<!--                                                                </select>-->
+<!--                                                                &lt;!&ndash;                                                            <Select2 v-model="form_data.authenticator_name" :options="authenticators" />&ndash;&gt;-->
+<!--                                                                <div class="error" v-if="v$.form_data.card_authenticator_name.required.$invalid && show_error_twelve">-->
+<!--                                                                    Authenticator name is required-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <label class="form-label w-100">-->
+<!--                                                                    Authenticator Cert. No.-->
+<!--                                                                    <span class="error" v-if="form_data.card_autographed">*</span>-->
+<!--                                                                </label>-->
+<!--                                                                <input-->
+<!--                                                                    type="text"-->
+<!--                                                                    class="form-control"-->
+<!--                                                                    placeholder=""-->
+<!--                                                                    v-model.trim="v$.form_data.card_authenticator_cert_no.$model"-->
+<!--                                                                />-->
+<!--                                                                <div class="error" v-if="v$.form_data.card_authenticator_cert_no.required.$invalid && show_error_twelve">-->
+<!--                                                                    Authenticator cert no. is required-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
 
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #2
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.crossover_description_two.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.crossover_description_two.required.$invalid && show_error_sixteen">
-                                                            Description two is required
-                                                        </div>
-                                                    </div>
-                                                </div>
+<!--                                        <div class="col-md-2">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Estimated Value-->
+<!--                                                    <span class="error">*</span>-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="v$.form_data.card_estimated_value.$model"-->
+<!--                                                />-->
+<!--                                                <div class="error" v-if="v$.form_data.card_estimated_value.required.$invalid && show_error_twelve">-->
+<!--                                                    Estimated value is required-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
 
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Description #3
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.crossover_description_three.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.crossover_description_three.required.$invalid && show_error_sixteen">
-                                                            Description three is required
-                                                        </div>
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Serial Number   (Only if printed directly on item)
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        &lt;!&ndash;item type auto authentication&ndash;&gt;-->
+<!--                        <div class="col-md-12" v-if="showItemTypeAutoAthenticationBox">-->
+<!--                            <div class="card shipping_address_card">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-1">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Qty-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="form_data.item_qty"-->
+<!--                                                    readonly-->
+<!--                                                />-->
+<!--&lt;!&ndash;                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    contact name is required&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-md-9">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #1   (Year,Manufacturer,Set,Other)-->
 <!--                                                            <span class="error">*</span>-->
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="form_data.crossover_serial_number"
-                                                        />
-                                                        <!--                                                        <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">-->
-                                                        <!--                                                            contact name is required-->
-                                                        <!--                                                        </div>-->
-                                                    </div>
-                                                </div>
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.auto_authentication_description_one.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_one.required.$invalid && show_error_thirteen">-->
+<!--                                                            Description one is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
 
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">
-                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">
-                                                                    Autographed
-                                                                </label>
-                                                                <input
-                                                                    type="checkbox"
-                                                                    class="form-check"
-                                                                    placeholder=""
-                                                                    v-model.trim="form_data.crossover_autographed"
-                                                                />
-                                                                <!--                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">-->
-                                                                <!--                                                Same as Billing is required-->
-                                                                <!--                                            </div>-->
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label w-100 text-capitalize">
-                                                                    Authenticator Name
-                                                                    <span class="error" v-if="form_data.crossover_autographed">*</span>
-                                                                </label>
-                                                                <select class="form-select mb-text-only" aria-label="Default select example"
-                                                                        v-model.trim="v$.form_data.crossover_authenticator_name.$model"
-                                                                >
-                                                                    <option selected disabled>Open this select menu</option>
-                                                                    <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>
-                                                                </select>
-                                                                <!--                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />-->
-                                                                <div class="error" v-if="v$.form_data.crossover_authenticator_name.required.$invalid && show_error_sixteen">
-                                                                    Authenticator Name is required
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label w-100">
-                                                                    Authenticator Cert. No.
-                                                                    <span class="error" v-if="form_data.crossover_autographed">*</span>
-                                                                </label>
-                                                                <input
-                                                                    type="text"
-                                                                    class="form-control"
-                                                                    placeholder=""
-                                                                    v-model.trim="v$.form_data.crossover_authenticator_cert_no.$model"
-                                                                />
-                                                                <div class="error" v-if="v$.form_data.crossover_authenticator_cert_no.required.$invalid && show_error_sixteen">
-                                                                    Authenticator cert. no. is required
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #2-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.auto_authentication_description_two.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_two.required.$invalid && show_error_thirteen">-->
+<!--                                                            Description two is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
 
-                                        <div class="col-md-2">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100">
-                                                            Estimated Value
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            placeholder=""
-                                                            v-model.trim="v$.form_data.crossover_estimated_value.$model"
-                                                        />
-                                                        <div class="error" v-if="v$.form_data.crossover_estimated_value.required.$invalid && show_error_sixteen">
-                                                            Estimated value is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label w-100 text-capitalize">
-                                                            Minimum Grade
-                                                            <span class="error">*</span>
-                                                        </label>
-                                                        <select class="form-select mb-text-only" aria-label="Default select example"
-                                                                v-model.trim="v$.form_data.crossover_minimum_grade.$model"
-                                                        >
-                                                            <option selected disabled>Open this select menu</option>
-                                                            <option v-for="(grade,index) in minimumGrades" :value="grade.id" :key="grade.id">{{grade.name}}</option>
-                                                        </select>
-                                                        <!--                                                    <Select2 v-model="form_data.minimum_grade" :options="minimumGrades" />-->
-                                                        <div class="error" v-if="v$.form_data.crossover_minimum_grade.required.$invalid && show_error_sixteen">
-                                                            Minimum grade is required
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </tab-content>
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #3-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.auto_authentication_description_three.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_three.required.$invalid && show_error_thirteen">-->
+<!--                                                            Description three is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Serial Number   (Only if printed directly on item)-->
+<!--&lt;!&ndash;                                                            <span class="error">*</span>&ndash;&gt;-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="form_data.auto_authentication_serial_number"-->
+<!--                                                        />-->
+<!--&lt;!&ndash;                                                        <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            contact name is required&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        </div>&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">-->
+<!--                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">-->
+<!--                                                                    Autographed-->
+<!--                                                                </label>-->
+<!--                                                                <input-->
+<!--                                                                    type="checkbox"-->
+<!--                                                                    class="form-check"-->
+<!--                                                                    placeholder=""-->
+<!--                                                                    v-model.trim="form_data.auto_authentication_autographed"-->
+<!--                                                                />-->
+<!--                                                                &lt;!&ndash;                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;                                                Same as Billing is required&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <label class="form-label w-100 text-capitalize">-->
+<!--                                                                    Authenticator Name-->
+<!--                                                                    <span class="error" v-if="form_data.auto_authentication_autographed">*</span>-->
+<!--                                                                </label>-->
+<!--                                                                <select class="form-select mb-text-only" aria-label="Default select example"-->
+<!--                                                                        v-model.trim="v$.form_data.auto_authentication_authenticator_name.$model"-->
+<!--                                                                >-->
+<!--                                                                    <option selected disabled>Open this select menu</option>-->
+<!--                                                                    <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>-->
+<!--                                                                </select>-->
+<!--                                                                &lt;!&ndash;                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />&ndash;&gt;-->
+<!--                                                                <div class="error" v-if="v$.form_data.auto_authentication_authenticator_name.required.$invalid && show_error_thirteen">-->
+<!--                                                                    Authenticator name is required-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <label class="form-label w-100">-->
+<!--                                                                    Authenticator Cert. No.-->
+<!--                                                                    <span class="error" v-if="form_data.auto_authentication_autographed">*</span>-->
+<!--                                                                </label>-->
+<!--                                                                <input-->
+<!--                                                                    type="text"-->
+<!--                                                                    class="form-control"-->
+<!--                                                                    placeholder=""-->
+<!--                                                                    v-model.trim="v$.form_data.auto_authentication_authenticator_cert_no.$model"-->
+<!--                                                                />-->
+<!--                                                                <div class="error" v-if="v$.form_data.auto_authentication_authenticator_cert_no.required.$invalid && show_error_thirteen">-->
+<!--                                                                    Authenticator cert. no. is required-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-md-2">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Estimated Value-->
+<!--                                                    <span class="error">*</span>-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="v$.form_data.auto_authentication_estimated_value.$model"-->
+<!--                                                />-->
+<!--                                                <div class="error" v-if="v$.form_data.auto_authentication_estimated_value.required.$invalid && show_error_thirteen">-->
+<!--                                                    Estimated value is required-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        &lt;!&ndash;item type combined service&ndash;&gt;-->
+<!--                        <div class="col-md-12" v-if="showItemTypeCombinedServiceBox">-->
+<!--                            <div class="card shipping_address_card">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-1">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Qty-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="form_data.item_qty"-->
+<!--                                                    readonly-->
+<!--                                                />-->
+<!--&lt;!&ndash;                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    contact name is required&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-md-9">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #1   (Year,Manufacturer,Set,Other)-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.combined_service_description_one.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.combined_service_description_one.required.$invalid && show_error_fourteen">-->
+<!--                                                            Description one is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #2-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.combined_service_description_two.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.combined_service_description_two.required.$invalid && show_error_fourteen">-->
+<!--                                                            Description two is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #3-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.combined_service_description_three.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.combined_service_description_three.required.$invalid && show_error_fourteen">-->
+<!--                                                            Description three is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Serial Number   (Only if printed directly on item)-->
+<!--&lt;!&ndash;                                                            <span class="error">*</span>&ndash;&gt;-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="form_data.combined_service_serial_number"-->
+<!--                                                        />-->
+<!--                                                        &lt;!&ndash;                                                        <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            contact name is required&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                        </div>&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">-->
+<!--                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">-->
+<!--                                                                    Autographed-->
+<!--                                                                </label>-->
+<!--                                                                <input-->
+<!--                                                                    type="checkbox"-->
+<!--                                                                    class="form-check"-->
+<!--                                                                    placeholder=""-->
+<!--                                                                    v-model.trim="form_data.combined_service_autographed"-->
+<!--                                                                />-->
+<!--                                                                &lt;!&ndash;                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;                                                Same as Billing is required&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <label class="form-label w-100 text-capitalize">-->
+<!--                                                                    Authenticator Name-->
+<!--                                                                    <span class="error" v-if="form_data.combined_service_autographed">*</span>-->
+<!--                                                                </label>-->
+<!--                                                                <select class="form-select mb-text-only" aria-label="Default select example"-->
+<!--                                                                        v-model.trim="v$.form_data.combined_service_authenticator_name.$model"-->
+<!--                                                                >-->
+<!--                                                                    <option selected disabled>Open this select menu</option>-->
+<!--                                                                    <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>-->
+<!--                                                                </select>-->
+<!--                                                                &lt;!&ndash;                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />&ndash;&gt;-->
+<!--                                                                <div class="error" v-if="v$.form_data.combined_service_authenticator_name.required.$invalid && show_error_fourteen">-->
+<!--                                                                    Authenticator Name is required-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <label class="form-label w-100">-->
+<!--                                                                    Authenticator Cert. No.-->
+<!--                                                                    <span class="error" v-if="form_data.combined_service_autographed">*</span>-->
+<!--                                                                </label>-->
+<!--                                                                <input-->
+<!--                                                                    type="text"-->
+<!--                                                                    class="form-control"-->
+<!--                                                                    placeholder=""-->
+<!--                                                                    v-model.trim="v$.form_data.combined_service_authenticator_cert_no.$model"-->
+<!--                                                                />-->
+<!--                                                                <div class="error" v-if="v$.form_data.combined_service_authenticator_cert_no.required.$invalid && show_error_fourteen">-->
+<!--                                                                    Authenticator cert. no. is required-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-md-2">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Estimated Value-->
+<!--                                                    <span class="error">*</span>-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="v$.form_data.combined_service_estimated_value.$model"-->
+<!--                                                />-->
+<!--                                                <div class="error" v-if="v$.form_data.combined_service_estimated_value.required.$invalid && show_error_fourteen">-->
+<!--                                                    Estimated value is required-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        &lt;!&ndash;item type reholder&ndash;&gt;-->
+<!--                        <div class="col-md-12" v-if="showItemTypeReholderBox">-->
+<!--                            <div class="card shipping_address_card">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-1">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Qty-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="form_data.item_qty"-->
+<!--                                                    readonly-->
+<!--                                                />-->
+<!--&lt;!&ndash;                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    contact name is required&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-md-9">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Certification Number-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.reholder_certification_number.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.reholder_certification_number.required.$invalid && show_error_fifteen">-->
+<!--                                                            Certification number is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-md-2">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Estimated Value-->
+<!--                                                    <span class="error">*</span>-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="v$.form_data.reholder_estimated_value.$model"-->
+<!--                                                />-->
+<!--                                                <div class="error" v-if="v$.form_data.reholder_estimated_value.required.$invalid && show_error_fifteen">-->
+<!--                                                    Estimated value is required-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        &lt;!&ndash;item type crossover&ndash;&gt;-->
+<!--                        <div class="col-md-12" v-if="showItemTypeCrossoverBox">-->
+<!--                            <div class="card shipping_address_card">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-1">-->
+<!--                                            <div class="mb-3">-->
+<!--                                                <label class="form-label w-100">-->
+<!--                                                    Qty-->
+<!--                                                </label>-->
+<!--                                                <input-->
+<!--                                                    type="text"-->
+<!--                                                    class="form-control"-->
+<!--                                                    placeholder=""-->
+<!--                                                    v-model.trim="form_data.item_qty"-->
+<!--                                                    readonly-->
+<!--                                                />-->
+<!--&lt;!&ndash;                                                <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    contact name is required&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-md-9">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #1   (Year,Manufacturer,Set,Other)-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.crossover_description_one.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.crossover_description_one.required.$invalid && show_error_sixteen">-->
+<!--                                                            Description one is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #2-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.crossover_description_two.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.crossover_description_two.required.$invalid && show_error_sixteen">-->
+<!--                                                            Description two is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Description #3-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.crossover_description_three.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.crossover_description_three.required.$invalid && show_error_sixteen">-->
+<!--                                                            Description three is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-6">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Serial Number   (Only if printed directly on item)-->
+<!--&lt;!&ndash;                                                            <span class="error">*</span>&ndash;&gt;-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="form_data.crossover_serial_number"-->
+<!--                                                        />-->
+<!--                                                        &lt;!&ndash;                                                        <div class="error" v-if="v$.form_data.contact_name.required.$invalid && show_error_one">&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                            contact name is required&ndash;&gt;-->
+<!--                                                        &lt;!&ndash;                                                        </div>&ndash;&gt;-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3 d-flex justify-content-start" style="margin-top: 25px;">-->
+<!--                                                                <label class="form-label text-capitalize" style="margin-top: 6px;margin-right: 15px;">-->
+<!--                                                                    Autographed-->
+<!--                                                                </label>-->
+<!--                                                                <input-->
+<!--                                                                    type="checkbox"-->
+<!--                                                                    class="form-check"-->
+<!--                                                                    placeholder=""-->
+<!--                                                                    v-model.trim="form_data.crossover_autographed"-->
+<!--                                                                />-->
+<!--                                                                &lt;!&ndash;                                            <div class="error" v-if="v$.form_data.same_as_billing.required.$invalid && show_error">&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;                                                Same as Billing is required&ndash;&gt;-->
+<!--                                                                &lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <label class="form-label w-100 text-capitalize">-->
+<!--                                                                    Authenticator Name-->
+<!--                                                                    <span class="error" v-if="form_data.crossover_autographed">*</span>-->
+<!--                                                                </label>-->
+<!--                                                                <select class="form-select mb-text-only" aria-label="Default select example"-->
+<!--                                                                        v-model.trim="v$.form_data.crossover_authenticator_name.$model"-->
+<!--                                                                >-->
+<!--                                                                    <option selected disabled>Open this select menu</option>-->
+<!--                                                                    <option v-for="(authenticator,index) in authenticators" :value="authenticator.id" :key="authenticator.id">{{authenticator.name}}</option>-->
+<!--                                                                </select>-->
+<!--                                                                &lt;!&ndash;                                                            <Select2 v-model="form_data.authenticator_name_two" :options="authenticators" />&ndash;&gt;-->
+<!--                                                                <div class="error" v-if="v$.form_data.crossover_authenticator_name.required.$invalid && show_error_sixteen">-->
+<!--                                                                    Authenticator Name is required-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-md-4">-->
+<!--                                                            <div class="mb-3">-->
+<!--                                                                <label class="form-label w-100">-->
+<!--                                                                    Authenticator Cert. No.-->
+<!--                                                                    <span class="error" v-if="form_data.crossover_autographed">*</span>-->
+<!--                                                                </label>-->
+<!--                                                                <input-->
+<!--                                                                    type="text"-->
+<!--                                                                    class="form-control"-->
+<!--                                                                    placeholder=""-->
+<!--                                                                    v-model.trim="v$.form_data.crossover_authenticator_cert_no.$model"-->
+<!--                                                                />-->
+<!--                                                                <div class="error" v-if="v$.form_data.crossover_authenticator_cert_no.required.$invalid && show_error_sixteen">-->
+<!--                                                                    Authenticator cert. no. is required-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="col-md-2">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100">-->
+<!--                                                            Estimated Value-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                            placeholder=""-->
+<!--                                                            v-model.trim="v$.form_data.crossover_estimated_value.$model"-->
+<!--                                                        />-->
+<!--                                                        <div class="error" v-if="v$.form_data.crossover_estimated_value.required.$invalid && show_error_sixteen">-->
+<!--                                                            Estimated value is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <label class="form-label w-100 text-capitalize">-->
+<!--                                                            Minimum Grade-->
+<!--                                                            <span class="error">*</span>-->
+<!--                                                        </label>-->
+<!--                                                        <select class="form-select mb-text-only" aria-label="Default select example"-->
+<!--                                                                v-model.trim="v$.form_data.crossover_minimum_grade.$model"-->
+<!--                                                        >-->
+<!--                                                            <option selected disabled>Open this select menu</option>-->
+<!--                                                            <option v-for="(grade,index) in minimumGrades" :value="grade.id" :key="grade.id">{{grade.name}}</option>-->
+<!--                                                        </select>-->
+<!--                                                        &lt;!&ndash;                                                    <Select2 v-model="form_data.minimum_grade" :options="minimumGrades" />&ndash;&gt;-->
+<!--                                                        <div class="error" v-if="v$.form_data.crossover_minimum_grade.required.$invalid && show_error_sixteen">-->
+<!--                                                            Minimum grade is required-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </tab-content>-->
             </form-wizard>
         </form>
     </div>
@@ -1791,8 +1791,8 @@ import {required, email, requiredIf, numeric} from '@vuelidate/validators'
 
 
 export default {
-    name: "CreateEntry",
-    props: ["customers","promos","parties","authenticators"],
+    name: "EditEntry",
+    props: ["customers","promos","parties","authenticators","item"],
     components: {
         VuePhoneNumberInput,
     },
@@ -2517,12 +2517,126 @@ export default {
 
         }
     },
+    mounted() {
+        let self = this;
+
+        self.form_data.customer= {
+            id:self.item.customer_id,
+            name:self.item.customer_name,
+        },
+            self.form_data.name= self.item.customer_name,
+            self.form_data.customerId= self.item.customer_id,
+            // email:'',
+            self.form_data.contact_name= self.item.contact_name,
+            self.form_data.item_qty= self.item.item_qty,
+            self.form_data.billing_address_line_one= self.item.billing_address_line_one,
+            self.form_data.billing_address_line_two= self.item.billing_address_line_two,
+            self.form_data.billing_country= self.item.billing_country,
+            self.form_data.billing_province= self.item.billing_province,
+            self.form_data.billing_city= self.item.billing_city,
+            self.form_data.billing_postal= self.item.billing_postal,
+            self.form_data.billing_phone= self.item.billing_phone,
+            self.form_data.same_as_billing= self.item.same_as_billing,
+            self.form_data.autographed= self.item.autographed,
+            self.form_data.shipping_name= self.item.shipping_name,
+            self.form_data.shipping_company_name= self.item.shipping_company_name,
+            self.form_data.shipping_address_line_one= self.item.shipping_address_line_one;
+            self.form_data.shipping_address_line_two= self.item.shipping_address_line_two,
+            self.form_data.shipping_country= self.item.shipping_country,
+            self.form_data.shipping_province= self.item.shipping_province,
+            self.form_data.shipping_city= self.item.shipping_city,
+            self.form_data.shipping_postal= self.item.shipping_postal,
+            self.form_data.shipping_phone= self.item.shipping_phone,
+            self.form_data.status= self.item.status,
+            self.form_data.submission_date= self.item.submission_date,
+            self.form_data.products= self.item.products,
+            self.form_data.itemType= self.item.itemType,
+
+            //next
+            self.form_data.grading_location= self.item.grading_location,
+            self.form_data.promo_code= self.item.promo_code,
+            self.form_data.payment_made= self.item.payment_made,
+            self.form_data.pay_on_pickup= self.item.pay_on_pickup,
+            self.form_data.cod= self.item.cod,
+            self.form_data.shopify_order_number= self.item.shopify_order_number,
+            self.form_data.shipping_method= self.item.shipping_method,
+            self.form_data.pickup_location= self.item.pickup_location,
+            self.form_data.show_pickup_location= self.item.show_pickup_location,
+            self.form_data.third_party_drop_center= self.item.third_party_drop_center,
+            self.form_data.use_customer_account= self.item.use_customer_account,
+            self.form_data.customer_account_number= self.item.customer_account_number,
+            self.form_data.crossover_item_type= self.item.crossover_item_type,
+            self.form_data.authenticator_name= self.item.authenticator_name,
+            self.form_data.authenticator_name_two= self.item.authenticator_name_two,
+            self.form_data.authenticator_name_three= self.item.authenticator_name_three,
+            self.form_data.authenticator_name_four= self.item.authenticator_name_four,
+            self.form_data.crossover_minimum_grade= self.item.crossover_minimum_grade,
+
+            //item type card
+            self.form_data.card_description_one= self.item.card_description_one,
+            self.form_data.card_description_two= self.item.card_description_two,
+            self.form_data.card_description_three= self.item.card_description_three,
+            self.form_data.card_serial_number= self.item.card_serial_number,
+            self.form_data.card_autographed= self.item.card_autographed,
+            self.form_data.card_authenticator_name= self.item.card_authenticator_name,
+            self.form_data.card_authenticator_cert_no= self.item.card_authenticator_cert_no,
+            self.form_data.card_estimated_value= self.item.card_estimated_value,
+
+            //item type auto authentication
+            self.form_data.auto_authentication_description_one= self.item.auto_authentication_description_one,
+            self.form_data.auto_authentication_description_two= self.item.auto_authentication_description_two,
+            self.form_data.auto_authentication_description_three= self.item.auto_authentication_description_three,
+            self.form_data.auto_authentication_serial_number= self.item.auto_authentication_serial_number,
+            self.form_data.auto_authentication_autographed= self.item.auto_authentication_autographed,
+            self.form_data.auto_authentication_authenticator_name= self.item.auto_authentication_authenticator_name,
+            self.form_data.auto_authentication_authenticator_cert_no= self.item.auto_authentication_authenticator_cert_no,
+            self.form_data.auto_authentication_estimated_value= self.item.auto_authentication_estimated_value,
+
+            //item type combined service
+            self.form_data.combined_service_description_one= self.item.combined_service_description_one,
+            self.form_data.combined_service_description_two= self.item.combined_service_description_two,
+            self.form_data.combined_service_description_three= self.item.combined_service_description_three,
+            self.form_data.combined_service_serial_number= self.item.combined_service_serial_number,
+            self.form_data.combined_service_autographed= self.item.combined_service_autographed,
+            self.form_data.combined_service_authenticator_name= self.item.combined_service_authenticator_name,
+            self.form_data.combined_service_authenticator_cert_no= self.item.combined_service_authenticator_cert_no,
+            self.form_data.combined_service_estimated_value= self.item.combined_service_estimated_value,
+
+            //item type combined service
+            self.form_data.reholder_certification_number= self.item.reholder_certification_number,
+            self.form_data.reholder_estimated_value= self.item.reholder_estimated_value,
+
+            //item type crossover
+            self.form_data.crossover_description_one= self.item.crossover_description_one,
+            self.form_data.crossover_description_two= self.item.crossover_description_two,
+            self.form_data.crossover_description_three= self.item.crossover_description_three,
+            self.form_data.crossover_serial_number= self.item.crossover_serial_number,
+            self.form_data.crossover_autographed= self.item.crossover_autographed,
+            self.form_data.crossover_authenticator_name= self.item.crossover_authenticator_name,
+            self.form_data.crossover_authenticator_cert_no= self.item.crossover_authenticator_cert_no;
+            self.form_data.crossover_estimated_value= self.item.crossover_estimated_value;
+
+            if (self.form_data.shipping_method == "Pickup"){
+                self.showPickupLocationBox=true;
+            }else if(self.form_data.shipping_method == "Show Pickup") {
+                self.showShowPickupLocationBox = true;
+            }else if(self.form_data.shipping_method == "Return to Third Party"){
+                self.showThirdPartyBox=true;
+            }else if(self.form_data.shipping_method == "Delivery"){
+                self.showPickupLocationBox=false;
+                self.showShowPickupLocationBox = false;
+                self.showThirdPartyBox=false;
+                self.showUPSBox=false;
+            } else {
+                self.showUPSBox=true;
+            }
+    },
     methods:{
         async submit(){
-            if (this.checkSeventhStep()){
+            if (this.checkSixthStep()){
                 Swal.fire({
                     // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
-                    title: `Do you want to save this order: <br> ${this.form_data.name}`,
+                    title: `Do you want to update this order: <br> ${this.form_data.name}`,
                     showDenyButton: true,
                     showCancelButton: true,
                     confirmButtonText: "Yes",
@@ -2537,13 +2651,13 @@ export default {
                         // Submit form
 
                         axios
-                            .post("/admin/entries", this.form_data)
+                            .put(`/admin/entries/${this.item.id}`, this.form_data)
                             .then(function (response) {
                                 console.log(response)
-                                Swal.fire("Saved!", "", "success").then((result)=>{
+                                Swal.fire("Update!", "", "success").then((result)=>{
                                     if (result.isConfirmed){
                                         if (response.status == 200){
-                                            window.location.href = `/admin/entries/${response.data.data.id}`;
+                                            window.location.href = `/admin/entries/${response.data.id}`;
                                         }
                                     }
                                 });

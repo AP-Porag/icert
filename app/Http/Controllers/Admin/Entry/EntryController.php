@@ -50,7 +50,7 @@ class EntryController extends Controller
             $entryData = $request->all();
             $data = [
                 "customer_id"=>$entryData['customerId'],
-                'entrySKU'=>'ic20023645',
+                'entrySKU'=>$this->getSKUNumber(),
                 'customer_name'=>$entryData['name'],
                 'item_qty'=>$entryData['item_qty'],
                 'billing_address_line_one'=>$entryData['billing_address_line_one'],
@@ -152,17 +152,16 @@ class EntryController extends Controller
     public function edit($id)
     {
         set_page_meta('Edit Entry');
-        $item = $this->entryService->get($id);
-        $products = Product::orderBy('id','ASC')->get();
-        $allCustomers = Customer::orderBy('id','DESC')->select('id','name')->get();
-        $allPromos = Promo::orderBy('id','DESC')->select('id','name')->get();
-        $allThirdParties = ThirdParty::orderBy('id','DESC')->select('id','name')->get();
-        $allAuthenticators = Authenticator::orderBy('id','DESC')->select('id','name')->get();
+        try {
+            $entry = $this->entryService->get($id);
+            $products = Product::orderBy('id','ASC')->get();
+            $allCustomers = Customer::orderBy('id','DESC')->select('id','name')->get();
+            $allPromos = Promo::orderBy('id','DESC')->select('id','name')->get();
+            $allThirdParties = ThirdParty::orderBy('id','DESC')->select('id','name')->get();
+            $allAuthenticators = Authenticator::orderBy('id','DESC')->select('id','name')->get();
 
 //        return $allThirdParties;
-        return view('admin.entry.edit',compact('products','allCustomers','allPromos','allThirdParties','allAuthenticators'));
-        try {
-
+            return view('admin.entry.edit',compact('products','allCustomers','allPromos','allThirdParties','allAuthenticators','entry'));
         } catch (\Exception $e) {
             log_error($e);
         }
@@ -171,29 +170,53 @@ class EntryController extends Controller
 
     public function update(Request $request, $id)
     {
-//        $data = $request->all();
-//        dd($data);
+
         try {
 
-            $data = $request->all();
-            $thirdParty = $this->entryService->storeOrUpdate($data, $id);
+            $entryData = $request->all();
+            $data = [
+                "customer_id"=>$entryData['customerId'],
+                'customer_name'=>$entryData['name'],
+                'item_qty'=>$entryData['item_qty'],
+                'billing_address_line_one'=>$entryData['billing_address_line_one'],
+                'billing_address_line_two'=>$entryData['billing_address_line_two'],
+                'billing_country'=>$entryData['billing_country'],
+                'billing_province'=>$entryData['billing_province'],
+                'billing_city'=>$entryData['billing_city'],
+                'billing_postal'=>$entryData['billing_postal'],
+                'billing_phone'=>$entryData['billing_phone'],
+                'same_as_billing'=>$entryData['same_as_billing'],
+                'autographed'=>$entryData['autographed'],
+                'shipping_name'=>$entryData['shipping_name'],
+                'shipping_company_name'=>$entryData['shipping_company_name'],
+                'shipping_address_line_one'=>$entryData['shipping_address_line_one'],
+                'shipping_address_line_two'=>$entryData['shipping_address_line_two'],
+                'shipping_country'=>$entryData['shipping_country'],
+                'shipping_province'=>$entryData['shipping_province'],
+                'shipping_city'=>$entryData['shipping_city'],
+                'shipping_postal'=>$entryData['shipping_postal'],
+                'shipping_phone'=>$entryData['shipping_postal'],
+                'submission_date'=>$entryData['submission_date'],
+                'grading_location'=>$entryData['grading_location'],
+                'promo_code'=>$entryData['promo_code'],
+                'payment_made'=>$entryData['payment_made'],
+                'pay_on_pickup'=>$entryData['pay_on_pickup'],
+                'cod'=>$entryData['cod'],
+                'shopify_order_number'=>$entryData['shopify_order_number'],
+                'shipping_method'=>$entryData['shipping_method'],
+                'pickup_location'=>$entryData['pickup_location'],
+                'show_pickup_location'=>$entryData['show_pickup_location'],
+                'third_party_drop_center'=>$entryData['third_party_drop_center'],
+                'use_customer_account'=>$entryData['use_customer_account'],
+                'customer_account_number'=>$entryData['customer_account_number'],
+            ];
 
-            if ($thirdParty){
-                $ThirdPartyProducts = ThirdPartyProduct::where('third_party_id',$id)->get();
+            $entry = $this->entryService->storeOrUpdate($data, $id);
 
-                foreach ($ThirdPartyProducts as $thirdPartyProduct){
-                    $thirdPartyProduct->delete();
-                }
+            $response = ['status'=>200,'message'=>'Success','id'=>$id];
+            return response()->json($response);
 
-                foreach ($data['products'] as $product){
-                    $thirdPartyProduct = ThirdPartyProduct::create([
-                        "third_party_id"=>$id,
-                        "product_id"=>$product,
-                    ]);
-                }
-            }
-
-            record_updated_flash();
+//            record_updated_flash();
         } catch (\Exception $e) {
             return back();
         }
@@ -201,12 +224,102 @@ class EntryController extends Controller
 
     public function show($id)
     {
+
         set_page_meta('Show Entry');
         $items = EntryItems::where('entry_id',$id)->orderBy('created_at', 'desc')->get();
+        $authenticators = Authenticator::orderBy('id','DESC')->select('id','name')->get();
+
+        $grades=[
+                [
+                    'id'=>1,
+                    'name'=>'0'
+                ],
+
+            [
+                'id'=>2,
+                'name'=>'1'
+            ],
+            [
+                'id'=>3,
+                'name'=>'1.5'
+            ],
+            [
+                'id'=>4,
+                'name'=>'2'
+            ],
+            [
+                'id'=>5,
+                'name'=>'2.5'
+            ],
+            [
+                'id'=>6,
+                'name'=>'3'
+            ],
+            [
+                'id'=>7,
+                'name'=>'3.5'
+            ],
+            [
+                'id'=>8,
+                'name'=>'4'
+            ],
+            [
+                'id'=>9,
+                'name'=>'4.5'
+            ],
+            [
+                'id'=>10,
+                'name'=>'5'
+            ],
+            [
+                'id'=>11,
+                'name'=>'5.5'
+            ],
+            [
+                'id'=>12,
+                'name'=>'6'
+            ],
+            [
+                'id'=>13,
+                'name'=>'6.5'
+            ],
+            [
+                'id'=>14,
+                'name'=>'7'
+            ],
+            [
+                'id'=>15,
+                'name'=>'7.5'
+            ],
+            [
+                'id'=>16,
+                'name'=>'8'
+            ],
+            [
+                'id'=>17,
+                'name'=>'8.5'
+            ],
+            [
+                'id'=>18,
+                'name'=>'9'
+            ],
+            [
+                'id'=>19,
+                'name'=>'9.5'
+            ],
+            [
+                'id'=>20,
+                'name'=>'10'
+            ],
+            [
+                'id'=>21,
+                'name'=>'10 (p)'
+            ],
+            ];
 
         $entry = Entry::find($id);
-//        return $item;
-        return view('admin.entry.show',compact('items','entry'));
+//        return $items;
+        return view('admin.entry.show',compact('items','entry','authenticators','grades'));
     }
 
     /**
@@ -315,6 +428,57 @@ class EntryController extends Controller
 
         return redirect()->back();
     }
+
+    public function newItemEdit(Request $request)
+    {
+        $id = $request->item_id;
+        $pieces = $request->pieces;
+
+        $item = EntryItems::find($id);
+
+            $item->itemType = $request->itemType;
+            $item->card_description_one = $request->card_description_one;
+            $item->card_description_two = $request->card_description_two;
+            $item->card_description_three = $request->card_description_three;
+            $item->card_serial_number = $request->card_serial_number;
+            $item->card_autographed = $request->card_autographed;
+            $item->card_authenticator_name = $request->card_authenticator_name;
+            $item->card_authenticator_cert_no = $request->card_authenticator_cert_no;
+            $item->card_estimated_value = $request->card_estimated_value;
+            $item->auto_authentication_description_one = $request->auto_authentication_description_one;
+            $item->auto_authentication_description_two = $request->auto_authentication_description_two;
+            $item->auto_authentication_description_three = $request->auto_authentication_description_three;
+            $item->auto_authentication_serial_number = $request->auto_authentication_serial_number;
+            $item->auto_authentication_autographed = $request->auto_authentication_autographed;
+            $item->auto_authentication_authenticator_name = $request->auto_authentication_authenticator_name;
+            $item->auto_authentication_authenticator_cert_no = $request->auto_authentication_authenticator_cert_no;
+            $item->auto_authentication_estimated_value = $request->auto_authentication_estimated_value;
+            $item->combined_service_description_one = $request->combined_service_description_one;
+            $item->combined_service_description_two = $request->combined_service_description_two;
+            $item->combined_service_description_three = $request->combined_service_description_three;
+            $item->combined_service_serial_number = $request->combined_service_serial_number;
+            $item->combined_service_autographed = $request->combined_service_autographed;
+            $item->combined_service_authenticator_name = $request->combined_service_authenticator_name;
+            $item->combined_service_authenticator_cert_no = $request->combined_service_authenticator_cert_no;
+            $item->combined_service_estimated_value = $request->combined_service_estimated_value;
+            $item->reholder_certification_number = $request->reholder_certification_number;
+            $item->reholder_estimated_value = $request->reholder_estimated_value;
+            $item->crossover_description_one = $request->crossover_description_one;
+            $item->crossover_description_two = $request->crossover_description_two;
+            $item->crossover_description_three = $request->crossover_description_three;
+            $item->crossover_serial_number = $request->crossover_serial_number;
+            $item->crossover_autographed = $request->crossover_autographed;
+            $item->crossover_authenticator_name = $request->crossover_authenticator_name;
+            $item->crossover_authenticator_cert_no = $request->crossover_authenticator_cert_no;
+            $item->crossover_estimated_value = $request->crossover_estimated_value;
+            $item->crossover_item_type = $request->crossover_item_type;
+            $item->crossover_minimum_grade = $request->crossover_minimum_grade;
+            $item->pieces = $request->pieces;
+            $item->save();
+
+
+        return redirect()->back();
+    }
     public function newItemAdd(Request $request)
     {
 
@@ -331,5 +495,28 @@ class EntryController extends Controller
         $item = EntryItems::find($request->item_id)->delete();
 
         return redirect()->back();
+    }
+
+    public function getSKUNumber()
+    {
+        $entries = Entry::all();
+        if ($entries->count() > 0){
+
+            $lastSKUId = Entry::orderBy('id', 'DESC')->first()->entrySKU;
+//            return $lastSKUId;
+            $splitedLastSKUId = str_split($lastSKUId,4);
+            $madedSKU = $splitedLastSKUId[1].$splitedLastSKUId[2];
+//            return $madedSKU;
+            $settingPlusOne = $madedSKU+1;
+            $newSKUId = 'IC'.date('y').$settingPlusOne;
+//            return $newSKUId;
+        }else{
+//            $setting = config('settings.admin_order_sku');
+            $setting = 20000;
+            $settingPlusOne = $setting+1;
+            $newSKUId = 'IC'.date('y').$settingPlusOne;
+        }
+
+        return $newSKUId;
     }
 }

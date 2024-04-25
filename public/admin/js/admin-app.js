@@ -41199,7 +41199,7 @@ Vue.component("customer-edit-form", function () {
 Vue.component("create-entry", function () {
   return __webpack_require__.e(/*! import() */ "resources_js_components_CreateEntry_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/CreateEntry.vue */ "./resources/js/components/CreateEntry.vue"));
 });
-Vue.component("entry-entry", function () {
+Vue.component("edit-entry", function () {
   return __webpack_require__.e(/*! import() */ "resources_js_components_EditEntry_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/EditEntry.vue */ "./resources/js/components/EditEntry.vue"));
 });
 
