@@ -773,12 +773,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else if (this.v$.form_data.card_description_one.$invalid) {
         this.show_error_twelve = true;
         return false;
-      } else if (this.v$.form_data.card_description_two.$invalid) {
-        this.show_error_twelve = true;
-        return false;
-      } else if (this.v$.form_data.card_description_three.$invalid) {
-        this.show_error_twelve = true;
-        return false;
       } else if (this.v$.form_data.card_authenticator_name.$invalid) {
         this.show_error_twelve = true;
         return false;
@@ -791,12 +785,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else if (this.v$.form_data.auto_authentication_description_one.$invalid) {
         this.show_error_thirteen = true;
         return false;
-      } else if (this.v$.form_data.auto_authentication_description_two.$invalid) {
-        this.show_error_thirteen = true;
-        return false;
-      } else if (this.v$.form_data.auto_authentication_description_three.$invalid) {
-        this.show_error_thirteen = true;
-        return false;
       } else if (this.v$.form_data.auto_authentication_authenticator_name.$invalid) {
         this.show_error_thirteen = true;
         return false;
@@ -807,12 +795,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.show_error_thirteen = true;
         return false;
       } else if (this.v$.form_data.combined_service_description_one.$invalid) {
-        this.show_error_fourteen = true;
-        return false;
-      } else if (this.v$.form_data.combined_service_description_two.$invalid) {
-        this.show_error_fourteen = true;
-        return false;
-      } else if (this.v$.form_data.combined_service_description_three.$invalid) {
         this.show_error_fourteen = true;
         return false;
       } else if (this.v$.form_data.combined_service_authenticator_name.$invalid) {
@@ -831,12 +813,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.show_error_fifteen = true;
         return false;
       } else if (this.v$.form_data.crossover_description_one.$invalid) {
-        this.show_error_sixteen = true;
-        return false;
-      } else if (this.v$.form_data.crossover_description_two.$invalid) {
-        this.show_error_sixteen = true;
-        return false;
-      } else if (this.v$.form_data.crossover_description_three.$invalid) {
         this.show_error_sixteen = true;
         return false;
       } else if (this.v$.form_data.crossover_authenticator_name.$invalid) {
@@ -1185,18 +1161,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         })
       },
 
-      card_description_two: {
-        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
-          return this.showItemTypeCardBox; // return true if this field is required
-        })
-      },
-
-      card_description_three: {
-        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
-          return this.showItemTypeCardBox; // return true if this field is required
-        })
-      },
-
+      // card_description_two:{
+      //     required: requiredIf(function () {
+      //         return this.showItemTypeCardBox // return true if this field is required
+      //     }),
+      // },
+      // card_description_three:{
+      //     required: requiredIf(function () {
+      //         return this.showItemTypeCardBox // return true if this field is required
+      //     }),
+      // },
       card_authenticator_name: {
         required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
           return this.form_data.card_autographed; // return true if this field is required
@@ -1222,18 +1196,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         })
       },
 
-      auto_authentication_description_two: {
-        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
-          return this.showItemTypeAutoAthenticationBox; // return true if this field is required
-        })
-      },
-
-      auto_authentication_description_three: {
-        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
-          return this.showItemTypeAutoAthenticationBox; // return true if this field is required
-        })
-      },
-
+      // auto_authentication_description_two:{
+      //     required: requiredIf(function () {
+      //         return this.showItemTypeAutoAthenticationBox // return true if this field is required
+      //     }),
+      // },
+      // auto_authentication_description_three:{
+      //     required: requiredIf(function () {
+      //         return this.showItemTypeAutoAthenticationBox // return true if this field is required
+      //     }),
+      // },
       auto_authentication_authenticator_name: {
         required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
           return this.form_data.auto_authentication_autographed; // return true if this field is required
@@ -1259,18 +1231,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         })
       },
 
-      combined_service_description_two: {
-        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
-          return this.showItemTypeCombinedServiceBox; // return true if this field is required
-        })
-      },
-
-      combined_service_description_three: {
-        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
-          return this.showItemTypeCombinedServiceBox; // return true if this field is required
-        })
-      },
-
+      // combined_service_description_two:{
+      //     required: requiredIf(function () {
+      //         return this.showItemTypeCombinedServiceBox // return true if this field is required
+      //     }),
+      // },
+      // combined_service_description_three:{
+      //     required: requiredIf(function () {
+      //         return this.showItemTypeCombinedServiceBox // return true if this field is required
+      //     }),
+      // },
       combined_service_authenticator_name: {
         required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
           return this.form_data.combined_service_autographed; // return true if this field is required
@@ -1309,18 +1279,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         })
       },
 
-      crossover_description_two: {
-        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
-          return this.showItemTypeCrossoverBox; // return true if this field is required
-        })
-      },
-
-      crossover_description_three: {
-        required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
-          return this.showItemTypeCrossoverBox; // return true if this field is required
-        })
-      },
-
+      // crossover_description_two:{
+      //     required: requiredIf(function () {
+      //         return this.showItemTypeCrossoverBox // return true if this field is required
+      //     }),
+      // },
+      // crossover_description_three:{
+      //     required: requiredIf(function () {
+      //         return this.showItemTypeCrossoverBox // return true if this field is required
+      //     }),
+      // },
       crossover_authenticator_name: {
         required: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_2__.requiredIf)(function () {
           return this.form_data.crossover_autographed; // return true if this field is required
@@ -2382,28 +2350,16 @@ var render = function render() {
     }],
     staticClass: "form-check",
     attrs: {
-      type: "checkbox",
+      type: "radio",
+      name: "payment_method",
       placeholder: ""
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.payment_made) ? _vm._i(_vm.form_data.payment_made, null) > -1 : _vm.form_data.payment_made
+      checked: _vm._q(_vm.form_data.payment_made, null)
     },
     on: {
       change: function change($event) {
-        var $$a = _vm.form_data.payment_made,
-          $$el = $event.target,
-          $$c = $$el.checked ? true : false;
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "payment_made", $$a.concat([$$v]));
-          } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "payment_made", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-          }
-        } else {
-          _vm.$set(_vm.form_data, "payment_made", $$c);
-        }
+        return _vm.$set(_vm.form_data, "payment_made", null);
       }
     }
   })])]), _vm._v(" "), _c("div", {
@@ -2431,28 +2387,16 @@ var render = function render() {
     }],
     staticClass: "form-check",
     attrs: {
-      type: "checkbox",
+      type: "radio",
+      name: "payment_method",
       placeholder: ""
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.pay_on_pickup) ? _vm._i(_vm.form_data.pay_on_pickup, null) > -1 : _vm.form_data.pay_on_pickup
+      checked: _vm._q(_vm.form_data.pay_on_pickup, null)
     },
     on: {
       change: function change($event) {
-        var $$a = _vm.form_data.pay_on_pickup,
-          $$el = $event.target,
-          $$c = $$el.checked ? true : false;
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "pay_on_pickup", $$a.concat([$$v]));
-          } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "pay_on_pickup", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-          }
-        } else {
-          _vm.$set(_vm.form_data, "pay_on_pickup", $$c);
-        }
+        return _vm.$set(_vm.form_data, "pay_on_pickup", null);
       }
     }
   })])]), _vm._v(" "), _c("div", {
@@ -2480,28 +2424,16 @@ var render = function render() {
     }],
     staticClass: "form-check",
     attrs: {
-      type: "checkbox",
+      type: "radio",
+      name: "payment_method",
       placeholder: ""
     },
     domProps: {
-      checked: Array.isArray(_vm.form_data.cod) ? _vm._i(_vm.form_data.cod, null) > -1 : _vm.form_data.cod
+      checked: _vm._q(_vm.form_data.cod, null)
     },
     on: {
       change: function change($event) {
-        var $$a = _vm.form_data.cod,
-          $$el = $event.target,
-          $$c = $$el.checked ? true : false;
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && _vm.$set(_vm.form_data, "cod", $$a.concat([$$v]));
-          } else {
-            $$i > -1 && _vm.$set(_vm.form_data, "cod", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-          }
-        } else {
-          _vm.$set(_vm.form_data, "cod", $$c);
-        }
+        return _vm.$set(_vm.form_data, "cod", null);
       }
     }
   })])]), _vm._v(" "), _c("div", {
@@ -3034,14 +2966,12 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #2\n                                                            "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Description #2\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.card_description_two.$model,
-      expression: "v$.form_data.card_description_two.$model",
+      value: _vm.form_data.card_description_two,
+      expression: "form_data.card_description_two",
       modifiers: {
         trim: true
       }
@@ -3052,33 +2982,29 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.card_description_two.$model
+      value: _vm.form_data.card_description_two
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.card_description_two, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "card_description_two", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.card_description_two.required.$invalid && _vm.show_error_twelve ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                            Description two is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #3\n                                                            "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Description #3\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.card_description_three.$model,
-      expression: "v$.form_data.card_description_three.$model",
+      value: _vm.form_data.card_description_three,
+      expression: "form_data.card_description_three",
       modifiers: {
         trim: true
       }
@@ -3089,20 +3015,18 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.card_description_three.$model
+      value: _vm.form_data.card_description_three
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.card_description_three, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "card_description_three", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.card_description_three.required.$invalid && _vm.show_error_twelve ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                            Description three is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -3292,7 +3216,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
+      type: "number",
       placeholder: ""
     },
     domProps: {
@@ -3398,14 +3322,12 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #2\n                                                            "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Description #2\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.auto_authentication_description_two.$model,
-      expression: "v$.form_data.auto_authentication_description_two.$model",
+      value: _vm.form_data.auto_authentication_description_two,
+      expression: "form_data.auto_authentication_description_two",
       modifiers: {
         trim: true
       }
@@ -3416,33 +3338,29 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.auto_authentication_description_two.$model
+      value: _vm.form_data.auto_authentication_description_two
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.auto_authentication_description_two, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "auto_authentication_description_two", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.auto_authentication_description_two.required.$invalid && _vm.show_error_thirteen ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                            Description two is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #3\n                                                            "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Description #3\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.auto_authentication_description_three.$model,
-      expression: "v$.form_data.auto_authentication_description_three.$model",
+      value: _vm.form_data.auto_authentication_description_three,
+      expression: "form_data.auto_authentication_description_three",
       modifiers: {
         trim: true
       }
@@ -3453,20 +3371,18 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.auto_authentication_description_three.$model
+      value: _vm.form_data.auto_authentication_description_three
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.auto_authentication_description_three, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "auto_authentication_description_three", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.auto_authentication_description_three.required.$invalid && _vm.show_error_thirteen ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                            Description three is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -3656,7 +3572,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
+      type: "number",
       placeholder: ""
     },
     domProps: {
@@ -3762,14 +3678,12 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #2\n                                                            "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Description #2\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.combined_service_description_two.$model,
-      expression: "v$.form_data.combined_service_description_two.$model",
+      value: _vm.form_data.combined_service_description_two,
+      expression: "form_data.combined_service_description_two",
       modifiers: {
         trim: true
       }
@@ -3780,33 +3694,29 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.combined_service_description_two.$model
+      value: _vm.form_data.combined_service_description_two
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.combined_service_description_two, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "combined_service_description_two", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.combined_service_description_two.required.$invalid && _vm.show_error_fourteen ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                            Description two is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #3\n                                                            "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Description #3\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.combined_service_description_three.$model,
-      expression: "v$.form_data.combined_service_description_three.$model",
+      value: _vm.form_data.combined_service_description_three,
+      expression: "form_data.combined_service_description_three",
       modifiers: {
         trim: true
       }
@@ -3817,20 +3727,18 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.combined_service_description_three.$model
+      value: _vm.form_data.combined_service_description_three
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.combined_service_description_three, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "combined_service_description_three", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.combined_service_description_three.required.$invalid && _vm.show_error_fourteen ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                            Description three is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -4020,7 +3928,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
+      type: "number",
       placeholder: ""
     },
     domProps: {
@@ -4140,7 +4048,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
+      type: "number",
       placeholder: ""
     },
     domProps: {
@@ -4246,14 +4154,12 @@ var render = function render() {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #2\n                                                            "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Description #2\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.crossover_description_two.$model,
-      expression: "v$.form_data.crossover_description_two.$model",
+      value: _vm.form_data.crossover_description_two,
+      expression: "form_data.crossover_description_two",
       modifiers: {
         trim: true
       }
@@ -4264,33 +4170,29 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.crossover_description_two.$model
+      value: _vm.form_data.crossover_description_two
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.crossover_description_two, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "crossover_description_two", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.crossover_description_two.required.$invalid && _vm.show_error_sixteen ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                            Description two is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "mb-3"
   }, [_c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #3\n                                                            "), _c("span", {
-    staticClass: "error"
-  }, [_vm._v("*")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("\n                                                            Description #3\n")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
-      value: _vm.v$.form_data.crossover_description_three.$model,
-      expression: "v$.form_data.crossover_description_three.$model",
+      value: _vm.form_data.crossover_description_three,
+      expression: "form_data.crossover_description_three",
       modifiers: {
         trim: true
       }
@@ -4301,20 +4203,18 @@ var render = function render() {
       placeholder: ""
     },
     domProps: {
-      value: _vm.v$.form_data.crossover_description_three.$model
+      value: _vm.form_data.crossover_description_three
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.v$.form_data.crossover_description_three, "$model", $event.target.value.trim());
+        _vm.$set(_vm.form_data, "crossover_description_three", $event.target.value.trim());
       },
       blur: function blur($event) {
         return _vm.$forceUpdate();
       }
     }
-  }), _vm._v(" "), _vm.v$.form_data.crossover_description_three.required.$invalid && _vm.show_error_sixteen ? _c("div", {
-    staticClass: "error"
-  }, [_vm._v("\n                                                            Description three is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("div", {
     staticClass: "mb-3"
@@ -4508,7 +4408,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text",
+      type: "number",
       placeholder: ""
     },
     domProps: {

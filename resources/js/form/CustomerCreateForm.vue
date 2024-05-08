@@ -804,6 +804,8 @@ export default {
         },
         sameAsBillingChanged(event){
             if (this.form_data.same_as_billing){
+                this.form_data.shipping_name = this.form_data.name
+                this.form_data.shipping_company_name = this.form_data.contact_name
                 this.form_data.shipping_address_line_one = this.form_data.billing_address_line_one;
                 this.form_data.shipping_address_line_two = this.form_data.billing_address_line_two;
                 this.form_data.shipping_country = this.form_data.billing_country;

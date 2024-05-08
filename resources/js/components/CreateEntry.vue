@@ -730,8 +730,9 @@
                                                     Payment Made
                                                 </label>
                                                 <input
-                                                    type="checkbox"
+                                                    type="radio"
                                                     class="form-check"
+                                                    name="payment_method"
                                                     placeholder=""
                                                     v-model.trim="form_data.payment_made"
                                                 />
@@ -747,8 +748,9 @@
                                                     Pay on pickup
                                                 </label>
                                                 <input
-                                                    type="checkbox"
+                                                    type="radio"
                                                     class="form-check"
+                                                    name="payment_method"
                                                     placeholder=""
                                                     v-model.trim="form_data.pay_on_pickup"
                                                 />
@@ -761,8 +763,9 @@
                                                     COD
                                                 </label>
                                                 <input
-                                                    type="checkbox"
+                                                    type="radio"
                                                     class="form-check"
+                                                    name="payment_method"
                                                     placeholder=""
                                                     v-model.trim="form_data.cod"
                                                 />
@@ -1019,17 +1022,17 @@
                                                     <div class="mb-3">
                                                         <label class="form-label w-100">
                                                             Description #2
-                                                            <span class="error">*</span>
+<!--                                                            <span class="error">*</span>-->
                                                         </label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
                                                             placeholder=""
-                                                            v-model.trim="v$.form_data.card_description_two.$model"
+                                                            v-model.trim="form_data.card_description_two"
                                                         />
-                                                        <div class="error" v-if="v$.form_data.card_description_two.required.$invalid && show_error_twelve">
-                                                            Description two is required
-                                                        </div>
+<!--                                                        <div class="error" v-if="v$.form_data.card_description_two.required.$invalid && show_error_twelve">-->
+<!--                                                            Description two is required-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
 
@@ -1037,17 +1040,17 @@
                                                     <div class="mb-3">
                                                         <label class="form-label w-100">
                                                             Description #3
-                                                            <span class="error">*</span>
+<!--                                                            <span class="error">*</span>-->
                                                         </label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
                                                             placeholder=""
-                                                            v-model.trim="v$.form_data.card_description_three.$model"
+                                                            v-model.trim="form_data.card_description_three"
                                                         />
-                                                        <div class="error" v-if="v$.form_data.card_description_three.required.$invalid && show_error_twelve">
-                                                            Description three is required
-                                                        </div>
+<!--                                                        <div class="error" v-if="v$.form_data.card_description_three.required.$invalid && show_error_twelve">-->
+<!--                                                            Description three is required-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
 
@@ -1134,7 +1137,7 @@
                                                     <span class="error">*</span>
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     class="form-control"
                                                     placeholder=""
                                                     v-model.trim="v$.form_data.card_estimated_value.$model"
@@ -1198,17 +1201,17 @@
                                                     <div class="mb-3">
                                                         <label class="form-label w-100">
                                                             Description #2
-                                                            <span class="error">*</span>
+<!--                                                            <span class="error">*</span>-->
                                                         </label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
                                                             placeholder=""
-                                                            v-model.trim="v$.form_data.auto_authentication_description_two.$model"
+                                                            v-model.trim="form_data.auto_authentication_description_two"
                                                         />
-                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_two.required.$invalid && show_error_thirteen">
-                                                            Description two is required
-                                                        </div>
+<!--                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_two.required.$invalid && show_error_thirteen">-->
+<!--                                                            Description two is required-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
 
@@ -1216,17 +1219,17 @@
                                                     <div class="mb-3">
                                                         <label class="form-label w-100">
                                                             Description #3
-                                                            <span class="error">*</span>
+<!--                                                            <span class="error">*</span>-->
                                                         </label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
                                                             placeholder=""
-                                                            v-model.trim="v$.form_data.auto_authentication_description_three.$model"
+                                                            v-model.trim="form_data.auto_authentication_description_three"
                                                         />
-                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_three.required.$invalid && show_error_thirteen">
-                                                            Description three is required
-                                                        </div>
+<!--                                                        <div class="error" v-if="v$.form_data.auto_authentication_description_three.required.$invalid && show_error_thirteen">-->
+<!--                                                            Description three is required-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
 
@@ -1313,7 +1316,7 @@
                                                     <span class="error">*</span>
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     class="form-control"
                                                     placeholder=""
                                                     v-model.trim="v$.form_data.auto_authentication_estimated_value.$model"
@@ -1377,17 +1380,17 @@
                                                     <div class="mb-3">
                                                         <label class="form-label w-100">
                                                             Description #2
-                                                            <span class="error">*</span>
+<!--                                                            <span class="error">*</span>-->
                                                         </label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
                                                             placeholder=""
-                                                            v-model.trim="v$.form_data.combined_service_description_two.$model"
+                                                            v-model.trim="form_data.combined_service_description_two"
                                                         />
-                                                        <div class="error" v-if="v$.form_data.combined_service_description_two.required.$invalid && show_error_fourteen">
-                                                            Description two is required
-                                                        </div>
+<!--                                                        <div class="error" v-if="v$.form_data.combined_service_description_two.required.$invalid && show_error_fourteen">-->
+<!--                                                            Description two is required-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
 
@@ -1395,17 +1398,17 @@
                                                     <div class="mb-3">
                                                         <label class="form-label w-100">
                                                             Description #3
-                                                            <span class="error">*</span>
+<!--                                                            <span class="error">*</span>-->
                                                         </label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
                                                             placeholder=""
-                                                            v-model.trim="v$.form_data.combined_service_description_three.$model"
+                                                            v-model.trim="form_data.combined_service_description_three"
                                                         />
-                                                        <div class="error" v-if="v$.form_data.combined_service_description_three.required.$invalid && show_error_fourteen">
-                                                            Description three is required
-                                                        </div>
+<!--                                                        <div class="error" v-if="v$.form_data.combined_service_description_three.required.$invalid && show_error_fourteen">-->
+<!--                                                            Description three is required-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
 
@@ -1492,7 +1495,7 @@
                                                     <span class="error">*</span>
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     class="form-control"
                                                     placeholder=""
                                                     v-model.trim="v$.form_data.combined_service_estimated_value.$model"
@@ -1561,7 +1564,7 @@
                                                     <span class="error">*</span>
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     class="form-control"
                                                     placeholder=""
                                                     v-model.trim="v$.form_data.reholder_estimated_value.$model"
@@ -1625,17 +1628,17 @@
                                                     <div class="mb-3">
                                                         <label class="form-label w-100">
                                                             Description #2
-                                                            <span class="error">*</span>
+<!--                                                            <span class="error">*</span>-->
                                                         </label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
                                                             placeholder=""
-                                                            v-model.trim="v$.form_data.crossover_description_two.$model"
+                                                            v-model.trim="form_data.crossover_description_two"
                                                         />
-                                                        <div class="error" v-if="v$.form_data.crossover_description_two.required.$invalid && show_error_sixteen">
-                                                            Description two is required
-                                                        </div>
+<!--                                                        <div class="error" v-if="v$.form_data.crossover_description_two.required.$invalid && show_error_sixteen">-->
+<!--                                                            Description two is required-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
 
@@ -1643,17 +1646,17 @@
                                                     <div class="mb-3">
                                                         <label class="form-label w-100">
                                                             Description #3
-                                                            <span class="error">*</span>
+<!--                                                            <span class="error">*</span>-->
                                                         </label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
                                                             placeholder=""
-                                                            v-model.trim="v$.form_data.crossover_description_three.$model"
+                                                            v-model.trim="form_data.crossover_description_three"
                                                         />
-                                                        <div class="error" v-if="v$.form_data.crossover_description_three.required.$invalid && show_error_sixteen">
-                                                            Description three is required
-                                                        </div>
+<!--                                                        <div class="error" v-if="v$.form_data.crossover_description_three.required.$invalid && show_error_sixteen">-->
+<!--                                                            Description three is required-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
 
@@ -1742,7 +1745,7 @@
                                                             <span class="error">*</span>
                                                         </label>
                                                         <input
-                                                            type="text"
+                                                            type="number"
                                                             class="form-control"
                                                             placeholder=""
                                                             v-model.trim="v$.form_data.crossover_estimated_value.$model"
@@ -2662,12 +2665,6 @@ export default {
             }else if (this.v$.form_data.card_description_one.$invalid) {
                 this.show_error_twelve = true;
                 return false;
-            }else if (this.v$.form_data.card_description_two.$invalid) {
-                this.show_error_twelve = true;
-                return false;
-            }else if (this.v$.form_data.card_description_three.$invalid) {
-                this.show_error_twelve = true;
-                return false;
             }else if (this.v$.form_data.card_authenticator_name.$invalid) {
                 this.show_error_twelve = true;
                 return false;
@@ -2680,12 +2677,6 @@ export default {
             }else if (this.v$.form_data.auto_authentication_description_one.$invalid) {
                 this.show_error_thirteen = true;
                 return false;
-            }else if (this.v$.form_data.auto_authentication_description_two.$invalid) {
-                this.show_error_thirteen = true;
-                return false;
-            }else if (this.v$.form_data.auto_authentication_description_three.$invalid) {
-                this.show_error_thirteen = true;
-                return false;
             }else if (this.v$.form_data.auto_authentication_authenticator_name.$invalid) {
                 this.show_error_thirteen = true;
                 return false;
@@ -2696,12 +2687,6 @@ export default {
                 this.show_error_thirteen = true;
                 return false;
             }else if (this.v$.form_data.combined_service_description_one.$invalid) {
-                this.show_error_fourteen = true;
-                return false;
-            }else if (this.v$.form_data.combined_service_description_two.$invalid) {
-                this.show_error_fourteen = true;
-                return false;
-            }else if (this.v$.form_data.combined_service_description_three.$invalid) {
                 this.show_error_fourteen = true;
                 return false;
             }else if (this.v$.form_data.combined_service_authenticator_name.$invalid) {
@@ -2720,12 +2705,6 @@ export default {
                 this.show_error_fifteen = true;
                 return false;
             }else if (this.v$.form_data.crossover_description_one.$invalid) {
-                this.show_error_sixteen = true;
-                return false;
-            }else if (this.v$.form_data.crossover_description_two.$invalid) {
-                this.show_error_sixteen = true;
-                return false;
-            }else if (this.v$.form_data.crossover_description_three.$invalid) {
                 this.show_error_sixteen = true;
                 return false;
             }else if (this.v$.form_data.crossover_authenticator_name.$invalid) {
@@ -3057,16 +3036,16 @@ export default {
                     return this.showItemTypeCardBox // return true if this field is required
                 }),
             },
-            card_description_two:{
-                required: requiredIf(function () {
-                    return this.showItemTypeCardBox // return true if this field is required
-                }),
-            },
-            card_description_three:{
-                required: requiredIf(function () {
-                    return this.showItemTypeCardBox // return true if this field is required
-                }),
-            },
+            // card_description_two:{
+            //     required: requiredIf(function () {
+            //         return this.showItemTypeCardBox // return true if this field is required
+            //     }),
+            // },
+            // card_description_three:{
+            //     required: requiredIf(function () {
+            //         return this.showItemTypeCardBox // return true if this field is required
+            //     }),
+            // },
             card_authenticator_name:{
                 required: requiredIf(function () {
                     return this.form_data.card_autographed;// return true if this field is required
@@ -3088,16 +3067,16 @@ export default {
                     return this.showItemTypeAutoAthenticationBox // return true if this field is required
                 }),
             },
-            auto_authentication_description_two:{
-                required: requiredIf(function () {
-                    return this.showItemTypeAutoAthenticationBox // return true if this field is required
-                }),
-            },
-            auto_authentication_description_three:{
-                required: requiredIf(function () {
-                    return this.showItemTypeAutoAthenticationBox // return true if this field is required
-                }),
-            },
+            // auto_authentication_description_two:{
+            //     required: requiredIf(function () {
+            //         return this.showItemTypeAutoAthenticationBox // return true if this field is required
+            //     }),
+            // },
+            // auto_authentication_description_three:{
+            //     required: requiredIf(function () {
+            //         return this.showItemTypeAutoAthenticationBox // return true if this field is required
+            //     }),
+            // },
             auto_authentication_authenticator_name:{
                 required: requiredIf(function () {
                     return this.form_data.auto_authentication_autographed; // return true if this field is required
@@ -3119,16 +3098,16 @@ export default {
                     return this.showItemTypeCombinedServiceBox // return true if this field is required
                 }),
             },
-            combined_service_description_two:{
-                required: requiredIf(function () {
-                    return this.showItemTypeCombinedServiceBox // return true if this field is required
-                }),
-            },
-            combined_service_description_three:{
-                required: requiredIf(function () {
-                    return this.showItemTypeCombinedServiceBox // return true if this field is required
-                }),
-            },
+            // combined_service_description_two:{
+            //     required: requiredIf(function () {
+            //         return this.showItemTypeCombinedServiceBox // return true if this field is required
+            //     }),
+            // },
+            // combined_service_description_three:{
+            //     required: requiredIf(function () {
+            //         return this.showItemTypeCombinedServiceBox // return true if this field is required
+            //     }),
+            // },
             combined_service_authenticator_name:{
                 required: requiredIf(function () {
                     return this.form_data.combined_service_autographed; // return true if this field is required
@@ -3162,16 +3141,16 @@ export default {
                     return this.showItemTypeCrossoverBox // return true if this field is required
                 }),
             },
-            crossover_description_two:{
-                required: requiredIf(function () {
-                    return this.showItemTypeCrossoverBox // return true if this field is required
-                }),
-            },
-            crossover_description_three:{
-                required: requiredIf(function () {
-                    return this.showItemTypeCrossoverBox // return true if this field is required
-                }),
-            },
+            // crossover_description_two:{
+            //     required: requiredIf(function () {
+            //         return this.showItemTypeCrossoverBox // return true if this field is required
+            //     }),
+            // },
+            // crossover_description_three:{
+            //     required: requiredIf(function () {
+            //         return this.showItemTypeCrossoverBox // return true if this field is required
+            //     }),
+            // },
             crossover_authenticator_name:{
                 required: requiredIf(function () {
                     return this.form_data.crossover_autographed; // return true if this field is required
