@@ -141,15 +141,15 @@
 
                 @can('Entry')
                 <li class="{{ request()->is('admin/entries*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('admin.entries.index') }}" class="waves-effect {{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.entries.index') }}" class="waves-effect {{ request()->routeIs('admin.entries.index') ? 'active' : '' }}">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/entry.png')}}" alt=""><span> Entry </span>
                     </a>
                 </li>
                 @endcan
 
                 @can('Receiving')
-                <li>
-                    <a href="#" class="waves-effect">
+                    <li class="{{ request()->is('admin/receiving*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.receiving.index') }}" class="waves-effect {{ request()->routeIs('admin.receiving.index') ? 'active' : '' }}">
                         <img class="custom_menu_icon" src="{{asset('storage/settings/menu_icons/receiving.png')}}" alt=""><span> Receiving </span>
                     </a>
                 </li>

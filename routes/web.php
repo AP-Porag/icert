@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ThirdParty\AuthenticatorController;
 use App\Http\Controllers\Admin\ThirdParty\ThirdPartyDropOffController;
 use App\Http\Controllers\Admin\User\UsersController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReceivingController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -86,6 +87,11 @@ Route::prefix('admin')->as('admin.')->group(function () {
     Route::post('/entries/entry/item/destroy',[EntryController::class,'itemDestroy'] )->name('entries.entry.item.destroy');
     Route::post('/entries/add/new/item',[EntryController::class,'newItemAdd'] )->name('entries.add.new.item');
     Route::post('/entries/edit/new/item',[EntryController::class,'newItemEdit'] )->name('entries.edit.new.item');
+
+    //receiving
+    Route::resource('receiving', ReceivingController::class);
+    Route::post('/receiving/get-order/info/byId',[ReceivingController::class,'getOrderInfo'] )->name('receiving.getOrderInfo');
+
     //customers
     Route::resource('customers', CustomerController::class);
 
