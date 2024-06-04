@@ -40951,7 +40951,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_ExampleComponent_vue":1,"resources_js_components_CreateThirdPartyDropOff_vue":1,"resources_js_components_CreateAuthenticator_vue":1,"resources_js_components_EditAuthenticator_vue":1,"resources_js_components_EditThirdPartyDropOff_vue":1,"resources_js_form_CustomerCreateForm_vue":1,"resources_js_form_CustomerEditForm_vue":1,"resources_js_components_CreateEntry_vue":1,"resources_js_components_EditEntry_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_ExampleComponent_vue":1,"resources_js_components_CreateThirdPartyDropOff_vue":1,"resources_js_components_CreateAuthenticator_vue":1,"resources_js_components_EditAuthenticator_vue":1,"resources_js_components_EditThirdPartyDropOff_vue":1,"resources_js_form_CustomerCreateForm_vue":1,"resources_js_form_CustomerEditForm_vue":1,"resources_js_components_CreateEntry_vue":1,"resources_js_components_EditEntry_vue":1,"resources_js_components_CreateReceiving_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
@@ -41201,6 +41201,9 @@ Vue.component("create-entry", function () {
 });
 Vue.component("edit-entry", function () {
   return __webpack_require__.e(/*! import() */ "resources_js_components_EditEntry_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/EditEntry.vue */ "./resources/js/components/EditEntry.vue"));
+});
+Vue.component("create-receiving", function () {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_CreateReceiving_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/CreateReceiving.vue */ "./resources/js/components/CreateReceiving.vue"));
 });
 
 // Global mixin

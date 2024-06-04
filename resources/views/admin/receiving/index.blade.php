@@ -130,7 +130,7 @@
                             let entryCustomerName = response.data.customer.name;
                             let entryCustomerEmail = response.data.customer.email;
                             let entryCustomerContactName = response.data.customer.contact_name;
-                            let route = 'receiving/edit/'+response.data.id
+                            let route = 'receiving/get-order/info/'+response.data.id
 
                             entrySKU.text(entrySku)
                             customerName.text(entryCustomerName)

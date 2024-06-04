@@ -50,6 +50,10 @@ Vue.component("edit-entry", () =>
     import("./components/EditEntry.vue")
 );
 
+Vue.component("create-receiving", () =>
+    import("./components/CreateReceiving.vue")
+);
+
 // Global mixin
 Vue.mixin({
     methods: {

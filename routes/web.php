@@ -91,6 +91,7 @@ Route::prefix('admin')->as('admin.')->group(function () {
     //receiving
     Route::resource('receiving', ReceivingController::class);
     Route::post('/receiving/get-order/info/byId',[ReceivingController::class,'getOrderInfo'] )->name('receiving.getOrderInfo');
+    Route::get('/receiving/get-order/info/{id}',[ReceivingController::class,'getOrderInfoByID'] )->name('receiving.getOrderInfoByID');
 
     //customers
     Route::resource('customers', CustomerController::class);

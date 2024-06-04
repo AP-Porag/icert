@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ReceivingDataTable;
+use App\Models\Authenticator;
 use App\Models\Entry;
+use App\Models\EntryItems;
 use Illuminate\Http\Request;
 
 class ReceivingController extends Controller
@@ -30,6 +32,16 @@ class ReceivingController extends Controller
         }else{
             return response()->json(['status'=>201,'message' => 'Something went wrong', 'data' => []]);
         }
+    }
+
+    public function getOrderInfoByID($id)
+    {
+        set_page_meta('Create Receiving');
+//        $entryItems = EntryItems::where('entry_id',$id)->get();
+        $allAuthenticators = Authenticator::orderBy('id','DESC')->select('id','name')->get();
+
+        return view('admin.receiving.create_receiving',compact('allAuthenticators'));
+
     }
 //    public function create()
 //    {
