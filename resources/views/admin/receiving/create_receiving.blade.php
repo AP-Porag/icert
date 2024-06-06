@@ -16,7 +16,7 @@
         </div>
 
         <div class="col-md-10">
-            <create-receiving :authenticators="{{json_encode($allAuthenticators)}}"/>
+            <create-receiving :authenticators="{{json_encode($allAuthenticators)}}" :entr="{{json_encode($entry)}}"/>
         </div>
     </div>
 @endsection

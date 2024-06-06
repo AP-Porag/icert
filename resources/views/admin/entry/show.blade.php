@@ -112,7 +112,7 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Description #2
-                                                                                            <span class="error">*</span>
+{{--                                                                                            <span class="error">*</span>--}}
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -128,7 +128,7 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Description #3
-                                                                                            <span class="error">*</span>
+{{--                                                                                            <span class="error">*</span>--}}
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -178,7 +178,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label w-100 text-capitalize">
                                                                                                     Authenticator Name
-                                                                                                    <span class="error">*</span>
+{{--                                                                                                    <span class="error">*</span>--}}
                                                                                                 </label>
                                                                                                 <select class="form-select mb-text-only" aria-label="Default select example" name="card_authenticator_name" id="card_authenticator_name">
                                                                                                     <option selected disabled>Open this select menu</option>
@@ -192,7 +192,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label w-100">
                                                                                                     Authenticator Cert. No.
-                                                                                                    <span class="error">*</span>
+{{--                                                                                                    <span class="error">*</span>--}}
                                                                                                 </label>
                                                                                                 <input
                                                                                                     type="text"
@@ -272,7 +272,7 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Description #2
-                                                                                            <span class="error">*</span>
+{{--                                                                                            <span class="error">*</span>--}}
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -288,7 +288,7 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Description #3
-                                                                                            <span class="error">*</span>
+{{--                                                                                            <span class="error">*</span>--}}
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -335,7 +335,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label w-100 text-capitalize">
                                                                                                     Authenticator Name
-                                                                                                    <span class="error">*</span>
+{{--                                                                                                    <span class="error">*</span>--}}
                                                                                                 </label>
                                                                                                 <select class="form-select mb-text-only" aria-label="Default select example" name="auto_authentication_authenticator_name" id="auto_authentication_authenticator_name">
                                                                                                     <option selected disabled>Open this select menu</option>
@@ -349,7 +349,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label w-100">
                                                                                                     Authenticator Cert. No.
-                                                                                                    <span class="error">*</span>
+{{--                                                                                                    <span class="error">*</span>--}}
                                                                                                 </label>
                                                                                                 <input
                                                                                                     type="number"
@@ -429,7 +429,7 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Description #2
-                                                                                            <span class="error">*</span>
+{{--                                                                                            <span class="error">*</span>--}}
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -445,7 +445,7 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Description #3
-                                                                                            <span class="error">*</span>
+{{--                                                                                            <span class="error">*</span>--}}
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -490,7 +490,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label w-100 text-capitalize">
                                                                                                     Authenticator Name
-                                                                                                    <span class="error">*</span>
+{{--                                                                                                    <span class="error">*</span>--}}
                                                                                                 </label>
                                                                                                 <select class="form-select mb-text-only" aria-label="Default select example" name="combined_service_authenticator_name" id="combined_service_authenticator_name">
                                                                                                     <option selected disabled>Open this select menu</option>
@@ -504,7 +504,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label w-100">
                                                                                                     Authenticator Cert. No.
-                                                                                                    <span class="error">*</span>
+{{--                                                                                                    <span class="error">*</span>--}}
                                                                                                 </label>
                                                                                                 <input
                                                                                                     type="text"
@@ -645,7 +645,7 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Description #2
-                                                                                            <span class="error">*</span>
+{{--                                                                                            <span class="error">*</span>--}}
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -661,7 +661,7 @@
                                                                                     <div class="mb-3">
                                                                                         <label class="form-label w-100">
                                                                                             Description #3
-                                                                                            <span class="error">*</span>
+{{--                                                                                            <span class="error">*</span>--}}
                                                                                         </label>
                                                                                         <input
                                                                                             type="text"
@@ -708,7 +708,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label w-100 text-capitalize">
                                                                                                     Authenticator Name
-                                                                                                    <span class="error">*</span>
+{{--                                                                                                    <span class="error">*</span>--}}
                                                                                                 </label>
                                                                                                 <select class="form-select mb-text-only" aria-label="Default select example" name="crossover_authenticator_name"id="crossover_authenticator_name">
                                                                                                     <option selected disabled>Open this select menu</option>
@@ -722,7 +722,7 @@
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label w-100">
                                                                                                     Authenticator Cert. No.
-                                                                                                    <span class="error">*</span>
+{{--                                                                                                    <span class="error">*</span>--}}
                                                                                                 </label>
                                                                                                 <input
                                                                                                     type="text"
@@ -1230,7 +1230,7 @@
                                                                                                                                         <div class="mb-3">
                                                                                                                                             <label class="form-label w-100">
                                                                                                                                                 Description #2
-                                                                                                                                                <span class="error">*</span>
+{{--                                                                                                                                                <span class="error">*</span>--}}
                                                                                                                                             </label>
                                                                                                                                             <input
                                                                                                                                                 type="text"
@@ -1247,7 +1247,7 @@
                                                                                                                                         <div class="mb-3">
                                                                                                                                             <label class="form-label w-100">
                                                                                                                                                 Description #3
-                                                                                                                                                <span class="error">*</span>
+{{--                                                                                                                                                <span class="error">*</span>--}}
                                                                                                                                             </label>
                                                                                                                                             <input
                                                                                                                                                 type="text"
@@ -1300,7 +1300,7 @@
                                                                                                                                                 <div class="mb-3">
                                                                                                                                                     <label class="form-label w-100 text-capitalize">
                                                                                                                                                         Authenticator Name
-                                                                                                                                                        <span class="error">*</span>
+{{--                                                                                                                                                        <span class="error">*</span>--}}
                                                                                                                                                     </label>
                                                                                                                                                     <select class="form-select mb-text-only" aria-label="Default select example" name="card_authenticator_name" id="card_authenticator_name">
                                                                                                                                                         <option selected disabled>Open this select menu</option>
@@ -1315,7 +1315,7 @@
                                                                                                                                                 <div class="mb-3">
                                                                                                                                                     <label class="form-label w-100">
                                                                                                                                                         Authenticator Cert. No.
-                                                                                                                                                        <span class="error">*</span>
+{{--                                                                                                                                                        <span class="error">*</span>--}}
                                                                                                                                                     </label>
                                                                                                                                                     <input
                                                                                                                                                         type="text"
@@ -1398,7 +1398,7 @@
                                                                                                                                         <div class="mb-3">
                                                                                                                                             <label class="form-label w-100">
                                                                                                                                                 Description #2
-                                                                                                                                                <span class="error">*</span>
+{{--                                                                                                                                                <span class="error">*</span>--}}
                                                                                                                                             </label>
                                                                                                                                             <input
                                                                                                                                                 type="text"
@@ -1415,7 +1415,7 @@
                                                                                                                                         <div class="mb-3">
                                                                                                                                             <label class="form-label w-100">
                                                                                                                                                 Description #3
-                                                                                                                                                <span class="error">*</span>
+{{--                                                                                                                                                <span class="error">*</span>--}}
                                                                                                                                             </label>
                                                                                                                                             <input
                                                                                                                                                 type="text"
@@ -1465,7 +1465,7 @@
                                                                                                                                                 <div class="mb-3">
                                                                                                                                                     <label class="form-label w-100 text-capitalize">
                                                                                                                                                         Authenticator Name
-                                                                                                                                                        <span class="error">*</span>
+{{--                                                                                                                                                        <span class="error">*</span>--}}
                                                                                                                                                     </label>
                                                                                                                                                     <select class="form-select mb-text-only" aria-label="Default select example" name="auto_authentication_authenticator_name" id="auto_authentication_authenticator_name">
                                                                                                                                                         <option selected disabled>Open this select menu</option>
@@ -1479,7 +1479,7 @@
                                                                                                                                                 <div class="mb-3">
                                                                                                                                                     <label class="form-label w-100">
                                                                                                                                                         Authenticator Cert. No.
-                                                                                                                                                        <span class="error">*</span>
+{{--                                                                                                                                                        <span class="error">*</span>--}}
                                                                                                                                                     </label>
                                                                                                                                                     <input
                                                                                                                                                         type="number"
@@ -1562,7 +1562,7 @@
                                                                                                                                         <div class="mb-3">
                                                                                                                                             <label class="form-label w-100">
                                                                                                                                                 Description #2
-                                                                                                                                                <span class="error">*</span>
+{{--                                                                                                                                                <span class="error">*</span>--}}
                                                                                                                                             </label>
                                                                                                                                             <input
                                                                                                                                                 type="text"
@@ -1579,7 +1579,7 @@
                                                                                                                                         <div class="mb-3">
                                                                                                                                             <label class="form-label w-100">
                                                                                                                                                 Description #3
-                                                                                                                                                <span class="error">*</span>
+{{--                                                                                                                                                <span class="error">*</span>--}}
                                                                                                                                             </label>
                                                                                                                                             <input
                                                                                                                                                 type="text"
@@ -1629,7 +1629,7 @@
                                                                                                                                                 <div class="mb-3">
                                                                                                                                                     <label class="form-label w-100 text-capitalize">
                                                                                                                                                         Authenticator Name
-                                                                                                                                                        <span class="error">*</span>
+{{--                                                                                                                                                        <span class="error">*</span>--}}
                                                                                                                                                     </label>
                                                                                                                                                     <select class="form-select mb-text-only" aria-label="Default select example" name="combined_service_authenticator_name" id="combined_service_authenticator_name">
                                                                                                                                                         <option selected disabled>Open this select menu</option>
@@ -1643,7 +1643,7 @@
                                                                                                                                                 <div class="mb-3">
                                                                                                                                                     <label class="form-label w-100">
                                                                                                                                                         Authenticator Cert. No.
-                                                                                                                                                        <span class="error">*</span>
+{{--                                                                                                                                                        <span class="error">*</span>--}}
                                                                                                                                                     </label>
                                                                                                                                                     <input
                                                                                                                                                         type="text"
@@ -1785,7 +1785,7 @@
                                                                                                                                         <div class="mb-3">
                                                                                                                                             <label class="form-label w-100">
                                                                                                                                                 Description #2
-                                                                                                                                                <span class="error">*</span>
+{{--                                                                                                                                                <span class="error">*</span>--}}
                                                                                                                                             </label>
                                                                                                                                             <input
                                                                                                                                                 type="text"
@@ -1802,7 +1802,7 @@
                                                                                                                                         <div class="mb-3">
                                                                                                                                             <label class="form-label w-100">
                                                                                                                                                 Description #3
-                                                                                                                                                <span class="error">*</span>
+{{--                                                                                                                                                <span class="error">*</span>--}}
                                                                                                                                             </label>
                                                                                                                                             <input
                                                                                                                                                 type="text"
@@ -1852,7 +1852,7 @@
                                                                                                                                                 <div class="mb-3">
                                                                                                                                                     <label class="form-label w-100 text-capitalize">
                                                                                                                                                         Authenticator Name
-                                                                                                                                                        <span class="error">*</span>
+{{--                                                                                                                                                        <span class="error">*</span>--}}
                                                                                                                                                     </label>
                                                                                                                                                     <select class="form-select mb-text-only" aria-label="Default select example" name="crossover_authenticator_name"id="crossover_authenticator_name">
                                                                                                                                                         <option selected disabled>Open this select menu</option>
@@ -1866,7 +1866,7 @@
                                                                                                                                                 <div class="mb-3">
                                                                                                                                                     <label class="form-label w-100">
                                                                                                                                                         Authenticator Cert. No.
-                                                                                                                                                        <span class="error">*</span>
+{{--                                                                                                                                                        <span class="error">*</span>--}}
                                                                                                                                                     </label>
                                                                                                                                                     <input
                                                                                                                                                         type="text"

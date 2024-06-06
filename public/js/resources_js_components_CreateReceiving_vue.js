@@ -26,7 +26,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CreateReceiving",
-  props: ["customers", "promos", "parties", "authenticators"],
+  props: ["authenticators", "entr"],
   components: {
     VuePhoneNumberInput: (vue_phone_number_input__WEBPACK_IMPORTED_MODULE_0___default())
   },
@@ -487,6 +487,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           crossover_authenticator_name: '',
           crossover_authenticator_cert_no: '',
           crossover_estimated_value: '',
+          crossover_item_type: '',
+          crossover_minimum_grade: '',
           //card box type
           showItemTypeCardBox: false,
           showItemTypeAutoAthenticationBox: false,
@@ -498,62 +500,114 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    submit: function submit() {
+    submit: function submit(e) {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var form, requiredFields;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              if (!_this.checkSeventhStep()) {
-                _context.next = 4;
-                break;
-              }
-              Swal.fire({
-                // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
-                // title: `Do you want to save this receiving: <br> ${this.form_data.name}`,
-                title: "Do you want to save this receiving",
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: "Yes",
-                denyButtonText: "No",
-                icon: "question"
-              }).then(function (result) {
-                console.log(result);
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                  // Swal.fire("Saved!", "", "success");
-                  // window.location.href = `/admin/entries/10`;
-                  // Submit form
+              form = document.getElementById('myForm');
+              requiredFields = form.querySelectorAll('[required]');
+              requiredFields.forEach(function (field) {
+                if (field.value.trim() === '') {} else {
+                  e.preventDefault();
+                  console.log('submit');
+                  Swal.fire({
+                    // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
+                    // title: `Do you want to save this receiving: <br> ${this.form_data.name}`,
+                    title: "Do you want to save this receiving",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Yes",
+                    denyButtonText: "No",
+                    icon: "question"
+                  }).then(function (result) {
+                    console.log(result);
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      // Swal.fire("Saved!", "", "success");
+                      // window.location.href = `/admin/entries/10`;
+                      // Submit form
 
-                  axios.post("/admin/receiving", _this.form_data).then(function (response) {
-                    console.log(response);
-                    Swal.fire("Saved!", "", "success").then(function (result) {
-                      if (result.isConfirmed) {
-                        if (response.status == 200) {
-                          window.location.href = "/admin/receiving/".concat(response.data.data.id);
+                      axios.post("/admin/receiving", _this.form_data).then(function (response) {
+                        console.log(response);
+                        Swal.fire("Saved!", "", "success").then(function (result) {
+                          if (result.isConfirmed) {
+                            if (response.status == 200) {
+                              window.location.href = "/admin/receiving/".concat(response.data.data.id);
+                            }
+                          }
+                        });
+                      })["catch"](function (err) {
+                        try {
+                          self.showValidationError(err);
+                        } catch (e) {
+                          self.showSomethingWrong();
                         }
-                      }
-                    });
-                  })["catch"](function (err) {
-                    try {
-                      self.showValidationError(err);
-                    } catch (e) {
-                      self.showSomethingWrong();
+                      });
+                      // Swal.fire("Saved!", "", "success");
+                    } else if (result.isDismissed) {
+                      window.location.href = "/admin/receiving";
+                    } else if (result.isDenied) {
+                      console.log(result.isDenied);
+                      // Swal.fire("Changes are not saved", "", "info");
                     }
                   });
-                  // Swal.fire("Saved!", "", "success");
-                } else if (result.isDismissed) {
-                  window.location.href = "/admin/receiving";
-                } else if (result.isDenied) {
-                  console.log(result.isDenied);
-                  // Swal.fire("Changes are not saved", "", "info");
                 }
               });
-              _context.next = 5;
-              break;
-            case 4:
-              return _context.abrupt("return");
-            case 5:
+
+              // if (this.checkSeventhStep()){
+              //
+              //     Swal.fire({
+              //         // title: "Are the selected product offerings applicable for drop off center: <br> West's Card Edmonton",
+              //         // title: `Do you want to save this receiving: <br> ${this.form_data.name}`,
+              //         title: `Do you want to save this receiving`,
+              //         showDenyButton: true,
+              //         showCancelButton: true,
+              //         confirmButtonText: "Yes",
+              //         denyButtonText: `No`,
+              //         icon: "question",
+              //     }).then((result) => {
+              //         console.log(result)
+              //         /* Read more about isConfirmed, isDenied below */
+              //         if (result.isConfirmed) {
+              //             // Swal.fire("Saved!", "", "success");
+              //             // window.location.href = `/admin/entries/10`;
+              //             // Submit form
+              //
+              //             axios
+              //                 .post("/admin/receiving", this.form_data)
+              //                 .then(function (response) {
+              //                     console.log(response)
+              //                     Swal.fire("Saved!", "", "success").then((result)=>{
+              //                         if (result.isConfirmed){
+              //                             if (response.status == 200){
+              //                                 window.location.href = `/admin/receiving/${response.data.data.id}`;
+              //                             }
+              //                         }
+              //                     });
+              //                 })
+              //                 .catch(function (err) {
+              //                     try {
+              //                         self.showValidationError(err);
+              //                     } catch (e) {
+              //                         self.showSomethingWrong();
+              //                     }
+              //                 });
+              //             // Swal.fire("Saved!", "", "success");
+              //         }else if (result.isDismissed){
+              //             window.location.href = "/admin/receiving";
+              //         }else if (result.isDenied) {
+              //             console.log(result.isDenied)
+              //             // Swal.fire("Changes are not saved", "", "info");
+              //         }
+              //     });
+              //
+              // }else {
+              //     return;
+              // }
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -675,7 +729,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     cancel: function cancel() {
-      window.location.assign("/admin/entries");
+      window.location.assign("/admin/receiving");
     },
     selectAllCats: function selectAllCats() {
       if (this.isAllSelected) {
@@ -895,6 +949,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         crossover_authenticator_cert_no: '',
         crossover_estimated_value: '',
         crossover_item_type: '',
+        crossover_minimum_grade: '',
         //card box type
         showItemTypeCardBox: false,
         showItemTypeAutoAthenticationBox: false,
@@ -906,6 +961,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     deleteGroup: function deleteGroup(index) {
       this.form_data.items.splice(index, 1);
     }
+  },
+  mounted: function mounted() {
+    this.form_data.entryID = this.entr.id;
+    this.form_data.customerId = this.entr.customer_id;
+    console.log(this.form_data.entryID);
+    console.log(this.form_data.customerId);
   },
   validations: {
     form_data: {
@@ -1085,6 +1146,11 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "row"
+  }, [_c("form", {
+    attrs: {
+      action: "",
+      id: "myForm"
+    }
   }, [_vm._l(_vm.form_data.items, function (item, index) {
     return _c("div", {
       key: index,
@@ -1125,14 +1191,15 @@ var render = function render() {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
-        value: item.itemType.$model,
-        expression: "item.itemType.$model",
+        value: item.itemType,
+        expression: "item.itemType",
         modifiers: {
           trim: true
         }
       }],
       staticClass: "form-select mb-text-only",
       attrs: {
+        required: "",
         "aria-label": "Default select example"
       },
       on: {
@@ -1143,7 +1210,7 @@ var render = function render() {
             var val = "_value" in o ? o._value : o.value;
             return val;
           });
-          _vm.$set(item.itemType, "$model", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+          _vm.$set(item, "itemType", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
         }, function ($event) {
           return _vm.itemTypeChangeEvent(index, item.itemType);
         }]
@@ -1162,7 +1229,7 @@ var render = function render() {
       }, [_vm._v(_vm._s(type.name))]);
     })], 2), _vm._v(" "), !item.itemType.required && _vm.show_error_eleven ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                    Item type is required\n                                                ")]) : _vm._e()])]), _vm._v(" "), _vm.showItemTypeCrossoverBox ? _c("div", {
+    }, [_vm._v("\n                                                        Item type is required\n                                                    ")]) : _vm._e()])]), _vm._v(" "), item.showItemTypeCrossoverBox ? _c("div", {
       staticClass: "col-md-6"
     }, [_c("div", {
       staticClass: "mb-3"
@@ -1178,6 +1245,7 @@ var render = function render() {
       }],
       staticClass: "form-select mb-text-only",
       attrs: {
+        required: "",
         "aria-label": "Default select example"
       },
       on: {
@@ -1203,9 +1271,7 @@ var render = function render() {
           value: coType.name
         }
       }, [_vm._v(_vm._s(coType.name))]);
-    })], 2), _vm._v(" "), item.crossover_item_type.required && _vm.show_error_sixteen ? _c("div", {
-      staticClass: "error"
-    }, [_vm._v("\n                                                    Crossover item type is required\n                                                ")]) : _vm._e()])]) : _vm._e()])])])]), _vm._v(" "), item.showItemTypeCardBox ? _c("div", {
+    })], 2)])]) : _vm._e()])])])]), _vm._v(" "), item.showItemTypeCardBox ? _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "card shipping_address_card"
@@ -1219,7 +1285,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                        Qty\n                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1267,6 +1333,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "text",
         placeholder: ""
       },
@@ -1284,13 +1351,13 @@ var render = function render() {
       }
     }), _vm._v(" "), item.card_description_one.required && _vm.show_error_twelve ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                            Description one is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                Description one is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Description #2\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Description #2\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1323,7 +1390,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Description #3\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Description #3\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1356,7 +1423,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Serial Number   (Only if printed directly on item)\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Serial Number   (Only if printed directly on item)\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1400,7 +1467,7 @@ var render = function render() {
         "margin-top": "6px",
         "margin-right": "15px"
       }
-    }, [_vm._v("\n                                                                    Autographed\n                                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                        Autographed\n                                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1442,7 +1509,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100 text-capitalize"
-    }, [_vm._v("\n                                                                    Authenticator Name\n                                                                    "), item.card_autographed ? _c("span", {
+    }, [_vm._v("\n                                                                        Authenticator Name\n                                                                        "), item.card_autographed ? _c("span", {
       staticClass: "error"
     }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c("select", {
       directives: [{
@@ -1456,6 +1523,7 @@ var render = function render() {
       }],
       staticClass: "form-select mb-text-only",
       attrs: {
+        required: item.card_autographed,
         "aria-label": "Default select example"
       },
       on: {
@@ -1483,13 +1551,13 @@ var render = function render() {
       }, [_vm._v(_vm._s(authenticator.name))]);
     })], 2), _vm._v(" "), item.card_authenticator_name.required && _vm.show_error_twelve ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                                    Authenticator name is required\n                                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                        Authenticator name is required\n                                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-4"
     }, [_c("div", {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                                    Authenticator Cert. No.\n                                                                    "), item.card_autographed ? _c("span", {
+    }, [_vm._v("\n                                                                        Authenticator Cert. No.\n                                                                        "), item.card_autographed ? _c("span", {
       staticClass: "error"
     }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c("input", {
       directives: [{
@@ -1504,7 +1572,8 @@ var render = function render() {
       staticClass: "form-control",
       attrs: {
         type: "text",
-        placeholder: ""
+        placeholder: "",
+        required: item.card_autographed
       },
       domProps: {
         value: item.card_authenticator_cert_no
@@ -1520,7 +1589,7 @@ var render = function render() {
       }
     }), _vm._v(" "), item.card_authenticator_cert_no.required && _vm.show_error_twelve ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                                    Authenticator cert no. is required\n                                                                ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                        Authenticator cert no. is required\n                                                                    ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-2"
     }, [_c("div", {
       staticClass: "mb-3"
@@ -1536,6 +1605,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "number",
         placeholder: ""
       },
@@ -1553,7 +1623,7 @@ var render = function render() {
       }
     }), _vm._v(" "), item.card_estimated_value.required && _vm.show_error_twelve ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                    Estimated value is required\n                                                ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), item.showItemTypeAutoAthenticationBox ? _c("div", {
+    }, [_vm._v("\n                                                        Estimated value is required\n                                                    ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), item.showItemTypeAutoAthenticationBox ? _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "card shipping_address_card"
@@ -1567,7 +1637,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                        Qty\n                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1615,6 +1685,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "text",
         placeholder: ""
       },
@@ -1632,13 +1703,13 @@ var render = function render() {
       }
     }), _vm._v(" "), item.auto_authentication_description_one.required && _vm.show_error_thirteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                            Description one is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                Description one is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Description #2\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Description #2\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1671,7 +1742,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Description #3\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Description #3\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1704,7 +1775,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Serial Number   (Only if printed directly on item)\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Serial Number   (Only if printed directly on item)\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1748,7 +1819,7 @@ var render = function render() {
         "margin-top": "6px",
         "margin-right": "15px"
       }
-    }, [_vm._v("\n                                                                    Autographed\n                                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                        Autographed\n                                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1790,7 +1861,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100 text-capitalize"
-    }, [_vm._v("\n                                                                    Authenticator Name\n                                                                    "), item.auto_authentication_autographed ? _c("span", {
+    }, [_vm._v("\n                                                                        Authenticator Name\n                                                                        "), item.auto_authentication_autographed ? _c("span", {
       staticClass: "error"
     }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c("select", {
       directives: [{
@@ -1804,6 +1875,7 @@ var render = function render() {
       }],
       staticClass: "form-select mb-text-only",
       attrs: {
+        required: item.auto_authentication_autographed,
         "aria-label": "Default select example"
       },
       on: {
@@ -1831,13 +1903,13 @@ var render = function render() {
       }, [_vm._v(_vm._s(authenticator.name))]);
     })], 2), _vm._v(" "), item.auto_authentication_authenticator_name.required && _vm.show_error_thirteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                                    Authenticator name is required\n                                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                        Authenticator name is required\n                                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-4"
     }, [_c("div", {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                                    Authenticator Cert. No.\n                                                                    "), item.auto_authentication_autographed ? _c("span", {
+    }, [_vm._v("\n                                                                        Authenticator Cert. No.\n                                                                        "), item.auto_authentication_autographed ? _c("span", {
       staticClass: "error"
     }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c("input", {
       directives: [{
@@ -1852,7 +1924,8 @@ var render = function render() {
       staticClass: "form-control",
       attrs: {
         type: "text",
-        placeholder: ""
+        placeholder: "",
+        required: item.auto_authentication_autographed
       },
       domProps: {
         value: item.auto_authentication_authenticator_cert_no
@@ -1868,7 +1941,7 @@ var render = function render() {
       }
     }), _vm._v(" "), item.auto_authentication_authenticator_cert_no.required && _vm.show_error_thirteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                                    Authenticator cert. no. is required\n                                                                ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                        Authenticator cert. no. is required\n                                                                    ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-2"
     }, [_c("div", {
       staticClass: "mb-3"
@@ -1884,6 +1957,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "number",
         placeholder: ""
       },
@@ -1901,7 +1975,7 @@ var render = function render() {
       }
     }), _vm._v(" "), item.auto_authentication_estimated_value.required && _vm.show_error_thirteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                    Estimated value is required\n                                                ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), item.showItemTypeCombinedServiceBox ? _c("div", {
+    }, [_vm._v("\n                                                        Estimated value is required\n                                                    ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), item.showItemTypeCombinedServiceBox ? _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "card shipping_address_card"
@@ -1915,7 +1989,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                        Qty\n                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -1963,6 +2037,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "text",
         placeholder: ""
       },
@@ -1980,13 +2055,13 @@ var render = function render() {
       }
     }), _vm._v(" "), item.combined_service_description_one.required && _vm.show_error_fourteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                            Description one is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                Description one is required\n                                                            ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Description #2\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Description #2\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2019,7 +2094,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Description #3\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Description #3\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2052,7 +2127,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Serial Number   (Only if printed directly on item)\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Serial Number   (Only if printed directly on item)\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2096,7 +2171,7 @@ var render = function render() {
         "margin-top": "6px",
         "margin-right": "15px"
       }
-    }, [_vm._v("\n                                                                    Autographed\n                                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                        Autographed\n                                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2138,7 +2213,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100 text-capitalize"
-    }, [_vm._v("\n                                                                    Authenticator Name\n                                                                    "), item.combined_service_autographed ? _c("span", {
+    }, [_vm._v("\n                                                                        Authenticator Name\n                                                                        "), item.combined_service_autographed ? _c("span", {
       staticClass: "error"
     }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c("select", {
       directives: [{
@@ -2152,6 +2227,7 @@ var render = function render() {
       }],
       staticClass: "form-select mb-text-only",
       attrs: {
+        required: item.combined_service_autographed,
         "aria-label": "Default select example"
       },
       on: {
@@ -2179,13 +2255,13 @@ var render = function render() {
       }, [_vm._v(_vm._s(authenticator.name))]);
     })], 2), _vm._v(" "), item.combined_service_authenticator_name.required && _vm.show_error_fourteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                                    Authenticator Name is required\n                                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                        Authenticator Name is required\n                                                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-4"
     }, [_c("div", {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                                    Authenticator Cert. No.\n                                                                    "), item.combined_service_autographed ? _c("span", {
+    }, [_vm._v("\n                                                                        Authenticator Cert. No.\n                                                                        "), item.combined_service_autographed ? _c("span", {
       staticClass: "error"
     }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c("input", {
       directives: [{
@@ -2200,7 +2276,8 @@ var render = function render() {
       staticClass: "form-control",
       attrs: {
         type: "text",
-        placeholder: ""
+        placeholder: "",
+        required: item.combined_service_autographed
       },
       domProps: {
         value: item.combined_service_authenticator_cert_no
@@ -2216,7 +2293,7 @@ var render = function render() {
       }
     }), _vm._v(" "), item.combined_service_authenticator_cert_no.required && _vm.show_error_fourteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                                    Authenticator cert. no. is required\n                                                                ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                        Authenticator cert. no. is required\n                                                                    ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-2"
     }, [_c("div", {
       staticClass: "mb-3"
@@ -2232,6 +2309,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "number",
         placeholder: ""
       },
@@ -2249,7 +2327,7 @@ var render = function render() {
       }
     }), _vm._v(" "), item.combined_service_estimated_value.required && _vm.show_error_fourteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                    Estimated value is required\n                                                ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), item.showItemTypeReholderBox ? _c("div", {
+    }, [_vm._v("\n                                                        Estimated value is required\n                                                    ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), item.showItemTypeReholderBox ? _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "card shipping_address_card"
@@ -2263,7 +2341,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                        Qty\n                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2311,6 +2389,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "text",
         placeholder: ""
       },
@@ -2328,7 +2407,7 @@ var render = function render() {
       }
     }), _vm._v(" "), item.reholder_certification_number.required && _vm.show_error_fifteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                            Certification number is required\n                                                        ")]) : _vm._e()])])])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                Certification number is required\n                                                            ")]) : _vm._e()])])])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-2"
     }, [_c("div", {
       staticClass: "mb-3"
@@ -2344,6 +2423,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "number",
         placeholder: ""
       },
@@ -2361,7 +2441,7 @@ var render = function render() {
       }
     }), _vm._v(" "), item.reholder_estimated_value.required && _vm.show_error_fifteen ? _c("div", {
       staticClass: "error"
-    }, [_vm._v("\n                                                    Estimated value is required\n                                                ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), item.showItemTypeCrossoverBox ? _c("div", {
+    }, [_vm._v("\n                                                        Estimated value is required\n                                                    ")]) : _vm._e()])])])])])]) : _vm._e(), _vm._v(" "), item.showItemTypeCrossoverBox ? _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "card shipping_address_card"
@@ -2375,7 +2455,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                    Qty\n                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                        Qty\n                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2423,6 +2503,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "text",
         placeholder: ""
       },
@@ -2438,15 +2519,13 @@ var render = function render() {
           return _vm.$forceUpdate();
         }
       }
-    }), _vm._v(" "), item.crossover_description_one.required && _vm.show_error_sixteen ? _c("div", {
-      staticClass: "error"
-    }, [_vm._v("\n                                                            Description one is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    })])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Description #2\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Description #2\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2479,7 +2558,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Description #3\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Description #3\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2512,7 +2591,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                            Serial Number   (Only if printed directly on item)\n                                                            ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                Serial Number   (Only if printed directly on item)\n                                                                ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2556,7 +2635,7 @@ var render = function render() {
         "margin-top": "6px",
         "margin-right": "15px"
       }
-    }, [_vm._v("\n                                                                    Autographed\n                                                                ")]), _vm._v(" "), _c("input", {
+    }, [_vm._v("\n                                                                        Autographed\n                                                                    ")]), _vm._v(" "), _c("input", {
       directives: [{
         name: "model",
         rawName: "v-model.trim",
@@ -2598,7 +2677,7 @@ var render = function render() {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100 text-capitalize"
-    }, [_vm._v("\n                                                                    Authenticator Name\n                                                                    "), item.crossover_autographed ? _c("span", {
+    }, [_vm._v("\n                                                                        Authenticator Name\n                                                                        "), item.crossover_autographed ? _c("span", {
       staticClass: "error"
     }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c("select", {
       directives: [{
@@ -2612,6 +2691,7 @@ var render = function render() {
       }],
       staticClass: "form-select mb-text-only",
       attrs: {
+        required: item.crossover_autographed,
         "aria-label": "Default select example"
       },
       on: {
@@ -2637,15 +2717,13 @@ var render = function render() {
           value: authenticator.id
         }
       }, [_vm._v(_vm._s(authenticator.name))]);
-    })], 2), _vm._v(" "), item.crossover_authenticator_name.required && _vm.show_error_sixteen ? _c("div", {
-      staticClass: "error"
-    }, [_vm._v("\n                                                                    Authenticator Name is required\n                                                                ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    })], 2)])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-4"
     }, [_c("div", {
       staticClass: "mb-3"
     }, [_c("label", {
       staticClass: "form-label w-100"
-    }, [_vm._v("\n                                                                    Authenticator Cert. No.\n                                                                    "), item.crossover_autographed ? _c("span", {
+    }, [_vm._v("\n                                                                        Authenticator Cert. No.\n                                                                        "), item.crossover_autographed ? _c("span", {
       staticClass: "error"
     }, [_vm._v("*")]) : _vm._e()]), _vm._v(" "), _c("input", {
       directives: [{
@@ -2660,7 +2738,8 @@ var render = function render() {
       staticClass: "form-control",
       attrs: {
         type: "text",
-        placeholder: ""
+        placeholder: "",
+        required: item.crossover_autographed
       },
       domProps: {
         value: item.crossover_authenticator_cert_no
@@ -2674,9 +2753,7 @@ var render = function render() {
           return _vm.$forceUpdate();
         }
       }
-    }), _vm._v(" "), item.crossover_authenticator_cert_no.required && _vm.show_error_sixteen ? _c("div", {
-      staticClass: "error"
-    }, [_vm._v("\n                                                                    Authenticator cert. no. is required\n                                                                ")]) : _vm._e()])])])])])]), _vm._v(" "), _c("div", {
+    })])])])])])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-2"
     }, [_c("div", {
       staticClass: "row"
@@ -2696,6 +2773,7 @@ var render = function render() {
       }],
       staticClass: "form-control",
       attrs: {
+        required: "",
         type: "number",
         placeholder: ""
       },
@@ -2711,9 +2789,7 @@ var render = function render() {
           return _vm.$forceUpdate();
         }
       }
-    }), _vm._v(" "), item.crossover_estimated_value.required && _vm.show_error_sixteen ? _c("div", {
-      staticClass: "error"
-    }, [_vm._v("\n                                                            Estimated value is required\n                                                        ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    })])]), _vm._v(" "), _c("div", {
       staticClass: "col-md-12"
     }, [_c("div", {
       staticClass: "mb-3"
@@ -2754,9 +2830,7 @@ var render = function render() {
           value: grade.id
         }
       }, [_vm._v(_vm._s(grade.name))]);
-    })], 2), _vm._v(" "), item.crossover_minimum_grade.required && _vm.show_error_sixteen ? _c("div", {
-      staticClass: "error"
-    }, [_vm._v("\n                                                            Minimum grade is required\n                                                        ")]) : _vm._e()])])])])])])])]) : _vm._e()])])])]);
+    })], 2)])])])])])])])]) : _vm._e()])])])]);
   }), _vm._v(" "), _c("div", {
     staticClass: "col-md-12",
     staticStyle: {
@@ -2769,22 +2843,28 @@ var render = function render() {
     staticStyle: {
       "margin-right": "15px"
     },
+    attrs: {
+      type: "button"
+    },
     on: {
       click: _vm.addGroup
     }
   }, [_vm._v("Add New Item")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    },
     on: {
       click: _vm.submit
     }
-  }, [_vm._v("Save")])])])], 2);
+  }, [_vm._v("Save")])])])], 2)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                    Select the item type to be entered\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Select the item type to be entered\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2792,7 +2872,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                    Crossover Item Type\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Crossover Item Type\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2800,7 +2880,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #1   (Year,Manufacturer,Set,Other)\n                                                            "), _c("span", {
+  }, [_vm._v("\n                                                                Description #1   (Year,Manufacturer,Set,Other)\n                                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2808,7 +2888,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                    Estimated Value\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Estimated Value\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2816,7 +2896,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #1   (Year,Manufacturer,Set,Other)\n                                                            "), _c("span", {
+  }, [_vm._v("\n                                                                Description #1   (Year,Manufacturer,Set,Other)\n                                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2824,7 +2904,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                    Estimated Value\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Estimated Value\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2832,7 +2912,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #1   (Year,Manufacturer,Set,Other)\n                                                            "), _c("span", {
+  }, [_vm._v("\n                                                                Description #1   (Year,Manufacturer,Set,Other)\n                                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2840,7 +2920,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                    Estimated Value\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Estimated Value\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2848,7 +2928,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Certification Number\n                                                            "), _c("span", {
+  }, [_vm._v("\n                                                                Certification Number\n                                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2856,7 +2936,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                    Estimated Value\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                        Estimated Value\n                                                        "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2864,7 +2944,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Description #1   (Year,Manufacturer,Set,Other)\n                                                            "), _c("span", {
+  }, [_vm._v("\n                                                                Description #1   (Year,Manufacturer,Set,Other)\n                                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2872,7 +2952,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100"
-  }, [_vm._v("\n                                                            Estimated Value\n                                                            "), _c("span", {
+  }, [_vm._v("\n                                                                Estimated Value\n                                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }, function () {
@@ -2880,7 +2960,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     staticClass: "form-label w-100 text-capitalize"
-  }, [_vm._v("\n                                                            Minimum Grade\n                                                            "), _c("span", {
+  }, [_vm._v("\n                                                                Minimum Grade\n                                                                "), _c("span", {
     staticClass: "error"
   }, [_vm._v("*")])]);
 }];
