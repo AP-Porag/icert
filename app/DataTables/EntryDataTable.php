@@ -47,8 +47,19 @@ class EntryDataTable extends DataTable
             ->editColumn('contact_name', function ($item) {
                 return $item->customer->contact_name;
             })
+            ->editColumn('id', function ($item) {
+                $receivingCOunt = $item->receivings->count();
+
+                if($receivingCOunt > 0){
+                    $status = 'Already Received/Receiving of Order Finished (ROF)';
+                }else{
+                    $status = 'No Receiving';
+                }
+
+                return $status;
+            })
             ->rawColumns([
-                'action','email','contact_name'
+                'action','email','contact_name','status'
             ])
             ->setRowId('id');
 
@@ -99,6 +110,7 @@ class EntryDataTable extends DataTable
 //            Column::make('qty', 'qty')->title('Order Quantity'),
             Column::make('email', 'email')->title('Email')->searchable(false),
             Column::make('contact_name', 'contact_name')->title('Contact Name')->searchable(false),
+            Column::make('id', 'id')->title('Receiving Status')->searchable(false),
         ];
     }
 

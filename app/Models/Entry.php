@@ -16,6 +16,9 @@ class Entry extends Model
         return  $this->hasMany(EntryItems::class,'entry_id');
     }
 
+    public function receivings(){
+        return $this->hasMany(Receivig::class,'entry_id');
+    }
     public function customer()
     {
         return  $this->belongsTo(Customer::class,'customer_id');

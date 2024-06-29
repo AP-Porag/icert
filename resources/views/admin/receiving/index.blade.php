@@ -17,7 +17,7 @@
                             <p class="hide text-warning" id="if-nothing-in-input">Please enter Order ID</p>
                         </div>
                     </div>
-                    <div class="row hide" id="result-if-nothing-or-error">
+                    <div class="row hide mt-3" id="result-if-nothing-or-error">
                         <div class="col-md-12">
                             <div class="result-if-nothing-or-error d-flex justify-content-between">
                                 <div class="text-warning" id="error-text">No Data Found in this order ID</div>
@@ -139,6 +139,9 @@
                             createReceivingButton.attr('href', route);
                             boxForSearch.removeClass('show').addClass('hide')
                             resultBoxIfSuccess.removeClass('hide').addClass('show')
+                        }else if(response.status == 202){
+                            resultBoxIfNothingOrError.removeClass('hide').addClass('show')
+                            errorText.text('Already Received')
                         }else {
                             resultBoxIfNothingOrError.removeClass('hide').addClass('show')
                             errorText.text('No data found')

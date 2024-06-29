@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Receiving;
 
 use App\DataTables\ReceivingDataTable;
+use App\Http\Controllers\Controller;
 use App\Models\Authenticator;
 use App\Models\Entry;
-use App\Models\EntryItems;
 use App\Models\Receivig;
 use App\Models\ReceivingItem;
 use App\Services\ReceivingService;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class ReceivingController extends Controller
 {
-    protected $entryService;
+    protected $receivingService;
 
     public function __construct(ReceivingService $receivingService)
     {
@@ -31,7 +31,11 @@ class ReceivingController extends Controller
         $entrySKU = $request->id;
         $order = Entry::where('entrySKU','=',$entrySKU)->with('customer')->first();
         if ($order){
-            return response()->json(['status'=>200,'message' => 'Successfully feched', 'data' => $order]);
+            if ($order->receivings->count() > 0){
+                return response()->json(['status'=>202,'message' => 'Already Received', 'data' => []]);
+            }else{
+                return response()->json(['status'=>200,'message' => 'Successfully feched', 'data' => $order]);
+            }
         }else{
             return response()->json(['status'=>201,'message' => 'Something went wrong', 'data' => []]);
         }

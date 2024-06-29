@@ -26,6 +26,17 @@ class EntryController extends Controller
     public function index(EntryDataTable $dataTable)
     {
         set_page_meta('Entry');
+//        $item = Entry::find(1);
+//        $receivingCOunt = $item->receivings->count();
+//
+//        if($receivingCOunt > 0){
+//            $status = 'Already Received/Receiving of Order Finished (ROF)';
+//        }else{
+//            $status = 'No Receiving';
+//        }
+//
+//        return $status;
+
         return $dataTable->render('admin.entry.index');
     }
 
