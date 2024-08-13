@@ -310,23 +310,6 @@
                                                                                                 </div>
 
 
-                                                                                                {{--                                        <div class="mb-3">--}}
-                                        {{--                                            <label class="form-label">Select Grade <span class="error">*</span></label>--}}
-                                        {{--                                            <select class="form-control select2" name="role" required>--}}
-                                        {{--                                                <option selected disabled>----------------------</option>--}}
-                                        {{--                                                @forelse ($roles as $role)--}}
-                                        {{--                                                    <option value="{{ $role->name }}" {{ old('role')==$role->id ? 'selected' : '' }}>{{--}}
-                                        {{--                                                            $role->name }}</option>--}}
-                                        {{--                                                @empty--}}
-                                        {{--                                                    <option value="">Nothing in the list</option>--}}
-                                        {{--                                                @endforelse--}}
-                                        {{--                                            </select>--}}
-                                        {{--                                            @error('role')--}}
-                                        {{--                                            <p class="error">{{ $message }}</p>--}}
-                                        {{--                                            @enderror--}}
-                                        {{--                                        </div>--}}
-
-
                                     </div>
                                 </div>
                             </div>
